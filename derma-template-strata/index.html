@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#EFF1F0" />
+<title>STRATA — Hudklinik, København</title>
+<meta name="description" content="STRATA is a dermatology clinic in Copenhagen. Skin cancer, pigmented lesions, eczema, acne and surgery, under Dr. Mette Krogh Lindhardt, speciallæge i dermato-venerologi." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- =========================================================
+     MOBILE BAR — the depth gauge is a desktop instrument, so
+     narrow screens get a plain bar and a contents sheet.
+     ========================================================= -->
+<div class="bar">
+  <a class="bar__mark" href="#top">Strata</a>
+  <button class="bar__btn" data-sheet-open aria-expanded="false">Contents</button>
+</div>
+
+<div class="sheet" data-sheet hidden>
+  <div class="sheet__in">
+    <p class="lab">Contents · by depth</p>
+    <ol class="sheet__list">
+      <li><a href="#surface"  data-jump><span>Surface</span><em>0.00 mm</em></a></li>
+      <li><a href="#see"      data-jump><span>What you can see</span><em>0.02 mm</em></a></li>
+      <li><a href="#epidermis" data-jump><span>Epidermis</span><em>0.10 mm</em></a></li>
+      <li><a href="#dermis"   data-jump><span>Dermis</span><em>0.60 mm</em></a></li>
+      <li><a href="#margins"  data-jump><span>Depth that decides</span><em>3.00 mm</em></a></li>
+      <li><a href="#clinic"   data-jump><span>The clinic</span><em>—</em></a></li>
+      <li><a href="#priser"   data-jump><span>Priser</span><em>—</em></a></li>
+      <li><a href="#aftale"   data-jump><span>Aftale</span><em>—</em></a></li>
+    </ol>
+    <button class="btn" data-sheet-close>Close</button>
+  </div>
+</div>
+
+<!-- =========================================================
+     DEPTH GAUGE — the only fixed furniture on desktop.
+     A measuring scale, not a menu: it reads out where in the
+     skin you currently are.
+     ========================================================= -->
+<aside class="gauge" data-gauge aria-label="Depth">
+  <div class="gauge__read">
+    <b data-gauge-val>0.00</b>
+    <span>mm</span>
+  </div>
+
+  <div class="gauge__spine">
+    <span class="gauge__cursor" data-gauge-cursor aria-hidden="true"></span>
+    <button class="gauge__tick" data-tick="surface"   data-mm="0.00" title="Surface — 0.00 mm"></button>
+    <button class="gauge__tick" data-tick="see"       data-mm="0.02" title="What you can see — 0.02 mm"></button>
+    <button class="gauge__tick" data-tick="epidermis" data-mm="0.10" title="Epidermis — 0.10 mm"></button>
+    <button class="gauge__tick" data-tick="dermis"    data-mm="0.60" title="Dermis — 0.60 mm"></button>
+    <button class="gauge__tick" data-tick="margins"   data-mm="3.00" title="Depth that decides — 3.00 mm"></button>
+    <button class="gauge__tick" data-tick="clinic"    title="The clinic"></button>
+    <button class="gauge__tick" data-tick="priser"    title="Priser"></button>
+    <button class="gauge__tick" data-tick="aftale"    title="Aftale"></button>
+  </div>
+
+  <p class="gauge__name" data-gauge-name>Surface</p>
+  <a class="gauge__cta" href="#aftale">Aftale</a>
+</aside>
+
+<div class="page" id="top">
+
+  <!-- =========================================================
+       0.00 mm — SURFACE
+       ========================================================= -->
+  <header class="hero" id="surface" data-depth="0.00" data-name="Surface">
+    <div class="hero__copy">
+      <p class="mark">Strata</p>
+      <p class="lab lab--pet">Hudklinik · Store Kongensgade, København K</p>
+
+      <h1 class="hero__h">
+        Everything we treat happens in the first four millimetres.
+      </h1>
+
+      <p class="lede">
+        Depth decides almost every question in dermatology: what a thing is,
+        whether it matters, what will reach it, and what it will take to
+        remove it. This clinic is arranged the way the skin is — from the
+        surface down — because that is the order in which the answers arrive.
+      </p>
+
+      <div class="acts">
+        <a class="btn btn--fill" href="#aftale">Book en aftale</a>
+        <a class="btn" href="#priser">Priser &amp; henvisning</a>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Speciallæge</dt><dd>Dermato-venerologi</dd></div>
+        <div><dt>Henvisning</dt><dd>Gruppe 1 dækket</dd></div>
+        <div><dt>Ventetid</dt><dd>Pigmenterede læsioner: 6 dage</dd></div>
+      </dl>
+    </div>
+
+    <!-- the plate: five layers, each one openable -->
+    <figure class="plate" data-plate>
+      <figcaption class="plate__cap">
+        <span class="lab">Plate — vertical section, human skin</span>
+        <span class="plate__note">Scale broken at 0.10 mm. At true scale the
+          epidermis would be a hairline.</span>
+      </figcaption>
+
+      <div class="plate__rows">
+        <div class="lay" style="--h:46px;--t:var(--t1)">
+          <div class="lay__band"></div>
+          <div class="lay__key">
+            <button class="lay__btn" aria-expanded="false">
+              <span class="lay__n">Stratum corneum</span>
+              <span class="lay__d">0.02 mm</span>
+            </button>
+            <div class="lay__note" hidden>
+              <p>Dead, flattened keratin — the only part of you that the
+                outside world actually touches. Creams, sunscreens and
+                cleansers work here or not at all. Nothing malignant starts
+                in a dead cell, which is why what you can see is always a
+                report from further down.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lay" style="--h:66px;--t:var(--t2)">
+          <div class="lay__band"></div>
+          <div class="lay__key">
+            <button class="lay__btn" aria-expanded="false">
+              <span class="lay__n">Epidermis</span>
+              <span class="lay__d">0.10 mm</span>
+            </button>
+            <div class="lay__note" hidden>
+              <p>Four cell layers renewing themselves about every four
+                weeks. Squamous cell carcinoma arises here. So does actinic
+                keratosis, which is the same process caught earlier and is
+                the reason we treat rough patches that do not look like
+                anything.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lay lay--mark" style="--h:30px;--t:var(--t3)">
+          <div class="lay__band"></div>
+          <div class="lay__key">
+            <button class="lay__btn" aria-expanded="false">
+              <span class="lay__n">Basal layer &amp; melanocytes</span>
+              <span class="lay__d">0.10 mm</span>
+            </button>
+            <div class="lay__note" hidden>
+              <p>One cell thick, and the origin of most of what we look for.
+                Basal cell carcinoma starts in the basal keratinocytes;
+                melanoma starts in the melanocytes sitting among them, about
+                one to every ten. Above this line, disease is contained.
+                Below it, it has somewhere to go.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lay" style="--h:150px;--t:var(--t4)">
+          <div class="lay__band"></div>
+          <div class="lay__key">
+            <button class="lay__btn" aria-expanded="false">
+              <span class="lay__n">Dermis</span>
+              <span class="lay__d">0.10 — 3.00 mm</span>
+            </button>
+            <div class="lay__note" hidden>
+              <p>Collagen, blood vessels, nerves, sweat glands and hair
+                follicles. Rosacea, acne, hidradenitis and most eczema are
+                dermal or follicular problems, which is why they answer to
+                tablets and light and not to a change of moisturiser.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lay" style="--h:92px;--t:var(--t5)">
+          <div class="lay__band"></div>
+          <div class="lay__key">
+            <button class="lay__btn" aria-expanded="false">
+              <span class="lay__n">Subcutis</span>
+              <span class="lay__d">3.00 mm +</span>
+            </button>
+            <div class="lay__note" hidden>
+              <p>Fat and fascia. Surgically this is the floor: an excision
+                is taken down to it so that the specimen the laboratory
+                receives has an intact base to measure from.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </header>
+
+  <main>
+
+    <!-- =========================================================
+         0.02 mm — WHAT YOU CAN SEE
+         ========================================================= -->
+    <section class="sec" id="see" data-depth="0.02" data-name="What you can see">
+      <header class="sh">
+        <p class="lab lab--pet">0.02 mm · Stratum corneum</p>
+        <h2>The only layer you can inspect yourself. Here is what to look for.</h2>
+        <p class="sh__note">
+          Mark the features below and watch what they do to an ordinary
+          spot. This is the same list a dermatologist runs through, in the
+          same order, before reaching for a dermatoscope.
+        </p>
+      </header>
+
+      <div class="lesion" data-lesion>
+        <div class="lesion__stage">
+          <span class="lesion__ghost" aria-hidden="true"></span>
+          <span class="lesion__spot" aria-hidden="true">
+            <span class="lesion__patch lesion__patch--dark"></span>
+            <span class="lesion__patch lesion__patch--pale"></span>
+            <!-- B: five bites out of the edge, painted in the stage colour -->
+            <span class="lesion__bite" style="--x:6%;--y:-6%;--s:26%"></span>
+            <span class="lesion__bite" style="--x:74%;--y:14%;--s:20%"></span>
+            <span class="lesion__bite" style="--x:52%;--y:80%;--s:24%"></span>
+            <span class="lesion__bite" style="--x:-8%;--y:52%;--s:18%"></span>
+            <span class="lesion__bite" style="--x:30%;--y:-10%;--s:15%"></span>
+          </span>
+          <span class="lesion__rule" aria-hidden="true">
+            <i></i><b data-lesion-mm>4</b>&nbsp;mm
+          </span>
+          <span class="lesion__was" aria-hidden="true">six months ago</span>
+        </div>
+
+        <div class="lesion__panel">
+          <p class="lab">Mark what applies</p>
+
+          <div class="chips" role="group" aria-label="Features">
+            <button class="chip" data-f="a" aria-pressed="false">
+              <span class="chip__k">A</span> Asymmetry
+            </button>
+            <button class="chip" data-f="b" aria-pressed="false">
+              <span class="chip__k">B</span> Border
+            </button>
+            <button class="chip" data-f="c" aria-pressed="false">
+              <span class="chip__k">C</span> Colour
+            </button>
+            <button class="chip" data-f="d" aria-pressed="false">
+              <span class="chip__k">D</span> Diameter
+            </button>
+            <button class="chip" data-f="e" aria-pressed="false">
+              <span class="chip__k">E</span> Evolving
+            </button>
+          </div>
+
+          <ul class="notes" data-lesion-notes></ul>
+
+          <p class="verdict" data-lesion-verdict aria-live="polite">
+            Nothing marked. Round, one colour, even edge, small, unchanged —
+            this is what the overwhelming majority of your spots look like,
+            and none of them need an appointment.
+          </p>
+
+          <p class="fine">
+            A drawing is not a diagnosis. One feature is reason enough to
+            have a spot looked at, and a flat, featureless mark that is
+            <i>new</i> deserves the same appointment as a dramatic one.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         0.10 mm — EPIDERMIS
+         ========================================================= -->
+    <section class="sec" id="epidermis" data-depth="0.10" data-name="Epidermis">
+      <header class="sh">
+        <p class="lab lab--pet">0.10 mm · Epidermis and basal layer</p>
+        <h2>Three cancers, one tenth of a millimetre apart.</h2>
+        <p class="sh__note">
+          They behave completely differently, and the difference is almost
+          entirely a matter of which cell they started in and how far down
+          it sat.
+        </p>
+      </header>
+
+      <div class="trio">
+        <article class="card">
+          <p class="card__d">0.10 mm · basal keratinocyte</p>
+          <h3>Basal cell carcinoma</h3>
+          <p>
+            The commonest cancer in humans and the least dangerous of the
+            three. It grows locally, erodes rather than spreads, and is
+            almost always cured by removing it. A pearly bump that bleeds
+            and scabs over and over is the classic story.
+          </p>
+          <p class="card__t">Excision · curettage · topical · Mohs referral</p>
+        </article>
+
+        <article class="card">
+          <p class="card__d">0.05 mm · squamous cell</p>
+          <h3>Squamous cell carcinoma</h3>
+          <p>
+            Arises higher in the epidermis, often out of an actinic
+            keratosis, and can spread if it is left. Tender, firm, growing,
+            frequently on a scalp, ear, lip or forearm — the surfaces that
+            have taken forty years of sun.
+          </p>
+          <p class="card__t">Excision with margin · histology always</p>
+        </article>
+
+        <article class="card card--pet">
+          <p class="card__d">0.10 mm · melanocyte</p>
+          <h3>Melanoma</h3>
+          <p>
+            The rarest of the three and the one the whole examination is
+            built around. While it is confined above the basement membrane
+            it is cured by excision. What changes the conversation is
+            depth — measured in millimetres, on page three of the
+            pathology report.
+          </p>
+          <p class="card__t">Excision · Breslow thickness · staging</p>
+        </article>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="reach">
+        <div class="reach__head">
+          <p class="lab">What reaches how far</p>
+          <p class="reach__note">
+            Every treatment has a depth it can work at. Most of the
+            frustration patients arrive with is a treatment aimed at the
+            wrong layer.
+          </p>
+        </div>
+
+        <ul class="reach__list">
+          <li style="--p:0.5%"><span class="reach__n">Emollients &amp; sunscreen</span><span class="reach__b"><i></i></span><span class="reach__v">0.02 mm</span></li>
+          <li style="--p:2.5%"><span class="reach__n">Topical retinoid, steroid</span><span class="reach__b"><i></i></span><span class="reach__v">0.10 mm</span></li>
+          <li style="--p:2.5%"><span class="reach__n">Patch testing</span><span class="reach__b"><i></i></span><span class="reach__v">0.10 mm</span></li>
+          <li style="--p:7.5%"><span class="reach__n">Cryotherapy</span><span class="reach__b"><i></i></span><span class="reach__v">0.30 mm</span></li>
+          <li style="--p:12.5%"><span class="reach__n">Narrowband UVB</span><span class="reach__b"><i></i></span><span class="reach__v">0.50 mm</span></li>
+          <li style="--p:15%"><span class="reach__n">Curettage &amp; cautery</span><span class="reach__b"><i></i></span><span class="reach__v">0.60 mm</span></li>
+          <li style="--p:50%"><span class="reach__n">Oral systemics</span><span class="reach__b"><i></i></span><span class="reach__v">2.00 mm</span></li>
+          <li style="--p:100%"><span class="reach__n">Excision to fascia</span><span class="reach__b"><i></i></span><span class="reach__v">4.00 mm</span></li>
+        </ul>
+
+        <p class="reach__axis" aria-hidden="true">
+          <span></span>
+          <span><i>0</i><i>1</i><i>2</i><i>3</i><i>4 mm</i></span>
+          <span></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         0.60 mm — DERMIS
+         ========================================================= -->
+    <section class="sec" id="dermis" data-depth="0.60" data-name="Dermis">
+      <header class="sh">
+        <p class="lab lab--pet">0.60 mm · Dermis</p>
+        <h2>Below the basement membrane, dermatology stops being about the surface.</h2>
+        <p class="sh__note">
+          Vessels, collagen, sebaceous glands and follicles. The conditions
+          that live down here are the ones people have usually been treating
+          from the outside for years without much happening.
+        </p>
+      </header>
+
+      <div class="grid2">
+        <article class="item">
+          <p class="item__d">Follicular · 0.4 — 1.2 mm</p>
+          <h3>Acne &amp; isotretinoin</h3>
+          <p>
+            The problem is in the sebaceous unit, not on the skin, which is
+            why washing harder has never helped anybody. Graded at the first
+            visit and treated to a written schedule with an end date. Where
+            isotretinoin is warranted it is started and monitored monthly,
+            not held back for years.
+          </p>
+        </article>
+
+        <article class="item">
+          <p class="item__d">Vascular · 0.3 — 0.8 mm</p>
+          <h3>Rosacea</h3>
+          <p>
+            Dilated dermal vessels and inflammation, not sensitivity and not
+            hygiene. Treated by subtype, because the flushing kind and the
+            papular kind respond to entirely different things and are
+            routinely given the same cream.
+          </p>
+        </article>
+
+        <article class="item">
+          <p class="item__d">Barrier &amp; immune · 0.05 — 0.6 mm</p>
+          <h3>Eczema &amp; patch testing</h3>
+          <p>
+            Dermatitis that has not settled gets tested rather than
+            re-creamed. The European baseline series plus occupational
+            allergens, read at 48 and 96 hours, and you leave with a printed
+            list of what to avoid rather than another tube.
+          </p>
+        </article>
+
+        <article class="item">
+          <p class="item__d">Deep follicular · 1.0 — 3.0 mm</p>
+          <h3>Hidradenitis suppurativa</h3>
+          <p>
+            Years of being told these are boils. It is a deep follicular
+            disease with a staging system and real treatments, including
+            biologics where the criteria are met. Staged at the first visit
+            so that progress is a number.
+          </p>
+        </article>
+
+        <article class="item">
+          <p class="item__d">Follicular · 1.0 — 4.0 mm</p>
+          <h3>Hair &amp; scalp</h3>
+          <p>
+            Scarring and non-scarring loss are different diseases with
+            different windows for treatment, and telling them apart usually
+            needs a scalp biopsy rather than a long conversation. Bloods on
+            the day.
+          </p>
+        </article>
+
+        <article class="item">
+          <p class="item__d">Full thickness</p>
+          <h3>Paediatric skin</h3>
+          <p>
+            Birthmarks, infantile haemangiomas, molluscum, and the very
+            large category of childhood rashes that turn out to be nothing.
+            Longer appointments and no waiting room.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3.00 mm — MARGINS
+         ========================================================= -->
+    <section class="sec" id="margins" data-depth="3.00" data-name="Depth that decides">
+      <header class="sh">
+        <p class="lab lab--pet">3.00 mm · Where a millimetre changes the plan</p>
+        <h2>In melanoma, the number that matters is a depth.</h2>
+        <p class="sh__note">
+          Breslow thickness is measured from the top of the granular layer
+          to the deepest tumour cell. It is the single strongest predictor
+          of outcome, and it is why a lesion is excised rather than sampled.
+        </p>
+      </header>
+
+      <div class="scale">
+        <div class="scale__bar" aria-hidden="true">
+          <span class="scale__seg" style="--w:20%;--t:var(--t2)"></span>
+          <span class="scale__seg" style="--w:5%;--t:var(--t3)"></span>
+          <span class="scale__seg" style="--w:25%;--t:var(--t4)"></span>
+          <span class="scale__seg" style="--w:50%;--t:var(--t5)"></span>
+          <b class="scale__pin" style="--x:20%"></b>
+          <b class="scale__pin" style="--x:25%"></b>
+          <b class="scale__pin" style="--x:50%"></b>
+        </div>
+        <p class="scale__axis" aria-hidden="true">
+          <span style="--x:0%">0</span><span style="--x:20%">0.8</span
+          ><span style="--x:25%">1.0</span><span style="--x:50%">2.0</span
+          ><span style="--x:100%">4.0 mm</span>
+        </p>
+
+        <dl class="scale__key">
+          <div>
+            <dt>Under 0.8 mm</dt>
+            <dd>Wide local excision and nothing else. Survival at this
+              thickness is very close to that of the general population.</dd>
+          </div>
+          <div>
+            <dt>0.8 — 1.0 mm</dt>
+            <dd>The threshold at which a sentinel node biopsy is usually
+              discussed. A tenth of a millimetre either side changes the
+              conversation.</dd>
+          </div>
+          <div>
+            <dt>1.0 — 2.0 mm</dt>
+            <dd>Wider margins, node sampling, imaging, and follow-up moves
+              from a yearly appointment to a schedule.</dd>
+          </div>
+          <div>
+            <dt>Over 2.0 mm</dt>
+            <dd>Oncology involvement and staging. Still treatable, and still
+              a very different year than it would have been at 0.6 mm.</dd>
+          </div>
+        </dl>
+
+        <p class="fine">
+          Set out here because patients are handed these numbers without
+          being told what they mean. Nothing on this page is a treatment
+          plan: thickness is one of several factors, and the decisions
+          belong to you and the specialist in front of you.
+        </p>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="grid2">
+        <article class="item">
+          <p class="item__d">In the rooms</p>
+          <h3>Excision under local anaesthetic</h3>
+          <p>
+            Marked, measured and photographed before anything is cut, taken
+            down to fascia, and closed. Every specimen goes to
+            histopathology with an orientation suture. Results are given by
+            telephone within five working days — never by letter, and never
+            withheld until an appointment.
+          </p>
+        </article>
+
+        <article class="item">
+          <p class="item__d">Onward</p>
+          <h3>When it leaves this clinic</h3>
+          <p>
+            Facial lesions needing staged margin control, anything requiring
+            a sentinel node, and anything over 2 mm goes to Rigshospitalet
+            with the images, the measurements and a telephone call the same
+            day. You are not handed a referral and left to arrange it.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         THE CLINIC
+         ========================================================= -->
+    <section class="sec" id="clinic" data-depth="—" data-name="The clinic">
+      <header class="sh">
+        <p class="lab lab--pet">Store Kongensgade 42, 1264 København K</p>
+        <h2>One specialist, and the instruments to see 0.10 mm.</h2>
+      </header>
+
+      <div class="who">
+        <div class="who__main">
+          <p class="who__name">Dr. Mette Krogh Lindhardt</p>
+          <p class="who__cred">Speciallæge i dermato-venerologi · Aut. 0294 118 · Dansk Dermatologisk Selskab</p>
+
+          <p>
+            Medicine at Københavns Universitet, specialist training at
+            Bispebjerg and Rigshospitalet, then six years of pigmented
+            lesion work before opening these rooms in 2013. She performs
+            every examination and every excision herself. There is no
+            registrar clinic and no rotating locum: the person who looked at
+            your skin last spring is the person looking at it now.
+          </p>
+          <p>
+            Consultations are in Danish or English. Written summaries go to
+            your læge after every visit unless you ask us not to send one.
+          </p>
+
+          <table class="reg">
+            <caption class="lab">Register</caption>
+            <tbody>
+              <tr><th scope="row">Speciality</th><td>Dermato-venerologi, speciallæge 2011</td></tr>
+              <tr><th scope="row">Society</th><td>Dansk Dermatologisk Selskab · EADV</td></tr>
+              <tr><th scope="row">Hospital</th><td>Tilknyttet Bispebjerg Hospital</td></tr>
+              <tr><th scope="row">Teaching</th><td>Dermatoskopi, KU speciallægekurser</td></tr>
+              <tr><th scope="row">Interests</th><td>Pigmenterede læsioner · dermatoskopi · kontaktallergi</td></tr>
+              <tr><th scope="row">Languages</th><td>Dansk · English · Deutsch</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="who__side">
+          <div class="panel">
+            <p class="lab">In the rooms</p>
+            <ul class="ticks">
+              <li>Two polarised dermatoscopes, ×10</li>
+              <li>Fixed-distance photography rig, calibrated monthly</li>
+              <li>Sequential digital mole mapping</li>
+              <li>Minor procedure room, local anaesthetic only</li>
+              <li>Narrowband UVB cabinet</li>
+              <li>Refrigerated patch-test allergens, baseline series</li>
+              <li>Courier to histopathology, twice daily</li>
+            </ul>
+          </div>
+
+          <div class="panel panel--pet">
+            <p class="lab">Not in the rooms</p>
+            <p>
+              No injectables, no laser hair removal, no skincare range and
+              nothing for sale. If a treatment is not the answer to a
+              medical question, it is not offered here.
+            </p>
+          </div>
+
+          <div class="panel">
+            <p class="lab">Åbningstider</p>
+            <dl class="hours">
+              <div><dt>Man — tors</dt><dd>08.00 — 16.00</dd></div>
+              <div><dt>Fredag</dt><dd>08.00 — 13.00</dd></div>
+              <div><dt>Kirurgi</dt><dd>Tirsdag, hele dagen</dd></div>
+              <div><dt>Weekend</dt><dd>Lukket</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PRISER
+         ========================================================= -->
+    <section class="sec" id="priser" data-depth="—" data-name="Priser">
+      <header class="sh">
+        <p class="lab lab--pet">Priser &amp; henvisning</p>
+        <h2>With a referral, most of this costs you nothing.</h2>
+        <p class="sh__note">
+          Printed in full, including the part where the answer is zero,
+          because a price you have to telephone for is a price somebody is
+          uncomfortable about.
+        </p>
+      </header>
+
+      <div class="two">
+        <div class="cover">
+          <p class="cover__k">Gruppe 1, med henvisning</p>
+          <p class="cover__v">0 <em>kr.</em></p>
+          <p>
+            Consultation, dermatoscopy, biopsy, excision and histopathology
+            are covered by the offentlige sygesikring when you come with a
+            referral from your læge. There is no supplement and no
+            membership.
+          </p>
+        </div>
+
+        <div class="cover cover--alt">
+          <p class="cover__k">Gruppe 2, or without a referral</p>
+          <p class="cover__v">950 <em>kr. og op</em></p>
+          <p>
+            You are welcome without a referral and will usually be seen
+            sooner. Gruppe 2 patients receive a partial refund from the
+            sygesikring; the amounts below are the full fee before that.
+          </p>
+        </div>
+      </div>
+
+      <ul class="fees">
+        <li><span class="fees__n">First consultation <em>30 min</em></span><span class="fees__v">950</span></li>
+        <li><span class="fees__n">Full skin examination <em>45 min, dermatoskopi</em></span><span class="fees__v">1.400</span></li>
+        <li><span class="fees__n">Review <em>15 min</em></span><span class="fees__v">600</span></li>
+        <li><span class="fees__n">Baseline mole mapping <em>photography</em></span><span class="fees__v">1.650</span></li>
+        <li><span class="fees__n">Biopsy <em>incl. histopathology</em></span><span class="fees__v">1.100</span></li>
+        <li><span class="fees__n">Excision, trunk or limb <em>from</em></span><span class="fees__v">2.400</span></li>
+        <li><span class="fees__n">Patch testing <em>baseline series, two readings</em></span><span class="fees__v">2.100</span></li>
+        <li><span class="fees__n">Narrowband UVB <em>per session</em></span><span class="fees__v">280</span></li>
+      </ul>
+      <p class="fees__foot">Alle beløb i DKK, inkl. moms hvor det gælder.</p>
+
+      <div class="notices">
+        <div class="notice">
+          <p class="lab">Henvisning</p>
+          <p>Your læge can refer you the same day. A referral lasts twelve
+            months and covers everything above.</p>
+        </div>
+        <div class="notice">
+          <p class="lab">Studerende &amp; pensionister</p>
+          <p>Two-thirds of the self-pay fees. The card is the only
+            documentation asked for.</p>
+        </div>
+        <div class="notice">
+          <p class="lab">Hvis det ikke kan betales</p>
+          <p>Nobody is turned away from a skin examination over money. Say
+            so when you telephone.</p>
+        </div>
+        <div class="notice">
+          <p class="lab">Akutte læsioner</p>
+          <p>Two slots at 08.00 each weekday are held for changing lesions
+            and are never released to routine booking.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         AFTALE
+         ========================================================= -->
+    <section class="sec" id="aftale" data-depth="—" data-name="Aftale">
+      <header class="sh">
+        <p class="lab lab--pet">Aftale</p>
+        <h2>Book, or telephone if something is bleeding.</h2>
+      </header>
+
+      <div class="two two--form">
+        <form class="req" data-req novalidate>
+          <p class="req__over">
+            <span class="lab">Anmodning om aftale</span>
+            <span>Reception rings back within one working day</span>
+          </p>
+
+          <div class="req__grid">
+            <label class="cell cell--wide">
+              <span class="lab">Navn</span>
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="cell">
+              <span class="lab">Telefon</span>
+              <input type="tel" name="tel" autocomplete="tel" required />
+            </label>
+            <label class="cell">
+              <span class="lab">E-mail</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="cell">
+              <span class="lab">Sygesikring</span>
+              <select name="group">
+                <option>Gruppe 1, med henvisning</option>
+                <option>Gruppe 1, henvisning følger</option>
+                <option>Gruppe 2</option>
+                <option>Uden henvisning / selvbetaler</option>
+              </select>
+            </label>
+            <label class="cell">
+              <span class="lab">Anledning</span>
+              <select name="reason">
+                <option>Pigmenteret læsion / modermærke</option>
+                <option>Fuld hudundersøgelse</option>
+                <option>Akne</option>
+                <option>Eksem eller kontaktallergi</option>
+                <option>Rosacea</option>
+                <option>Hidrosadenitis</option>
+                <option>Hår og hovedbund</option>
+                <option>Barn eller ung</option>
+                <option>Ved ikke</option>
+              </select>
+            </label>
+            <label class="cell cell--wide">
+              <span class="lab">Hvad har ændret sig, og hvornår</span>
+              <textarea name="notes" rows="3"></textarea>
+            </label>
+          </div>
+
+          <fieldset class="flags">
+            <legend class="lab">Marker hvis det gælder</legend>
+            <label><input type="checkbox" name="flag" value="bleeding" /><span>A spot that bleeds or will not heal</span></label>
+            <label><input type="checkbox" name="flag" value="new" /><span>Something new that is growing</span></label>
+            <label><input type="checkbox" name="flag" value="changed" /><span>An old mole that has changed</span></label>
+          </fieldset>
+
+          <div class="req__foot">
+            <button class="btn btn--fill" type="submit">Send anmodning</button>
+            <p class="fine">
+              Nothing is charged now. If a lesion is bleeding today,
+              telephone <b>+45 33 15 40 80</b> rather than filling this in —
+              the held 08.00 slots are given out by telephone only.
+            </p>
+          </div>
+        </form>
+
+        <aside class="two__side">
+          <div class="panel">
+            <p class="lab">Klinikken</p>
+            <p class="addr">
+              Store Kongensgade 42, 2.<br />
+              1264 København K
+            </p>
+            <p class="addr">
+              <a href="tel:+4533154080">+45 33 15 40 80</a><br />
+              <a href="mailto:klinik@strata.dk">klinik@strata.dk</a>
+            </p>
+          </div>
+
+          <div class="panel">
+            <p class="lab">Sådan finder du os</p>
+            <ul class="ticks">
+              <li>Metro Marmorkirken — 3 min</li>
+              <li>Bus 1A, Esplanaden — 4 min</li>
+              <li>Cykelstativer i gården</li>
+              <li>Elevator, trinfri adgang</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <p class="lab">Før du kommer</p>
+            <ul class="ticks">
+              <li>Ingen neglelak eller makeup</li>
+              <li>Tag henvisningen med, hvis du har en</li>
+              <li>Tøj du ikke har noget imod at tage af</li>
+              <li>Skriv ned, hvad der har ændret sig</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOT
+       ========================================================= -->
+  <footer class="foot">
+    <div class="rule"></div>
+
+    <div class="foot__grid">
+      <div>
+        <p class="mark mark--sm">Strata</p>
+        <p>Hudklinik · Dermato-venerologi<br />
+          Store Kongensgade 42, 1264 København K</p>
+      </div>
+
+      <nav>
+        <p class="lab">By depth</p>
+        <a href="#surface">Surface <em>0.00</em></a>
+        <a href="#see">What you can see <em>0.02</em></a>
+        <a href="#epidermis">Epidermis <em>0.10</em></a>
+        <a href="#dermis">Dermis <em>0.60</em></a>
+        <a href="#margins">Depth that decides <em>3.00</em></a>
+      </nav>
+
+      <nav>
+        <p class="lab">Praktisk</p>
+        <a href="#clinic">The clinic <em>—</em></a>
+        <a href="#priser">Priser <em>—</em></a>
+        <a href="#aftale">Aftale <em>—</em></a>
+        <a href="#top">Til toppen <em>—</em></a>
+      </nav>
+
+      <div>
+        <p class="lab">Kontakt</p>
+        <p>
+          <a href="tel:+4533154080">+45 33 15 40 80</a><br />
+          <a href="mailto:klinik@strata.dk">klinik@strata.dk</a><br />
+          Aut. 0294 118
+        </p>
+      </div>
+    </div>
+
+    <div class="foot__bar">
+      <p>Set in Spectral and Jost. Drawn, not photographed.</p>
+      <p>© <span data-year>2026</span> Strata Hudklinik ApS ·
+        <a href="#">Privatlivspolitik</a> ·
+        <a href="#">Patientrettigheder</a> ·
+        <a href="#">Klager</a></p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

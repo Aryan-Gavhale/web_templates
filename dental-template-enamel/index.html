@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ENAMEL — dental studio, Sheffield</title>
+<meta name="description" content="A dental studio in Sheffield. Fixed prices, same-day emergencies, and nobody whispering about your teeth over your head." />
+<meta name="theme-color" content="#FF4A17" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111110'/%3E%3Cpath d='M16 4c6 0 9 3.4 9 9 0 5.6-2.3 6.8-3.4 12.4-.6 3.2-2.3 3.4-2.8.4L16 18l-2.8 7.8c-.5 3-2.2 2.8-2.8-.4C9.3 19.8 7 18.6 7 13c0-5.6 3-9 9-9z' fill='%23FF4A17'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header class="bar" data-bar>
+  <div class="wrap bar__in">
+    <a href="#top" class="logo" aria-label="ENAMEL dental studio, home">
+      ENAMEL<i aria-hidden="true"></i>
+    </a>
+
+    <nav class="bar__nav" aria-label="Primary">
+      <a href="#work">Treatments</a>
+      <a href="#quiz">Smile check</a>
+      <a href="#plans">Plans</a>
+      <a href="#team">Team</a>
+    </nav>
+
+    <div class="bar__end">
+      <a href="tel:+441144960180" class="bar__tel">0114 496 0180</a>
+      <a href="#book" class="btn btn--sm">Book</a>
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" data-burger>
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" data-sheet hidden>
+  <nav aria-label="Mobile">
+    <a href="#work">Treatments</a>
+    <a href="#quiz">Smile check</a>
+    <a href="#plans">Plans</a>
+    <a href="#team">Team</a>
+    <a href="#faq">Questions</a>
+    <a href="#book" class="sheet__cta">Book a visit</a>
+  </nav>
+  <p><a href="tel:+441144960180">0114 496 0180</a><br />Unit 4, Vulcan Works, Sheffield S1</p>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap hero__in">
+      <div class="hero__l">
+        <p class="tag" data-pop>Sheffield <b>/</b> Open Saturdays</p>
+
+        <h1 class="hero__h" data-pop data-delay="60">
+          Dentistry,<br />without the<br /><span class="mark">whispering.</span>
+        </h1>
+
+        <p class="hero__p" data-pop data-delay="140">
+          Fixed prices on the wall. Same-day slots for pain. Everything explained to your
+          face, in words, before anyone picks anything up.
+        </p>
+
+        <div class="hero__do" data-pop data-delay="200">
+          <a href="#book" class="btn btn--big">Book a visit</a>
+          <a href="#quiz" class="btn btn--big btn--ghost">Take the smile check</a>
+        </div>
+
+        <ul class="chips" data-pop data-delay="260">
+          <li>Check-up £65</li>
+          <li>No referral needed</li>
+          <li>Plans from £14.99</li>
+        </ul>
+      </div>
+
+      <div class="hero__r" data-pop data-delay="120">
+        <figure class="shot shot--a">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80"
+               alt="A treatment room at the ENAMEL studio" fetchpriority="high" decoding="async" data-img />
+        </figure>
+        <figure class="shot shot--b">
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=80"
+               alt="A dentist talking a patient through a plan" loading="lazy" decoding="async" data-img />
+        </figure>
+        <span class="sticker" aria-hidden="true">Open<br />Sat</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STAT BAND ============ -->
+  <section class="band" aria-label="The studio in numbers">
+    <div class="wrap band__in">
+      <div><b>11</b><span>Surgeries</span></div>
+      <div><b>7,400</b><span>Patients</span></div>
+      <div><b>4.9</b><span>Out of five</span></div>
+      <div><b>0</b><span>Hidden charges</span></div>
+    </div>
+  </section>
+
+  <!-- ============ TREATMENTS RAIL ============ -->
+  <section class="sec" id="work">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>Treatments</p>
+        <h2 class="h2" data-pop data-delay="60">Everything, priced.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        Drag the row, or use the arrow keys. Every price is what you pay — the quote we give
+        you is the invoice you get.
+      </p>
+    </div>
+
+    <div class="rail" data-rail tabindex="0" role="group" aria-label="Treatments, scroll sideways">
+      <article class="card">
+        <p class="card__n">01</p>
+        <h3>Check-up &amp; hygiene</h3>
+        <p class="card__d">Forty minutes, two X-rays, a gum score and a written plan you take home.</p>
+        <p class="card__p">£65</p>
+        <p class="card__m">45 min</p>
+      </article>
+      <article class="card">
+        <p class="card__n">02</p>
+        <h3>Emergency slot</h3>
+        <p class="card__d">Held back every morning for pain, swelling and things that broke last night.</p>
+        <p class="card__p">£40</p>
+        <p class="card__m">Same day</p>
+      </article>
+      <article class="card">
+        <p class="card__n">03</p>
+        <h3>White fillings</h3>
+        <p class="card__d">Composite, matched to the tooth next door. No silver, no second visit.</p>
+        <p class="card__p">from £145</p>
+        <p class="card__m">60 min</p>
+      </article>
+      <article class="card">
+        <p class="card__n">04</p>
+        <h3>Clear aligners</h3>
+        <p class="card__d">Scanned, planned and shown to you on screen before you commit to anything.</p>
+        <p class="card__p">from £1,950</p>
+        <p class="card__m">6–9 months</p>
+      </article>
+      <article class="card">
+        <p class="card__n">05</p>
+        <h3>Whitening</h3>
+        <p class="card__d">Trays made from a scan, gel for two weeks, and a top-up kit next year.</p>
+        <p class="card__p">£295</p>
+        <p class="card__m">2 visits</p>
+      </article>
+      <article class="card">
+        <p class="card__n">06</p>
+        <h3>Crowns &amp; onlays</h3>
+        <p class="card__d">Digital impression, milled locally, fitted in a fortnight with no putty involved.</p>
+        <p class="card__p">from £620</p>
+        <p class="card__m">2 visits</p>
+      </article>
+      <article class="card card--end">
+        <p class="card__n">07</p>
+        <h3>Something else?</h3>
+        <p class="card__d">Implants, root canals, night guards, kids. Ring the studio and ask us straight.</p>
+        <p class="card__p">Ask</p>
+        <a class="card__a" href="#book">Book a chat</a>
+      </article>
+    </div>
+
+    <div class="wrap rail__foot">
+      <div class="prog" aria-hidden="true"><span data-prog></span></div>
+      <div class="rail__btns">
+        <button type="button" class="nub" data-scroll="-1" aria-label="Scroll treatments left">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7" /></svg>
+        </button>
+        <button type="button" class="nub" data-scroll="1" aria-label="Scroll treatments right">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="sec sec--ink" id="quiz">
+    <div class="wrap quiz">
+      <div class="quiz__l">
+        <p class="lab lab--on" data-pop>Smile check</p>
+        <h2 class="h2 h2--rev" data-pop data-delay="60">Four questions.<br />No lecture.</h2>
+        <p class="quiz__p" data-pop data-delay="110">
+          Tell us four things and we will tell you which appointment to book first, what it
+          costs and how long it takes. Nothing is stored, and nobody rings you afterwards
+          unless you ask.
+        </p>
+        <p class="quiz__sm" data-pop data-delay="150">
+          Not a diagnosis, obviously. Just a better starting point than guessing.
+        </p>
+      </div>
+
+      <div class="quiz__r" data-pop data-delay="80">
+        <div class="qbox">
+          <div class="qbox__top">
+            <p class="qbox__step"><b data-q-now>1</b> <span data-q-of>of 4</span></p>
+            <div class="dots" aria-hidden="true" data-q-dots></div>
+          </div>
+
+          <div data-q-stage aria-live="polite">
+            <h3 class="qbox__q" data-q-title>—</h3>
+            <div class="opts" data-q-opts role="group" aria-label="Answers"></div>
+          </div>
+
+          <div class="qbox__foot">
+            <button type="button" class="link" data-q-back hidden>← Back</button>
+            <button type="button" class="link" data-q-again hidden>Start again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STEPS ============ -->
+  <section class="sec" id="how">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>How it goes</p>
+        <h2 class="h2" data-pop data-delay="60">Three steps, then home.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        The first visit is always a look and a conversation. We do not start work on the day
+        unless you ask us to.
+      </p>
+    </div>
+
+    <div class="wrap steps">
+      <article data-pop>
+        <p class="steps__n">1</p>
+        <h3>Book in ninety seconds</h3>
+        <p>Pick a day and a time below, or ring the studio. No forms, no registration fee, no
+          waiting for a letter.</p>
+      </article>
+      <article data-pop data-delay="80">
+        <p class="steps__n">2</p>
+        <h3>Look, scan, talk</h3>
+        <p>Photos and a 3D scan on the screen in front of you, then the options and the prices
+          in plain words.</p>
+      </article>
+      <article data-pop data-delay="160">
+        <p class="steps__n">3</p>
+        <h3>Decide in your own time</h3>
+        <p>You leave with a written plan and a price. Book the work whenever you are ready —
+          the quote stands for six months.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PLANS ============ -->
+  <section class="sec sec--bone" id="plans">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>Plans</p>
+        <h2 class="h2" data-pop data-delay="60">Pay monthly, forget about it.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        Membership spreads the routine work across the year and takes 20% off everything
+        else. Cancel any month, no exit fee.
+      </p>
+    </div>
+
+    <div class="wrap plans">
+      <article class="plan" data-pop>
+        <h3>Essential</h3>
+        <p class="plan__p"><b>£14.99</b><span>/month</span></p>
+        <ul>
+          <li>Two check-ups a year</li>
+          <li>Two hygiene visits</li>
+          <li>X-rays included</li>
+          <li>10% off treatment</li>
+        </ul>
+        <a href="#book" class="btn btn--wide btn--ghost">Choose Essential</a>
+      </article>
+
+      <article class="plan plan--on" data-pop data-delay="80">
+        <span class="plan__flag">Most chosen</span>
+        <h3>Complete</h3>
+        <p class="plan__p"><b>£24.99</b><span>/month</span></p>
+        <ul>
+          <li>Everything in Essential</li>
+          <li>Four hygiene visits</li>
+          <li>Emergency slots free</li>
+          <li>20% off treatment</li>
+          <li>Whitening top-up yearly</li>
+        </ul>
+        <a href="#book" class="btn btn--wide">Choose Complete</a>
+      </article>
+
+      <article class="plan" data-pop data-delay="160">
+        <h3>Family</h3>
+        <p class="plan__p"><b>£39.99</b><span>/month</span></p>
+        <ul>
+          <li>Two adults, three children</li>
+          <li>Children free until 18</li>
+          <li>Emergency slots free</li>
+          <li>20% off treatment</li>
+        </ul>
+        <a href="#book" class="btn btn--wide btn--ghost">Choose Family</a>
+      </article>
+    </div>
+
+    <p class="wrap plans__note" data-pop>
+      Plans are optional. Everything is available to pay-as-you-go at the prices above.
+    </p>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="sec" id="team">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>The team</p>
+        <h2 class="h2" data-pop data-delay="60">Eighteen of us.<br />Four who see you first.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        You get the same clinician every visit unless you ask to change. Their names are on
+        your notes, not a rota.
+      </p>
+    </div>
+
+    <div class="wrap crew">
+      <article class="who" data-pop>
+        <div class="who__pic">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80"
+               alt="Dr. Theo Bakare, clinical lead" loading="lazy" decoding="async" data-img />
+        </div>
+        <h3>Dr. Theo Bakare</h3>
+        <p class="who__r">Clinical lead</p>
+        <p class="who__b">Restorative work and the long rebuilds. Talks fast, explains twice.</p>
+      </article>
+
+      <article class="who" data-pop data-delay="70">
+        <div class="who__pic">
+          <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=600&q=80"
+               alt="Dr. Amara Osei, dentist" loading="lazy" decoding="async" data-img />
+        </div>
+        <h3>Dr. Amara Osei</h3>
+        <p class="who__r">Dentist <b>/</b> Aligners</p>
+        <p class="who__b">Plans every aligner case herself and shows you the scan on day one.</p>
+      </article>
+
+      <article class="who" data-pop data-delay="140">
+        <div class="who__pic">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80"
+               alt="Mr. Devan Rao, oral surgeon" loading="lazy" decoding="async" data-img />
+        </div>
+        <h3>Mr. Devan Rao</h3>
+        <p class="who__r">Oral surgery</p>
+        <p class="who__b">Wisdom teeth and implants. Fifteen years on a hospital list first.</p>
+      </article>
+
+      <article class="who" data-pop data-delay="210">
+        <div class="who__pic">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80"
+               alt="Marisa Ferreira, lead hygienist" loading="lazy" decoding="async" data-img />
+        </div>
+        <h3>Marisa Ferreira</h3>
+        <p class="who__r">Lead hygienist</p>
+        <p class="who__b">Runs the gum programme. Will fix your brushing in four minutes flat.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section class="sec sec--bone">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>Reviews</p>
+        <h2 class="h2" data-pop data-delay="60">4.9 from 812 people.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        Pulled from Google and left as written, typos and all. We do not choose which ones
+        show up here.
+      </p>
+    </div>
+
+    <div class="wrap says">
+      <blockquote data-pop>
+        <p class="stars" aria-label="Five out of five">★★★★★</p>
+        <p>“Rang at eight with half a molar in my hand, sat in the chair at ten. Told me the
+          price before he touched it. Unheard of.”</p>
+        <footer>Danny R. <b>/</b> Emergency</footer>
+      </blockquote>
+      <blockquote data-pop data-delay="80">
+        <p class="stars" aria-label="Five out of five">★★★★★</p>
+        <p>“I hadn't been in nine years and nobody made me feel bad about it once. Two
+          appointments and I'm sorted.”</p>
+        <footer>Priya S. <b>/</b> Check-up</footer>
+      </blockquote>
+      <blockquote data-pop data-delay="160">
+        <p class="stars" aria-label="Five out of five">★★★★★</p>
+        <p>“Aligners took seven months, cost exactly what the quote said, and Amara answered
+          every daft question I sent her.”</p>
+        <footer>Tom H. <b>/</b> Aligners</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ BOOK ============ -->
+  <section class="sec" id="book">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>Booking</p>
+        <h2 class="h2" data-pop data-delay="60">Pick a day. Pick a time.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        Live availability for the next fortnight. Anything greyed out has gone. If you are in
+        pain, ring instead — <a href="tel:+441144960180">0114 496 0180</a>.
+      </p>
+    </div>
+
+    <div class="wrap flip" data-flip>
+      <div class="flip__in" data-flip-in>
+        <!-- front -->
+        <form class="face face--f" data-form novalidate>
+          <fieldset>
+            <legend class="lab">Day</legend>
+            <div class="days" data-days role="group" aria-label="Choose a day"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="lab">Time</legend>
+            <div class="times" data-times role="group" aria-label="Choose a time"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="lab">What for</legend>
+            <div class="pick" data-what role="group" aria-label="Choose a reason">
+              <button type="button" class="opt is-on" data-val="A check-up">A check-up</button>
+              <button type="button" class="opt" data-val="Pain or a break">Pain or a break</button>
+              <button type="button" class="opt" data-val="Hygiene">Hygiene</button>
+              <button type="button" class="opt" data-val="Aligners or whitening">Aligners or whitening</button>
+              <button type="button" class="opt" data-val="A second opinion">A second opinion</button>
+            </div>
+          </fieldset>
+
+          <div class="pair">
+            <label class="fld">
+              <span class="lab">Name</span>
+              <input type="text" name="name" placeholder="Danny Reeves" autocomplete="name" required />
+            </label>
+            <label class="fld">
+              <span class="lab">Mobile</span>
+              <input type="tel" name="phone" placeholder="07700 900312" autocomplete="tel" required />
+            </label>
+          </div>
+
+          <p class="form__line" data-summary>Choose a day and a time to get started.</p>
+          <button type="submit" class="btn btn--big btn--wide">Confirm the booking</button>
+          <p class="form__err" role="status" aria-live="polite" data-err></p>
+        </form>
+
+        <!-- back -->
+        <div class="face face--b" data-back aria-hidden="true">
+          <p class="done__k">Booked</p>
+          <h3 class="done__h" data-done-when>—</h3>
+          <p class="done__d" data-done-what>—</p>
+          <dl class="done__l">
+            <div><dt>Where</dt><dd>Unit 4, Vulcan Works, Sheffield S1</dd></div>
+            <div><dt>Ref</dt><dd data-done-ref>—</dd></div>
+            <div><dt>Text confirmation</dt><dd data-done-tel>—</dd></div>
+          </dl>
+          <p class="done__n">Arrive five minutes early with a list of anything that has been
+            bothering you. Cancel or move it free up to four hours before.</p>
+          <button type="button" class="btn btn--ghost btn--wide" data-again>Book another</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="sec sec--bone" id="faq">
+    <div class="wrap head">
+      <div>
+        <p class="lab" data-pop>Questions</p>
+        <h2 class="h2" data-pop data-delay="60">Asked most often.</h2>
+      </div>
+      <p class="head__p" data-pop data-delay="100">
+        Anything not here, ring the studio and ask —
+        <a href="tel:+441144960180">0114 496 0180</a>. The desk can answer most of it without
+        putting you through to a clinician.
+      </p>
+    </div>
+
+    <div class="wrap acc" data-acc>
+      <details data-pop>
+        <summary>Are you taking new patients?<i aria-hidden="true"></i></summary>
+        <p>Yes, private only. There is no registration fee and no waiting list — the next
+          check-up slot is usually within a week, and emergency slots are held back daily.</p>
+      </details>
+      <details data-pop data-delay="50">
+        <summary>Is the price really the price?<i aria-hidden="true"></i></summary>
+        <p>Yes. You get a written quote before anything starts, and the invoice matches it.
+          If we find something mid-treatment we stop, tell you, and re-quote.</p>
+      </details>
+      <details data-pop data-delay="100">
+        <summary>I am genuinely frightened of dentists.<i aria-hidden="true"></i></summary>
+        <p>Say so when you book and it goes at the top of your notes. You can come and sit in
+          the room with nothing happening as many times as you like. Sedation is available
+          for anything long.</p>
+      </details>
+      <details data-pop data-delay="150">
+        <summary>Can I pay in instalments?<i aria-hidden="true"></i></summary>
+        <p>Interest free over six or twelve months on anything above £300, arranged at the
+          desk in ten minutes. Longer terms are available through a finance provider.</p>
+      </details>
+      <details data-pop data-delay="200">
+        <summary>Do you see children?<i aria-hidden="true"></i></summary>
+        <p>From two years old. Free on the Family plan until they are eighteen, and £25 a
+          visit otherwise. The first appointment is a ride in the chair and a look.</p>
+      </details>
+      <details data-pop data-delay="250">
+        <summary>What if I need something you do not do?<i aria-hidden="true"></i></summary>
+        <p>We will say so and refer you, with the notes and scans sent ahead. You will not be
+          charged for the appointment that worked that out.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__big">ENAMEL</p>
+
+    <div class="foot__grid">
+      <div>
+        <p class="lab lab--on">Studio</p>
+        <p>Unit 4, Vulcan Works<br />Sheffield S1 4RG</p>
+        <p><a href="tel:+441144960180">0114 496 0180</a><br /><a href="mailto:hello@enamel.example">hello@enamel.example</a></p>
+      </div>
+      <div>
+        <p class="lab lab--on">Hours</p>
+        <p>Mon–Thu <b>08:00 — 19:00</b><br />Fri <b>08:00 — 17:00</b><br />Sat <b>09:00 — 14:00</b><br />Sun <b>Closed</b></p>
+      </div>
+      <div>
+        <p class="lab lab--on">Go to</p>
+        <a href="#work">Treatments</a>
+        <a href="#quiz">Smile check</a>
+        <a href="#plans">Plans</a>
+        <a href="#team">Team</a>
+        <a href="#book">Booking</a>
+      </div>
+      <div>
+        <p class="lab lab--on">Small print</p>
+        <a href="#main">Complaints</a>
+        <a href="#main">Privacy</a>
+        <a href="#main">GDC registered</a>
+        <a href="#main">CQC rated Good</a>
+      </div>
+    </div>
+
+    <div class="foot__base">
+      <p>© <span data-year>2026</span> ENAMEL Dental Studio Ltd</p>
+      <p>Template built with no framework and no gradients.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE BAR ============ -->
+<div class="dock" data-dock>
+  <p>Check-up <b>£65</b></p>
+  <a href="#book" class="btn btn--sm">Book a visit</a>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

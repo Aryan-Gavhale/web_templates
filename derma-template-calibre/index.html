@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0B0C" />
+<title>CALIBRE — Skin Laboratory, Zürich</title>
+<meta name="description" content="CALIBRE is a measurement-led dermatology laboratory in Zürich. Diagnostic imaging, device dermatology and documented outcomes under Dr Ilse Naumann, MD PhD, Dermatologie FMH." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<!-- =========================================================
+     BOOT — the page calibrates before it opens. A sweep line
+     crosses the viewport while a monospace counter climbs.
+     ========================================================= -->
+<div class="boot" data-boot>
+  <div class="boot__inner">
+    <p class="boot__id">CALIBRE / SKIN LABORATORY / ZÜRICH</p>
+    <div class="boot__bar"><i data-boot-bar></i></div>
+    <p class="boot__read">
+      <span data-boot-label>Calibrating</span>
+      <span data-boot-pct>000</span>
+    </p>
+  </div>
+  <span class="boot__sweep" data-boot-sweep aria-hidden="true"></span>
+</div>
+
+<!-- =========================================================
+     COLUMN GRID — four hairlines, fixed, behind everything
+     ========================================================= -->
+<div class="grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<!-- =========================================================
+     LEFT RAIL — desktop navigation lives on its side
+     ========================================================= -->
+<aside class="rail" data-rail>
+  <a class="rail__mark" href="#top" aria-label="Calibre, home">
+    <span class="rail__glyph" aria-hidden="true"></span>
+    <span class="rail__word">Calibre</span>
+  </a>
+
+  <nav class="rail__nav" aria-label="Sections">
+    <a href="#assessment" data-navlink><em>01</em><span>Assessment</span></a>
+    <a href="#register"   data-navlink><em>02</em><span>Register</span></a>
+    <a href="#protocol"   data-navlink><em>03</em><span>Protocol</span></a>
+    <a href="#evidence"   data-navlink><em>04</em><span>Evidence</span></a>
+    <a href="#bench"      data-navlink><em>05</em><span>Bench</span></a>
+    <a href="#questions"  data-navlink><em>06</em><span>Questions</span></a>
+    <a href="#admission"  data-navlink><em>07</em><span>Admission</span></a>
+  </nav>
+
+  <div class="rail__foot">
+    <span class="rail__prog" aria-hidden="true"><i data-prog></i></span>
+    <span class="rail__clock" data-clock>--:--:--</span>
+    <span class="rail__zone">CET</span>
+  </div>
+</aside>
+
+<!-- =========================================================
+     MOBILE BAR
+     ========================================================= -->
+<header class="bar">
+  <a class="bar__mark" href="#top">
+    <span class="rail__glyph" aria-hidden="true"></span>Calibre
+  </a>
+  <button class="tog" data-menu-open aria-label="Open menu"><i></i><i></i></button>
+</header>
+
+<div class="sheet" data-menu aria-hidden="true">
+  <div class="sheet__bar">
+    <span class="bar__mark"><span class="rail__glyph" aria-hidden="true"></span>Calibre</span>
+    <button class="tog tog--x" data-menu-close aria-label="Close menu"><i></i><i></i></button>
+  </div>
+  <nav class="sheet__nav">
+    <a href="#assessment" data-menu-link><em>01</em>Assessment</a>
+    <a href="#register"   data-menu-link><em>02</em>Register</a>
+    <a href="#protocol"   data-menu-link><em>03</em>Protocol</a>
+    <a href="#evidence"   data-menu-link><em>04</em>Evidence</a>
+    <a href="#bench"      data-menu-link><em>05</em>Bench</a>
+    <a href="#questions"  data-menu-link><em>06</em>Questions</a>
+    <a href="#admission"  data-menu-link><em>07</em>Admission</a>
+  </nav>
+  <div class="sheet__foot">
+    <p>Löwenstrasse 42<br />8001 Zürich</p>
+    <p><a href="tel:+41442146680">+41 44 214 66 80</a><br /><a href="mailto:admit@calibre.clinic">admit@calibre.clinic</a></p>
+  </div>
+</div>
+
+<main class="shell" id="top">
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="tag"><span class="tag__dot"></span>Est. 2014 · Dermatologie FMH</p>
+
+      <h1 class="hero__h1">
+        <span class="clip"><i>Skin, measured</i></span>
+        <span class="clip"><i>before it is</i></span>
+        <span class="clip"><i>treated.</i></span>
+      </h1>
+
+      <p class="hero__lede">
+        A dermatology laboratory built around instrumentation. Every case opens
+        with calibrated imaging and closes with the same measurement repeated —
+        so the outcome is a number, not an impression.
+      </p>
+
+      <div class="hero__act">
+        <a class="btn btn--fill" href="#admission"><span>Request a slot</span></a>
+        <a class="btn btn--line" href="#register"><span>Treatment register</span></a>
+      </div>
+
+      <dl class="hero__spec">
+        <div><dt>Practitioner</dt><dd>Dr I. Naumann<br /><span>MD PhD · FMH</span></dd></div>
+        <div><dt>Imaging</dt><dd>VISIA · RCM<br /><span>Cross-polarised</span></dd></div>
+        <div><dt>Location</dt><dd>Löwenstrasse 42<br /><span>8001 Zürich</span></dd></div>
+      </dl>
+    </div>
+
+    <!-- annotated specimen panel -->
+    <figure class="hero__panel" data-scan>
+      <div class="hero__img">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&crop=faces&w=1100&h=1400&q=80"
+             alt="Patient portrait recorded under cross-polarised light" />
+
+        <div class="anno" aria-hidden="true">
+          <span class="anno__br anno__br--tl"></span>
+          <span class="anno__br anno__br--tr"></span>
+          <span class="anno__br anno__br--bl"></span>
+          <span class="anno__br anno__br--br"></span>
+
+          <span class="anno__cross" style="--ax:34%;--ay:41%">
+            <b></b><em>ROI 04</em>
+          </span>
+          <span class="anno__cross anno__cross--sm" style="--ax:63%;--ay:54%">
+            <b></b><em>ROI 09</em>
+          </span>
+
+          <span class="anno__hline" style="--ay:41%"></span>
+          <span class="anno__vline" style="--ax:34%"></span>
+
+          <span class="anno__tag anno__tag--tl">CP · 5600 K</span>
+          <span class="anno__tag anno__tag--tr">f/8 · 1/160</span>
+
+          <div class="anno__rule">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+
+      <figcaption>
+        <span>Baseline capture · visit 01</span>
+        <span data-readout>x —— · y ——</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- =========================================================
+       METRIC BAR
+       ========================================================= -->
+  <div class="metrics">
+    <div class="metric v"><dt>Cases documented</dt><dd><span data-count="4820">0</span></dd></div>
+    <div class="metric v" style="--d:.06s"><dt>Instruments on bench</dt><dd><span data-count="11">0</span></dd></div>
+    <div class="metric v" style="--d:.12s"><dt>Mean sessions to target</dt><dd><span data-count="34" data-div="10">0</span></dd></div>
+    <div class="metric v" style="--d:.18s"><dt>Outcome measured</dt><dd><span data-count="100">0</span><i>%</i></dd></div>
+  </div>
+
+  <!-- =========================================================
+       01 ASSESSMENT
+       ========================================================= -->
+  <section class="block" id="assessment">
+    <header class="sh">
+      <span class="sh__no" data-scramble>01</span>
+      <div class="sh__body">
+        <h2 class="h2">Measure first.<br />Diagnose second.</h2>
+        <p class="sh__note">
+          The first appointment is ninety minutes of instrumentation. Nothing is
+          prescribed in it. You leave with a printed baseline and a date.
+        </p>
+      </div>
+    </header>
+
+    <div class="assess">
+      <div class="assess__read">
+        <p class="lbl">Baseline readout · anonymised specimen</p>
+
+        <ul class="meters" data-meters>
+          <li class="meter" style="--pct:72">
+            <span class="meter__k">Melanin index</span>
+            <span class="meter__bar"><i></i></span>
+            <span class="meter__v" data-count="72">0</span>
+          </li>
+          <li class="meter" style="--pct:58">
+            <span class="meter__k">Erythema index</span>
+            <span class="meter__bar"><i></i></span>
+            <span class="meter__v" data-count="58">0</span>
+          </li>
+          <li class="meter" style="--pct:41">
+            <span class="meter__k">Surface texture</span>
+            <span class="meter__bar"><i></i></span>
+            <span class="meter__v" data-count="41">0</span>
+          </li>
+          <li class="meter" style="--pct:66">
+            <span class="meter__k">Pore volume</span>
+            <span class="meter__bar"><i></i></span>
+            <span class="meter__v" data-count="66">0</span>
+          </li>
+          <li class="meter" style="--pct:29">
+            <span class="meter__k">Barrier loss (TEWL)</span>
+            <span class="meter__bar"><i></i></span>
+            <span class="meter__v" data-count="29">0</span>
+          </li>
+          <li class="meter" style="--pct:84">
+            <span class="meter__k">UV damage, cumulative</span>
+            <span class="meter__bar"><i></i></span>
+            <span class="meter__v" data-count="84">0</span>
+          </li>
+        </ul>
+
+        <p class="assess__fine">
+          Indices are normalised 0–100 against a Fitzpatrick-matched reference
+          set. The same six are repeated at every review, on the same device,
+          in the same room, at the same time of day.
+        </p>
+      </div>
+
+      <div class="assess__cols">
+        <article class="card v">
+          <span class="card__no">A</span>
+          <h3>Imaging</h3>
+          <p>
+            Cross-polarised and UV capture at fixed distance, plus reflectance
+            confocal microscopy where a lesion needs cellular resolution rather
+            than a second opinion.
+          </p>
+          <ul class="chips"><li>VISIA</li><li>RCM</li><li>Dermoscopy</li></ul>
+        </article>
+
+        <article class="card v" style="--d:.08s">
+          <span class="card__no">B</span>
+          <h3>Histology</h3>
+          <p>
+            Any excised tissue goes to an accredited lab with a five-day
+            turnaround. You are sent the report, not a paraphrase of it.
+          </p>
+          <ul class="chips"><li>5 days</li><li>Full report</li></ul>
+        </article>
+
+        <article class="card v" style="--d:.16s">
+          <span class="card__no">C</span>
+          <h3>Threshold</h3>
+          <p>
+            Each plan states the number that has to move and by how much. If it
+            has not moved by the review, the plan is withdrawn rather than
+            extended.
+          </p>
+          <ul class="chips"><li>Stated in writing</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       02 REGISTER — treatment matrix
+       ========================================================= -->
+  <section class="block" id="register">
+    <header class="sh">
+      <span class="sh__no" data-scramble>02</span>
+      <div class="sh__body">
+        <h2 class="h2">Every intervention,<br />listed and costed.</h2>
+        <p class="sh__note">
+          Twenty-two entries. Select a row for parameters, contraindications
+          and what the fee covers.
+        </p>
+      </div>
+    </header>
+
+    <div class="matrix" data-matrix>
+      <div class="matrix__head" aria-hidden="true">
+        <span>Ref</span><span>Intervention</span><span>Modality</span>
+        <span>Sessions</span><span>Downtime</span><span>From</span><span></span>
+      </div>
+
+      <div class="row">
+        <button class="row__btn" aria-expanded="false">
+          <span class="row__ref">M-01</span>
+          <span class="row__name">Melasma, dermal</span>
+          <span class="row__mod">Tranexamic + 1927 nm</span>
+          <span class="row__ses">4–6</span>
+          <span class="row__dt">48 h</span>
+          <span class="row__fee">CHF 680</span>
+          <span class="row__x" aria-hidden="true"></span>
+        </button>
+        <div class="row__detail">
+          <div class="det">
+            <div><dt>Parameters</dt><dd>1927 nm thulium, 6–8 mJ, 3 passes, 8 % coverage. Oral tranexamic acid 250 mg b.d. from week −2.</dd></div>
+            <div><dt>Not suitable</dt><dd>Pregnancy, thromboembolic history, active herpes labialis, isotretinoin within 6 months.</dd></div>
+            <div><dt>Fee covers</dt><dd>Session, topical anaesthesia, post-procedure kit, imaging at every visit and the week-12 review.</dd></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="row__btn" aria-expanded="false">
+          <span class="row__ref">V-04</span>
+          <span class="row__name">Rosacea, vascular</span>
+          <span class="row__mod">595 nm pulsed dye</span>
+          <span class="row__ses">3</span>
+          <span class="row__dt">3–5 d</span>
+          <span class="row__fee">CHF 590</span>
+          <span class="row__x" aria-hidden="true"></span>
+        </button>
+        <div class="row__detail">
+          <div class="det">
+            <div><dt>Parameters</dt><dd>595 nm, 7 mm spot, 8.5 J/cm², 6 ms, purpuric endpoint avoided. Erythema index re-measured at 6 weeks.</dd></div>
+            <div><dt>Not suitable</dt><dd>Recent sun exposure, photosensitising medication, tanned skin at treatment site.</dd></div>
+            <div><dt>Fee covers</dt><dd>Session, cooling, barrier protocol and one telephone review inside the first week.</dd></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="row__btn" aria-expanded="false">
+          <span class="row__ref">S-02</span>
+          <span class="row__name">Atrophic scarring</span>
+          <span class="row__mod">Subcision + 2940 nm</span>
+          <span class="row__ses">3</span>
+          <span class="row__dt">7 d</span>
+          <span class="row__fee">CHF 1 240</span>
+          <span class="row__x" aria-hidden="true"></span>
+        </button>
+        <div class="row__detail">
+          <div class="det">
+            <div><dt>Parameters</dt><dd>Blunt cannula subcision of tethered scars, then fractional erbium 2940 nm at 60 µm depth, 15 % density.</dd></div>
+            <div><dt>Not suitable</dt><dd>Keloid tendency, anticoagulation, active inflammatory acne above grade 2.</dd></div>
+            <div><dt>Fee covers</dt><dd>Both stages in one sitting, nerve block, dressings, and texture index at baseline and week 16.</dd></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="row__btn" aria-expanded="false">
+          <span class="row__ref">L-07</span>
+          <span class="row__name">Lesion excision</span>
+          <span class="row__mod">Surgical, local</span>
+          <span class="row__ses">1</span>
+          <span class="row__dt">10 d</span>
+          <span class="row__fee">CHF 740</span>
+          <span class="row__x" aria-hidden="true"></span>
+        </button>
+        <div class="row__detail">
+          <div class="det">
+            <div><dt>Parameters</dt><dd>Elliptical excision with 2 mm clinical margin, layered closure, histology on every specimen without exception.</dd></div>
+            <div><dt>Not suitable</dt><dd>Nothing absolute. Anticoagulated patients are scheduled with haematology input.</dd></div>
+            <div><dt>Fee covers</dt><dd>Procedure, pathology, suture removal, scar-management protocol and the six-month photograph.</dd></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="row__btn" aria-expanded="false">
+          <span class="row__ref">A-03</span>
+          <span class="row__name">Acne, nodular</span>
+          <span class="row__mod">Isotretinoin pathway</span>
+          <span class="row__ses">Monthly</span>
+          <span class="row__dt">None</span>
+          <span class="row__fee">CHF 320</span>
+          <span class="row__x" aria-hidden="true"></span>
+        </button>
+        <div class="row__detail">
+          <div class="det">
+            <div><dt>Parameters</dt><dd>Cumulative dose target 120–150 mg/kg, titrated monthly against lipids, LFTs and tolerance.</dd></div>
+            <div><dt>Not suitable</dt><dd>Pregnancy or absence of reliable contraception, hypertriglyceridaemia, hepatic impairment.</dd></div>
+            <div><dt>Fee covers</dt><dd>Monthly review, bloods, prescription and unlimited written contact with the practice between visits.</dd></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="row__btn" aria-expanded="false">
+          <span class="row__ref">P-05</span>
+          <span class="row__name">Pigmented lesion screen</span>
+          <span class="row__mod">Sequential imaging</span>
+          <span class="row__ses">Annual</span>
+          <span class="row__dt">None</span>
+          <span class="row__fee">CHF 480</span>
+          <span class="row__x" aria-hidden="true"></span>
+        </button>
+        <div class="row__detail">
+          <div class="det">
+            <div><dt>Parameters</dt><dd>Full-body capture, every lesion above 3 mm registered and re-registered annually against its own prior frame.</dd></div>
+            <div><dt>Not suitable</dt><dd>No exclusions. Urgent lesions are seen inside 48 hours rather than added to the annual list.</dd></div>
+            <div><dt>Fee covers</dt><dd>Capture, dermoscopic review of every registered lesion, and same-visit excision where indicated.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="matrix__foot">
+      Sixteen further entries are listed in the printed register, available at
+      reception or by post. Fees are held for twelve months from publication.
+    </p>
+  </section>
+
+  <!-- =========================================================
+       03 PROTOCOL — horizontal timeline
+       ========================================================= -->
+  <section class="block block--flush" id="protocol">
+    <header class="sh">
+      <span class="sh__no" data-scramble>03</span>
+      <div class="sh__body">
+        <h2 class="h2">Four visits,<br />timed in advance.</h2>
+        <p class="sh__note">
+          Dates are issued at admission. Drag the timeline, or use the arrows.
+        </p>
+      </div>
+      <div class="sh__nav">
+        <button class="sq" data-track-prev aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 5.5 8 12l6 6.5" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="sq" data-track-next aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M10 5.5 16 12l-6 6.5" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="track" data-track>
+      <div class="track__inner">
+        <article class="stop">
+          <span class="stop__t">Day 0</span>
+          <span class="stop__pin" aria-hidden="true"></span>
+          <h3>Instrumentation</h3>
+          <p>
+            Ninety minutes. History, full-body dermoscopy, calibrated capture
+            and the six baseline indices. No prescribing, no selling.
+          </p>
+          <dl class="stop__d">
+            <div><dt>Duration</dt><dd>90 min</dd></div>
+            <div><dt>Output</dt><dd>Printed baseline</dd></div>
+          </dl>
+        </article>
+
+        <article class="stop">
+          <span class="stop__t">Day 5</span>
+          <span class="stop__pin" aria-hidden="true"></span>
+          <h3>Findings</h3>
+          <p>
+            Histology and bloods return. The plan arrives as a document: the
+            index to move, the target value, the number of sessions and the
+            date the plan expires.
+          </p>
+          <dl class="stop__d">
+            <div><dt>Format</dt><dd>Written</dd></div>
+            <div><dt>Cost</dt><dd>Fixed</dd></div>
+          </dl>
+        </article>
+
+        <article class="stop">
+          <span class="stop__t">Week 2–16</span>
+          <span class="stop__pin" aria-hidden="true"></span>
+          <h3>Intervention</h3>
+          <p>
+            Delivered by the practitioner who wrote the plan. Sessions are
+            blocked so a three-session course occupies three appointments, not
+            nine.
+          </p>
+          <dl class="stop__d">
+            <div><dt>Delivered by</dt><dd>Dr Naumann</dd></div>
+            <div><dt>Imaging</dt><dd>Every visit</dd></div>
+          </dl>
+        </article>
+
+        <article class="stop">
+          <span class="stop__t">Week 20</span>
+          <span class="stop__pin" aria-hidden="true"></span>
+          <h3>Re-measurement</h3>
+          <p>
+            The same six indices, same device, same room, same hour. The delta
+            is read out in front of you and filed. Plans that missed their
+            target are closed, not renewed.
+          </p>
+          <dl class="stop__d">
+            <div><dt>Included</dt><dd>In course fee</dd></div>
+            <div><dt>Result</dt><dd>Numeric delta</dd></div>
+          </dl>
+        </article>
+
+        <article class="stop stop--end">
+          <span class="stop__t">After</span>
+          <span class="stop__pin" aria-hidden="true"></span>
+          <h3>Register entry</h3>
+          <p>
+            Your baseline stays on file for ten years, so a lesion photographed
+            today can be compared against the same lesion in 2036.
+          </p>
+          <dl class="stop__d">
+            <div><dt>Retention</dt><dd>10 years</dd></div>
+            <div><dt>Access</dt><dd>Yours on request</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       04 EVIDENCE
+       ========================================================= -->
+  <section class="block" id="evidence">
+    <header class="sh">
+      <span class="sh__no" data-scramble>04</span>
+      <div class="sh__body">
+        <h2 class="h2">Numbers,<br />not adjectives.</h2>
+        <p class="sh__note">
+          Four consented cases, each reported as the delta on its stated index.
+          Hover a specimen to bring the capture up.
+        </p>
+      </div>
+    </header>
+
+    <div class="cases">
+      <article class="case v" data-scan>
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&crop=faces&w=800&h=1000&q=80" alt="Consented case specimen 01" />
+        </div>
+        <div class="case__body">
+          <p class="case__ref">Case 0412 · M-01</p>
+          <h3>Dermal melasma</h3>
+          <dl>
+            <div><dt>Index</dt><dd>Melanin</dd></div>
+            <div><dt>Baseline</dt><dd>74.2</dd></div>
+            <div><dt>Week 20</dt><dd>38.6</dd></div>
+          </dl>
+          <p class="case__delta"><span>Δ</span><strong data-count="48">0</strong><i>% reduction</i></p>
+        </div>
+      </article>
+
+      <article class="case v" style="--d:.07s" data-scan>
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&crop=faces&w=800&h=1000&q=80" alt="Consented case specimen 02" />
+        </div>
+        <div class="case__body">
+          <p class="case__ref">Case 0388 · A-03</p>
+          <h3>Nodular acne</h3>
+          <dl>
+            <div><dt>Index</dt><dd>Lesion count</dd></div>
+            <div><dt>Baseline</dt><dd>41</dd></div>
+            <div><dt>Week 28</dt><dd>2</dd></div>
+          </dl>
+          <p class="case__delta"><span>Δ</span><strong data-count="95">0</strong><i>% reduction</i></p>
+        </div>
+      </article>
+
+      <article class="case v" style="--d:.14s" data-scan>
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&crop=faces&w=800&h=1000&q=80" alt="Consented case specimen 03" />
+        </div>
+        <div class="case__body">
+          <p class="case__ref">Case 0455 · V-04</p>
+          <h3>Papulopustular rosacea</h3>
+          <dl>
+            <div><dt>Index</dt><dd>Erythema</dd></div>
+            <div><dt>Baseline</dt><dd>66.9</dd></div>
+            <div><dt>Week 18</dt><dd>31.4</dd></div>
+          </dl>
+          <p class="case__delta"><span>Δ</span><strong data-count="53">0</strong><i>% reduction</i></p>
+        </div>
+      </article>
+
+      <article class="case v" style="--d:.21s" data-scan>
+        <div class="case__img">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&h=1000&q=80" alt="Consented case specimen 04" />
+        </div>
+        <div class="case__body">
+          <p class="case__ref">Case 0501 · T-02</p>
+          <h3>Frontal fibrosing alopecia</h3>
+          <dl>
+            <div><dt>Index</dt><dd>Hairline mm</dd></div>
+            <div><dt>Baseline</dt><dd>−14.0</dd></div>
+            <div><dt>Month 12</dt><dd>−14.2</dd></div>
+          </dl>
+          <p class="case__delta case__delta--hold"><span>Δ</span><strong>0.2</strong><i>mm · arrested</i></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="cases__fine">
+      Case 0501 is included deliberately. Arresting a scarring alopecia is a
+      success and it looks like nothing happened — which is exactly why the
+      practice reports indices instead of photographs alone.
+    </p>
+  </section>
+
+  <!-- =========================================================
+       05 BENCH — practitioner + instruments
+       ========================================================= -->
+  <section class="block" id="bench">
+    <header class="sh">
+      <span class="sh__no" data-scramble>05</span>
+      <div class="sh__body">
+        <h2 class="h2">One hand<br />on every case.</h2>
+        <p class="sh__note">
+          Eleven instruments, one operator. Nothing on the bench is delegated
+          to a technician.
+        </p>
+      </div>
+    </header>
+
+    <div class="bench">
+      <figure class="bench__portrait v">
+        <div class="bench__img">
+          <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&crop=faces&w=1000&h=1250&q=80"
+               alt="Dr Ilse Naumann in the imaging room" />
+        </div>
+        <figcaption>Dr Ilse Naumann · Imaging room, Löwenstrasse</figcaption>
+      </figure>
+
+      <div class="bench__copy">
+        <p class="lbl">Practitioner</p>
+        <h3 class="h3">Dr Ilse Naumann<br /><span>MD PhD · Dermatologie FMH</span></h3>
+
+        <div class="prose">
+          <p>
+            Doctorate in photobiology at ETH Zürich, dermatology training at the
+            Universitätsspital, four years on the laser bench at the Wellman
+            Center in Boston. She opened Calibre in 2014 because no clinic she
+            had worked in could tell her what a treatment had actually changed.
+          </p>
+          <p>
+            The list is capped at nine patients a day. The imaging protocol has
+            not been altered since 2016, which is the only reason a capture from
+            that year is still comparable to one taken this morning.
+          </p>
+        </div>
+
+        <ul class="reg">
+          <li><b>2006</b><span>MD, Universität Zürich</span></li>
+          <li><b>2011</b><span>PhD Photobiology, ETH Zürich</span></li>
+          <li><b>2013</b><span>Laser fellowship, Wellman Center, Boston</span></li>
+          <li><b>2014</b><span>Facharzttitel Dermatologie FMH</span></li>
+          <li><b>2019</b><span>Editorial board, <em>Lasers in Medical Science</em></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="kit">
+      <li class="kit__i v">
+        <span class="kit__no">01</span>
+        <strong>Pulsed dye</strong>
+        <span class="kit__spec">595 nm · 7 mm · cryogen</span>
+      </li>
+      <li class="kit__i v" style="--d:.05s">
+        <span class="kit__no">02</span>
+        <strong>Thulium fibre</strong>
+        <span class="kit__spec">1927 nm · fractional</span>
+      </li>
+      <li class="kit__i v" style="--d:.1s">
+        <span class="kit__no">03</span>
+        <strong>Erbium YAG</strong>
+        <span class="kit__spec">2940 nm · 60 µm</span>
+      </li>
+      <li class="kit__i v" style="--d:.15s">
+        <span class="kit__no">04</span>
+        <strong>Confocal microscope</strong>
+        <span class="kit__spec">RCM · cellular</span>
+      </li>
+      <li class="kit__i v" style="--d:.2s">
+        <span class="kit__no">05</span>
+        <strong>Capture rig</strong>
+        <span class="kit__spec">CP · UV · 5600 K</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- =========================================================
+       06 REGISTER OF QUESTIONS
+       ========================================================= -->
+  <section class="block" id="questions">
+    <header class="sh">
+      <span class="sh__no" data-scramble>06</span>
+      <div class="sh__body">
+        <h2 class="h2">Before<br />admission.</h2>
+        <p class="sh__note">
+          Anything not answered here, the practice manager takes calls in person
+          between 08:00 and 17:00 CET.
+        </p>
+      </div>
+    </header>
+
+    <div class="ask" data-ask>
+      <div class="ask__i">
+        <button class="ask__q" aria-expanded="false">
+          <em>Q1</em><span>Why is the first appointment so long, and why can't you treat me in it?</span>
+          <i aria-hidden="true"></i>
+        </button>
+        <div class="ask__a"><p>
+          Because a measurement taken after a treatment has begun is worthless as
+          a baseline. Ninety minutes buys a full-body dermoscopic survey, a
+          calibrated capture and six indices — the reference every later visit is
+          compared against. Treating on day zero would destroy it.
+        </p></div>
+      </div>
+
+      <div class="ask__i">
+        <button class="ask__q" aria-expanded="false">
+          <em>Q2</em><span>Do I need a referral, and will insurance cover this?</span>
+          <i aria-hidden="true"></i>
+        </button>
+        <div class="ask__a"><p>
+          No referral is needed. Medically indicated work is billed under Swiss
+          TARMED and is generally reimbursable through basic or supplementary
+          insurance; aesthetic work is not, and is quoted privately. You are told
+          which category you fall into before any money changes hands.
+        </p></div>
+      </div>
+
+      <div class="ask__i">
+        <button class="ask__q" aria-expanded="false">
+          <em>Q3</em><span>What happens if the numbers don't move?</span>
+          <i aria-hidden="true"></i>
+        </button>
+        <div class="ask__a"><p>
+          The plan is closed. Every written plan states a target and an expiry
+          date; if the index has not reached the target by the review, the course
+          is not extended and remaining sessions are refunded. Roughly one plan
+          in nine ends this way, and that figure is published each January.
+        </p></div>
+      </div>
+
+      <div class="ask__i">
+        <button class="ask__q" aria-expanded="false">
+          <em>Q4</em><span>Who operates the lasers?</span>
+          <i aria-hidden="true"></i>
+        </button>
+        <div class="ask__a"><p>
+          Dr Naumann, on every case, without exception. The practice employs two
+          nurses for phlebotomy, dressings and aftercare. No device on the bench
+          is operated by anyone else, which is the reason the daily list is
+          capped at nine.
+        </p></div>
+      </div>
+
+      <div class="ask__i">
+        <button class="ask__q" aria-expanded="false">
+          <em>Q5</em><span>Where are my images stored?</span>
+          <i aria-hidden="true"></i>
+        </button>
+        <div class="ask__a"><p>
+          On an encrypted server in Zürich, under Swiss FADP, retained ten years
+          and never used in publication or marketing without separate written
+          consent that you may withdraw at any point. Withdrawing it has no
+          effect on your care.
+        </p></div>
+      </div>
+
+      <div class="ask__i">
+        <button class="ask__q" aria-expanded="false">
+          <em>Q6</em><span>How quickly can a changing lesion be seen?</span>
+          <i aria-hidden="true"></i>
+        </button>
+        <div class="ask__a"><p>
+          Inside forty-eight hours. Two slots are held every weekday at 07:30
+          and are never released to routine booking. A lesion that is bleeding,
+          changing or newly pigmented is excised at that visit where indicated,
+          with histology on the specimen.
+        </p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       07 ADMISSION
+       ========================================================= -->
+  <section class="block block--admit" id="admission">
+    <header class="sh">
+      <span class="sh__no" data-scramble>07</span>
+      <div class="sh__body">
+        <h2 class="h2">Request<br />a slot.</h2>
+        <p class="sh__note">
+          Choose a window. The practice manager confirms an exact time within one
+          working day, or sooner if you mark it urgent.
+        </p>
+      </div>
+    </header>
+
+    <div class="admit">
+      <form class="form" data-form novalidate>
+        <fieldset class="fs">
+          <legend class="lbl">Available windows · week 36</legend>
+          <div class="slots" data-slots>
+            <label class="slot"><input type="radio" name="slot" value="Mon 1 Sep · 08:00" /><span><em>Mon 1</em>08:00</span></label>
+            <label class="slot"><input type="radio" name="slot" value="Mon 1 Sep · 14:30" /><span><em>Mon 1</em>14:30</span></label>
+            <label class="slot slot--out"><input type="radio" name="slot" disabled /><span><em>Tue 2</em>Full</span></label>
+            <label class="slot"><input type="radio" name="slot" value="Wed 3 Sep · 09:15" /><span><em>Wed 3</em>09:15</span></label>
+            <label class="slot"><input type="radio" name="slot" value="Wed 3 Sep · 16:00" /><span><em>Wed 3</em>16:00</span></label>
+            <label class="slot"><input type="radio" name="slot" value="Thu 4 Sep · 07:30" /><span><em>Thu 4</em>07:30</span></label>
+            <label class="slot slot--out"><input type="radio" name="slot" disabled /><span><em>Fri 5</em>Full</span></label>
+            <label class="slot"><input type="radio" name="slot" value="Sat 6 Sep · 10:00" /><span><em>Sat 6</em>10:00</span></label>
+          </div>
+          <p class="slots__pick">Selected · <span data-slot-out>none</span></p>
+        </fieldset>
+
+        <div class="fgrid">
+          <label class="f">
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Familienname, Vorname" required />
+          </label>
+          <label class="f">
+            <span>Telephone</span>
+            <input type="tel" name="tel" placeholder="+41" required />
+          </label>
+        </div>
+
+        <label class="f">
+          <span>Email</span>
+          <input type="email" name="email" placeholder="name@domain.ch" required />
+        </label>
+
+        <label class="f">
+          <span>Presenting concern</span>
+          <div class="sel">
+            <select name="concern">
+              <option>Pigmentation or melasma</option>
+              <option>Rosacea or facial redness</option>
+              <option>Acne, active</option>
+              <option>Scarring</option>
+              <option>Changing or new lesion</option>
+              <option>Hair or scalp</option>
+              <option>Full pigmented lesion screen</option>
+              <option>Not sure — please advise</option>
+            </select>
+            <i aria-hidden="true"></i>
+          </div>
+        </label>
+
+        <fieldset class="f">
+          <span>Priority</span>
+          <div class="prio">
+            <label><input type="radio" name="prio" checked /><span>Routine</span></label>
+            <label><input type="radio" name="prio" /><span>Within a week</span></label>
+            <label><input type="radio" name="prio" /><span>Urgent · lesion</span></label>
+          </div>
+        </fieldset>
+
+        <label class="f">
+          <span>Notes</span>
+          <textarea name="notes" rows="3" placeholder="Duration, prior treatment, insurer, medication…"></textarea>
+        </label>
+
+        <button class="btn btn--fill btn--wide" type="submit"><span>Submit request</span></button>
+        <p class="form__fine">
+          Nothing is charged at request. Fees are confirmed in writing before the
+          appointment is fixed.
+        </p>
+      </form>
+
+      <div class="admit__side">
+        <dl class="admit__d">
+          <div class="v"><dt>Laboratory</dt><dd>Löwenstrasse 42<br />8001 Zürich, Schweiz</dd></div>
+          <div class="v" style="--d:.05s"><dt>Telephone</dt><dd><a href="tel:+41442146680">+41 44 214 66 80</a><br /><a href="mailto:admit@calibre.clinic">admit@calibre.clinic</a></dd></div>
+          <div class="v" style="--d:.1s"><dt>Hours</dt><dd>Mon–Fri 07:30–18:00<br />Sat 08:00–13:00</dd></div>
+          <div class="v" style="--d:.15s"><dt>Transit</dt><dd>Löwenplatz · 2 min<br />Hauptbahnhof · 6 min</dd></div>
+          <div class="v" style="--d:.2s"><dt>Registration</dt><dd>GLN 7601000123456<br />FMH 41192</dd></div>
+        </dl>
+
+        <p class="admit__fine">
+          Urgent lesions are triaged the same working day. If you are worried
+          about a mole that is bleeding or changing, telephone rather than using
+          this form.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__id">
+      <span class="foot__mark">Calibre</span>
+      <p>Skin Laboratory · Zürich<br />Measurement-led dermatology since 2014.</p>
+    </div>
+
+    <nav class="foot__col">
+      <h4>Laboratory</h4>
+      <a href="#assessment">Assessment</a>
+      <a href="#register">Register</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#bench">Bench</a>
+      <a href="#questions">Questions</a>
+    </nav>
+
+    <nav class="foot__col">
+      <h4>Patients</h4>
+      <a href="#admission">Admission</a>
+      <a href="#admission">Fees</a>
+      <a href="#admission">Insurance</a>
+      <a href="#admission">Records</a>
+      <a href="#admission">Complaints</a>
+    </nav>
+
+    <div class="foot__col">
+      <h4>Contact</h4>
+      <p>Löwenstrasse 42<br />8001 Zürich</p>
+      <a href="tel:+41442146680">+41 44 214 66 80</a>
+      <a href="mailto:admit@calibre.clinic">admit@calibre.clinic</a>
+    </div>
+  </div>
+
+  <div class="foot__bar">
+    <p>© <span data-year>2026</span> Calibre Skin Laboratory AG · Zürich</p>
+    <p class="foot__legal"><a href="#">Datenschutz</a><a href="#">AGB</a><a href="#">FMH 41192</a></p>
+  </div>
+</footer>
+
+<!-- crosshair reticle, shown only over specimen panels -->
+<div class="retic" data-retic aria-hidden="true"><i></i><i></i><b></b></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vesper — Hospitality Interiors, Milano</title>
+<meta name="description" content="Vesper is a Milan studio designing bars, restaurants and small hotels. Rooms with a pulse — places people choose again.">
+<meta name="theme-color" content="#57121F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ══ loader ══ -->
+<div class="veil" data-veil>
+  <div class="veil__in">
+    <svg class="veil__ring" viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="veil__c" cx="60" cy="60" r="52" />
+    </svg>
+    <span class="veil__mark" data-veil-mark>VESPER</span>
+    <span class="veil__rule" aria-hidden="true"></span>
+    <span class="veil__sub">MILANO</span>
+  </div>
+</div>
+
+<!-- ══ header ══ -->
+<header class="bar" data-bar>
+  <nav class="bar__side bar__side--l" aria-label="Primary">
+    <a href="#venues">Venues</a>
+    <a href="#card">The Card</a>
+    <a href="#studio">Studio</a>
+  </nav>
+
+  <a class="bar__mark" href="#top" aria-label="Vesper, home">VESPER</a>
+
+  <div class="bar__side bar__side--r">
+    <a class="bar__lnk" href="#press">Press</a>
+    <a class="bar__cta" href="#reserve">Reserve<span class="bar__cta-r" aria-hidden="true"></span></a>
+  </div>
+
+  <button class="burger" data-open aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+    <i></i><i></i>
+  </button>
+</header>
+
+<!-- ══ mobile sheet ══ -->
+<div class="sheet" id="sheet" data-sheet aria-hidden="true">
+  <div class="sheet__top">
+    <button class="burger burger--x" data-close aria-label="Close menu"><i></i><i></i></button>
+    <span class="sheet__mark" aria-hidden="true">VESPER</span>
+  </div>
+
+  <nav class="sheet__nav" aria-label="Mobile">
+    <a href="#venues"><em>01</em>Venues</a>
+    <a href="#card"><em>02</em>The Card</a>
+    <a href="#studio"><em>03</em>Studio</a>
+    <a href="#press"><em>04</em>Press</a>
+    <a href="#reserve"><em>05</em>Reserve</a>
+  </nav>
+  <div class="sheet__foot">
+    <span class="dbl" aria-hidden="true"></span>
+    <p>Via Palermo 12<br>20121 Milano</p>
+    <p><a href="tel:+390200000000">+39 02 0000 0000</a><br><a href="mailto:ciao@vesper.studio">ciao@vesper.studio</a></p>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ══ overture ══ -->
+  <section class="op">
+    <div class="op__ph">
+      <img src="https://images.unsplash.com/photo-1763142045723-230b56924c6a?auto=format&fit=crop&w=2200&q=80" alt="A restaurant after service, chairs stacked, warm lamplight against patterned walls">
+    </div>
+    <span class="op__scrim" aria-hidden="true"></span>
+    <span class="op__frame" aria-hidden="true"></span>
+
+    <div class="op__in">
+      <p class="eyebrow" data-tr>Milano <span class="dia" aria-hidden="true"></span> since 2004</p>
+
+      <h1 class="op__h">
+        <span class="wm"><span data-w>Rooms</span></span>
+        <span class="wm"><span data-w>that keep</span></span>
+        <span class="wm"><em data-w>people late</em></span>
+      </h1>
+
+      <span class="dbl dbl--l" data-rule aria-hidden="true"></span>
+
+      <p class="op__p" data-up>A studio for bars, restaurants and small hotels, working in light,
+        distance and sound — the three things a guest feels before noticing anything at all.</p>
+
+      <a class="btn btn--gh" href="#venues" data-up data-delay="120">
+        <span>See the rooms</span>
+      </a>
+    </div>
+
+    <a class="op__cue" href="#venues" aria-label="Scroll to venues">
+      <span class="op__cue-l" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ══ marquee ══ -->
+  <div class="mq" aria-hidden="true">
+    <div class="mq__row" data-mq>
+      <div class="mq__grp">
+        <span>Bar Nocturno</span><i></i><span>Trattoria Selva</span><i></i><span>Hotel Fiera</span><i></i>
+        <span>Caffè Perla</span><i></i><span>Il Circolo</span><i></i><span>Osteria Bruna</span><i></i>
+      </div>
+      <div class="mq__grp">
+        <span>Bar Nocturno</span><i></i><span>Trattoria Selva</span><i></i><span>Hotel Fiera</span><i></i>
+        <span>Caffè Perla</span><i></i><span>Il Circolo</span><i></i><span>Osteria Bruna</span><i></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ statement ══ -->
+  <section class="st">
+    <span class="seal" data-up aria-hidden="true">
+      <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" /><path d="M32 20 38 32 32 44 26 32Z" /></svg>
+    </span>
+
+    <p class="st__p" data-words>A dining room is not a set of surfaces. It is a sequence of decisions
+      about light, distance and sound — and every one of them is felt long before it is noticed.</p>
+
+    <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+
+    <p class="st__by" data-up>Giulia Rossetti <span class="dia" aria-hidden="true"></span> Founding Partner</p>
+  </section>
+
+  <!-- ══ venues ══ -->
+  <section class="gal" id="venues">
+    <header class="head">
+      <p class="eyebrow" data-tr>Selected work</p>
+      <h2 class="head__h" data-up>The Rooms</h2>
+      <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+    </header>
+
+    <div class="gal__stage" data-stage tabindex="0" role="group" aria-roledescription="carousel" aria-label="Selected venues">
+      <button class="arw arw--p" data-prev aria-label="Previous venue"><span aria-hidden="true"></span></button>
+      <button class="arw arw--n" data-next aria-label="Next venue"><span aria-hidden="true"></span></button>
+
+      <ul class="gal__track" data-track>
+        <li class="gal__it" data-it>
+          <img src="https://images.unsplash.com/photo-1682071607969-697c6c8a17a1?auto=format&fit=crop&w=1100&q=80" alt="Bar Nocturno — a mustard velvet banquette against deep navy panelling with a brass globe pendant">
+        </li>
+        <li class="gal__it" data-it>
+          <img src="https://images.unsplash.com/photo-1579926545913-448d525562db?auto=format&fit=crop&w=1100&q=80" alt="Trattoria Selva — a red-walled dining room hung with framed pictures and candle sconces">
+        </li>
+        <li class="gal__it" data-it>
+          <img src="https://images.unsplash.com/photo-1552858725-693709cc17c7?auto=format&fit=crop&w=1100&q=80" alt="Hotel Fiera — a dark guest room with a fluted headboard and a brass task lamp">
+        </li>
+        <li class="gal__it" data-it>
+          <img src="https://images.unsplash.com/photo-1551530241-1ccbaa7a9a84?auto=format&fit=crop&w=1100&q=80" alt="Caffè Perla — a panelled café with rose glass chandeliers and cane-backed chairs">
+        </li>
+        <li class="gal__it" data-it>
+          <img src="https://images.unsplash.com/photo-1784740226687-a7cbdfdc604b?auto=format&fit=crop&w=1100&q=80" alt="Il Circolo — a private dining room in dark timber with a circular window and rust chairs">
+        </li>
+        <li class="gal__it" data-it>
+          <img src="https://images.unsplash.com/photo-1657593088889-5105c637f2a8?auto=format&fit=crop&w=1100&q=80" alt="Osteria Bruna — a green panelled room with marble tables looking onto a courtyard">
+        </li>
+      </ul>
+    </div>
+
+    <div class="gal__cap" data-cap aria-live="polite">
+      <article class="cap is-on" data-c>
+        <h3>Bar Nocturno</h3>
+        <p class="cap__m">Cocktail Bar <span class="dia" aria-hidden="true"></span> Brera <span class="dia" aria-hidden="true"></span> 2025</p>
+        <p class="cap__d">Forty covers, one long brass counter, and a ceiling low enough to keep the noise warm.</p>
+      </article>
+      <article class="cap" data-c>
+        <h3>Trattoria Selva</h3>
+        <p class="cap__m">Restaurant <span class="dia" aria-hidden="true"></span> Navigli <span class="dia" aria-hidden="true"></span> 2025</p>
+        <p class="cap__d">A family room rebuilt around its own archive — every frame on the wall belongs to the house.</p>
+      </article>
+      <article class="cap" data-c>
+        <h3>Hotel Fiera</h3>
+        <p class="cap__m">42 Rooms <span class="dia" aria-hidden="true"></span> Porta Venezia <span class="dia" aria-hidden="true"></span> 2024</p>
+        <p class="cap__d">Bedrooms lit at two levels only: enough to read by, enough to disappear into.</p>
+      </article>
+      <article class="cap" data-c>
+        <h3>Caffè Perla</h3>
+        <p class="cap__m">Café <span class="dia" aria-hidden="true"></span> Porta Romana <span class="dia" aria-hidden="true"></span> 2024</p>
+        <p class="cap__d">Morning to midnight in one room — the lighting does the work of three different places.</p>
+      </article>
+      <article class="cap" data-c>
+        <h3>Il Circolo</h3>
+        <p class="cap__m">Members' Club <span class="dia" aria-hidden="true"></span> Centro <span class="dia" aria-hidden="true"></span> 2023</p>
+        <p class="cap__d">Seven rooms behind one unmarked door, each darker than the last.</p>
+      </article>
+      <article class="cap" data-c>
+        <h3>Osteria Bruna</h3>
+        <p class="cap__m">Restaurant <span class="dia" aria-hidden="true"></span> Isola <span class="dia" aria-hidden="true"></span> 2022</p>
+        <p class="cap__d">Green lacquer, marble, and a courtyard that turns the back wall into a window.</p>
+      </article>
+    </div>
+
+    <div class="gal__nav">
+      <span class="gal__num" data-num>01</span>
+      <div class="gal__seg" data-seg role="tablist" aria-label="Choose venue"></div>
+      <span class="gal__num gal__num--t">06</span>
+    </div>
+  </section>
+
+  <!-- ══ plate ══ -->
+  <section class="pl">
+    <div class="pl__ph">
+      <img src="https://images.unsplash.com/photo-1650490632010-e18cbb694dd1?auto=format&fit=crop&w=2200&q=80" alt="A dark restaurant interior with a sculptural fringed pendant over a curved banquette" data-wipe>
+    </div>
+    <span class="pl__scrim" aria-hidden="true"></span>
+    <span class="op__frame" aria-hidden="true"></span>
+    <blockquote class="pl__q">
+      <p data-words>Build the corner first. If the worst seat in the house feels chosen, every other seat does too.</p>
+      <footer data-up><span class="dia" aria-hidden="true"></span> House rule no. 1</footer>
+    </blockquote>
+  </section>
+
+  <!-- ══ the card ══ -->
+  <section class="mn" id="card">
+    <header class="head">
+      <p class="eyebrow" data-tr>What we serve</p>
+      <h2 class="head__h" data-up>The Card</h2>
+      <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+    </header>
+
+    <div class="mn__cols">
+      <div class="mn__grp">
+        <h3 class="mn__t" data-up>Design</h3>
+        <ul class="mn__ls">
+          <li data-up><span class="mn__n">Concept &amp; Narrative</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">4 weeks</span></li>
+          <li data-up><span class="mn__n">Interior Architecture</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">10–16 weeks</span></li>
+          <li data-up><span class="mn__n">Lighting Design</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">6 weeks</span></li>
+          <li data-up><span class="mn__n">Furniture &amp; Millwork</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">8 weeks</span></li>
+          <li data-up><span class="mn__n">Material Direction</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">3 weeks</span></li>
+        </ul>
+      </div>
+
+      <span class="mn__div" aria-hidden="true"></span>
+
+      <div class="mn__grp">
+        <h3 class="mn__t" data-up>Delivery</h3>
+        <ul class="mn__ls">
+          <li data-up><span class="mn__n">Contract Documentation</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">6 weeks</span></li>
+          <li data-up><span class="mn__n">Tender &amp; Procurement</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">5 weeks</span></li>
+          <li data-up><span class="mn__n">Site Supervision</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">to handover</span></li>
+          <li data-up><span class="mn__n">Opening &amp; Styling</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">2 weeks</span></li>
+          <li data-up><span class="mn__n">Twelve-month Review</span><i class="ldr" aria-hidden="true"></i><span class="mn__v">included</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mn__ft" data-up>Whole rooms only. We do not take single-element commissions.</p>
+  </section>
+
+  <!-- ══ details ══ -->
+  <section class="dt">
+    <header class="head head--sm">
+      <p class="eyebrow" data-tr>Close up</p>
+      <h2 class="head__h" data-up>Four Small Things</h2>
+      <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+    </header>
+
+    <ul class="dt__ls">
+      <li class="dt__it" data-up>
+        <span class="dt__o"><img src="https://images.unsplash.com/photo-1671741967944-cb60915f5823?auto=format&fit=crop&w=700&q=80" alt="A garnished cocktail on a dark bar top"></span>
+        <span class="dt__n">01</span>
+        <h3>The Aperitivo Hour</h3>
+        <p>Lamps drop to 1800K at seven. Nobody is told; everybody stays.</p>
+      </li>
+      <li class="dt__it" data-up data-delay="90">
+        <span class="dt__o"><img src="https://images.unsplash.com/photo-1696062985882-70d0ae1907cd?auto=format&fit=crop&w=700&q=80" alt="Rows of glassware hanging above a stocked back bar"></span>
+        <span class="dt__n">02</span>
+        <h3>Glass &amp; Light</h3>
+        <p>Hung glassware is a chandelier the operator refills every night.</p>
+      </li>
+      <li class="dt__it" data-up data-delay="180">
+        <span class="dt__o"><img src="https://images.unsplash.com/photo-1787069788364-cb6a589d5d9e?auto=format&fit=crop&w=700&q=80" alt="Green velvet seating with round lit mirrors and brass lamps"></span>
+        <span class="dt__n">03</span>
+        <h3>Velvet, Brass, Mirror</h3>
+        <p>One soft, one warm, one endless. Three materials will carry a room.</p>
+      </li>
+      <li class="dt__it" data-up data-delay="270">
+        <span class="dt__o"><img src="https://images.unsplash.com/photo-1778049995815-04091b798bdc?auto=format&fit=crop&w=700&q=80" alt="A dark doorway crowned with a gilded fan light"></span>
+        <span class="dt__n">04</span>
+        <h3>The Threshold</h3>
+        <p>Six paces of near-darkness at the door and the street lets go of you.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ══ studio ══ -->
+  <section class="ab" id="studio">
+    <header class="head head--inv">
+      <p class="eyebrow" data-tr>The studio</p>
+      <h2 class="head__h" data-up>Eleven people,<br><em>one long table</em></h2>
+      <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+    </header>
+
+    <div class="ab__ph" data-up>
+      <img src="https://images.unsplash.com/photo-1622140739492-f82f386260b5?auto=format&fit=crop&w=1800&q=80" alt="A warm timber-lined bar and dining room lit for evening service" data-wipe>
+    </div>
+
+    <div class="ab__txt">
+      <p data-up>Vesper was founded in 2004 above a shuttered bar on Via Palermo. We still work there.
+        Eleven of us — architects, a lighting designer, a joiner who keeps everyone honest — and one
+        table long enough that nobody has their own end of it.</p>
+      <p data-up data-delay="100">We take four projects a year. Every one of them gets a partner on site
+        until the last chair is placed, because the difference between a good room and a great one is
+        decided in the final fortnight, not the first.</p>
+    </div>
+
+    <ul class="ab__cr">
+      <li data-up><span class="dbl" aria-hidden="true"></span><b>74</b><span>Rooms delivered</span></li>
+      <li data-up data-delay="90"><span class="dbl" aria-hidden="true"></span><b>9</b><span>Cities</span></li>
+      <li data-up data-delay="180"><span class="dbl" aria-hidden="true"></span><b>21</b><span>Years open</span></li>
+    </ul>
+  </section>
+
+  <!-- ══ press ══ -->
+  <section class="pr" id="press">
+    <span class="orn" aria-hidden="true"><i></i><b></b><i></i></span>
+    <blockquote class="pr__b">
+      <p data-words>Vesper's rooms are the rarest thing in hospitality — confident enough to be quiet.</p>
+      <footer data-up>Domus <span class="dia" aria-hidden="true"></span> March 2025</footer>
+    </blockquote>
+
+    <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+
+    <ul class="pr__ls" data-up>
+      <li>Domus</li><li>Wallpaper*</li><li>Monocle</li><li>Elle Decor</li><li>Dezeen</li><li>Cabana</li>
+    </ul>
+  </section>
+
+  <!-- ══ reserve ══ -->
+  <section class="rs" id="reserve">
+    <div class="rs__card">
+      <header class="head head--sm">
+        <p class="eyebrow" data-tr>Enquiries</p>
+        <h2 class="head__h" data-up>Reserve a Conversation</h2>
+        <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+        <p class="rs__lead" data-up>Tell us what you are opening. We reply within two working days,
+          and we will say no kindly if it is not for us.</p>
+      </header>
+
+      <form class="rs__f" data-form novalidate>
+        <div class="fld" data-up>
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+          <span class="err" data-err></span>
+        </div>
+        <div class="fld" data-up>
+          <label for="f-venue">Venue or group</label>
+          <input id="f-venue" name="venue" type="text" autocomplete="organization" placeholder="Optional">
+          <span class="err" data-err></span>
+        </div>
+        <div class="fld" data-up>
+          <label for="f-mail">Email</label>
+          <input id="f-mail" name="email" type="email" required autocomplete="email" placeholder="you@venue.com">
+          <span class="err" data-err></span>
+        </div>
+        <div class="fld" data-up>
+          <label for="f-tel">Telephone</label>
+          <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="Optional">
+          <span class="err" data-err></span>
+        </div>
+        <div class="fld" data-up>
+          <label for="f-type">Type of room</label>
+          <select id="f-type" name="type" required>
+            <option value="" selected disabled>Please choose</option>
+            <option>Bar</option><option>Restaurant</option><option>Café</option>
+            <option>Hotel</option><option>Members' club</option><option>Something else</option>
+          </select>
+          <span class="err" data-err></span>
+        </div>
+        <div class="fld" data-up>
+          <label for="f-open">Opening</label>
+          <select id="f-open" name="open" required>
+            <option value="" selected disabled>Please choose</option>
+            <option>Within 6 months</option><option>6–12 months</option>
+            <option>Next year</option><option>Not yet decided</option>
+          </select>
+          <span class="err" data-err></span>
+        </div>
+        <div class="fld fld--w" data-up>
+          <label for="f-note">The room</label>
+          <textarea id="f-note" name="note" rows="3" placeholder="Covers, address, what it should feel like at 11pm."></textarea>
+          <span class="err" data-err></span>
+        </div>
+
+        <div class="rs__send" data-up>
+          <button class="btn btn--fill" type="submit"><span>Send enquiry</span></button>
+          <p class="rs__ok" data-ok role="status"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ══ footer ══ -->
+<footer class="ft">
+  <div class="ft__ph">
+    <img src="https://images.unsplash.com/photo-1552858725-a19e7fcd3ac4?auto=format&fit=crop&w=2000&q=80" alt="">
+  </div>
+  <span class="ft__scrim" aria-hidden="true"></span>
+
+  <div class="ft__in">
+    <span class="seal seal--lg" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" /><path d="M32 20 38 32 32 44 26 32Z" /></svg>
+    </span>
+
+    <p class="ft__big" data-tr>VESPER</p>
+    <span class="dbl dbl--c" data-rule aria-hidden="true"></span>
+
+    <ul class="ft__cols">
+      <li>
+        <h4>Studio</h4>
+        <p>Via Palermo 12<br>20121 Milano<br>Italia</p>
+      </li>
+      <li>
+        <h4>Speak</h4>
+        <p><a href="tel:+390200000000">+39 02 0000 0000</a><br><a href="mailto:ciao@vesper.studio">ciao@vesper.studio</a></p>
+      </li>
+      <li>
+        <h4>Hours</h4>
+        <p>Mon–Thu 09.00–19.00<br>Fri 09.00–16.00<br>Site visits by arrangement</p>
+      </li>
+      <li>
+        <h4>Elsewhere</h4>
+        <p><a href="#top">Instagram</a><br><a href="#top">Journal</a><br><a href="#top">Newsletter</a></p>
+      </li>
+    </ul>
+
+    <div class="ft__end">
+      <span>© 2026 Vesper Studio S.r.l.</span>
+      <span class="dia" aria-hidden="true"></span>
+      <span>Photography for demonstration only</span>
+      <span class="dia" aria-hidden="true"></span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

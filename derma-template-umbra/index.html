@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#15110E" />
+<title>UMBRA — Clínica de Dermatologia, Lisboa</title>
+<meta name="description" content="A dermatology clinic in Lisbon, arranged around the questions people actually ask. Moles and skin cancer, acne, eczema, rosacea and surgery, under Dra. Inês Salgado Bettencourt." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:ital,wght@0,300..700;1,400..600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skip" href="#ask">Skip to the questions</a>
+
+<!-- =========================================================
+     The only fixed thing on the page, and it stays out of the
+     way until you have scrolled past the index.
+     ========================================================= -->
+<button class="recall" data-recall hidden>
+  <span class="recall__n" data-recall-n>01</span>
+  <span>Perguntas</span>
+</button>
+
+<div class="index" data-index hidden>
+  <div class="index__in">
+    <p class="lab">Todas as perguntas</p>
+    <ol class="index__list" data-index-list></ol>
+    <div class="index__foot">
+      <a class="btn btn--fill" href="#marcacoes" data-index-close>Marcar consulta</a>
+      <button class="btn" data-index-close>Fechar</button>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- =========================================================
+       HERO — the index is the hero. There is no menu because
+       the list of questions is the menu.
+       ========================================================= -->
+  <header class="hero" id="top">
+    <div class="hero__head">
+      <p class="mark">Umbra</p>
+      <p class="lab lab--amber">Clínica de Dermatologia · Rua do Alecrim, Lisboa</p>
+    </div>
+
+    <h1 class="hero__h">
+      You arrived with a question.<br />
+      It is probably one of these.
+    </h1>
+
+    <p class="lede">
+      Most clinic websites are a list of what the clinic sells. This one is a
+      list of what people actually ask once they have sat down — answered the
+      way Dra. Bettencourt answers them in the room. The short answer first.
+      The long one only if you want it.
+    </p>
+
+    <div class="ask" id="ask">
+      <label class="find">
+        <span class="lab">What brought you here?</span>
+        <input type="search" data-find
+               placeholder="mole, acne, scar, sunscreen, cost…"
+               autocomplete="off" />
+      </label>
+      <p class="find__count" data-find-count aria-live="polite">Ten questions</p>
+    </div>
+
+    <ol class="qlist" data-qlist>
+      <li><a href="#q1"  data-q="q1"><b>01</b><span>Is this mole normal?</span></a></li>
+      <li><a href="#q2"  data-q="q2"><b>02</b><span>Will you tell me if it is cancer?</span></a></li>
+      <li><a href="#q3"  data-q="q3"><b>03</b><span>Why has my acne come back at thirty-four?</span></a></li>
+      <li><a href="#q4"  data-q="q4"><b>04</b><span>How long is this going to take?</span></a></li>
+      <li><a href="#q5"  data-q="q5"><b>05</b><span>Is it going to scar?</span></a></li>
+      <li><a href="#q6"  data-q="q6"><b>06</b><span>Do I actually need sunscreen in winter?</span></a></li>
+      <li><a href="#q7"  data-q="q7"><b>07</b><span>Is it contagious?</span></a></li>
+      <li><a href="#q8"  data-q="q8"><b>08</b><span>Can you just look at a photograph?</span></a></li>
+      <li><a href="#q9"  data-q="q9"><b>09</b><span>Will you try to sell me something?</span></a></li>
+      <li><a href="#q10" data-q="q10"><b>10</b><span>What if I cannot afford it?</span></a></li>
+    </ol>
+
+    <p class="none" data-find-none hidden>
+      Nothing here matches that. Which is useful information —
+      <a href="#marcacoes">write it in the booking note</a> and it gets read
+      before you are telephoned back.
+    </p>
+  </header>
+
+  <main>
+
+    <!-- =========================================================
+         THE ANSWERS
+         ========================================================= -->
+
+    <section class="q" id="q1" data-k="mole moles mole normal melanoma cancer pigment spot freckle nevus check">
+      <p class="q__n">01</p>
+      <h2 class="q__h">Is this mole normal?</h2>
+      <p class="q__s">Almost certainly — and you were still right to ask.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          Most adults carry between twenty and forty moles and very nearly all
+          of them are unremarkable for life.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            What we look for is not ugliness. Plenty of perfectly benign moles
+            are large, raised and dark. What matters is <i>difference</i> and
+            <i>change</i>: the one that does not look like the rest of yours,
+            and the one that is not the same as it was last year. Fifteen
+            minutes and a dermatoscope settles almost all of it on the day.
+          </p>
+          <p>
+            The sentence we hear most often in this room is <i>I thought I was
+            probably wasting your time</i>, and it is said, almost without
+            exception, by the people who were not.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q2" data-k="cancer biopsy results histology telephone melanoma diagnosis tell news">
+      <p class="q__n">02</p>
+      <h2 class="q__h">Will you tell me if it is cancer?</h2>
+      <p class="q__s">Yes. By telephone, within five working days.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          No letters, and nothing held back until an appointment three weeks
+          away.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            When a specimen goes to the laboratory you are told the same day
+            when it will be back and who is going to telephone you. If the
+            answer is one nobody wants, it comes from Dra. Bettencourt rather
+            than from reception, and it comes with an appointment already
+            booked in the same week.
+          </p>
+          <p>
+            You are also told when the answer is boring, which it usually is.
+            Silence is not a result and we do not use it as one.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q3" data-k="acne adult acne spots breakout hormonal jawline isotretinoin roaccutane teenage">
+      <p class="q__n">03</p>
+      <h2 class="q__h">Why has my acne come back at thirty-four?</h2>
+      <p class="q__s">Because adult acne is not teenage acne arriving late.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          It is a different distribution, a different mechanism, and it wants
+          different treatment.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            Adult acne sits lower — along the jaw, the chin and the neck — and
+            it is more inflammatory and less comedonal than the version you
+            had at sixteen. Which is why running the sixteen-year-old's
+            regimen at it has not shifted anything, and why buying stronger
+            versions of the same thing tends to make the barrier worse without
+            touching the acne.
+          </p>
+          <p>
+            Hormonal drivers get investigated rather than assumed, treatment
+            is written down with a date at which we judge it, and where
+            isotretinoin is genuinely warranted it is started and monitored
+            rather than held in reserve for another three years.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q4" data-k="how long time weeks months slow progress patience treatment schedule wait">
+      <p class="q__n">04</p>
+      <h2 class="q__h">How long is this going to take?</h2>
+      <p class="q__s">Longer than you want. Twelve weeks before we judge anything.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          Skin turns over slowly, and almost every treatment needs a full
+          cycle before a verdict on it is fair.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <dl class="clock">
+            <div><dt>Acne</dt><dd>Twelve weeks to assess. Six months for a real answer.</dd></div>
+            <div><dt>Isotretinoin</dt><dd>Five to seven months, monitored monthly.</dd></div>
+            <div><dt>Eczema flare</dt><dd>Two weeks. If not, the diagnosis gets revisited.</dd></div>
+            <div><dt>Psoriasis, systemic</dt><dd>Twelve to sixteen weeks to steady state.</dd></div>
+            <div><dt>A scar</dt><dd>Twelve to eighteen months of remodelling.</dd></div>
+            <div><dt>Mole surveillance</dt><dd>Indefinitely, and that is a good outcome.</dd></div>
+          </dl>
+          <p>
+            The schedule is written down at the first visit so that you are
+            measuring progress against a plan instead of against a hope. If a
+            date passes and nothing has happened, that is information, and it
+            changes the treatment rather than extending it.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q5" data-k="scar scarring stitches surgery excision mark healing silicone keloid">
+      <p class="q__n">05</p>
+      <h2 class="q__h">Is it going to scar?</h2>
+      <p class="q__s">Probably a great deal less than you are imagining.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          The scar you see at six weeks is not the scar you will have at a
+          year.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            Redness, firmness and a raised edge are what remodelling looks
+            like on the way through, and most of it settles without anybody
+            doing anything. Judging a scar early is the commonest reason
+            people spend money on treatments they did not need.
+          </p>
+          <p>
+            What genuinely helps is unglamorous: keeping the sun off it for
+            the first year, silicone if it is thickening, time, and not
+            picking. What does not help is most of what is marketed for it. We
+            will tell you which of the two you are holding.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q6" data-k="sunscreen spf sun uv winter protection factor cream daily glass">
+      <p class="q__n">06</p>
+      <h2 class="q__h">Do I actually need sunscreen in winter?</h2>
+      <p class="q__s">In Lisbon, yes — but not the version you have been sold.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          The UV index here clears 3 for roughly ten months of the year, and 3
+          is the point at which it begins to matter.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            That is not an argument for being frightened of daylight, and we
+            will not make one. It is an argument for shade between eleven and
+            four, a hat that actually has a brim, and sunscreen on the three
+            places that take the damage: the face, the ears and the backs of
+            the hands. Reapplication matters more than the number on the
+            bottle above about factor 30.
+          </p>
+          <p>
+            Behind window glass, UVB is largely stopped and UVA is not — which
+            is why the driver's side of a face ages differently. Vitamin D is
+            a real consideration and a solvable one; it is not a reason to
+            burn.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q7" data-k="contagious catching infection spread children school eczema psoriasis fungal scabies">
+      <p class="q__n">07</p>
+      <h2 class="q__h">Is it contagious?</h2>
+      <p class="q__s">Most of what walks through this door is not.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          Eczema, psoriasis, rosacea, acne, urticaria and the large majority
+          of rashes belong to you alone.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            A handful of things are transmissible — molluscum, scabies,
+            impetigo, fungal infections, warts — and where that is the answer
+            you get it plainly and in writing, with what the household needs
+            to do and for how long, and whether a child needs to stay off
+            school. Usually they do not.
+          </p>
+          <p>
+            Nobody should be standing at the school gate guessing at this, and
+            no parent should be treating a whole family on the strength of a
+            search engine.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q8" data-k="photo photograph picture teledermatology email remote online whatsapp app">
+      <p class="q__n">08</p>
+      <h2 class="q__h">Can you just look at a photograph?</h2>
+      <p class="q__s">For some things. Never for a mole.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          A photograph is genuinely useful for a rash that already has a
+          diagnosis, for a follow-up, and for deciding how quickly you need to
+          be seen.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            It is not adequate for a pigmented lesion. The thing that decides
+            that answer is the dermatoscopic structure under the surface, and
+            a telephone camera cannot see it — no matter how good the
+            telephone is, and no matter how well lit the bathroom was.
+          </p>
+          <p>
+            So if you send a photograph of a mole you will be told to come in.
+            That is not a technique for selling you an appointment; it is the
+            only honest answer, and saying otherwise is how lesions get missed
+            for eighteen months.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q9" data-k="sell selling products skincare botox filler laser cosmetic packages upsell shop">
+      <p class="q__n">09</p>
+      <h2 class="q__h">Will you try to sell me something?</h2>
+      <p class="q__s">There is nothing here to sell you.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          No injectables, no laser packages, no skincare range, no course of
+          anything paid for in advance.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            This is a medical dermatology clinic and the only thing it charges
+            for is a consultation and the procedures that follow from one. If
+            a treatment is not the answer to a medical question, it is not
+            offered here — which also means the advice you get is not
+            downstream of a shelf that needs clearing.
+          </p>
+          <p>
+            Quite often the answer is <i>leave it alone</i>. You will be
+            charged for the consultation and not for a plan, and you will be
+            told how long to leave it alone for and what would change that.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="q" id="q10" data-k="cost price money afford expensive insurance seguro adse subsistema payment fee">
+      <p class="q__n">10</p>
+      <h2 class="q__h">What if I cannot afford it?</h2>
+      <p class="q__s">Say so when you telephone. It is not a difficult conversation.</p>
+
+      <div class="q__body">
+        <p class="q__lead">
+          Every price is printed below in full, including the ones people
+          usually have to ask for.
+        </p>
+
+        <div class="q__more" data-more><div class="q__more__in">
+          <p>
+            Where a <i>subsistema</i> or a <i>seguro de saúde</i> covers the
+            consultation we invoice them directly and you pay the
+            co-payment only. Where it does not, and the money is what is
+            stopping you, tell reception when you ring.
+          </p>
+          <p>
+            Nobody should skip a skin examination over ninety euros, and this
+            clinic would rather have the awkward conversation at the beginning
+            than see the consequence of it four years later.
+          </p>
+        </div></div>
+
+        <button class="more" data-more-btn aria-expanded="false">
+          <span>The longer answer</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WHAT IS ACTUALLY TREATED
+         ========================================================= -->
+    <section class="sec" id="tratamos">
+      <header class="sh">
+        <p class="lab lab--amber">Se a sua pergunta não estava na lista</p>
+        <h2>What is actually treated here.</h2>
+        <p class="sh__note">
+          The unglamorous half of the website, kept short. Medical
+          dermatology, adults and children, and the surgery that follows from
+          it.
+        </p>
+      </header>
+
+      <div class="cols">
+        <div class="col">
+          <p class="col__k">Pele, sinais e cancro</p>
+          <ul class="dots">
+            <li>Full skin examination with dermatoscopy</li>
+            <li>Digital mole mapping and sequential imaging</li>
+            <li>Basal cell and squamous cell carcinoma</li>
+            <li>Melanoma — diagnosis, excision, referral</li>
+            <li>Actinic keratosis and field treatment</li>
+            <li>Biopsy, excision, curettage, cryotherapy</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <p class="col__k">Inflamatória</p>
+          <ul class="dots">
+            <li>Acne, adult and adolescent</li>
+            <li>Rosacea, treated by subtype</li>
+            <li>Eczema and contact allergy, with patch testing</li>
+            <li>Psoriasis, topical and systemic</li>
+            <li>Hidradenitis suppurativa, staged</li>
+            <li>Urticaria and chronic itch</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <p class="col__k">Cabelo, unhas e crianças</p>
+          <ul class="dots">
+            <li>Hair loss, scarring and non-scarring</li>
+            <li>Scalp biopsy and trichoscopy</li>
+            <li>Nail disease and nail-unit lesions</li>
+            <li>Paediatric dermatology from birth</li>
+            <li>Birthmarks and infantile haemangioma</li>
+            <li>Molluscum, warts, tinea</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         A CLÍNICA
+         ========================================================= -->
+    <section class="sec" id="clinica">
+      <header class="sh">
+        <p class="lab lab--amber">A clínica</p>
+        <h2>One dermatologist, and the person answering above.</h2>
+      </header>
+
+      <div class="who">
+        <figure class="who__fig">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=760&h=950&q=80"
+               alt="Dra. Inês Salgado Bettencourt" loading="lazy" decoding="async" />
+          <figcaption>
+            Dra. Inês Salgado Bettencourt, in consulting room one.
+          </figcaption>
+        </figure>
+
+        <div class="who__copy">
+          <p class="who__name">Dra. Inês Salgado Bettencourt</p>
+          <p class="who__cred">Dermatologista · Ordem dos Médicos, céd. 48 219 · Sociedade Portuguesa de Dermatologia</p>
+
+          <p>
+            Medicine at the Faculdade de Medicina da Universidade de Lisboa,
+            specialist training in dermatology and venereology at the Hospital
+            de Santa Maria, then four years of pigmented-lesion clinics before
+            these rooms opened in 2016.
+          </p>
+          <p>
+            She performs every examination and every excision herself. There
+            is no rotating locum and no registrar list, which is why the
+            waiting time for a routine appointment is what it is and why
+            nobody is ever seen for eight minutes.
+          </p>
+          <p>
+            Consultations in Portuguese, English or French. A written summary
+            goes to your médico de família after every visit unless you ask us
+            not to send one.
+          </p>
+
+          <div class="panel">
+            <p class="lab">Nas salas</p>
+            <ul class="dots">
+              <li>Two polarised dermatoscopes</li>
+              <li>Fixed-distance photography and sequential mapping</li>
+              <li>Minor procedure room, local anaesthetic</li>
+              <li>Refrigerated patch-test allergens, European baseline series</li>
+              <li>Courier to histopathology twice daily</li>
+              <li>Lift, and step-free access from Rua do Alecrim</li>
+            </ul>
+          </div>
+
+          <p class="aside">
+            <i>Umbra</i> is the Latin for shade. Shade is the first sunscreen,
+            it works on everybody, and it has never been out of stock.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PREÇOS
+         ========================================================= -->
+    <section class="sec" id="precos">
+      <header class="sh">
+        <p class="lab lab--amber">Preços</p>
+        <h2>Printed in full, including the ones people have to ask for.</h2>
+      </header>
+
+      <ul class="fees">
+        <li><span class="fees__n">Primeira consulta <em>30 min</em></span><span class="fees__v">90</span></li>
+        <li><span class="fees__n">Consulta de seguimento <em>15 min</em></span><span class="fees__v">60</span></li>
+        <li><span class="fees__n">Exame completo da pele <em>45 min, com dermatoscopia</em></span><span class="fees__v">130</span></li>
+        <li><span class="fees__n">Mapeamento digital de sinais <em>fotografia de base</em></span><span class="fees__v">170</span></li>
+        <li><span class="fees__n">Biópsia <em>inclui histopatologia</em></span><span class="fees__v">150</span></li>
+        <li><span class="fees__n">Excisão, tronco ou membro <em>a partir de</em></span><span class="fees__v">290</span></li>
+        <li><span class="fees__n">Crioterapia <em>por sessão</em></span><span class="fees__v">45</span></li>
+        <li><span class="fees__n">Testes epicutâneos <em>série base, duas leituras</em></span><span class="fees__v">210</span></li>
+      </ul>
+      <p class="fees__foot">Valores em euros, IVA incluído.</p>
+
+      <div class="notes">
+        <div class="note">
+          <p class="lab">Seguros e subsistemas</p>
+          <p>ADSE, Médis, Multicare, AdvanceCare and SAMS are invoiced
+            directly. Bring the card; you pay the co-payment only.</p>
+        </div>
+        <div class="note">
+          <p class="lab">Sem seguro</p>
+          <p>No supplement, no membership and no difference in how long the
+            appointment lasts.</p>
+        </div>
+        <div class="note">
+          <p class="lab">Estudantes e reformados</p>
+          <p>Two-thirds of the fees above. The card is the only documentation
+            anybody asks for.</p>
+        </div>
+        <div class="note">
+          <p class="lab">Lesões urgentes</p>
+          <p>Two appointments at 08.30 each weekday are held for changing
+            lesions and are given out by telephone only.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         MARCAÇÕES — the form is written as a sentence, because
+         the rest of the page is a conversation.
+         ========================================================= -->
+    <section class="sec" id="marcacoes">
+      <header class="sh">
+        <p class="lab lab--amber">Marcações</p>
+        <h2>Tell us in a sentence. Reception rings back the same day.</h2>
+      </header>
+
+      <div class="book">
+        <form class="say" data-say novalidate>
+          <p class="say__p">
+            My name is
+            <label class="slot slot--name">
+              <span class="sr">Your name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="nome" required />
+            </label>,
+            you can reach me on
+            <label class="slot slot--tel">
+              <span class="sr">Telephone</span>
+              <input type="tel" name="tel" autocomplete="tel" placeholder="telefone" required />
+            </label>
+            or at
+            <label class="slot slot--mail">
+              <span class="sr">Email</span>
+              <input type="email" name="email" autocomplete="email" placeholder="e-mail" required />
+            </label>.
+            What I want to ask about is
+            <label class="slot slot--sel">
+              <span class="sr">Reason</span>
+              <select name="reason">
+                <option>a mole that has changed</option>
+                <option>a full skin examination</option>
+                <option>acne</option>
+                <option>eczema or an allergy</option>
+                <option>rosacea</option>
+                <option>psoriasis</option>
+                <option>hair or scalp</option>
+                <option>a child's skin</option>
+                <option>something I cannot name</option>
+              </select>
+            </label>,
+            and it has been going on
+            <label class="slot slot--sel">
+              <span class="sr">Duration</span>
+              <select name="since">
+                <option>a few days</option>
+                <option>a few weeks</option>
+                <option>some months</option>
+                <option>a year or more</option>
+                <option>as long as I can remember</option>
+              </select>
+            </label>.
+          </p>
+
+          <label class="note-field">
+            <span class="lab">Anything you would rather write down than say on the telephone</span>
+            <textarea name="notes" rows="3" placeholder="Optional. It is read before you are called back."></textarea>
+          </label>
+
+          <fieldset class="flags">
+            <legend class="lab">Marque se se aplicar</legend>
+            <label><input type="checkbox" name="flag" value="bleeding" /><span>Something that bleeds or will not heal</span></label>
+            <label><input type="checkbox" name="flag" value="growing" /><span>Something new that is growing</span></label>
+            <label><input type="checkbox" name="flag" value="changed" /><span>An old mole that has changed</span></label>
+          </fieldset>
+
+          <div class="say__foot">
+            <button class="btn btn--fill" type="submit">Enviar</button>
+            <p class="fine">
+              Nothing is charged now. If something is bleeding today,
+              telephone <b>+351 21 347 22 60</b> instead — the held 08.30
+              appointments are given out by telephone only.
+            </p>
+          </div>
+        </form>
+
+        <aside class="book__side">
+          <div class="panel">
+            <p class="lab">A clínica</p>
+            <p class="addr">
+              Rua do Alecrim 42, 2.º<br />
+              1200-018 Lisboa
+            </p>
+            <p class="addr">
+              <a href="tel:+351213472260">+351 21 347 22 60</a><br />
+              <a href="mailto:clinica@umbra.pt">clinica@umbra.pt</a>
+            </p>
+          </div>
+
+          <div class="panel">
+            <p class="lab">Horário</p>
+            <dl class="hours">
+              <div><dt>Segunda a quinta</dt><dd>08.30 — 18.00</dd></div>
+              <div><dt>Sexta</dt><dd>08.30 — 14.00</dd></div>
+              <div><dt>Cirurgia</dt><dd>Quartas, todo o dia</dd></div>
+              <div><dt>Fim de semana</dt><dd>Encerrado</dd></div>
+            </dl>
+          </div>
+
+          <div class="panel">
+            <p class="lab">Como chegar</p>
+            <ul class="dots">
+              <li>Metro Baixa-Chiado — 4 min</li>
+              <li>Elétrico 28, Chiado</li>
+              <li>Parque do Chiado, 3 min a pé</li>
+              <li>Elevador e acesso sem degraus</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOT
+       ========================================================= -->
+  <footer class="foot">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <p class="mark mark--sm">Umbra</p>
+        <p>Clínica de Dermatologia<br />
+          Rua do Alecrim 42, 2.º · 1200-018 Lisboa</p>
+        <p class="foot__ph">
+          <a href="tel:+351213472260">+351 21 347 22 60</a><br />
+          <a href="mailto:clinica@umbra.pt">clinica@umbra.pt</a>
+        </p>
+      </div>
+
+      <nav class="foot__nav">
+        <p class="lab">As perguntas</p>
+        <a href="#q1">Is this mole normal?</a>
+        <a href="#q2">Will you tell me if it is cancer?</a>
+        <a href="#q3">Why has my acne come back?</a>
+        <a href="#q4">How long is this going to take?</a>
+        <a href="#q5">Is it going to scar?</a>
+      </nav>
+
+      <nav class="foot__nav">
+        <p class="lab">&nbsp;</p>
+        <a href="#q6">Do I need sunscreen in winter?</a>
+        <a href="#q7">Is it contagious?</a>
+        <a href="#q8">Can you look at a photograph?</a>
+        <a href="#q9">Will you try to sell me something?</a>
+        <a href="#q10">What if I cannot afford it?</a>
+      </nav>
+
+      <nav class="foot__nav">
+        <p class="lab">A clínica</p>
+        <a href="#tratamos">O que tratamos</a>
+        <a href="#clinica">Dra. Bettencourt</a>
+        <a href="#precos">Preços</a>
+        <a href="#marcacoes">Marcações</a>
+        <a href="#top">Voltar ao topo</a>
+      </nav>
+    </div>
+
+    <div class="foot__bar">
+      <p>Shade is the first sunscreen.</p>
+      <p>© <span data-year>2026</span> Umbra Clínica de Dermatologia ·
+        <a href="#">Privacidade</a> ·
+        <a href="#">Direitos do doente</a> ·
+        <a href="#">Livro de reclamações</a></p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#F6F2EA" />
+<title>OLEA — Interior Design for Warm, Living Homes</title>
+<meta name="description" content="OLEA is an interior design studio making warm, plant-filled, hard-wearing homes. Full design, room-by-room commissions and styling across the UK." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<!-- ============ CURSOR CUE ============ -->
+<span class="cue" data-cue-el aria-hidden="true">Drag</span>
+
+<!-- ============ LOADER ============ -->
+<div class="boot" data-boot>
+  <div class="boot__arch" data-boot-arch></div>
+  <div class="boot__word" data-boot-word><span>O</span><span>L</span><span>E</span><span>A</span></div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="nav" data-nav>
+  <a class="brand" href="#top">
+    <span class="brand__leaf" aria-hidden="true"></span>
+    <span class="brand__name">Olea</span>
+  </a>
+
+  <nav class="nav__pill">
+    <a href="#approach">Approach</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
+
+  <div class="nav__end">
+    <a class="btn btn--pine" href="#book">Book a call</a>
+    <button class="burger" data-sheet-open aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<!-- ============ MOBILE SHEET ============ -->
+<div class="sheet" data-sheet>
+  <div class="sheet__bar">
+    <span class="brand"><span class="brand__leaf" aria-hidden="true"></span><span class="brand__name">Olea</span></span>
+    <button class="burger burger--x" data-sheet-close aria-label="Close menu"><i></i><i></i></button>
+  </div>
+  <nav class="sheet__links">
+    <a href="#approach" data-sheet-link>Approach</a>
+    <a href="#rooms" data-sheet-link>Rooms</a>
+    <a href="#work" data-sheet-link>Work</a>
+    <a href="#process" data-sheet-link>Process</a>
+    <a href="#pricing" data-sheet-link>Pricing</a>
+  </nav>
+  <a class="btn btn--pine btn--lg sheet__cta" href="#book" data-sheet-link>Book a call</a>
+  <div class="sheet__foot">
+    <p>Studio 4, Bramble Yard<br />Bristol BS1 6TR</p>
+    <p><a href="mailto:studio@olea.design">studio@olea.design</a><br /><a href="tel:+441179460240">+44 117 946 0240</a></p>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__copy">
+      <span class="eyebrow" data-rise>
+        <i class="dot"></i> Taking bookings for spring
+      </span>
+
+      <h1 class="hero__h" data-rise data-delay="60" aria-label="Interiors that feel calm, rooted, lived-in and yours">
+        <span aria-hidden="true">Interiors that feel</span>
+        <span class="roll" aria-hidden="true">
+          <span class="roll__set" data-roll-set>
+            <em class="is-on">calm</em><em>rooted</em><em>lived-in</em><em>yours</em>
+          </span>
+        </span>
+      </h1>
+
+      <p class="hero__p" data-rise data-delay="140">
+        We design warm, plant-filled homes that survive real life — muddy boots, small
+        children, and Tuesday evenings when nobody wants to cook.
+      </p>
+
+      <div class="hero__acts" data-rise data-delay="200">
+        <a class="btn btn--pine btn--lg" href="#book">Book a free call</a>
+        <a class="link" href="#work">See our homes <i>→</i></a>
+      </div>
+
+      <div class="proof" data-rise data-delay="260">
+        <div class="proof__faces" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1667053508464-eb11b394df83?auto=format&fit=crop&w=120&q=70" alt="" />
+          <img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?auto=format&fit=crop&w=120&q=70" alt="" />
+          <img src="https://images.unsplash.com/photo-1587397845856-e6cf49176c70?auto=format&fit=crop&w=120&q=70" alt="" />
+        </div>
+        <p><b>180 homes</b> finished since 2014 · <b>4.9</b> average rating</p>
+      </div>
+    </div>
+
+    <div class="hero__stage">
+      <figure class="arch hero__arch" data-mask>
+        <img src="https://images.unsplash.com/photo-1667992404241-0c67b7cb495c?auto=format&fit=crop&w=1100&q=80" alt="Sunlit living room with tall plants and timber columns" />
+      </figure>
+
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs><path id="sealPath" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" /></defs>
+          <text><textPath href="#sealPath">OLEA STUDIO · BRISTOL · SINCE 2014 · </textPath></text>
+        </svg>
+        <span class="seal__leaf"></span>
+      </div>
+
+      <div class="chip chip--float">
+        <span class="chip__k">Latest</span>
+        <span class="chip__v">Hazelbank House</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAG MARQUEE ============ -->
+  <div class="tape" aria-hidden="true">
+    <div class="tape__run">
+      <span>Full home design</span><span>Kitchens</span><span>Lighting</span><span>Joinery</span><span>Colour &amp; paint</span><span>Styling</span><span>Planting</span><span>Sourcing</span>
+      <span>Full home design</span><span>Kitchens</span><span>Lighting</span><span>Joinery</span><span>Colour &amp; paint</span><span>Styling</span><span>Planting</span><span>Sourcing</span>
+    </div>
+  </div>
+
+  <!-- ============ APPROACH ============ -->
+  <section class="appr" id="approach">
+    <div class="appr__media">
+      <figure class="arch arch--sm" data-mask>
+        <img src="https://images.unsplash.com/photo-1625585598750-3535fe40efb3?auto=format&fit=crop&w=800&q=80" alt="Corner of a room with a wooden stool and a large plant" loading="lazy" />
+      </figure>
+      <figure class="round" data-mask data-delay="120">
+        <img src="https://images.unsplash.com/photo-1532204182725-d0f67855ac87?auto=format&fit=crop&w=600&q=80" alt="Cut flowers in a ceramic vase" loading="lazy" />
+      </figure>
+    </div>
+
+    <div class="appr__body">
+      <span class="eyebrow" data-rise><i class="dot"></i> Our approach</span>
+      <h2 class="h2" data-rise data-delay="60">We start with how you actually live, not a mood board.</h2>
+      <p class="lede" data-rise data-delay="110">
+        Beautiful rooms are easy to photograph and hard to live in. We spend the first
+        fortnight learning your routines, then design backwards from them.
+      </p>
+
+      <ol class="ticks">
+        <li data-rise data-delay="160">
+          <span class="ticks__n">01</span>
+          <div><h3>A fortnight of listening</h3><p>Two visits, a long questionnaire, and a look inside your cupboards. It tells us more than any brief.</p></div>
+        </li>
+        <li data-rise data-delay="210">
+          <span class="ticks__n">02</span>
+          <div><h3>One scheme, fully drawn</h3><p>No three-option guessing games. We present a single considered scheme and refine it with you.</p></div>
+        </li>
+        <li data-rise data-delay="260">
+          <span class="ticks__n">03</span>
+          <div><h3>We stay until it's right</h3><p>Sourcing, deliveries, trades and the final styling day. You are not left with a folder of links.</p></div>
+        </li>
+      </ol>
+
+      <div class="tally">
+        <div data-rise><b data-count="180">0</b><span>homes finished</span></div>
+        <div data-rise data-delay="70"><b data-count="12">0</b><span>years in practice</span></div>
+        <div data-rise data-delay="140"><b data-count="94">0</b><i>%</i><span>from referrals</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROOMS ============ -->
+  <section class="rooms" id="rooms">
+    <div class="rooms__head">
+      <span class="eyebrow" data-rise><i class="dot"></i> Room by room</span>
+      <h2 class="h2" data-rise data-delay="60">Every room has a different job</h2>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Room types" data-tabs>
+      <button role="tab" aria-selected="true" data-tab="0">Living room</button>
+      <button role="tab" aria-selected="false" data-tab="1">Kitchen</button>
+      <button role="tab" aria-selected="false" data-tab="2">Bedroom</button>
+      <button role="tab" aria-selected="false" data-tab="3">Bathroom</button>
+      <span class="tabs__ink" data-tab-ink></span>
+    </div>
+
+    <div class="rooms__stage">
+      <div class="rooms__pics">
+        <figure class="arch is-on" data-room="0"><img src="https://images.unsplash.com/photo-1667992404241-0c67b7cb495c?auto=format&fit=crop&w=1000&q=80" alt="Living room with plants and timber columns" loading="lazy" /></figure>
+        <figure class="arch" data-room="1"><img src="https://images.unsplash.com/photo-1609347744425-175ecbd3cc0e?auto=format&fit=crop&w=1000&q=80" alt="Bright kitchen with a timber island and woven stools" loading="lazy" /></figure>
+        <figure class="arch" data-room="2"><img src="https://images.unsplash.com/photo-1780672823770-dc40e2181cdf?auto=format&fit=crop&w=1000&q=80" alt="Bedroom with a wooden bed frame and white linen" loading="lazy" /></figure>
+        <figure class="arch" data-room="3"><img src="https://images.unsplash.com/photo-1754574741164-a41418029cfb?auto=format&fit=crop&w=1000&q=80" alt="Calm bathroom with a freestanding bath and branches" loading="lazy" /></figure>
+      </div>
+
+      <div class="rooms__panels">
+        <article class="panel is-on" data-panel="0">
+          <h3>The room that has to do everything</h3>
+          <p>Reading, television, homework, guests, and a dog that sheds. We plan for all five rather than styling for none of them — layered lighting, a sofa you can actually lie on, and surfaces that forgive.</p>
+          <ul class="specs">
+            <li><span>Typical spend</span>£14k–£30k</li>
+            <li><span>Timeline</span>8–12 weeks</li>
+            <li><span>Includes</span>Layout, lighting, joinery, styling</li>
+          </ul>
+        </article>
+
+        <article class="panel" data-panel="1">
+          <h3>Where the house actually gathers</h3>
+          <p>We design kitchens around the twenty minutes before dinner, when three people need the same square metre. That means real circulation, honest worktops, and storage sized to what you own.</p>
+          <ul class="specs">
+            <li><span>Typical spend</span>£28k–£60k</li>
+            <li><span>Timeline</span>14–20 weeks</li>
+            <li><span>Includes</span>Cabinetry, appliances, stone, lighting</li>
+          </ul>
+        </article>
+
+        <article class="panel" data-panel="2">
+          <h3>A room that gets darker on purpose</h3>
+          <p>Bedrooms are the one place we design for the eyes closing, not opening. Warm low circuits, blackout built into the joinery, and nothing shiny in the line of sight from the pillow.</p>
+          <ul class="specs">
+            <li><span>Typical spend</span>£9k–£18k</li>
+            <li><span>Timeline</span>6–9 weeks</li>
+            <li><span>Includes</span>Wardrobes, lighting, textiles, paint</li>
+          </ul>
+        </article>
+
+        <article class="panel" data-panel="3">
+          <h3>Small, wet, and unforgiving</h3>
+          <p>The room where bad detailing shows up fastest. We draw every tile course and junction before anything is ordered, and specify for steam, splash and a decade of scrubbing.</p>
+          <ul class="specs">
+            <li><span>Typical spend</span>£11k–£24k</li>
+            <li><span>Timeline</span>8–14 weeks</li>
+            <li><span>Includes</span>Layout, tiling, brassware, ventilation</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work">
+    <div class="work__head">
+      <span class="eyebrow" data-rise><i class="dot"></i> Recent homes</span>
+      <h2 class="h2" data-rise data-delay="60">A few we are proud of</h2>
+      <a class="link" href="#" data-rise data-delay="120">All projects <i>→</i></a>
+    </div>
+
+    <div class="grid">
+      <a class="tile tile--tall" href="#" data-rise>
+        <figure><img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80" alt="Hazelbank House living space" loading="lazy" /></figure>
+        <div class="tile__foot"><h3>Hazelbank House</h3><span>Full home · Clifton</span></div>
+      </a>
+
+      <a class="tile" href="#" data-rise data-delay="90">
+        <figure><img src="https://images.unsplash.com/photo-1771354959667-96360bf59eab?auto=format&fit=crop&w=900&q=80" alt="Wren Cottage entrance hall with a timber floor and coat pegs" loading="lazy" /></figure>
+        <div class="tile__foot"><h3>Wren Cottage</h3><span>Renovation · Bath</span></div>
+      </a>
+
+      <a class="tile" href="#" data-rise data-delay="180">
+        <figure><img src="https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?auto=format&fit=crop&w=900&q=80" alt="Ashgrove Flat living room" loading="lazy" /></figure>
+        <div class="tile__foot"><h3>Ashgrove Flat</h3><span>Two rooms · Bristol</span></div>
+      </a>
+
+      <a class="tile tile--tall" href="#" data-rise data-delay="60">
+        <figure><img src="https://images.unsplash.com/photo-1649083048770-82e8ffd80431?auto=format&fit=crop&w=900&q=80" alt="The Long Barn living space under exposed dark timber beams" loading="lazy" /></figure>
+        <div class="tile__foot"><h3>The Long Barn</h3><span>New build · Somerset</span></div>
+      </a>
+
+      <a class="tile" href="#" data-rise data-delay="150">
+        <figure><img src="https://images.unsplash.com/photo-1602872029708-84d970d3382b?auto=format&fit=crop&w=900&q=80" alt="Marigold House dining room" loading="lazy" /></figure>
+        <div class="tile__foot"><h3>Marigold House</h3><span>Kitchen &amp; dining · Frome</span></div>
+      </a>
+
+      <a class="tile" href="#" data-rise data-delay="240">
+        <figure><img src="https://images.unsplash.com/photo-1775029918335-63951f10d962?auto=format&fit=crop&w=900&q=80" alt="Sorrel Rooms bedroom with sage green cushions on cream linen" loading="lazy" /></figure>
+        <div class="tile__foot"><h3>Sorrel Rooms</h3><span>Styling · Cardiff</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="flow" id="process">
+    <div class="flow__media">
+      <div class="flow__sticky">
+        <figure class="arch arch--sm">
+          <img class="is-on" data-flow="0" src="https://images.unsplash.com/photo-1583329550487-0fa300a4cd1a?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+          <img data-flow="1" src="https://images.unsplash.com/photo-1758974782657-e5ada4b01c3c?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+          <img data-flow="2" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+          <img data-flow="3" src="https://images.unsplash.com/photo-1609081144289-eacc3108cd03?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+        </figure>
+        <div class="flow__meta">
+          <span class="flow__count"><b data-flow-n>01</b> / 04</span>
+          <span class="flow__now" data-flow-label>Call and visit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow__text">
+      <span class="eyebrow" data-rise><i class="dot"></i> How it goes</span>
+      <h2 class="h2" data-rise data-delay="60">Four stages, no surprises</h2>
+
+      <ol class="steps">
+        <li class="step" data-step="0">
+          <span class="step__n">01</span>
+          <h3>Call and visit</h3>
+          <p>A free half-hour call, then a paid survey visit where we measure, photograph and ask a lot of questions. You get a written scope and a fixed fee before anything else happens.</p>
+          <span class="step__meta">Week 1–2 · Free, then £450</span>
+        </li>
+        <li class="step" data-step="1">
+          <span class="step__n">02</span>
+          <h3>Design and drawings</h3>
+          <p>Layouts, elevations, lighting plans and a full material palette you can hold. One scheme, presented properly, then two rounds of refinement included as standard.</p>
+          <span class="step__meta">Week 3–7 · 40% of fee</span>
+        </li>
+        <li class="step" data-step="2">
+          <span class="step__n">03</span>
+          <h3>Sourcing and build</h3>
+          <p>We place the orders, chase the lead times and run the trades. You get a weekly note on Fridays telling you exactly what moved and what did not.</p>
+          <span class="step__meta">Week 8–18 · 40% of fee</span>
+        </li>
+        <li class="step" data-step="3">
+          <span class="step__n">04</span>
+          <h3>Styling and handover</h3>
+          <p>Two days on site placing everything, a snag list we own rather than you, and a care guide for every finish in the house. Then we leave you alone.</p>
+          <span class="step__meta">Week 19–20 · 20% of fee</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="plans" id="pricing">
+    <div class="plans__head">
+      <span class="eyebrow" data-rise><i class="dot"></i> Ways to work with us</span>
+      <h2 class="h2" data-rise data-delay="60">Three ways in</h2>
+      <p class="lede" data-rise data-delay="110">Fixed fees, quoted after the survey. We never take a percentage of your build cost.</p>
+    </div>
+
+    <div class="plans__grid">
+      <article class="plan" data-rise>
+        <h3>Consult</h3>
+        <p class="plan__for">For confident people who need unsticking.</p>
+        <p class="plan__price"><b>£950</b><span>one visit</span></p>
+        <ul>
+          <li>Two-hour visit on site</li>
+          <li>Layout and lighting advice</li>
+          <li>Paint and material directions</li>
+          <li>Written summary in five days</li>
+        </ul>
+        <a class="btn btn--ghost" href="#book">Book a consult</a>
+      </article>
+
+      <article class="plan plan--star" data-rise data-delay="90">
+        <span class="plan__flag">Most chosen</span>
+        <h3>Room by room</h3>
+        <p class="plan__for">For one space that has never worked.</p>
+        <p class="plan__price"><b>£4,200</b><span>per room</span></p>
+        <ul>
+          <li>Everything in Consult</li>
+          <li>Full drawings and elevations</li>
+          <li>Sourcing and order management</li>
+          <li>Trades coordination</li>
+          <li>One styling day</li>
+        </ul>
+        <a class="btn btn--cream" href="#book">Start a room</a>
+      </article>
+
+      <article class="plan" data-rise data-delay="180">
+        <h3>Whole home</h3>
+        <p class="plan__for">For a move, a renovation, or a fresh start.</p>
+        <p class="plan__price"><b>From £18k</b><span>fixed fee</span></p>
+        <ul>
+          <li>Everything in Room by room</li>
+          <li>Whole-house planning</li>
+          <li>Bespoke joinery design</li>
+          <li>Weekly site reporting</li>
+          <li>Two styling days and care guide</li>
+        </ul>
+        <a class="btn btn--ghost" href="#book">Enquire</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ VOICES ============ -->
+  <section class="says">
+    <div class="says__head">
+      <span class="eyebrow" data-rise><i class="dot"></i> Kind words</span>
+      <h2 class="h2" data-rise data-delay="60">What people say after</h2>
+      <span class="says__hint"><i data-hint-fine>Drag</i><i data-hint-touch>Swipe</i> to read more →</span>
+    </div>
+
+    <div class="rail" data-rail data-cue="Drag">
+      <blockquote class="say">
+        <p>“They asked where we drop our keys, our coats and our bags before they drew a single line. Two years on, the hallway still has not got messy.”</p>
+        <footer><b>Marianne Doyle</b><span>Hazelbank House</span></footer>
+      </blockquote>
+      <blockquote class="say">
+        <p>“I was braced for a designer who would fight me on the dog. Instead they specified a fabric she cannot ruin and built her a cupboard by the back door.”</p>
+        <footer><b>Owen Pritchard</b><span>Wren Cottage</span></footer>
+      </blockquote>
+      <blockquote class="say">
+        <p>“The Friday notes were the best part. I always knew what had slipped, and why, before I had to ask about it.”</p>
+        <footer><b>Farrah Nasser</b><span>Ashgrove Flat</span></footer>
+      </blockquote>
+      <blockquote class="say">
+        <p>“We came in twelve hundred over on a sixty thousand pound kitchen. In this industry that is basically witchcraft.”</p>
+        <footer><b>Tom &amp; Greg Aldiss</b><span>Marigold House</span></footer>
+      </blockquote>
+      <blockquote class="say">
+        <p>“Our old flat was beige and sad. It is now green and full of plants and I am faintly obsessed with my own hallway.”</p>
+        <footer><b>Bea Lindqvist</b><span>Sorrel Rooms</span></footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ BOOK ============ -->
+  <section class="book" id="book">
+    <div class="book__inner">
+      <div class="book__copy">
+        <h2 class="book__h">Let's talk about your house.</h2>
+        <p>A free thirty-minute call. No slides, no pitch — just a straight answer about whether we are a good fit and what it would cost.</p>
+        <ul class="book__list">
+          <li>Reply within one working day</li>
+          <li>Fixed fees, quoted after the survey</li>
+          <li>Bristol, Bath and the South West</li>
+        </ul>
+
+        <div class="book__direct">
+          <span>Or reach us directly</span>
+          <a href="mailto:studio@olea.design">studio@olea.design</a>
+          <a href="tel:+441179460240">+44 117 946 0240</a>
+        </div>
+      </div>
+
+      <form class="ask" data-form novalidate>
+        <div class="ask__row">
+          <label for="a-name">Your name</label>
+          <input id="a-name" name="name" type="text" placeholder="Marianne Doyle" required />
+        </div>
+        <div class="ask__row">
+          <label for="a-mail">Email</label>
+          <input id="a-mail" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="ask__row">
+          <label for="a-plan">What are you after?</label>
+          <select id="a-plan" name="plan" required>
+            <option value="" selected disabled>Choose one</option>
+            <option>Consult — one visit</option>
+            <option>Room by room</option>
+            <option>Whole home</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="ask__row">
+          <label for="a-note">Anything we should know?</label>
+          <textarea id="a-note" name="note" rows="3" placeholder="Victorian terrace, two kids, a very muddy spaniel…"></textarea>
+        </div>
+        <button class="btn btn--honey btn--lg" type="submit">Send enquiry</button>
+        <p class="ask__note" data-form-note>We will never add you to a mailing list.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <span class="brand"><span class="brand__leaf" aria-hidden="true"></span><span class="brand__name">Olea</span></span>
+      <p>Interior design for warm, living homes. Working across Bristol, Bath and the South West since 2014.</p>
+    </div>
+
+    <div class="foot__cols">
+      <div>
+        <h4>Studio</h4>
+        <a href="#approach">Approach</a><a href="#process">Process</a><a href="#pricing">Pricing</a>
+      </div>
+      <div>
+        <h4>Work</h4>
+        <a href="#work">Projects</a><a href="#rooms">Rooms</a><a href="#book">Enquire</a>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Houzz</a>
+      </div>
+    </div>
+
+    <div class="foot__note">
+      <h4>Studio</h4>
+      <p>Studio 4, Bramble Yard<br />Bristol BS1 6TR</p>
+      <p><a href="mailto:studio@olea.design">studio@olea.design</a><br /><a href="tel:+441179460240">+44 117 946 0240</a></p>
+    </div>
+  </div>
+
+  <div class="foot__word" aria-hidden="true">Olea</div>
+
+  <div class="foot__base">
+    <span>© 2026 Olea Design Ltd</span>
+    <span>Company 09912440</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

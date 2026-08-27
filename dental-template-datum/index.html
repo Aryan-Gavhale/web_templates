@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Datum Dental &mdash; implants, planned before they are placed</title>
+    <meta
+      name="description"
+      content="Datum is a single-purpose implant practice in Leeds. Every case is scanned, planned in software and placed through a printed guide to within a fifth of a millimetre."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F1F2ED'/%3E%3Cg stroke='%2312356B' stroke-width='1.6'%3E%3Cpath d='M16 3v26M3 16h26'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none'/%3E%3C/g%3E%3C/svg%3E"
+    />
+  </head>
+
+  <body>
+    <!-- ===== drawing-sheet frame ===== -->
+    <div class="frame" aria-hidden="true">
+      <span class="frame__c frame__c--tl"></span>
+      <span class="frame__c frame__c--tr"></span>
+      <span class="frame__c frame__c--bl"></span>
+      <span class="frame__c frame__c--br"></span>
+    </div>
+
+    <!-- ===== part library ===== -->
+    <svg class="lib" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="0" y2="7" stroke="#12356B" stroke-width="0.8" opacity="0.34" />
+        </pattern>
+        <pattern id="hatch2" width="9" height="9" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="0" y2="9" stroke="#12356B" stroke-width="0.8" opacity="0.22" />
+        </pattern>
+
+        <g id="p-crown">
+          <path
+            d="M-32 0V-38C-32-62-29-76-20-76L-2-52Q0-49 2-52L20-76C29-76 32-62 32-38V0Z"
+          />
+        </g>
+        <g id="p-abut">
+          <path d="M-15 0h30l-3 46h-24Z" />
+        </g>
+        <g id="p-fix">
+          <path
+            d="M-20 0-15.56 15-19.13 30-14.69 45-18.25 60-13.81 75-17.38 90-12.94 105-16.5 120-12.06 135-15.63 150-11.19 165-14.75 180-10.31 195-13.88 210-9.44 225-13 240Q0 252 13 240L9.44 225 13.88 210 10.31 195 14.75 180 11.19 165 15.63 150 12.06 135 16.5 120 12.94 105 17.38 90 13.81 75 18.25 60 14.69 45 19.13 30 15.56 15 20 0Z"
+          />
+        </g>
+      </defs>
+    </svg>
+
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- ===== header ===== -->
+    <header class="bar" id="top">
+      <div class="bar__in">
+        <a class="logo" href="#top" aria-label="Datum Dental, home">
+          <svg class="logo__m" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 2v28M2 16h28" />
+            <circle cx="16" cy="16" r="7.5" />
+          </svg>
+          <span class="logo__w">DATUM</span>
+          <span class="logo__s">Dental</span>
+        </a>
+
+        <nav class="nav" aria-label="Sheets">
+          <a href="#method">Method</a>
+          <a href="#assembly">What we place</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#estimate">Estimate</a>
+          <a href="#team">Clinicians</a>
+          <a href="#notes">Notes</a>
+        </nav>
+
+        <div class="bar__end">
+          <p class="sheetnum mono" aria-hidden="true">
+            <span data-sheet-n>01</span>
+            <b data-sheet-t>General arrangement</b>
+          </p>
+          <a class="btn btn--fill" href="#request">Request a consultation</a>
+          <button class="tog" type="button" aria-expanded="false" aria-controls="drawer">
+            <span></span><span></span>
+            <span class="vh">Menu</span>
+          </button>
+        </div>
+      </div>
+      <div class="bar__rule"><span data-progress></span></div>
+    </header>
+
+    <div class="drawer" id="drawer" hidden>
+      <nav aria-label="Sheets">
+        <a href="#method"><i class="mono">02</i> Method</a>
+        <a href="#assembly"><i class="mono">03</i> What we place</a>
+        <a href="#schedule"><i class="mono">04</i> Schedule of work</a>
+        <a href="#estimate"><i class="mono">05</i> Estimate</a>
+        <a href="#team"><i class="mono">06</i> Clinicians</a>
+        <a href="#notes"><i class="mono">07</i> Notes</a>
+        <a href="#request"><i class="mono">08</i> Request</a>
+      </nav>
+      <a class="btn btn--fill btn--wide" href="#request">Request a consultation</a>
+    </div>
+
+    <main id="main">
+      <!-- ===== 01 hero ===== -->
+      <section class="hero sect" data-sheet="01" data-title="General arrangement">
+        <div class="wrap hero__in">
+          <div class="hero__txt">
+            <p class="tag mono up">
+              <span>Sheet 01</span>
+              <em>Implant &amp; reconstructive dentistry &middot; Leeds</em>
+            </p>
+            <h1 class="rise">Nothing is placed until it&nbsp;is&nbsp;measured.</h1>
+            <p class="lede rise">
+              A single-purpose practice for implants, grafting and full-arch reconstruction. Every
+              case is scanned, planned in software against your own anatomy, and placed through a
+              printed guide &mdash; so the surgery confirms a decision instead of making one.
+            </p>
+            <div class="hero__act rise">
+              <a class="btn btn--fill btn--lg" href="#request">Request a consultation</a>
+              <a class="btn btn--line btn--lg" href="#method">Read the method</a>
+            </div>
+
+            <dl class="keys rise">
+              <div>
+                <dt class="mono up">Placed since 2011</dt>
+                <dd>2,412</dd>
+              </div>
+              <div>
+                <dt class="mono up">Survival at 10 yrs</dt>
+                <dd>98.4<span>%</span></dd>
+              </div>
+              <div>
+                <dt class="mono up">Guided tolerance</dt>
+                <dd>&plusmn;0.2<span>mm</span></dd>
+              </div>
+              <div>
+                <dt class="mono up">Plan issued in</dt>
+                <dd>1<span>day</span></dd>
+              </div>
+            </dl>
+          </div>
+
+          <figure class="fig fig--live" data-live-fig>
+            <figcaption class="fig__cap mono up">
+              <span>Fig. 01</span>
+              <span>Single fixture, section &middot; scale 4:1</span>
+            </figcaption>
+
+            <div class="fig__box">
+              <svg class="dwg" viewBox="0 0 460 500" role="img"
+                aria-label="Technical section drawing of a dental implant: crown, abutment and fixture in bone, with dimensions">
+                <!-- bone + gum -->
+                <rect x="46" y="198" width="368" height="284" fill="url(#hatch)" />
+                <path class="ln ln--2" d="M46 198h368" />
+                <path class="ln ln--thin" d="M46 206h368" />
+                <rect x="46" y="158" width="368" height="40" fill="url(#hatch2)" />
+                <path class="ln ln--thin" d="M46 158h368" />
+
+                <!-- neighbouring teeth, context only -->
+                <g class="ghost">
+                  <use href="#p-crown" transform="translate(146 158)" />
+                  <use href="#p-crown" transform="translate(314 158)" />
+                </g>
+
+                <!-- centre line -->
+                <path class="ln ln--centre" d="M230 34v452" />
+
+                <!-- assembly -->
+                <g class="part">
+                  <use class="sld" href="#p-fix" transform="translate(230 198)" />
+                  <use class="sld" href="#p-abut" transform="translate(230 152)" />
+                  <use class="sld" href="#p-crown" transform="translate(230 158)" />
+                </g>
+
+                <!-- vertical dimension: fixture length -->
+                <g class="dim">
+                  <path class="ln ln--thin" d="M254 198h102M247 446h109" />
+                  <path class="ln" d="M348 198v248" />
+                  <path class="ar" d="M348 198l-4 11h8Z" />
+                  <path class="ar" d="M348 446l-4-11h8Z" />
+                  <rect class="lbl" x="322" y="311" width="52" height="22" />
+                  <text class="mono t" x="348" y="326">L 10.0</text>
+                </g>
+
+                <!-- crown width, dimensioned above -->
+                <g class="dim">
+                  <path class="ln ln--thin" d="M198 114V50M262 114V50" />
+                  <path class="ln" d="M154 58h44M306 58h-44" />
+                  <path class="ar" d="M198 58l-11-4v8Z" />
+                  <path class="ar" d="M262 58l11-4v8Z" />
+                  <text class="mono t" x="336" y="62">W 10.2</text>
+                </g>
+
+                <!-- fixture diameter, leader callout -->
+                <g class="dim">
+                  <path class="ln ln--thin" d="M214 372l-44 18h-58" />
+                  <path class="ar" d="M214 372l-11 4.7 2.4 5.6Z" />
+                  <rect class="lbl" x="60" y="379" width="54" height="22" />
+                  <text class="mono t" x="87" y="394">&#8709; 4.1</text>
+                </g>
+
+                <!-- callouts -->
+                <g class="call" data-call="1">
+                  <path class="ln ln--thin" d="M100 104h58l40 18" />
+                  <circle class="dot" cx="86" cy="104" r="14" />
+                  <text class="mono n" x="86" y="109">01</text>
+                </g>
+                <g class="call" data-call="2">
+                  <path class="ln ln--thin" d="M100 178h96l22-6" />
+                  <circle class="dot" cx="86" cy="178" r="14" />
+                  <text class="mono n" x="86" y="183">02</text>
+                </g>
+                <g class="call" data-call="3">
+                  <path class="ln ln--thin" d="M100 300h114" />
+                  <circle class="dot" cx="86" cy="300" r="14" />
+                  <text class="mono n" x="86" y="305">03</text>
+                </g>
+
+                <text class="mono s" x="392" y="176">GUM</text>
+                <text class="mono s" x="392" y="230">BONE</text>
+              </svg>
+
+              <span class="cross cross--x" data-cx></span>
+              <span class="cross cross--y" data-cy></span>
+              <span class="read mono" data-read>X 000 &middot; Y 000</span>
+            </div>
+
+            <ol class="legend mono">
+              <li><b>01</b> Monolithic zirconia crown, screw-retained</li>
+              <li><b>02</b> Milled titanium abutment, 25 Ncm</li>
+              <li><b>03</b> Grade 4 titanium fixture, 35 Ncm</li>
+            </ol>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== rule ===== -->
+      <div class="dimrule wrap" aria-hidden="true">
+        <span class="dimrule__l"></span>
+        <span class="dimrule__t mono up">02 &middot; Method</span>
+        <span class="dimrule__l"></span>
+      </div>
+
+      <!-- ===== 02 method ===== -->
+      <section class="sect sheet" id="method" data-sheet="02" data-title="Method">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">02</p>
+            <p class="mono up side__t">Method</p>
+            <p class="side__p">
+              Four stages. The first three happen before you are anywhere near a chair with a drill
+              in it.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">The surgery is the shortest part of it.</h2>
+
+            <div class="method">
+              <div class="method__art">
+                <p class="fig__cap mono up">
+                  <span>Fig. 02</span>
+                  <span data-mstage>Stage 01 &middot; Scan</span>
+                </p>
+                <svg class="dwg" viewBox="0 0 440 260" role="img"
+                  aria-label="Diagram of the planning sequence over a dental arch">
+                  <path class="ln ln--centre" d="M220 18v226" />
+
+                  <!-- L1 scan -->
+                  <g class="ly ly--1">
+                    <path class="ln ln--dash arch" d="M64 214C64 74 376 74 376 214" />
+                    <g class="ln ln--thin ticks">
+                      <path d="M64 214h-18M74 166l-17-6M100 124l-14-11M138 96l-9-16M186 82l-4-17M254 82l4-17M302 96l9-16M340 124l14-11M366 166l17-6M376 214h18" />
+                    </g>
+                    <text class="mono s" x="62" y="242">CBCT + IOS</text>
+                  </g>
+
+                  <!-- L2 plan -->
+                  <g class="ly ly--2">
+                    <g class="site" transform="translate(126 132)">
+                      <path class="ln ln--thin" d="M-16 0h32M0-16v32" />
+                      <circle class="dot dot--o" cx="0" cy="0" r="11" />
+                    </g>
+                    <g class="site" transform="translate(220 96)">
+                      <path class="ln ln--thin" d="M-16 0h32M0-16v32" />
+                      <circle class="dot dot--o" cx="0" cy="0" r="11" />
+                    </g>
+                    <g class="site" transform="translate(314 132)">
+                      <path class="ln ln--thin" d="M-16 0h32M0-16v32" />
+                      <circle class="dot dot--o" cx="0" cy="0" r="11" />
+                    </g>
+                    <text class="mono s" x="126" y="176">7&#176;</text>
+                    <text class="mono s" x="220" y="140">0&#176;</text>
+                    <text class="mono s" x="314" y="176">6&#176;</text>
+                  </g>
+
+                  <!-- L3 guide -->
+                  <g class="ly ly--3">
+                    <path class="ln guide" d="M44 216C44 56 396 56 396 216" />
+                    <path class="ln guide" d="M84 212C84 92 356 92 356 212" />
+                    <path class="ln ln--thin" d="M44 216h40M396 216h-40" />
+                    <text class="mono s" x="404" y="120">GUIDE</text>
+                  </g>
+
+                  <!-- L4 place -->
+                  <g class="ly ly--4">
+                    <g transform="translate(126 132)">
+                      <circle class="dot" r="9" />
+                      <path class="cx" d="M-4.5 0h9M0-4.5v9" />
+                    </g>
+                    <g transform="translate(220 96)">
+                      <circle class="dot" r="9" />
+                      <path class="cx" d="M-4.5 0h9M0-4.5v9" />
+                    </g>
+                    <g transform="translate(314 132)">
+                      <circle class="dot" r="9" />
+                      <path class="cx" d="M-4.5 0h9M0-4.5v9" />
+                    </g>
+                    <text class="mono s" x="220" y="214">3 &times; &#8709;4.1 L10 &middot; PLACED</text>
+                  </g>
+                </svg>
+              </div>
+
+              <ol class="steps" data-steps>
+                <li class="is-on">
+                  <button type="button" data-step="0">
+                    <span class="mono n">01</span>
+                    <span class="h">Scan</span>
+                    <span class="p">
+                      A CBCT of the jaw and an optical scan of the teeth. Ninety seconds each, no
+                      impression material, no gagging.
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-step="1">
+                    <span class="mono n">02</span>
+                    <span class="h">Plan</span>
+                    <span class="p">
+                      The two datasets are merged. The fixture is positioned against bone volume,
+                      nerve position and the shape of the finished tooth &mdash; in that order.
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-step="2">
+                    <span class="mono n">03</span>
+                    <span class="h">Guide</span>
+                    <span class="p">
+                      A guide is printed to seat on your own teeth. It holds the drill to the planned
+                      axis and depth within a fifth of a millimetre.
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-step="3">
+                    <span class="mono n">04</span>
+                    <span class="h">Place</span>
+                    <span class="p">
+                      Twenty to thirty-five minutes per site under local anaesthetic. A provisional
+                      tooth goes on the same day wherever the bone allows it.
+                    </span>
+                  </button>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 03 assembly ===== -->
+      <section class="sect" id="assembly" data-sheet="03" data-title="What we place">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">03</p>
+            <p class="mono up side__t">What we place</p>
+            <p class="side__p">
+              Three parts, and you are entitled to know the specification of all of them.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">An implant is a component, not a mystery.</h2>
+
+            <div class="asm">
+              <figure class="asm__art">
+                <p class="fig__cap mono up">
+                  <span>Fig. 03</span>
+                  <span>Exploded &middot; 4:1</span>
+                </p>
+                <svg class="dwg" viewBox="0 0 300 500" role="img"
+                  aria-label="Exploded view of a dental implant assembly">
+                  <path class="ln ln--centre" d="M150 28v452" />
+
+                  <g class="pc" data-part="crown">
+                    <use class="sld" href="#p-crown" transform="translate(150 110) scale(.85)" />
+                    <path class="ln ln--thin" d="M180 76h28" />
+                    <text class="mono s" x="222" y="80">01</text>
+                  </g>
+                  <path class="ln ln--dash" d="M150 118v30" />
+                  <path class="ar" d="M150 156l-4-11h8Z" />
+
+                  <g class="pc" data-part="abutment">
+                    <use class="sld" href="#p-abut" transform="translate(150 160) scale(.85)" />
+                    <path class="ln ln--thin" d="M166 176h42" />
+                    <text class="mono s" x="222" y="180">02</text>
+                  </g>
+                  <path class="ln ln--dash" d="M150 207v30" />
+                  <path class="ar" d="M150 245l-4-11h8Z" />
+
+                  <g class="pc" data-part="fixture">
+                    <use class="sld" href="#p-fix" transform="translate(150 249) scale(.85)" />
+                    <path class="ln ln--thin" d="M166 380h42" />
+                    <text class="mono s" x="222" y="384">03</text>
+                  </g>
+                </svg>
+              </figure>
+
+              <div class="asm__spec">
+                <div class="tabs" role="tablist" aria-label="Components">
+                  <button role="tab" type="button" class="is-on" aria-selected="true" data-part="crown">
+                    <i class="mono">01</i> Crown
+                  </button>
+                  <button role="tab" type="button" aria-selected="false" data-part="abutment">
+                    <i class="mono">02</i> Abutment
+                  </button>
+                  <button role="tab" type="button" aria-selected="false" data-part="fixture">
+                    <i class="mono">03</i> Fixture
+                  </button>
+                </div>
+
+                <div class="spec" data-spec>
+                  <h3 data-spec-h>Monolithic zirconia crown</h3>
+                  <p data-spec-p>
+                    Milled in one piece from a single blank, then shade-matched to the teeth either
+                    side of it. Screw-retained wherever the angle allows, so it can be removed and
+                    re-fitted without cutting anything.
+                  </p>
+                  <dl class="rows mono" data-spec-rows></dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== figure strip ===== -->
+      <section class="strip sect" data-sheet="03" data-title="What we place">
+        <div class="wrap">
+          <figure class="wide">
+            <img
+              src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=2000&q=80"
+              alt="Surgery two, set up for a guided placement"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="fig__cap mono up">
+              <span>Fig. 04</span>
+              <span>Surgery 2 &middot; laid out for a guided single-fixture case</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <div class="dimrule wrap" aria-hidden="true">
+        <span class="dimrule__l"></span>
+        <span class="dimrule__t mono up">04 &middot; Schedule of work</span>
+        <span class="dimrule__l"></span>
+      </div>
+
+      <!-- ===== 04 schedule ===== -->
+      <section class="sect sheet" id="schedule" data-sheet="04" data-title="Schedule of work">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">04</p>
+            <p class="mono up side__t">Schedule of work</p>
+            <p class="side__p">
+              Rates current at August 2026. A written quotation follows the consultation and holds
+              for ninety days.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">Schedule of work and rates.</h2>
+
+            <div class="tblwrap">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th class="mono up">Item</th>
+                    <th class="mono up">Work</th>
+                    <th class="mono up">Includes</th>
+                    <th class="mono up num">Visits</th>
+                    <th class="mono up num">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mono">A.01</td>
+                    <td>CBCT, scan and written plan</td>
+                    <td>Report, quotation, second opinion welcome</td>
+                    <td class="mono num">1</td>
+                    <td class="mono num">&pound;250</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">B.01</td>
+                    <td>Single implant, guided</td>
+                    <td>Fixture, abutment, zirconia crown</td>
+                    <td class="mono num">3</td>
+                    <td class="mono num">&pound;2,650</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">B.02</td>
+                    <td>Immediate placement</td>
+                    <td>Extraction and same-day fixture</td>
+                    <td class="mono num">3</td>
+                    <td class="mono num">&pound;2,950</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">C.01</td>
+                    <td>Socket graft</td>
+                    <td>Xenograft particulate and membrane</td>
+                    <td class="mono num">&mdash;</td>
+                    <td class="mono num">&pound;380</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">C.02</td>
+                    <td>Block graft</td>
+                    <td>Autogenous or allograft block, fixation</td>
+                    <td class="mono num">2</td>
+                    <td class="mono num">&pound;1,200</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">C.03</td>
+                    <td>Sinus floor elevation</td>
+                    <td>Crestal or lateral window</td>
+                    <td class="mono num">1</td>
+                    <td class="mono num">from &pound;1,450</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">D.01</td>
+                    <td>Full arch on four fixtures</td>
+                    <td>Provisional bridge same day, final at 20 weeks</td>
+                    <td class="mono num">5</td>
+                    <td class="mono num">from &pound;13,500</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">E.01</td>
+                    <td>Intravenous sedation</td>
+                    <td>Consultant anaesthetist present throughout</td>
+                    <td class="mono num">&mdash;</td>
+                    <td class="mono num">&pound;450</td>
+                  </tr>
+                  <tr>
+                    <td class="mono">F.01</td>
+                    <td>Review and maintenance</td>
+                    <td>Annual radiograph, torque check, hygiene</td>
+                    <td class="mono num">1</td>
+                    <td class="mono num">&pound;120</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="foot mono">
+              Nothing above is charged before it is agreed in writing. Failed fixtures are replaced
+              at our cost within ten years &mdash; see Note 06.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 05 estimate ===== -->
+      <section class="sect" id="estimate" data-sheet="05" data-title="Estimate">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">05</p>
+            <p class="mono up side__t">Estimate</p>
+            <p class="side__p">
+              Indicative only, and deliberately not optimistic. Bone decides the rest.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">Build the estimate yourself.</h2>
+
+            <div class="est">
+              <form class="est__ctrl" data-est>
+                <div class="fld">
+                  <p class="mono up">Fixtures required</p>
+                  <div class="step">
+                    <button type="button" data-n="-1" aria-label="One fewer fixture">&minus;</button>
+                    <output class="mono" data-count>2</output>
+                    <button type="button" data-n="1" aria-label="One more fixture">+</button>
+                  </div>
+                </div>
+
+                <div class="fld">
+                  <p class="mono up">Grafting</p>
+                  <div class="seg" data-graft>
+                    <button type="button" data-v="none" class="is-on">None</button>
+                    <button type="button" data-v="socket">Socket</button>
+                    <button type="button" data-v="block">Block</button>
+                  </div>
+                </div>
+
+                <div class="fld">
+                  <p class="mono up">Crown material</p>
+                  <div class="seg" data-crown>
+                    <button type="button" data-v="zir" class="is-on">Zirconia</button>
+                    <button type="button" data-v="pfm">Porcelain / metal</button>
+                  </div>
+                </div>
+
+                <div class="fld">
+                  <p class="mono up">Anaesthesia</p>
+                  <div class="seg" data-anaes>
+                    <button type="button" data-v="local" class="is-on">Local</button>
+                    <button type="button" data-v="iv">Local + IV sedation</button>
+                  </div>
+                </div>
+
+                <p class="fld__note mono">
+                  Every estimate includes the guide, the surgery, three reviews and the first year of
+                  maintenance.
+                </p>
+              </form>
+
+              <div class="est__out">
+                <p class="fig__cap mono up">
+                  <span>Bill of quantities</span>
+                  <span data-est-ref>DTM/EST/2026</span>
+                </p>
+                <div class="tblwrap">
+                  <table class="tbl tbl--boq">
+                    <thead>
+                      <tr>
+                        <th class="mono up">Item</th>
+                        <th class="mono up">Description</th>
+                        <th class="mono up num">Qty</th>
+                        <th class="mono up num">Rate</th>
+                        <th class="mono up num">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody data-boq></tbody>
+                    <tfoot>
+                      <tr class="tot">
+                        <td colspan="4" class="mono up">Total, indicative</td>
+                        <td class="mono num" data-total>&pound;0</td>
+                      </tr>
+                      <tr class="stage">
+                        <td colspan="4" class="mono up">In three stage payments of</td>
+                        <td class="mono num" data-stage>&pound;0</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <p class="foot mono">
+                  Indicative estimate produced from published rates. It is not a quotation and does
+                  not account for bone volume, sinus position or existing work.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dimrule wrap" aria-hidden="true">
+        <span class="dimrule__l"></span>
+        <span class="dimrule__t mono up">06 &middot; Clinicians</span>
+        <span class="dimrule__l"></span>
+      </div>
+
+      <!-- ===== 06 team ===== -->
+      <section class="sect sheet" id="team" data-sheet="06" data-title="Clinicians">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">06</p>
+            <p class="mono up side__t">Clinicians</p>
+            <p class="side__p">
+              Four people. The one who plans your case is the one who places it.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">Who signs the drawing.</h2>
+
+            <div class="crew">
+              <article class="who rise">
+                <div class="who__pic">
+                  <img
+                    src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&crop=faces&w=700&h=840&q=80"
+                    alt="Dr Halima Yusuf, implant surgeon"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3>Dr Halima Yusuf</h3>
+                <p class="who__r mono up">Implant surgeon &middot; Founder</p>
+                <p class="who__b">
+                  Nineteen years, the last eleven on implants alone. Opened Datum to do guided work
+                  properly rather than as an add-on to a general list.
+                </p>
+                <p class="who__d mono">GDC 71482 &middot; MSc Implantology, Sheffield</p>
+              </article>
+
+              <article class="who rise">
+                <div class="who__pic">
+                  <img
+                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80"
+                    alt="Mr Callum Reid, periodontist"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3>Mr Callum Reid</h3>
+                <p class="who__r mono up">Periodontist</p>
+                <p class="who__b">
+                  Takes the grafting and the gum work, and the cases other practices have already
+                  declined once. Blunt about odds, which patients tend to prefer.
+                </p>
+                <p class="who__d mono">GDC 84021 &middot; Specialist list, periodontics</p>
+              </article>
+
+              <article class="who rise">
+                <div class="who__pic">
+                  <img
+                    src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=80"
+                    alt="Dr Arun Menon, restorative dentist"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3>Dr Arun Menon</h3>
+                <p class="who__r mono up">Restorative dentist</p>
+                <p class="who__b">
+                  Designs the finished tooth first and works backwards to the fixture position. Every
+                  crown in the building is signed off by him.
+                </p>
+                <p class="who__d mono">GDC 90337 &middot; MSc Restorative, Manchester</p>
+              </article>
+
+              <article class="who rise">
+                <div class="who__pic">
+                  <img
+                    src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=80"
+                    alt="Dr Erin Novak, consultant anaesthetist"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3>Dr Erin Novak</h3>
+                <p class="who__r mono up">Consultant anaesthetist</p>
+                <p class="who__b">
+                  Present for every sedation case, monitoring only that. Comes across from the
+                  hospital list on Tuesdays and Fridays.
+                </p>
+                <p class="who__d mono">GMC 6142880 &middot; FRCA</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 07 notes ===== -->
+      <section class="sect" id="notes" data-sheet="07" data-title="Notes">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">07</p>
+            <p class="mono up side__t">Notes</p>
+            <p class="side__p">
+              The seven things worth reading before you spend anything.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">Notes to the drawing.</h2>
+
+            <ol class="notes">
+              <li class="rise">
+                <p class="mono up">Note 01 &middot; Bone</p>
+                <p>
+                  An implant is only as good as what holds it. If the CBCT shows too little bone we
+                  will say so at the consultation, and the plan becomes graft first, fixture at four
+                  to six months. We would rather lose the case than place into nothing.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 02 &middot; Smoking</p>
+                <p>
+                  Smoking roughly doubles the failure rate and roughly halves the graft success rate.
+                  We will still treat you. We will also put the figures in the written plan, because
+                  consent without numbers is not consent.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 03 &middot; Timescale</p>
+                <p>
+                  Simple single tooth: fourteen weeks from placement to final crown. With grafting,
+                  six to nine months. Anyone promising a finished implant in a fortnight is either
+                  describing a provisional or is not describing this procedure.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 04 &middot; Pain</p>
+                <p>
+                  Most people take ibuprofen for two days and go back to work the next morning.
+                  Placement itself is less involved than an extraction &mdash; there is pressure and
+                  noise, and no sensation in the site at all.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 05 &middot; Referrals</p>
+                <p>
+                  We take referrals from thirty-one practices across West Yorkshire and send every
+                  patient back to their own dentist for routine care. We do not compete for your
+                  check-ups.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 06 &middot; Warranty</p>
+                <p>
+                  Ten years on the fixture, five on the crown, provided you attend the annual review.
+                  A failed fixture is replaced at our cost, including the laboratory work. Grafts are
+                  excluded, because biology is not a component.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 07 &middot; Records</p>
+                <p>
+                  You get the scan, the plan, the fixture batch numbers and the torque values, as
+                  files, at the end of treatment. They belong to you and any dentist you see next
+                  will want them.
+                </p>
+              </li>
+              <li class="rise">
+                <p class="mono up">Note 08 &middot; Second opinions</p>
+                <p>
+                  Bring the plan you were given elsewhere. We will tell you whether we would do the
+                  same thing, and we will not undercut a sound plan simply to win the work. Roughly
+                  one consultation in nine ends with us sending someone back to their own dentist.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <div class="dimrule wrap" aria-hidden="true">
+        <span class="dimrule__l"></span>
+        <span class="dimrule__t mono up">08 &middot; Request</span>
+        <span class="dimrule__l"></span>
+      </div>
+
+      <!-- ===== 08 request ===== -->
+      <section class="sect sheet" id="request" data-sheet="08" data-title="Request">
+        <div class="wrap two">
+          <div class="two__side">
+            <p class="mono up side__n">08</p>
+            <p class="mono up side__t">Request</p>
+            <p class="side__p">
+              Consultations run 45 minutes and cost &pound;250, which includes the CBCT and the
+              written plan.
+            </p>
+          </div>
+
+          <div class="two__main">
+            <h2 class="rise">Request a consultation.</h2>
+
+            <div class="req">
+              <form class="req__form" data-req novalidate>
+                <div class="grid2">
+                  <label class="in">
+                    <span class="mono up">Name</span>
+                    <input type="text" name="name" data-name required autocomplete="name" />
+                  </label>
+                  <label class="in">
+                    <span class="mono up">Telephone</span>
+                    <input type="tel" name="tel" data-tel required autocomplete="tel" />
+                  </label>
+                </div>
+
+                <label class="in">
+                  <span class="mono up">Email</span>
+                  <input type="email" name="email" data-email required autocomplete="email" />
+                </label>
+
+                <label class="in">
+                  <span class="mono up">Case</span>
+                  <select name="case" data-case>
+                    <option>Single missing tooth</option>
+                    <option>Several missing teeth</option>
+                    <option>Full arch, upper</option>
+                    <option>Full arch, lower</option>
+                    <option>A failing implant placed elsewhere</option>
+                    <option>Not sure &mdash; I have been told I need something</option>
+                  </select>
+                </label>
+
+                <label class="in">
+                  <span class="mono up">Referred by</span>
+                  <input type="text" name="ref" placeholder="Practice name, or leave blank" />
+                </label>
+
+                <label class="in">
+                  <span class="mono up">Anything we should read first</span>
+                  <textarea name="notes" rows="3" data-notes></textarea>
+                </label>
+
+                <p class="err mono" data-err hidden>
+                  Name, telephone and a valid email are required.
+                </p>
+
+                <button class="btn btn--fill btn--lg btn--wide" type="submit">
+                  Issue request
+                </button>
+                <p class="fine mono">
+                  Used to contact you about an appointment. Never passed to anyone.
+                </p>
+              </form>
+
+              <div class="issued" data-issued hidden>
+                <p class="issued__st mono up">Request issued</p>
+                <p class="issued__ref mono" data-issued-ref>DTM&ndash;2026&ndash;0000</p>
+                <table class="tbl tbl--rev">
+                  <tbody>
+                    <tr>
+                      <th class="mono up">Name</th>
+                      <td data-issued-name></td>
+                    </tr>
+                    <tr>
+                      <th class="mono up">Case</th>
+                      <td data-issued-case></td>
+                    </tr>
+                    <tr>
+                      <th class="mono up">Contact</th>
+                      <td data-issued-contact></td>
+                    </tr>
+                    <tr>
+                      <th class="mono up">Issued</th>
+                      <td data-issued-date></td>
+                    </tr>
+                    <tr>
+                      <th class="mono up">Status</th>
+                      <td>Awaiting reply, within one working day</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="foot mono">
+                  Quote the reference if you ring. Nothing is booked and nothing is charged until we
+                  have spoken.
+                </p>
+                <button class="btn btn--line" type="button" data-again>Amend and re-issue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== footer / title block ===== -->
+    <footer class="foot-b">
+      <div class="wrap">
+        <div class="foot-b__nav">
+          <div>
+            <p class="mono up">Practice</p>
+            <p>
+              Datum Dental<br />Second floor, 14 Wellington Place<br />Leeds LS1 4AP
+            </p>
+          </div>
+          <div>
+            <p class="mono up">Contact</p>
+            <p>
+              <a href="tel:+441132000000">0113 200 0000</a><br /><a href="mailto:plan@datum.dental">plan@datum.dental</a><br />Referrals:
+              <a href="mailto:refer@datum.dental">refer@datum.dental</a>
+            </p>
+          </div>
+          <div>
+            <p class="mono up">Hours</p>
+            <p>
+              Mon&ndash;Thu 08.00&ndash;18.00<br />Fri 08.00&ndash;16.00<br />Surgery days Tue and
+              Fri
+            </p>
+          </div>
+          <div>
+            <p class="mono up">Sheets</p>
+            <p>
+              <a href="#method">Method</a><br /><a href="#schedule">Schedule of work</a><br /><a href="#estimate">Estimate</a><br /><a href="#notes">Notes</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- title block -->
+        <div class="block">
+          <div class="block__c block__c--wide">
+            <p class="mono up">Project</p>
+            <p class="mono">Patient information &mdash; implant and reconstructive dentistry</p>
+          </div>
+          <div class="block__c">
+            <p class="mono up">Drawn</p>
+            <p class="mono">H. Yusuf</p>
+          </div>
+          <div class="block__c">
+            <p class="mono up">Checked</p>
+            <p class="mono">A. Menon</p>
+          </div>
+          <div class="block__c">
+            <p class="mono up">Scale</p>
+            <p class="mono">As noted</p>
+          </div>
+          <div class="block__c block__c--wide">
+            <p class="mono up">Practice</p>
+            <p class="mono">Datum Dental Ltd &middot; Leeds &middot; GDC 71482</p>
+          </div>
+          <div class="block__c">
+            <p class="mono up">Date</p>
+            <p class="mono" data-date>25.08.2026</p>
+          </div>
+          <div class="block__c">
+            <p class="mono up">Sheet</p>
+            <p class="mono">01 of 01</p>
+          </div>
+          <div class="block__c block__c--rev">
+            <p class="mono up">Rev</p>
+            <p class="mono" data-rev>A</p>
+          </div>
+        </div>
+
+        <div class="foot-b__end mono">
+          <p>&copy; <span data-year>2026</span> Datum Dental Ltd</p>
+          <p>
+            <a href="#">Complaints procedure</a> &middot; <a href="#">Privacy</a> &middot;
+            <a href="#">Regulation</a>
+          </p>
+          <p class="demo">Demo template &mdash; every figure and name is invented</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

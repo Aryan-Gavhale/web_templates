@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Junction Dental &mdash; every appointment, mapped before you sit down</title>
+    <meta
+      name="description"
+      content="Junction Dental in Sheffield runs four routes: routine care, restore, straighten and replace. Every one is mapped end to end, so you know what happens, how long it takes and what it costs before you agree to it."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow+Semi+Condensed:wght@500;600&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F4EF'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%230B5AA6' stroke-width='5'/%3E%3Crect x='2' y='13.5' width='28' height='5' fill='%230B5AA6'/%3E%3C/svg%3E"
+    />
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- ===== pictograms ===== -->
+    <svg class="lib" aria-hidden="true" focusable="false">
+      <defs>
+        <g id="ic-alert">
+          <path d="M12 3.5 22.5 21H1.5Z" />
+          <path d="M12 10v5" />
+          <path d="M12 18h.01" />
+        </g>
+        <g id="ic-clock">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M12 6.5V12l4 2.5" />
+        </g>
+        <g id="ic-info">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M12 11v6" />
+          <path d="M12 7.5h.01" />
+        </g>
+        <g id="ic-access">
+          <circle cx="12" cy="5" r="2.6" />
+          <path d="M12 8.5v6h6" />
+          <path d="M8 11a6 6 0 1 0 8 8" />
+        </g>
+        <g id="ic-child">
+          <circle cx="12" cy="6" r="3" />
+          <path d="M7 21v-5a5 5 0 0 1 10 0v5" />
+        </g>
+        <g id="ic-card">
+          <rect x="2.5" y="5.5" width="19" height="13" rx="2.5" />
+          <path d="M2.5 10.5h19" />
+          <path d="M6 15h4" />
+        </g>
+      </defs>
+    </svg>
+
+    <!-- ===== header ===== -->
+    <header class="bar" id="top">
+      <div class="bar__in">
+        <a class="mark" href="#top" aria-label="Junction Dental, home">
+          <svg class="mark__r" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="7" />
+            <rect x="0" y="18" width="44" height="8" fill="currentColor" />
+          </svg>
+          <span class="mark__t">
+            <b>Junction</b>
+            <i>Dental &middot; Sheffield</i>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Main">
+          <a href="#map">The map</a>
+          <a href="#plan">Plan a journey</a>
+          <a href="#fares">Fares</a>
+          <a href="#service">Service</a>
+          <a href="#crew">Crew</a>
+          <a href="#notices">Notices</a>
+        </nav>
+
+        <div class="bar__end">
+          <a class="pill pill--ink" href="#book">Book</a>
+          <button class="tog" type="button" aria-expanded="false" aria-controls="drawer">
+            <span></span><span></span><span></span>
+            <span class="vh">Menu</span>
+          </button>
+        </div>
+      </div>
+      <div class="stripe" aria-hidden="true">
+        <span class="stripe--g"></span>
+        <span class="stripe--b"></span>
+        <span class="stripe--a"></span>
+        <span class="stripe--r"></span>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" hidden>
+      <nav aria-label="Main">
+        <a href="#map">The map</a>
+        <a href="#plan">Plan a journey</a>
+        <a href="#fares">Fares</a>
+        <a href="#service">Service</a>
+        <a href="#crew">Crew</a>
+        <a href="#notices">Notices</a>
+        <a href="#book">Book</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <!-- ===== hero ===== -->
+      <section class="hero">
+        <div class="wrap hero__in">
+          <div class="hero__txt">
+            <p class="eyebrow">Sheffield &middot; since 2009 &middot; NHS and private</p>
+            <h1 class="rise">Every appointment,<br />mapped before<br />you sit down.</h1>
+            <p class="lede rise">
+              Four routes run through this practice. Each one is drawn end to end &mdash; what
+              happens, how long it takes, what it costs &mdash; before you agree to any of it. Most
+              people who say they are frightened of the dentist are really telling you they do not
+              know what comes next.
+            </p>
+            <div class="hero__act rise">
+              <a class="pill pill--ink pill--lg" href="#plan">Plan your journey</a>
+              <a class="pill pill--line pill--lg" href="#map">Look at the map</a>
+            </div>
+          </div>
+
+          <div class="board rise" role="group" aria-label="Today's clinics">
+            <div class="board__top">
+              <p class="board__h">Today&rsquo;s clinics</p>
+              <p class="board__clock" data-clock>--:--:--</p>
+            </div>
+            <table class="board__tbl">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Route</th>
+                  <th>Chair</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="t">08:40</td>
+                  <td><span class="dotline dotline--g"></span>Routine</td>
+                  <td>1</td>
+                  <td><span class="st st--ok">On time</span></td>
+                </tr>
+                <tr>
+                  <td class="t">09:20</td>
+                  <td><span class="dotline dotline--b"></span>Restore</td>
+                  <td>2</td>
+                  <td><span class="st st--ok">On time</span></td>
+                </tr>
+                <tr>
+                  <td class="t">10:00</td>
+                  <td><span class="dotline dotline--a"></span>Straighten</td>
+                  <td>3</td>
+                  <td><span class="st st--few">2 left</span></td>
+                </tr>
+                <tr>
+                  <td class="t">11:15</td>
+                  <td><span class="dotline dotline--r"></span>Replace</td>
+                  <td>2</td>
+                  <td><span class="st st--no">Full</span></td>
+                </tr>
+                <tr>
+                  <td class="t">14:00</td>
+                  <td><span class="dotline dotline--k"></span>Emergency</td>
+                  <td>1</td>
+                  <td><span class="st st--ok">Walk-in</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="board__foot">
+              Next available appointment <b>today, 14:00</b> &middot; emergencies seen same day
+            </p>
+          </div>
+        </div>
+
+        <div class="wrap">
+          <ul class="key rise" aria-label="Route key">
+            <li>
+              <span class="chip chip--g">Routine</span>
+              <span>Check-ups, hygiene, children</span>
+            </li>
+            <li>
+              <span class="chip chip--b">Restore</span>
+              <span>Fillings, crowns, root canals</span>
+            </li>
+            <li>
+              <span class="chip chip--a">Straighten</span>
+              <span>Aligners, retainers, whitening</span>
+            </li>
+            <li>
+              <span class="chip chip--r">Replace</span>
+              <span>Implants, bridges, dentures</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== the map ===== -->
+      <section class="sect" id="map">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">01</p>
+            <div>
+              <h2 class="rise">The map</h2>
+              <p class="head__p rise">
+                Every route starts at the same place and ends somewhere you can picture. Choose a
+                stop to read what happens there.
+              </p>
+            </div>
+          </header>
+
+          <div class="fil" role="group" aria-label="Filter routes">
+            <button class="pill pill--sm is-on" type="button" data-line="all">All routes</button>
+            <button class="pill pill--sm pill--g" type="button" data-line="routine">Routine</button>
+            <button class="pill pill--sm pill--b" type="button" data-line="restore">Restore</button>
+            <button class="pill pill--sm pill--a" type="button" data-line="straighten">
+              Straighten
+            </button>
+            <button class="pill pill--sm pill--r" type="button" data-line="replace">Replace</button>
+          </div>
+
+          <p class="hint" aria-hidden="true">Drag the map sideways to see the whole network</p>
+
+          <div class="mapwrap">
+            <svg class="net" viewBox="0 0 1200 540" role="group"
+              aria-label="Network map of the four treatment routes">
+              <!-- lines -->
+              <g class="lines">
+                <path class="ln ln--g" data-line="routine" d="M200 100H1080" />
+                <path class="ln ln--b" data-line="restore" d="M200 200H1080" />
+                <path class="ln ln--a" data-line="straighten" d="M200 340H1080" />
+                <path class="ln ln--r" data-line="replace" d="M200 440H1080" />
+              </g>
+
+              <!-- interchange links -->
+              <path class="xlink" data-line="routine restore" d="M555 100V200" />
+              <path class="xlink" data-line="straighten replace" d="M905 340V440" />
+
+              <!-- route names -->
+              <text class="rname rname--g" x="150" y="105">Routine</text>
+              <text class="rname rname--b" x="150" y="205">Restore</text>
+              <text class="rname rname--a" x="150" y="345">Straighten</text>
+              <text class="rname rname--r" x="150" y="445">Replace</text>
+
+              <!-- start interchange -->
+              <rect class="hub" x="172" y="70" width="56" height="400" rx="28" />
+              <text class="slab slab--hub" x="200" y="52">Consultation</text>
+
+              <!-- stops: routine -->
+              <g class="stop" data-stop="g1" data-line="routine" tabindex="0" role="button"
+                aria-label="Routine route, stop 2: Examination">
+                <title>Examination</title>
+                <circle class="hit" cx="380" cy="100" r="26" />
+                <circle class="ring" cx="380" cy="100" r="10" />
+                <text class="slab" x="380" y="72">Examination</text>
+              </g>
+              <g class="stop" data-stop="g3" data-line="routine" tabindex="0" role="button"
+                aria-label="Routine route, stop 4: Clean">
+                <title>Clean</title>
+                <circle class="hit" cx="730" cy="100" r="26" />
+                <circle class="ring" cx="730" cy="100" r="10" />
+                <text class="slab" x="730" y="72">Clean</text>
+              </g>
+              <g class="stop" data-stop="g4" data-line="routine" tabindex="0" role="button"
+                aria-label="Routine route, stop 5: Plan">
+                <title>Plan</title>
+                <circle class="hit" cx="905" cy="100" r="26" />
+                <circle class="ring" cx="905" cy="100" r="10" />
+                <text class="slab" x="905" y="72">Plan</text>
+              </g>
+              <g class="stop stop--end" data-stop="g5" data-line="routine" tabindex="0" role="button"
+                aria-label="Routine route, final stop: Six-month recall">
+                <title>Six-month recall</title>
+                <circle class="hit" cx="1080" cy="100" r="28" />
+                <circle class="ring" cx="1080" cy="100" r="13" />
+                <text class="slab" x="1080" y="70">Six-month recall</text>
+              </g>
+
+              <!-- stops: restore -->
+              <g class="stop" data-stop="b1" data-line="restore" tabindex="0" role="button"
+                aria-label="Restore route, stop 2: Diagnosis">
+                <title>Diagnosis</title>
+                <circle class="hit" cx="380" cy="200" r="26" />
+                <circle class="ring" cx="380" cy="200" r="10" />
+                <text class="slab" x="380" y="172">Diagnosis</text>
+              </g>
+              <g class="stop" data-stop="b3" data-line="restore" tabindex="0" role="button"
+                aria-label="Restore route, stop 4: Treatment">
+                <title>Treatment</title>
+                <circle class="hit" cx="730" cy="200" r="26" />
+                <circle class="ring" cx="730" cy="200" r="10" />
+                <text class="slab" x="730" y="172">Treatment</text>
+              </g>
+              <g class="stop" data-stop="b4" data-line="restore" tabindex="0" role="button"
+                aria-label="Restore route, stop 5: Crown or onlay">
+                <title>Crown or onlay</title>
+                <circle class="hit" cx="905" cy="200" r="26" />
+                <circle class="ring" cx="905" cy="200" r="10" />
+                <text class="slab" x="905" y="172">Crown or onlay</text>
+              </g>
+              <g class="stop stop--end" data-stop="b5" data-line="restore" tabindex="0" role="button"
+                aria-label="Restore route, final stop: Bite check">
+                <title>Bite check</title>
+                <circle class="hit" cx="1080" cy="200" r="28" />
+                <circle class="ring" cx="1080" cy="200" r="13" />
+                <text class="slab" x="1080" y="170">Bite check</text>
+              </g>
+
+              <!-- interchange: x-rays (routine + restore) -->
+              <g class="stop stop--x" data-stop="x1" data-line="routine restore" tabindex="0"
+                role="button" aria-label="Interchange served by routine and restore routes: X-rays">
+                <title>X-rays</title>
+                <circle class="hit" cx="555" cy="150" r="34" />
+                <circle class="ring" cx="555" cy="100" r="12" />
+                <circle class="ring" cx="555" cy="200" r="12" />
+                <text class="slab slab--x" x="580" y="155">X-rays</text>
+              </g>
+
+              <!-- stops: straighten -->
+              <g class="stop" data-stop="a1" data-line="straighten" tabindex="0" role="button"
+                aria-label="Straighten route, stop 2: Scan">
+                <title>Scan</title>
+                <circle class="hit" cx="380" cy="340" r="26" />
+                <circle class="ring" cx="380" cy="340" r="10" />
+                <text class="slab" x="380" y="378">Scan</text>
+              </g>
+              <g class="stop" data-stop="a2" data-line="straighten" tabindex="0" role="button"
+                aria-label="Straighten route, stop 3: Preview">
+                <title>Preview</title>
+                <circle class="hit" cx="555" cy="340" r="26" />
+                <circle class="ring" cx="555" cy="340" r="10" />
+                <text class="slab" x="555" y="378">Preview</text>
+              </g>
+              <g class="stop" data-stop="a3" data-line="straighten" tabindex="0" role="button"
+                aria-label="Straighten route, stop 4: Aligners">
+                <title>Aligners</title>
+                <circle class="hit" cx="730" cy="340" r="26" />
+                <circle class="ring" cx="730" cy="340" r="10" />
+                <text class="slab" x="730" y="378">Aligners</text>
+              </g>
+              <g class="stop stop--end" data-stop="a5" data-line="straighten" tabindex="0"
+                role="button" aria-label="Straighten route, final stop: Retainers">
+                <title>Retainers</title>
+                <circle class="hit" cx="1080" cy="340" r="28" />
+                <circle class="ring" cx="1080" cy="340" r="13" />
+                <text class="slab" x="1080" y="380">Retainers</text>
+              </g>
+
+              <!-- stops: replace -->
+              <g class="stop" data-stop="r1" data-line="replace" tabindex="0" role="button"
+                aria-label="Replace route, stop 2: CT scan">
+                <title>CT scan</title>
+                <circle class="hit" cx="380" cy="440" r="26" />
+                <circle class="ring" cx="380" cy="440" r="10" />
+                <text class="slab" x="380" y="478">CT scan</text>
+              </g>
+              <g class="stop" data-stop="r2" data-line="replace" tabindex="0" role="button"
+                aria-label="Replace route, stop 3: Extraction">
+                <title>Extraction</title>
+                <circle class="hit" cx="555" cy="440" r="26" />
+                <circle class="ring" cx="555" cy="440" r="10" />
+                <text class="slab" x="555" y="478">Extraction</text>
+              </g>
+              <g class="stop" data-stop="r3" data-line="replace" tabindex="0" role="button"
+                aria-label="Replace route, stop 4: Implant placed">
+                <title>Implant placed</title>
+                <circle class="hit" cx="730" cy="440" r="26" />
+                <circle class="ring" cx="730" cy="440" r="10" />
+                <text class="slab" x="730" y="478">Implant placed</text>
+              </g>
+              <g class="stop stop--end" data-stop="r5" data-line="replace" tabindex="0" role="button"
+                aria-label="Replace route, final stop: New tooth">
+                <title>New tooth</title>
+                <circle class="hit" cx="1080" cy="440" r="28" />
+                <circle class="ring" cx="1080" cy="440" r="13" />
+                <text class="slab" x="1080" y="480">New tooth</text>
+              </g>
+
+              <!-- interchange: review (straighten + replace) -->
+              <g class="stop stop--x" data-stop="x2" data-line="straighten replace" tabindex="0"
+                role="button"
+                aria-label="Interchange served by straighten and replace routes: Review">
+                <title>Review</title>
+                <circle class="hit" cx="905" cy="390" r="34" />
+                <circle class="ring" cx="905" cy="340" r="12" />
+                <circle class="ring" cx="905" cy="440" r="12" />
+                <text class="slab slab--x" x="930" y="395">Review</text>
+              </g>
+
+              <!-- start stop, drawn last so it sits on the hub -->
+              <g class="stop stop--start" data-stop="c0"
+                data-line="routine restore straighten replace" tabindex="0" role="button"
+                aria-label="Start of every route: Consultation">
+                <title>Consultation</title>
+                <circle class="hit" cx="200" cy="270" r="30" />
+                <circle class="ring" cx="200" cy="100" r="9" />
+                <circle class="ring" cx="200" cy="200" r="9" />
+                <circle class="ring" cx="200" cy="340" r="9" />
+                <circle class="ring" cx="200" cy="440" r="9" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="stopcard" data-card>
+            <div class="stopcard__l">
+              <span class="chip" data-card-chip>Routine</span>
+              <h3 data-card-name>Consultation</h3>
+              <p data-card-what>
+                Where every route begins.
+              </p>
+            </div>
+            <dl class="stopcard__f">
+              <div>
+                <dt>Chair time</dt>
+                <dd data-card-mins>30 min</dd>
+              </div>
+              <div>
+                <dt>Fare</dt>
+                <dd data-card-fare>&pound;42</dd>
+              </div>
+              <div>
+                <dt>Served by</dt>
+                <dd data-card-served>All routes</dd>
+              </div>
+            </dl>
+            <div class="stopcard__nav">
+              <button class="pill pill--line pill--sm" type="button" data-prev>
+                <span aria-hidden="true">&larr;</span> Previous stop
+              </button>
+              <button class="pill pill--line pill--sm" type="button" data-next>
+                Next stop <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </div>
+          <p class="live vh" role="status" aria-live="polite" data-live></p>
+        </div>
+      </section>
+
+      <!-- ===== journey planner ===== -->
+      <section class="sect sect--ink" id="plan">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">02</p>
+            <div>
+              <h2 class="rise">Plan a journey</h2>
+              <p class="head__p rise">
+                Tell us what brought you here and we will show you the whole route, end to end,
+                before you ring.
+              </p>
+            </div>
+          </header>
+
+          <div class="plan">
+            <div class="plan__q" role="group" aria-label="What brought you here">
+              <button class="opt" type="button" data-pick="routine">
+                <span class="opt__c chip chip--g">Routine</span>
+                <span class="opt__t">Nothing hurts &mdash; I am overdue a check-up</span>
+              </button>
+              <button class="opt" type="button" data-pick="restore">
+                <span class="opt__c chip chip--b">Restore</span>
+                <span class="opt__t">Toothache, a chip, or an old filling gone</span>
+              </button>
+              <button class="opt" type="button" data-pick="straighten">
+                <span class="opt__c chip chip--a">Straighten</span>
+                <span class="opt__t">Crooked teeth or a gap I would rather not have</span>
+              </button>
+              <button class="opt" type="button" data-pick="replace">
+                <span class="opt__c chip chip--r">Replace</span>
+                <span class="opt__t">A missing tooth, or a denture I cannot live with</span>
+              </button>
+            </div>
+
+            <div class="plan__r" data-itin hidden>
+              <div class="itin__top">
+                <p class="itin__lbl">Your route</p>
+                <p class="itin__name" data-itin-name>Routine</p>
+              </div>
+              <ol class="itin" data-itin-list></ol>
+              <dl class="itin__sum">
+                <div>
+                  <dt>Stops</dt>
+                  <dd data-itin-stops>5</dd>
+                </div>
+                <div>
+                  <dt>Total chair time</dt>
+                  <dd data-itin-mins>2 h</dd>
+                </div>
+                <div>
+                  <dt>Typical fare</dt>
+                  <dd data-itin-fare>&pound;120</dd>
+                </div>
+              </dl>
+              <a class="pill pill--ink pill--lg" href="#book" data-itin-go>Book this journey</a>
+            </div>
+
+            <p class="plan__empty" data-plan-empty>
+              Pick one of the four and the route appears here.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== photo plate ===== -->
+      <section class="sect sect--tight">
+        <div class="wrap">
+          <figure class="plate">
+            <img
+              src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=2000&q=80"
+              alt="A dentist going through a set of X-rays on the wall with a patient"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span class="chip chip--k">Cambridge Street</span>
+              Your scans go up on the wall with you in the room, not into a file you never see
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== fares ===== -->
+      <section class="sect" id="fares">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">03</p>
+            <div>
+              <h2 class="rise">Fares</h2>
+              <p class="head__p rise">
+                Private fees, held for ninety days from your consultation. NHS bands are charged at
+                the national rate and shown alongside.
+              </p>
+            </div>
+          </header>
+
+          <div class="fares">
+            <article class="fare rise">
+              <h3><span class="chip chip--g">Routine</span></h3>
+              <dl>
+                <div><dt>New patient consultation</dt><dd>&pound;42</dd></div>
+                <div><dt>Examination and report</dt><dd>&pound;38</dd></div>
+                <div><dt>Small X-ray / full set</dt><dd>&pound;12 / &pound;65</dd></div>
+                <div><dt>Hygienist, 30 minutes</dt><dd>&pound;58</dd></div>
+                <div><dt>Children under 18</dt><dd>Free</dd></div>
+                <div><dt>NHS band 1</dt><dd>&pound;27.40</dd></div>
+              </dl>
+            </article>
+
+            <article class="fare rise">
+              <h3><span class="chip chip--b">Restore</span></h3>
+              <dl>
+                <div><dt>White filling</dt><dd>&pound;145&ndash;&pound;230</dd></div>
+                <div><dt>Onlay, ceramic</dt><dd>&pound;590</dd></div>
+                <div><dt>Crown, zirconia</dt><dd>&pound;695</dd></div>
+                <div><dt>Root canal, front / molar</dt><dd>&pound;420 / &pound;680</dd></div>
+                <div><dt>Extraction, simple</dt><dd>&pound;160</dd></div>
+                <div><dt>NHS band 2</dt><dd>&pound;75.30</dd></div>
+              </dl>
+            </article>
+
+            <article class="fare rise">
+              <h3><span class="chip chip--a">Straighten</span></h3>
+              <dl>
+                <div><dt>Scan, plan and preview</dt><dd>&pound;95</dd></div>
+                <div><dt>Aligners, single arch</dt><dd>&pound;1,850</dd></div>
+                <div><dt>Aligners, both arches</dt><dd>&pound;2,650</dd></div>
+                <div><dt>Fixed retainer</dt><dd>&pound;180</dd></div>
+                <div><dt>Whitening, home kit</dt><dd>&pound;295</dd></div>
+                <div><dt>Monthly, 0% over 24</dt><dd>from &pound;77</dd></div>
+              </dl>
+            </article>
+
+            <article class="fare rise">
+              <h3><span class="chip chip--r">Replace</span></h3>
+              <dl>
+                <div><dt>CT scan and plan</dt><dd>&pound;180</dd></div>
+                <div><dt>Implant and crown</dt><dd>&pound;2,450</dd></div>
+                <div><dt>Bridge, three unit</dt><dd>&pound;1,690</dd></div>
+                <div><dt>Denture, acrylic / cobalt</dt><dd>&pound;780 / &pound;1,450</dd></div>
+                <div><dt>Bone graft, socket</dt><dd>&pound;380</dd></div>
+                <div><dt>NHS band 3</dt><dd>&pound;326.70</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <p class="fine">
+            No treatment is started before you have the figure in writing. If a filling turns out to
+            need a crown once we are in there, we stop, tell you, and rebook.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== service ===== -->
+      <section class="sect sect--plate" id="service">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">04</p>
+            <div>
+              <h2 class="rise">Service information</h2>
+              <p class="head__p rise">
+                Live status for each route, and the hours the doors are actually open.
+              </p>
+            </div>
+          </header>
+
+          <div class="svc">
+            <ul class="status" aria-label="Route status">
+              <li data-open-row>
+                <span class="status__n"><span class="dotline dotline--k"></span>The practice</span>
+                <span class="st st--ok" data-open-pill>Checking</span>
+                <span class="status__d" data-open-note>&nbsp;</span>
+              </li>
+              <li>
+                <span class="status__n"><span class="dotline dotline--g"></span>Routine</span>
+                <span class="st st--ok">Good service</span>
+                <span class="status__d">Booking two weeks ahead</span>
+              </li>
+              <li>
+                <span class="status__n"><span class="dotline dotline--b"></span>Restore</span>
+                <span class="st st--ok">Good service</span>
+                <span class="status__d">Same-week slots kept for pain</span>
+              </li>
+              <li>
+                <span class="status__n"><span class="dotline dotline--a"></span>Straighten</span>
+                <span class="st st--few">Reduced</span>
+                <span class="status__d">Consultations Tuesdays only until October</span>
+              </li>
+              <li>
+                <span class="status__n"><span class="dotline dotline--r"></span>Replace</span>
+                <span class="st st--ok">Good service</span>
+                <span class="status__d">Surgery days Wednesday and Friday</span>
+              </li>
+              <li>
+                <span class="status__n"><span class="dotline dotline--k"></span>Emergency</span>
+                <span class="st st--ok">Good service</span>
+                <span class="status__d">Ring at 08.00 for a same-day chair</span>
+              </li>
+            </ul>
+
+            <div class="hours">
+              <h3>Hours</h3>
+              <dl>
+                <div><dt>Monday</dt><dd>08.00&ndash;18.00</dd></div>
+                <div><dt>Tuesday</dt><dd>08.00&ndash;20.00</dd></div>
+                <div><dt>Wednesday</dt><dd>08.00&ndash;18.00</dd></div>
+                <div><dt>Thursday</dt><dd>08.00&ndash;18.00</dd></div>
+                <div><dt>Friday</dt><dd>08.00&ndash;16.00</dd></div>
+                <div><dt>Saturday</dt><dd>09.00&ndash;13.00</dd></div>
+                <div><dt>Sunday</dt><dd>Closed</dd></div>
+              </dl>
+              <p class="hours__f">
+                Late clinic on Tuesdays for people who cannot take time off work. Out of hours, ring
+                the practice number and the message gives you the on-call dentist.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== crew ===== -->
+      <section class="sect" id="crew">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">05</p>
+            <div>
+              <h2 class="rise">Crew</h2>
+              <p class="head__p rise">
+                Eleven of us altogether. These four run the routes.
+              </p>
+            </div>
+          </header>
+
+          <div class="crew">
+            <article class="who rise">
+              <div class="who__p">
+                <img
+                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80"
+                  alt="Femi Adeyemi, principal dentist"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Femi Adeyemi</h3>
+              <p class="who__r"><span class="chip chip--g">Routine</span> Principal dentist</p>
+              <p class="who__b">
+                Bought the practice in 2009 when it had one surgery and a paper diary. Still takes
+                the Saturday morning list himself.
+              </p>
+              <p class="who__d">GDC 78341</p>
+            </article>
+
+            <article class="who rise">
+              <div class="who__p">
+                <img
+                  src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=80"
+                  alt="Dr Priya Raman, restorative dentist"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Dr Priya Raman</h3>
+              <p class="who__r"><span class="chip chip--b">Restore</span> Restorative</p>
+              <p class="who__b">
+                Root canals and rescue work. Has a talent for talking people through a long
+                appointment without ever saying &ldquo;you will feel a bit of pressure&rdquo;.
+              </p>
+              <p class="who__d">GDC 85220</p>
+            </article>
+
+            <article class="who rise">
+              <div class="who__p">
+                <img
+                  src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&crop=faces&w=700&h=875&q=80"
+                  alt="Ruth Mbeki, orthodontic therapist"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Ruth Mbeki</h3>
+              <p class="who__r"><span class="chip chip--a">Straighten</span> Orthodontic therapist</p>
+              <p class="who__b">
+                Runs the aligner clinic. Will tell you honestly if two years of plastic trays is not
+                worth it for the tooth that bothers you.
+              </p>
+              <p class="who__d">GDC 91744</p>
+            </article>
+
+            <article class="who rise">
+              <div class="who__p">
+                <img
+                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=80"
+                  alt="Tom Bardsley, implant surgeon"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Tom Bardsley</h3>
+              <p class="who__r"><span class="chip chip--r">Replace</span> Implant surgeon</p>
+              <p class="who__b">
+                In on Wednesdays and Fridays from the hospital list. Plans every case on the CT
+                before anyone books a surgery date.
+              </p>
+              <p class="who__d">GDC 69018</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== notices ===== -->
+      <section class="sect sect--plate" id="notices">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">06</p>
+            <div>
+              <h2 class="rise">Notices</h2>
+              <p class="head__p rise">The six things worth reading before you travel.</p>
+            </div>
+          </header>
+
+          <ul class="notices">
+            <li class="rise">
+              <span class="pic pic--r" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#ic-alert" /></svg>
+              </span>
+              <div>
+                <h3>In pain today</h3>
+                <p>
+                  Ring at 08.00. We hold two chairs a day for pain and we do not ask you to prove it.
+                  If we cannot see you, we will tell you who can, that morning, not next week.
+                </p>
+              </div>
+            </li>
+            <li class="rise">
+              <span class="pic pic--b" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#ic-clock" /></svg>
+              </span>
+              <div>
+                <h3>Running late</h3>
+                <p>
+                  Ring us. Up to ten minutes and we will usually still see you. Beyond that we will
+                  rebook rather than rush the appointment or push everyone behind you back.
+                </p>
+              </div>
+            </li>
+            <li class="rise">
+              <span class="pic pic--a" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#ic-card" /></svg>
+              </span>
+              <div>
+                <h3>Missed appointments</h3>
+                <p>
+                  Twenty-four hours' notice and there is no charge. Less than that and we charge half
+                  the fee, because the chair sat empty and someone in pain wanted it.
+                </p>
+              </div>
+            </li>
+            <li class="rise">
+              <span class="pic pic--g" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#ic-access" /></svg>
+              </span>
+              <div>
+                <h3>Step-free access</h3>
+                <p>
+                  Level entrance from Cambridge Street, a lift to all three surgeries, and a hearing
+                  loop at reception. Tell us in advance and we will meet you at the door.
+                </p>
+              </div>
+            </li>
+            <li class="rise">
+              <span class="pic pic--k" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#ic-child" /></svg>
+              </span>
+              <div>
+                <h3>Children</h3>
+                <p>
+                  Free on the NHS with us until eighteen. First visit is a look, a count and a ride
+                  in the chair &mdash; nothing else, however much you would like it to be.
+                </p>
+              </div>
+            </li>
+            <li class="rise">
+              <span class="pic pic--b" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#ic-info" /></svg>
+              </span>
+              <div>
+                <h3>Nervous patients</h3>
+                <p>
+                  Say so when you book and we give you a longer slot, a first appointment where
+                  nothing is done, and a hand signal that stops everything. It gets used often.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== book ===== -->
+      <section class="sect" id="book">
+        <div class="wrap">
+          <header class="head">
+            <p class="head__n">07</p>
+            <div>
+              <h2 class="rise">Book</h2>
+              <p class="head__p rise">
+                We reply the same working day. Nothing is charged until you are in the chair.
+              </p>
+            </div>
+          </header>
+
+          <div class="bookwrap">
+            <form class="bk" data-bk novalidate>
+              <div class="row2">
+                <label class="in">
+                  <span>Name</span>
+                  <input type="text" name="name" data-name required autocomplete="name" />
+                </label>
+                <label class="in">
+                  <span>Telephone</span>
+                  <input type="tel" name="tel" data-tel required autocomplete="tel" />
+                </label>
+              </div>
+
+              <label class="in">
+                <span>Email</span>
+                <input type="email" name="email" data-email required autocomplete="email" />
+              </label>
+
+              <div class="row2">
+                <label class="in">
+                  <span>Route</span>
+                  <select name="route" data-route>
+                    <option value="routine">Routine &mdash; check-up and hygiene</option>
+                    <option value="restore">Restore &mdash; fillings, crowns, root canals</option>
+                    <option value="straighten">Straighten &mdash; aligners and whitening</option>
+                    <option value="replace">Replace &mdash; implants and dentures</option>
+                    <option value="emergency">Emergency &mdash; in pain today</option>
+                  </select>
+                </label>
+                <label class="in">
+                  <span>Preferred day</span>
+                  <input type="date" name="day" data-day />
+                </label>
+              </div>
+
+              <fieldset class="in in--set">
+                <legend><span>Time of day</span></legend>
+                <div class="seg" data-when>
+                  <button type="button" data-v="Morning" class="is-on">Morning</button>
+                  <button type="button" data-v="Afternoon">Afternoon</button>
+                  <button type="button" data-v="Late, Tuesday">Late clinic</button>
+                </div>
+              </fieldset>
+
+              <label class="in">
+                <span>Anything we should know first</span>
+                <textarea name="notes" rows="3"></textarea>
+              </label>
+
+              <p class="err" data-err hidden>
+                We need a name, a telephone number and a valid email address.
+              </p>
+
+              <button class="pill pill--ink pill--lg pill--wide" type="submit">
+                Request this appointment
+              </button>
+              <p class="fine fine--c">
+                Used to contact you about the appointment and nothing else.
+              </p>
+            </form>
+
+            <div class="done" data-done hidden>
+              <div class="board board--sm">
+                <div class="board__top">
+                  <p class="board__h">Booking confirmed</p>
+                  <p class="board__clock" data-done-ref>JD-0000</p>
+                </div>
+                <table class="board__tbl">
+                  <tbody>
+                    <tr>
+                      <td class="t" data-done-time>09:40</td>
+                      <td data-done-route><span class="dotline dotline--g"></span>Routine</td>
+                      <td data-done-day>Tue 1 Sep</td>
+                      <td><span class="st st--ok">Requested</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="board__foot" data-done-name>
+                  We will ring to confirm the exact time.
+                </p>
+              </div>
+              <p class="done__p">
+                Quote the reference if you ring. If your route needs a longer first appointment we
+                will say so when we call, rather than squeezing it in.
+              </p>
+              <button class="pill pill--line" type="button" data-again>Change something</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== footer ===== -->
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot__top">
+          <a class="mark mark--big" href="#top" aria-label="Junction Dental, back to top">
+            <svg class="mark__r" viewBox="0 0 44 44" aria-hidden="true">
+              <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="7" />
+              <rect x="0" y="18" width="44" height="8" fill="currentColor" />
+            </svg>
+            <span class="mark__t">
+              <b>Junction</b>
+              <i>Dental &middot; Sheffield</i>
+            </span>
+          </a>
+          <p class="foot__line">
+            Every appointment, mapped before you sit down.
+          </p>
+        </div>
+
+        <div class="foot__grid">
+          <div>
+            <h3>Find us</h3>
+            <p>44 Cambridge Street<br />Sheffield S1 4HP<br />Two minutes from the Moor tram stop</p>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <p>
+              <a href="tel:+441142000000">0114 200 0000</a><br /><a
+                href="mailto:hello@junction.dental"
+                >hello@junction.dental</a
+              ><br />Out of hours: same number
+            </p>
+          </div>
+          <div>
+            <h3>Routes</h3>
+            <p>
+              <a href="#map">The map</a><br /><a href="#fares">Fares</a><br /><a href="#service"
+                >Service information</a
+              ><br /><a href="#notices">Notices</a>
+            </p>
+          </div>
+          <div>
+            <h3>Small print</h3>
+            <p>
+              <a href="#">Complaints</a><br /><a href="#">Privacy</a><br /><a href="#">Regulation</a
+              ><br />GDC 78341
+            </p>
+          </div>
+        </div>
+
+        <div class="foot__end">
+          <p>&copy; <span data-year>2026</span> Junction Dental Ltd</p>
+          <p class="foot__demo">Demo template &mdash; every name, fare and figure is invented</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

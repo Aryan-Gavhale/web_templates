@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aurelia — Dental Institute &amp; Multi-speciality Hospital</title>
+<meta name="description" content="Aurelia Dental Institute — a multi-speciality dental hospital. Guided implantology, digital orthodontics, same-day restorations and 24/7 emergency care." />
+<meta name="theme-color" content="#101E1A" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23101E1A'/%3E%3Cpath d='M16 8c3 0 5 1.6 5 4.4 0 2.2-.9 3.4-1.4 5.6-.5 2.2-.6 6-2.2 6-1.1 0-.9-2.6-1.4-2.6s-.3 2.6-1.4 2.6c-1.6 0-1.7-3.8-2.2-6C11.9 15.8 11 14.6 11 12.4 11 9.6 13 8 16 8z' fill='%23F4F1EA'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="#top" class="brand" aria-label="Aurelia Dental Institute, home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2c2.9 0 4.9 1.7 4.9 4.5 0 2.2-.9 3.4-1.4 5.6-.5 2.3-.6 6.2-2.2 6.2-1.1 0-.9-2.7-1.3-2.7s-.2 2.7-1.3 2.7c-1.6 0-1.7-3.9-2.2-6.2C8 11.1 7.1 9.9 7.1 7.7 7.1 4.9 9.1 3.2 12 3.2Z" fill="currentColor"/></svg>
+      </span>
+      <span class="brand__word">Aurelia<span class="brand__sub">Dental Institute</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#services" class="nav__link" data-navlink>Treatments</a>
+      <a href="#approach" class="nav__link" data-navlink>Approach</a>
+      <a href="#technology" class="nav__link" data-navlink>Technology</a>
+      <a href="#team" class="nav__link" data-navlink>Specialists</a>
+      <a href="#results" class="nav__link" data-navlink>Results</a>
+    </nav>
+
+    <div class="header__actions">
+      <div class="hours" data-hours>
+        <span class="hours__dot" aria-hidden="true"></span>
+        <span class="hours__text">Open now · until 8:00 PM</span>
+      </div>
+      <a href="tel:+18005550142" class="header__tel">+1 800 555 0142</a>
+      <a href="#booking" class="btn btn--ink" data-magnetic>
+        <span>Book a visit</span>
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" data-burger>
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="header__progress" data-progress aria-hidden="true"></div>
+</header>
+
+<div class="drawer" data-drawer hidden>
+  <nav class="drawer__nav" aria-label="Mobile">
+    <a href="#services">01 — Treatments</a>
+    <a href="#approach">02 — Approach</a>
+    <a href="#technology">03 — Technology</a>
+    <a href="#team">04 — Specialists</a>
+    <a href="#results">05 — Results</a>
+    <a href="#faq">06 — Questions</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="tel:+18005550142">+1 800 555 0142</a>
+    <a href="#booking" class="btn btn--ink btn--full"><span>Book a visit</span></a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="shell hero__grid">
+
+      <div class="hero__copy">
+        <p class="kicker" data-reveal>
+          <span class="kicker__rule" aria-hidden="true"></span>
+          Est. 1998 · Multi-speciality dental hospital
+        </p>
+
+        <h1 class="display hero__title" data-split>
+          Dentistry that feels <em>unhurried,</em> precise and entirely yours.
+        </h1>
+
+        <p class="lede" data-reveal data-delay="120">
+          Four floors, eleven speciality suites and forty-two clinicians under one roof —
+          so the diagnosis, the surgery and the follow-up never leave the building.
+        </p>
+
+        <div class="hero__cta" data-reveal data-delay="220">
+          <a href="#booking" class="btn btn--ink btn--lg" data-magnetic>
+            <span>Reserve a consultation</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#services" class="btn btn--ghost btn--lg">
+            <span>Explore treatments</span>
+          </a>
+        </div>
+
+        <dl class="hero__stats" data-reveal data-delay="320">
+          <div class="stat">
+            <dt>Years of care</dt>
+            <dd><span data-count="28">0</span></dd>
+          </div>
+          <div class="stat">
+            <dt>Specialists</dt>
+            <dd><span data-count="42">0</span></dd>
+          </div>
+          <div class="stat">
+            <dt>Patient rating</dt>
+            <dd><span data-count="4.9" data-decimals="1">0</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero__media">
+        <figure class="arch" data-reveal data-delay="180" data-parallax="0.06">
+          <img
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1100&q=80"
+            alt="A clinician reviewing a digital scan with a patient in a bright treatment suite"
+            loading="eager" decoding="async" data-img />
+        </figure>
+
+        <div class="badge-spin" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="spinPath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs>
+            <text><textPath href="#spinPath" startOffset="0">Painless · Precise · Personal · Painless · Precise · Personal · </textPath></text>
+          </svg>
+          <span class="badge-spin__core">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2c2.9 0 4.9 1.7 4.9 4.5 0 2.2-.9 3.4-1.4 5.6-.5 2.3-.6 6.2-2.2 6.2-1.1 0-.9-2.7-1.3-2.7s-.2 2.7-1.3 2.7c-1.6 0-1.7-3.9-2.2-6.2C8 11.1 7.1 9.9 7.1 7.7 7.1 4.9 9.1 3.2 12 3.2Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <aside class="slot-card" data-reveal data-delay="420">
+          <p class="slot-card__label">Next available slot</p>
+          <p class="slot-card__time">Today · 4:30 PM</p>
+          <div class="slot-card__row">
+            <span class="avatars" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=120&q=70" alt="" data-img />
+              <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=120&q=70" alt="" data-img />
+              <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=120&q=70" alt="" data-img />
+            </span>
+            <span class="slot-card__meta">6 clinicians on floor</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" data-marquee>
+        <span>ADA Accredited</span><i>✳</i>
+        <span>3D Guided Implantology</span><i>✳</i>
+        <span>ISO 9001 : 2015</span><i>✳</i>
+        <span>24/7 Emergency Theatre</span><i>✳</i>
+        <span>In-house CBCT Imaging</span><i>✳</i>
+        <span>Paediatric Sedation Suite</span><i>✳</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section section--services" id="services">
+    <div class="shell">
+      <header class="sec-head">
+        <p class="sec-head__num" data-reveal>01 — Treatments</p>
+        <h2 class="display sec-head__title" data-split>Eleven specialities, one <em>continuous</em> record.</h2>
+        <p class="sec-head__note" data-reveal data-delay="120">
+          Every department reads from the same chart. You explain your history once.
+        </p>
+      </header>
+
+      <ul class="svc" data-svc>
+        <li class="svc__row" data-reveal data-preview="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=700&q=80">
+          <span class="svc__num">01</span>
+          <h3 class="svc__name">Guided Implantology</h3>
+          <p class="svc__desc">Surgical guides printed in-house from your CBCT scan. Fixture placed within 0.3 mm of plan.</p>
+          <span class="svc__tag">Full arch · Single unit</span>
+          <span class="svc__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </li>
+        <li class="svc__row" data-reveal data-preview="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=700&q=80">
+          <span class="svc__num">02</span>
+          <h3 class="svc__name">Digital Orthodontics</h3>
+          <p class="svc__desc">Clear aligners and self-ligating brackets planned on a simulated 26-week trajectory.</p>
+          <span class="svc__tag">Adult · Adolescent</span>
+          <span class="svc__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </li>
+        <li class="svc__row" data-reveal data-preview="https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&fit=crop&w=700&q=80">
+          <span class="svc__num">03</span>
+          <h3 class="svc__name">Same-day Restorations</h3>
+          <p class="svc__desc">Milled ceramic crowns finished chairside. One appointment, no temporary unit.</p>
+          <span class="svc__tag">Crowns · Onlays · Veneers</span>
+          <span class="svc__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </li>
+        <li class="svc__row" data-reveal data-preview="https://images.unsplash.com/photo-1584467735815-f778f274e296?auto=format&fit=crop&w=700&q=80">
+          <span class="svc__num">04</span>
+          <h3 class="svc__name">Microscopic Endodontics</h3>
+          <p class="svc__desc">Root canal therapy under 25× magnification, with rotary obturation and post-op CBCT proof.</p>
+          <span class="svc__tag">Retreatment · Apicectomy</span>
+          <span class="svc__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </li>
+        <li class="svc__row" data-reveal data-preview="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=80">
+          <span class="svc__num">05</span>
+          <h3 class="svc__name">Paediatric Dentistry</h3>
+          <p class="svc__desc">A separate wing, its own waiting room, and clinicians trained in behavioural sedation.</p>
+          <span class="svc__tag">Age 1 – 16</span>
+          <span class="svc__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </li>
+        <li class="svc__row" data-reveal data-preview="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=700&q=80">
+          <span class="svc__num">06</span>
+          <h3 class="svc__name">Maxillofacial Surgery</h3>
+          <p class="svc__desc">Impactions, orthognathic correction and trauma, in a theatre with anaesthetic cover.</p>
+          <span class="svc__tag">Day-care · Inpatient</span>
+          <span class="svc__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="svc-preview" data-svc-preview aria-hidden="true"><img alt="" data-svc-preview-img /></div>
+  </section>
+
+  <!-- ============ APPROACH ============ -->
+  <section class="section section--approach" id="approach">
+    <div class="shell approach">
+      <div class="approach__aside">
+        <p class="sec-head__num" data-reveal>02 — Approach</p>
+        <h2 class="display approach__title" data-split>The appointment is <em>ninety minutes.</em> Not nine.</h2>
+        <figure class="approach__fig" data-reveal data-delay="140">
+          <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80"
+               alt="Consultation room with natural light and a treatment chair" loading="lazy" decoding="async" data-img />
+        </figure>
+        <p class="approach__quote" data-reveal data-delay="200">
+          “We would rather spend an hour explaining than a year correcting.”
+          <span>Dr. Elin Marchetti · Clinical Director</span>
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li class="steps__item" data-reveal>
+          <span class="steps__num">01</span>
+          <div>
+            <h3>A full record before a single instrument</h3>
+            <p>Panoramic scan, intraoral photography, periodontal charting and a bite analysis — all captured before treatment is even discussed.</p>
+          </div>
+        </li>
+        <li class="steps__item" data-reveal data-delay="80">
+          <span class="steps__num">02</span>
+          <div>
+            <h3>Two clinicians read every plan</h3>
+            <p>Surgical and restorative leads sign the same plan, so the crown that follows the implant was designed on day one.</p>
+          </div>
+        </li>
+        <li class="steps__item" data-reveal data-delay="160">
+          <span class="steps__num">03</span>
+          <div>
+            <h3>Costed to the line, before consent</h3>
+            <p>An itemised estimate with insurance offset, staged into phases you can accept or defer independently.</p>
+          </div>
+        </li>
+        <li class="steps__item" data-reveal data-delay="240">
+          <span class="steps__num">04</span>
+          <div>
+            <h3>Five years of recall, held by one nurse</h3>
+            <p>The same coordinator follows your file through hygiene, review and warranty. You always know who to call.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="shell">
+      <div class="figures" data-reveal>
+        <div class="figures__cell"><strong><span data-count="1.2" data-decimals="1">0</span>M</strong><span>Treatments delivered</span></div>
+        <div class="figures__cell"><strong><span data-count="98">0</span>%</strong><span>Implant survival at 10 years</span></div>
+        <div class="figures__cell"><strong><span data-count="11">0</span></strong><span>Speciality departments</span></div>
+        <div class="figures__cell"><strong><span data-count="24">0</span>/7</strong><span>Emergency theatre cover</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGY ============ -->
+  <section class="section section--tech" id="technology">
+    <div class="shell tech__head">
+      <div>
+        <p class="sec-head__num sec-head__num--light" data-reveal>03 — Technology</p>
+        <h2 class="display tech__title" data-split>Equipment we own, <em>not</em> equipment we outsource.</h2>
+      </div>
+      <div class="tech__controls">
+        <p data-reveal>Nothing leaves the building — no external lab, no external radiology, no waiting on a courier.</p>
+        <div class="rail-nav">
+          <button type="button" class="rail-btn" data-rail="prev" aria-label="Previous">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M14 8H2m5-5L2 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="rail-btn" data-rail="next" aria-label="Next">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail" data-rail-track>
+      <article class="tcard">
+        <figure><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Radiographs on a viewing screen" loading="lazy" decoding="async" data-img /></figure>
+        <p class="tcard__label">Imaging</p>
+        <h3>Cone-beam CT, 80 µm voxel</h3>
+        <p class="tcard__desc">A 14-second scan replaces referral radiology. Bone volume measured before a fixture is chosen.</p>
+      </article>
+      <article class="tcard">
+        <figure><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80" alt="A clear aligner being fitted" loading="lazy" decoding="async" data-img /></figure>
+        <p class="tcard__label">Chairside</p>
+        <h3>Intraoral optical scanning</h3>
+        <p class="tcard__desc">No trays, no alginate. A 90-second sweep produces a model accurate to 20 microns.</p>
+      </article>
+      <article class="tcard">
+        <figure><img src="https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&fit=crop&w=800&q=80" alt="Treatment suite with a chairside monitor" loading="lazy" decoding="async" data-img /></figure>
+        <p class="tcard__label">In-house lab</p>
+        <h3>Five-axis ceramic milling</h3>
+        <p class="tcard__desc">Crowns designed, milled, glazed and seated between morning and afternoon.</p>
+      </article>
+      <article class="tcard">
+        <figure><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80" alt="Surgical team in theatre" loading="lazy" decoding="async" data-img /></figure>
+        <p class="tcard__label">Surgery</p>
+        <h3>Er:YAG laser &amp; piezo surgery</h3>
+        <p class="tcard__desc">Selective cutting of hard tissue with the nerve bundle left intact. Less swelling, fewer sutures.</p>
+      </article>
+      <article class="tcard">
+        <figure><img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=800&q=80" alt="A clinician reassuring a patient before treatment" loading="lazy" decoding="async" data-img /></figure>
+        <p class="tcard__label">Comfort</p>
+        <h3>Monitored conscious sedation</h3>
+        <p class="tcard__desc">An anaesthetist on rota, full vitals monitoring, and a recovery bay with its own nurse.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section section--team" id="team">
+    <div class="shell">
+      <header class="sec-head sec-head--split">
+        <div>
+          <p class="sec-head__num" data-reveal>04 — Specialists</p>
+          <h2 class="display sec-head__title" data-split>The clinician who plans it <em>performs</em> it.</h2>
+        </div>
+        <a href="#booking" class="link-arrow" data-reveal>
+          <span>See the full register</span>
+          <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </header>
+
+      <div class="team">
+        <article class="doc" data-reveal>
+          <figure class="doc__fig">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80" alt="Dr. Elin Marchetti" loading="lazy" decoding="async" data-img />
+          </figure>
+          <div class="doc__body">
+            <h3>Dr. Elin Marchetti</h3>
+            <p class="doc__role">Clinical Director · Implantology</p>
+            <p class="doc__meta">MDS, FICOI · 4,100 fixtures placed</p>
+          </div>
+        </article>
+        <article class="doc" data-reveal data-delay="80">
+          <figure class="doc__fig">
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=80" alt="Dr. Rahul Iyer" loading="lazy" decoding="async" data-img />
+          </figure>
+          <div class="doc__body">
+            <h3>Dr. Rahul Iyer</h3>
+            <p class="doc__role">Head of Maxillofacial Surgery</p>
+            <p class="doc__meta">MDS, MFDS RCS · Orthognathic lead</p>
+          </div>
+        </article>
+        <article class="doc" data-reveal data-delay="160">
+          <figure class="doc__fig">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=80" alt="Dr. Naomi Okafor" loading="lazy" decoding="async" data-img />
+          </figure>
+          <div class="doc__body">
+            <h3>Dr. Naomi Okafor</h3>
+            <p class="doc__role">Orthodontics &amp; Dentofacial</p>
+            <p class="doc__meta">MOrth RCS · 2,600 aligner cases</p>
+          </div>
+        </article>
+        <article class="doc" data-reveal data-delay="240">
+          <figure class="doc__fig">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80" alt="Dr. Marcus Adeyemi" loading="lazy" decoding="async" data-img />
+          </figure>
+          <div class="doc__body">
+            <h3>Dr. Marcus Adeyemi</h3>
+            <p class="doc__role">Endodontics · Microsurgery</p>
+            <p class="doc__meta">MSc Endo · 25× magnification only</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS / COMPARE ============ -->
+  <section class="section section--results" id="results">
+    <div class="shell results">
+      <div class="results__copy">
+        <p class="sec-head__num" data-reveal>05 — Results</p>
+        <h2 class="display results__title" data-split>Twenty-six weeks, <em>documented</em> at every stage.</h2>
+        <p class="lede lede--sm" data-reveal data-delay="120">
+          Anterior crowding corrected across fourteen aligner stages, then held with a bonded retainer.
+          Photographed under identical lighting, shutter and retraction, because a result you cannot
+          verify is a claim rather than a record.
+        </p>
+        <ul class="ticks" data-reveal data-delay="180">
+          <li>Case 4471 · Anterior alignment</li>
+          <li>Orthodontics: Dr. N. Okafor · Review: Dr. M. Adeyemi</li>
+          <li>Fourteen stages, no extractions</li>
+        </ul>
+        <p class="results__hint" data-reveal data-delay="240">Drag the handle to compare</p>
+      </div>
+
+      <div class="compare" data-compare>
+        <img class="compare__img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1000&q=80" alt="Clinical record at week twenty-six" loading="lazy" decoding="async" data-img />
+        <div class="compare__after" data-compare-after>
+          <img class="compare__img" src="https://images.unsplash.com/photo-1598531228433-d9f0cb960816?auto=format&fit=crop&w=1000&q=80" alt="Clinical record at week one" loading="lazy" decoding="async" data-img />
+        </div>
+        <span class="compare__tag compare__tag--l">Week 01</span>
+        <span class="compare__tag compare__tag--r">Week 26</span>
+        <div class="compare__handle" data-compare-handle role="slider" tabindex="0"
+             aria-label="Compare treatment stages" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 24 16" fill="none"><path d="M9 3 5 8l4 5M15 3l4 5-4 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section section--voice">
+    <div class="shell voice">
+      <p class="sec-head__num sec-head__num--light" data-reveal>06 — In their words</p>
+
+      <div class="voice__stage" data-quotes>
+        <blockquote class="voice__item is-active" data-quote>
+          <p>I have avoided dentists for eleven years. They gave me the plan on paper, let me take it home, and did not call me once to chase it. I came back on my own.</p>
+          <footer><strong>Marguerite L.</strong><span>Full-arch rehabilitation · 2024</span></footer>
+        </blockquote>
+        <blockquote class="voice__item" data-quote>
+          <p>My son is six and autistic. The paediatric wing had its own entrance and a nurse who met us in the car park. He walked out holding her hand.</p>
+          <footer><strong>Daniel O.</strong><span>Paediatric care · 2025</span></footer>
+        </blockquote>
+        <blockquote class="voice__item" data-quote>
+          <p>The crown was scanned, milled and fitted between 9 AM and 2 PM. I went back to work the same afternoon with a permanent tooth.</p>
+          <footer><strong>Aisha R.</strong><span>Same-day restoration · 2025</span></footer>
+        </blockquote>
+      </div>
+
+      <div class="voice__nav">
+        <div class="dots" data-quote-dots></div>
+        <div class="rail-nav rail-nav--light">
+          <button type="button" class="rail-btn" data-quote-prev aria-label="Previous quote">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M14 8H2m5-5L2 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="rail-btn" data-quote-next aria-label="Next quote">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLANS ============ -->
+  <section class="section section--plans">
+    <div class="shell">
+      <header class="sec-head sec-head--center">
+        <p class="sec-head__num" data-reveal>07 — Membership</p>
+        <h2 class="display sec-head__title" data-split>Preventive care, on a <em>flat</em> annual fee.</h2>
+        <p class="sec-head__note" data-reveal data-delay="120">No claim forms. No per-visit surprises. Cancel with thirty days' notice.</p>
+      </header>
+
+      <div class="plans">
+        <article class="plan" data-reveal>
+          <header>
+            <h3>Essential</h3>
+            <p class="plan__price">$34<span>/month</span></p>
+            <p class="plan__for">For a healthy mouth that needs keeping that way.</p>
+          </header>
+          <ul>
+            <li>Two hygiene appointments</li>
+            <li>Annual radiographic review</li>
+            <li>Emergency triage within 24 h</li>
+            <li>10% off restorative work</li>
+          </ul>
+          <a href="#booking" class="btn btn--outline btn--full"><span>Choose Essential</span></a>
+        </article>
+
+        <article class="plan plan--feature" data-reveal data-delay="90">
+          <span class="plan__flag">Most chosen</span>
+          <header>
+            <h3>Continuous</h3>
+            <p class="plan__price">$68<span>/month</span></p>
+            <p class="plan__for">For teeth with history — old fillings, crowns, or grinding.</p>
+          </header>
+          <ul>
+            <li>Four hygiene appointments</li>
+            <li>CBCT scan every 24 months</li>
+            <li>Same-day emergency slot, guaranteed</li>
+            <li>Night guard included</li>
+            <li>20% off restorative work</li>
+          </ul>
+          <a href="#booking" class="btn btn--paper btn--full" data-magnetic><span>Choose Continuous</span></a>
+        </article>
+
+        <article class="plan" data-reveal data-delay="180">
+          <header>
+            <h3>Family</h3>
+            <p class="plan__price">$122<span>/month</span></p>
+            <p class="plan__for">Two adults and up to three children under sixteen.</p>
+          </header>
+          <ul>
+            <li>Everything in Continuous, per adult</li>
+            <li>Paediatric wing access</li>
+            <li>Fluoride &amp; sealant programme</li>
+            <li>Orthodontic assessment at age 9</li>
+          </ul>
+          <a href="#booking" class="btn btn--outline btn--full"><span>Choose Family</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ + BOOKING ============ -->
+  <section class="section section--book" id="faq">
+    <div class="shell book">
+
+      <div class="book__faq">
+        <p class="sec-head__num" data-reveal>08 — Questions</p>
+        <h2 class="display book__title" data-split>Before you <em>call.</em></h2>
+
+        <div class="acc" data-acc>
+          <div class="acc__item" data-reveal>
+            <button type="button" class="acc__btn" aria-expanded="false">
+              <span>Does the hospital take emergencies at night?</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="acc__panel"><p>Yes. A surgeon and an anaesthetic nurse are resident from 8 PM to 7 AM, every night including holidays. Call the main line and press 9 — it routes to the on-floor phone, not an answering service.</p></div>
+          </div>
+          <div class="acc__item" data-reveal data-delay="60">
+            <button type="button" class="acc__btn" aria-expanded="false">
+              <span>Will I see the same clinician each visit?</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="acc__panel"><p>For treatment, always. Hygiene visits may be with a different therapist, but the clinician who planned your case performs every clinical stage of it and signs your discharge.</p></div>
+          </div>
+          <div class="acc__item" data-reveal data-delay="120">
+            <button type="button" class="acc__btn" aria-expanded="false">
+              <span>How do you handle dental anxiety?</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="acc__panel"><p>Three ways: a no-instrument first visit, topical and intraosseous anaesthesia as standard, and monitored conscious sedation with an anaesthetist for anything longer than an hour. Tell the coordinator when you book and the room is prepared accordingly.</p></div>
+          </div>
+          <div class="acc__item" data-reveal data-delay="180">
+            <button type="button" class="acc__btn" aria-expanded="false">
+              <span>Do you work with insurance?</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="acc__panel"><p>We bill 14 major insurers directly and pre-authorise before treatment, so the estimate you sign is the amount you pay. Uninsured plans stage over 3, 6 or 12 months at zero interest.</p></div>
+          </div>
+          <div class="acc__item" data-reveal data-delay="240">
+            <button type="button" class="acc__btn" aria-expanded="false">
+              <span>What is the warranty on a crown or implant?</span>
+              <i aria-hidden="true"></i>
+            </button>
+            <div class="acc__panel"><p>Five years on ceramic restorations and ten on implant fixtures, provided recall hygiene appointments are kept. Replacement is at no charge, including lab and theatre time.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="book__form" id="booking">
+        <form class="form" data-form novalidate>
+          <p class="form__eyebrow">Request an appointment</p>
+          <h3 class="form__title">A coordinator calls you back within four working hours.</h3>
+
+          <div class="field">
+            <label for="f-name">Full name</label>
+            <input id="f-name" name="name" type="text" placeholder="Marguerite Laurent" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" placeholder="+1 555 018 4420" required />
+            </div>
+            <div class="field">
+              <label for="f-date">Preferred date</label>
+              <input id="f-date" name="date" type="date" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-treat">Department</label>
+            <div class="select">
+              <select id="f-treat" name="treatment">
+                <option>General &amp; preventive</option>
+                <option>Implantology</option>
+                <option>Orthodontics</option>
+                <option>Endodontics</option>
+                <option>Paediatric dentistry</option>
+                <option>Maxillofacial surgery</option>
+                <option>Not sure — please advise</option>
+              </select>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+
+          <fieldset class="field">
+            <legend>Time of day</legend>
+            <div class="chips" data-chips>
+              <button type="button" class="chip is-on" data-chip>Morning</button>
+              <button type="button" class="chip" data-chip>Afternoon</button>
+              <button type="button" class="chip" data-chip>Evening</button>
+              <button type="button" class="chip" data-chip>Any</button>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn--ink btn--full btn--lg" data-magnetic>
+            <span>Request appointment</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <p class="form__fine">By requesting an appointment you agree to our clinical privacy notice. We never share records without written consent.</p>
+
+          <div class="form__done" data-form-done hidden>
+            <span class="form__tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4.5 4.5L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+              <h4>Request received</h4>
+            <p>Reference <strong data-form-ref>AUR-0000</strong>. A coordinator will call the number you gave within four working hours.</p>
+            <button type="button" class="link-arrow" data-form-reset>
+              <span>Send another request</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CTA ============ -->
+  <section class="cta">
+    <div class="shell cta__inner">
+      <p class="cta__eyebrow" data-reveal>Whitmore Street · Floor G to 4 · Parking on level B1</p>
+      <h2 class="display cta__title" data-split>Walk in with a question. Walk out with a <em>plan.</em></h2>
+      <div class="cta__row" data-reveal data-delay="140">
+        <a href="tel:+18005550142" class="btn btn--paper btn--lg" data-magnetic>
+          <span>+1 800 555 0142</span>
+        </a>
+        <a href="#booking" class="btn btn--ghost btn--ghost-light btn--lg"><span>Request online</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__col footer__col--wide">
+        <a href="#top" class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2c2.9 0 4.9 1.7 4.9 4.5 0 2.2-.9 3.4-1.4 5.6-.5 2.3-.6 6.2-2.2 6.2-1.1 0-.9-2.7-1.3-2.7s-.2 2.7-1.3 2.7c-1.6 0-1.7-3.9-2.2-6.2C8 11.1 7.1 9.9 7.1 7.7 7.1 4.9 9.1 3.2 12 3.2Z" fill="currentColor"/></svg>
+          </span>
+          <span class="brand__word">Aurelia<span class="brand__sub">Dental Institute</span></span>
+        </a>
+        <p class="footer__note">A multi-speciality dental hospital in continuous operation since 1998. Registered with the National Dental Council, No. 41-882-Q.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Departments</h4>
+        <a href="#services">Implantology</a>
+        <a href="#services">Orthodontics</a>
+        <a href="#services">Endodontics</a>
+        <a href="#services">Paediatric</a>
+        <a href="#services">Maxillofacial</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Hospital</h4>
+        <a href="#approach">Our approach</a>
+        <a href="#team">Specialists</a>
+        <a href="#technology">Technology</a>
+        <a href="#results">Case records</a>
+        <a href="#faq">Questions</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Visit</h4>
+        <p>18 Whitmore Street<br />Harbour Quarter, EC2 4RN</p>
+        <p class="footer__hours">Mon – Fri · 08:00 – 20:00<br />Saturday · 09:00 – 17:00<br />Emergency · 24 hours</p>
+      </div>
+    </div>
+
+    <div class="wordmark" aria-hidden="true">AURELIA</div>
+
+    <div class="footer__base">
+      <p>© <span data-year>2026</span> Aurelia Dental Institute. All rights reserved.</p>
+      <div class="footer__base-links">
+        <a href="#top">Privacy notice</a>
+        <a href="#top">Patient charter</a>
+        <a href="#top">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

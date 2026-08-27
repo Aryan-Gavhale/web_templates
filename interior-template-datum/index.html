@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#F1F1EC" />
+<title>DATUM — Interior Architecture, Copenhagen</title>
+<meta name="description" content="DATUM is a Copenhagen interior architecture practice working in plan, section and elevation. Apartments, houses, workplaces and small public rooms, drawn to build." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     LOADER — four registration marks converge on the sheet,
+     a dimension line measures the wordmark, coordinates settle.
+     ============================================================ -->
+<div class="boot" data-boot>
+  <span class="reg reg--tl" aria-hidden="true"></span>
+  <span class="reg reg--tr" aria-hidden="true"></span>
+  <span class="reg reg--bl" aria-hidden="true"></span>
+  <span class="reg reg--br" aria-hidden="true"></span>
+
+  <div class="boot__mid">
+    <span class="boot__mark">DATUM</span>
+    <span class="boot__dim" aria-hidden="true">
+      <i></i><em data-boot-w>0</em><i></i>
+    </span>
+  </div>
+
+  <div class="boot__foot">
+    <span>Interior architecture</span>
+    <span data-boot-co>55.6761° N &nbsp; 12.5683° E</span>
+    <span>København</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="bar" data-bar>
+  <a class="sig" href="#page">
+    <span class="sig__x" aria-hidden="true"></span>
+    DATUM
+  </a>
+
+  <nav class="bar__nav">
+    <a href="#index"><b>01</b>Index</a>
+    <a href="#details"><b>02</b>Details</a>
+    <a href="#method"><b>03</b>Method</a>
+    <a href="#contact"><b>04</b>Contact</a>
+  </nav>
+
+  <div class="bar__end">
+    <span class="bar__co">55.6761° N &nbsp; 12.5683° E</span>
+    <a class="btn btn--blue" href="#contact">Start a drawing</a>
+    <button class="burger" data-menu-open aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE MENU
+     ============================================================ -->
+<div class="sheetnav" data-menu>
+  <div class="sheetnav__bar">
+    <span class="sig"><span class="sig__x" aria-hidden="true"></span>DATUM</span>
+    <button class="burger burger--x" data-menu-close aria-label="Close menu"><i></i><i></i></button>
+  </div>
+  <nav class="sheetnav__links">
+    <a href="#index" data-menu-link><b>01</b>Index<i>A-01</i></a>
+    <a href="#details" data-menu-link><b>02</b>Details<i>A-02</i></a>
+    <a href="#method" data-menu-link><b>03</b>Method<i>A-03</i></a>
+    <a href="#contact" data-menu-link><b>04</b>Contact<i>A-04</i></a>
+  </nav>
+  <a class="btn btn--blue btn--wide" href="#contact" data-menu-link>Start a drawing</a>
+  <div class="sheetnav__foot">
+    <span>Refshalevej 147, 1432 København K</span>
+    <span>55.6761° N &nbsp; 12.5683° E</span>
+  </div>
+</div>
+
+<main id="page">
+
+  <!-- ============================================================
+       HERO — statement left, self-drawing plan right
+       ============================================================ -->
+  <section class="top">
+    <div class="top__copy">
+      <p class="ref" data-up><b>A-00</b> Cover sheet</p>
+
+      <h1 class="top__h" data-up data-delay="70">
+        Every millimetre drawn before anyone lifts a <span class="hl">hammer</span>.
+      </h1>
+
+      <!-- dimension line: ticks, rule, measured label -->
+      <div class="dim" data-up data-delay="130" aria-hidden="true">
+        <i></i><span>1 : 20</span><i></i>
+      </div>
+
+      <p class="top__p" data-up data-delay="170">
+        DATUM is an interior architecture practice in Copenhagen. We work in plan,
+        section and elevation — and we hand over a set a contractor can build from
+        without ringing us on a Tuesday to ask what the shadow gap is.
+      </p>
+
+      <div class="top__acts" data-up data-delay="210">
+        <a class="btn btn--ink btn--lg" href="#contact">Start a drawing</a>
+        <a class="lnk" href="#index">Project index <i>↓</i></a>
+      </div>
+    </div>
+
+    <div class="top__plan" data-up data-delay="120">
+      <svg class="plan" data-plan viewBox="0 0 660 470" role="img"
+           aria-label="Line drawing of a floor plan with four rooms, door swings, windows and dimension lines">
+
+        <!-- outer walls -->
+        <polygon class="dl" points="60,60 580,60 580,240 460,240 460,380 60,380" />
+
+        <!-- internal partitions -->
+        <line class="dl" x1="260" y1="60"  x2="260" y2="140" />
+        <line class="dl" x1="260" y1="196" x2="260" y2="240" />
+        <line class="dl" x1="60"  y1="240" x2="204" y2="240" />
+        <line class="dl" x1="260" y1="240" x2="460" y2="240" />
+        <line class="dl" x1="300" y1="240" x2="300" y2="300" />
+        <line class="dl" x1="300" y1="356" x2="300" y2="380" />
+
+        <!-- door swings -->
+        <path class="dl" d="M260 140 A56 56 0 0 1 316 196" />
+        <line class="dl" x1="260" y1="196" x2="316" y2="196" />
+        <path class="dl" d="M260 240 A56 56 0 0 1 204 296" />
+        <line class="dl" x1="204" y1="240" x2="204" y2="296" />
+        <path class="dl" d="M300 300 A56 56 0 0 1 356 356" />
+        <line class="dl" x1="300" y1="356" x2="356" y2="356" />
+
+        <!-- windows: doubled lines on the outer face -->
+        <g class="win">
+          <line class="dl" x1="120" y1="57" x2="220" y2="57" />
+          <line class="dl" x1="120" y1="63" x2="220" y2="63" />
+          <line class="dl" x1="340" y1="57" x2="500" y2="57" />
+          <line class="dl" x1="340" y1="63" x2="500" y2="63" />
+          <line class="dl" x1="577" y1="110" x2="577" y2="200" />
+          <line class="dl" x1="583" y1="110" x2="583" y2="200" />
+          <line class="dl" x1="57" y1="272" x2="57" y2="348" />
+          <line class="dl" x1="63" y1="272" x2="63" y2="348" />
+          <line class="dl" x1="330" y1="377" x2="424" y2="377" />
+          <line class="dl" x1="330" y1="383" x2="424" y2="383" />
+        </g>
+
+        <!-- horizontal dimension -->
+        <g class="dimg">
+          <line class="dl" x1="60"  y1="424" x2="580" y2="424" />
+          <line class="dl" x1="60"  y1="416" x2="60"  y2="432" />
+          <line class="dl" x1="580" y1="416" x2="580" y2="432" />
+        </g>
+        <text class="dt dt--b" x="320" y="416" text-anchor="middle">12 400</text>
+
+        <!-- vertical dimension -->
+        <g class="dimg">
+          <line class="dl" x1="28" y1="60"  x2="28" y2="380" />
+          <line class="dl" x1="20" y1="60"  x2="36" y2="60" />
+          <line class="dl" x1="20" y1="380" x2="36" y2="380" />
+        </g>
+        <text class="dt dt--b" x="20" y="220" text-anchor="middle" transform="rotate(-90 20 220)">8 200</text>
+
+        <!-- north point -->
+        <circle class="dl" cx="620" cy="410" r="19" />
+        <line class="dl" x1="620" y1="424" x2="620" y2="396" />
+        <path class="dl" d="M614 403 L620 393 L626 403" />
+        <text class="dt dt--n" x="620" y="448" text-anchor="middle">N</text>
+
+        <!-- room labels -->
+        <text class="dt" x="152" y="146">01</text>
+        <text class="dt dt--s" x="152" y="162">LIVING</text>
+        <text class="dt" x="410" y="146">02</text>
+        <text class="dt dt--s" x="410" y="162">KITCHEN</text>
+        <text class="dt" x="150" y="312">03</text>
+        <text class="dt dt--s" x="150" y="328">BED</text>
+        <text class="dt" x="356" y="312">04</text>
+        <text class="dt dt--s" x="356" y="328">BATH</text>
+      </svg>
+
+      <p class="top__cap">Sortedam Apartment · plan as issued for tender · 1:100 at A3</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FULL-BLEED PLATE
+       ============================================================ -->
+  <section class="plate">
+    <figure class="crop" data-wipe>
+      <img src="https://images.unsplash.com/photo-1778272617829-7074f9f4ca4f?auto=format&fit=crop&w=2000&q=80" alt="Dark minimal kitchen with a monolithic island and a full-height glazed wall" />
+      <span class="crop__m crop__m--tl" aria-hidden="true"></span>
+      <span class="crop__m crop__m--tr" aria-hidden="true"></span>
+      <span class="crop__m crop__m--bl" aria-hidden="true"></span>
+      <span class="crop__m crop__m--br" aria-hidden="true"></span>
+    </figure>
+    <figcaption class="plate__cap" data-up>
+      <span><b>Fig. 01</b> Havnehuset, Islands Brygge</span>
+      <span>Island in blackened oak, 3 600 × 1 100 × 900</span>
+      <span>Photographed on completion, March 2024</span>
+    </figcaption>
+  </section>
+
+  <!-- ============================================================
+       CAPABILITY
+       ============================================================ -->
+  <section class="cap">
+    <div class="head">
+      <p class="ref" data-up><b>A-01</b> Scope of works</p>
+      <h2 class="h2" data-up data-delay="60">Drawings first. Always has been.</h2>
+    </div>
+
+    <div class="cap__grid">
+      <article data-up>
+        <span class="cap__n">01</span>
+        <h3>Survey &amp; feasibility</h3>
+        <p>
+          We measure the room ourselves, in person, with a laser and a tape as a
+          check. Half the flats in this city are not the shape their deed says
+          they are, and finding that out in week one is much cheaper than finding
+          it out in week twenty.
+        </p>
+      </article>
+      <article data-up data-delay="70">
+        <span class="cap__n">02</span>
+        <h3>Design &amp; documentation</h3>
+        <p>
+          Plans, RCPs, elevations, joinery sections at 1:5, a finishes schedule and
+          a lighting layout with every circuit named. The set is issued as one PDF
+          with a revision history, so nobody is building from a drawing that was
+          superseded in April.
+        </p>
+      </article>
+      <article data-up data-delay="140">
+        <span class="cap__n">03</span>
+        <h3>Tender &amp; site</h3>
+        <p>
+          We price the work with three contractors we trust, sit in on the
+          negotiation, and then attend site fortnightly until handover. Snagging is
+          done against the drawings, not against a feeling.
+        </p>
+      </article>
+    </div>
+
+    <dl class="figs">
+      <div data-up><dt data-num="142">0</dt><dd>projects drawn</dd></div>
+      <div data-up data-delay="60"><dt data-num="9800">0</dt><dd>sheets issued</dd></div>
+      <div data-up data-delay="120"><dt data-num="18">0</dt><dd>years</dd></div>
+      <div data-up data-delay="180"><dt data-num="6">0</dt><dd>people</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============================================================
+       PROJECT INDEX — filterable table, rows expand in place
+       ============================================================ -->
+  <section class="idx" id="index">
+    <div class="head head--row">
+      <div>
+        <p class="ref" data-up><b>A-02</b> Project index</p>
+        <h2 class="h2" data-up data-delay="60">Everything we have built</h2>
+      </div>
+      <p class="head__n" data-up data-delay="110"><span data-count>8</span> of 8 records</p>
+    </div>
+
+    <div class="chips" data-chips role="group" aria-label="Filter projects by type">
+      <button class="chip is-on" data-chip="all" aria-pressed="true">All</button>
+      <button class="chip" data-chip="residential" aria-pressed="false">Residential</button>
+      <button class="chip" data-chip="workplace" aria-pressed="false">Workplace</button>
+      <button class="chip" data-chip="cultural" aria-pressed="false">Cultural</button>
+      <button class="chip" data-chip="retail" aria-pressed="false">Retail</button>
+    </div>
+
+    <div class="tbl">
+      <div class="tbl__head" aria-hidden="true">
+        <span>No.</span><span>Project</span><span>Type</span><span>Location</span><span>Year</span><span>Area</span><span></span>
+      </div>
+
+      <div class="tbl__body" data-rows>
+
+        <div class="rec" data-rec data-cat="residential">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">01</span>
+            <span class="rec__t">Sortedam Apartment</span>
+            <span class="rec__m">
+              <span class="rec__c">Residential</span>
+              <span class="rec__l">Østerbro</span>
+              <span class="rec__y">2025</span>
+              <span class="rec__a">164 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1666899950556-d80b5bc27c8c?auto=format&fit=crop&w=1200&q=80" alt="Pale room with a black steel-framed window and a slender dining table" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                A lake-facing flat where three small rooms had been cut out of one
+                good one. We put the wall back where the 1903 drawings had it, then
+                lined the whole north side in a single run of ash joinery so the
+                storage stops competing with the windows.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Private</dd></div>
+                <div><dt>Contractor</dt><dd>Brødrene Krog</dd></div>
+                <div><dt>Scope</dt><dd>Full interior, joinery, lighting</dd></div>
+                <div><dt>Duration</dt><dd>14 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="retail">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">02</span>
+            <span class="rec__t">Kompagnistræde 14</span>
+            <span class="rec__m">
+              <span class="rec__c">Retail</span>
+              <span class="rec__l">Indre By</span>
+              <span class="rec__y">2025</span>
+              <span class="rec__a">210 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1490975568044-d05151acef65?auto=format&fit=crop&w=1200&q=80" alt="White slatted screens lit from behind in a retail interior" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                A listed shopfront with a protected ceiling and nowhere to hang
+                anything. Everything is freestanding — nine identical white screens
+                on castors that the staff rearrange for each season, and one fixed
+                counter that carries all the services.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Studio Frantzen</dd></div>
+                <div><dt>Contractor</dt><dd>Nord Interiør</dd></div>
+                <div><dt>Scope</dt><dd>Interior, fixtures, signage</dd></div>
+                <div><dt>Duration</dt><dd>7 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="residential">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">03</span>
+            <span class="rec__t">Havnehuset</span>
+            <span class="rec__m">
+              <span class="rec__c">Residential</span>
+              <span class="rec__l">Islands Brygge</span>
+              <span class="rec__y">2024</span>
+              <span class="rec__a">240 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1765371515325-b6611765dfad?auto=format&fit=crop&w=1200&q=80" alt="Kitchen island in dark green and oak with stools along one side" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                Top floor of a converted grain silo, so the plan is a circle and
+                nothing standard fits it. Every cabinet is a different width. The
+                drawing set ran to 84 sheets and the joiner has since told us it was
+                the only reason the job came in on budget.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Private</dd></div>
+                <div><dt>Contractor</dt><dd>Hald &amp; Sønner</dd></div>
+                <div><dt>Scope</dt><dd>Full interior, bespoke joinery</dd></div>
+                <div><dt>Duration</dt><dd>19 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="workplace">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">04</span>
+            <span class="rec__t">Studio Nord</span>
+            <span class="rec__m">
+              <span class="rec__c">Workplace</span>
+              <span class="rec__l">Nørrebro</span>
+              <span class="rec__y">2024</span>
+              <span class="rec__a">620 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1512324725833-abbc95d06090?auto=format&fit=crop&w=1200&q=80" alt="Long shared table with red chairs against a full-height bookshelf wall" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                An architecture practice that wanted one room and no offices, which
+                is easy to say and hard to detail. The acoustic work is all in the
+                ceiling and the book wall; there is not a single applied panel
+                anywhere in the space.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Wienberg Arkitekter</dd></div>
+                <div><dt>Contractor</dt><dd>Enemærke</dd></div>
+                <div><dt>Scope</dt><dd>Fitout, joinery, acoustics</dd></div>
+                <div><dt>Duration</dt><dd>11 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="cultural">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">05</span>
+            <span class="rec__t">Værkstedet</span>
+            <span class="rec__m">
+              <span class="rec__c">Cultural</span>
+              <span class="rec__l">Vesterbro</span>
+              <span class="rec__y">2023</span>
+              <span class="rec__a">380 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1635008688937-d52bc89c9352?auto=format&fit=crop&w=1200&q=80" alt="Curved timber-lined ceiling sweeping down into a public room" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                A neighbourhood workshop and lecture room in a former tram depot.
+                The curved lining is 1 400 individually cut pine ribs, set out from a
+                single arc drawn at 1:1 on the depot floor before anything was
+                ordered.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Københavns Kommune</dd></div>
+                <div><dt>Contractor</dt><dd>Byggeteam Vest</dd></div>
+                <div><dt>Scope</dt><dd>Interior, lining, furniture</dd></div>
+                <div><dt>Duration</dt><dd>22 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="residential">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">06</span>
+            <span class="rec__t">Frederiksberg House</span>
+            <span class="rec__m">
+              <span class="rec__c">Residential</span>
+              <span class="rec__l">Frederiksberg</span>
+              <span class="rec__y">2023</span>
+              <span class="rec__a">310 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1774199496664-a9690967be5a?auto=format&fit=crop&w=1200&q=80" alt="Living room with a plastered fireplace and tan leather seating" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                A 1920s villa with good bones and forty years of bad additions. We
+                removed more than we added: two ceilings, one staircase and a
+                conservatory. What is left is the original plan with better light and
+                a fireplace that actually draws.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Private</dd></div>
+                <div><dt>Contractor</dt><dd>Brødrene Krog</dd></div>
+                <div><dt>Scope</dt><dd>Full interior, structural liaison</dd></div>
+                <div><dt>Duration</dt><dd>16 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="cultural">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">07</span>
+            <span class="rec__t">Havneparken Pavilion</span>
+            <span class="rec__m">
+              <span class="rec__c">Cultural</span>
+              <span class="rec__l">Amager</span>
+              <span class="rec__y">2022</span>
+              <span class="rec__a">95 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1601134534341-52ed5be41775?auto=format&fit=crop&w=1200&q=80" alt="Concrete colonnade forming a long covered walkway" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                Ninety-five square metres of shelter for a swimming club, built for
+                the price of a kitchen. Cast in place over eleven days, with the
+                formwork boards reused as the benches inside. Nothing is painted.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Amager Svømmeklub</dd></div>
+                <div><dt>Contractor</dt><dd>Beton Syd</dd></div>
+                <div><dt>Scope</dt><dd>Interior, furniture, wayfinding</dd></div>
+                <div><dt>Duration</dt><dd>9 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="rec" data-rec data-cat="residential">
+          <button class="rec__r" data-rec-btn aria-expanded="false">
+            <span class="rec__n">08</span>
+            <span class="rec__t">Bredgade Loft</span>
+            <span class="rec__m">
+              <span class="rec__c">Residential</span>
+              <span class="rec__l">Indre By</span>
+              <span class="rec__y">2022</span>
+              <span class="rec__a">190 m²</span>
+            </span>
+            <span class="rec__x" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="rec__p"><div class="rec__in">
+            <figure><img src="https://images.unsplash.com/photo-1772797583328-f83bc3f94f80?auto=format&fit=crop&w=1200&q=80" alt="Warm oak-lined living space divided by a timber screen" loading="lazy" /></figure>
+            <div class="rec__d">
+              <p>
+                An attic with a 2.1 metre ridge and no chance of raising it. Every
+                piece of furniture is drawn to the height of the roof pitch at that
+                exact point, which is why the whole flat reads as taller than it is.
+              </p>
+              <dl>
+                <div><dt>Client</dt><dd>Private</dd></div>
+                <div><dt>Contractor</dt><dd>Nord Interiør</dd></div>
+                <div><dt>Scope</dt><dd>Full interior, fitted furniture</dd></div>
+                <div><dt>Duration</dt><dd>12 months</dd></div>
+              </dl>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="tbl__none" data-none hidden>No records match that filter.</p>
+  </section>
+
+  <!-- ============================================================
+       DETAILS
+       ============================================================ -->
+  <section class="det" id="details">
+    <div class="head head--row">
+      <div>
+        <p class="ref" data-up><b>A-03</b> Details</p>
+        <h2 class="h2" data-up data-delay="60">Five things drawn at 1:5</h2>
+      </div>
+      <p class="head__n" data-up data-delay="110">
+        <span class="fine">Scroll the strip →</span><span class="touch">Swipe the strip →</span>
+      </p>
+    </div>
+
+    <div class="strip" data-strip>
+      <figure class="crop crop--sm">
+        <img src="https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=900&q=80" alt="Low oak bench against a pale plastered wall" loading="lazy" />
+        <span class="crop__m crop__m--tl" aria-hidden="true"></span><span class="crop__m crop__m--tr" aria-hidden="true"></span>
+        <span class="crop__m crop__m--bl" aria-hidden="true"></span><span class="crop__m crop__m--br" aria-hidden="true"></span>
+        <figcaption><b>D-01</b> Bench, solid oak, oiled. Fixed at 420 above FFL.</figcaption>
+      </figure>
+
+      <figure class="crop crop--sm">
+        <img src="https://images.unsplash.com/photo-1601993957728-1e56ab70c5a8?auto=format&fit=crop&w=900&q=80" alt="Pale cast stair rising against a plain wall" loading="lazy" />
+        <span class="crop__m crop__m--tl" aria-hidden="true"></span><span class="crop__m crop__m--tr" aria-hidden="true"></span>
+        <span class="crop__m crop__m--bl" aria-hidden="true"></span><span class="crop__m crop__m--br" aria-hidden="true"></span>
+        <figcaption><b>D-02</b> Stair, in-situ terrazzo. 14 risers at 172.5.</figcaption>
+      </figure>
+
+      <figure class="crop crop--sm">
+        <img src="https://images.unsplash.com/photo-1534094830444-3a1e21f7e3e7?auto=format&fit=crop&w=900&q=80" alt="Junction between a white wall plane and a timber edge" loading="lazy" />
+        <span class="crop__m crop__m--tl" aria-hidden="true"></span><span class="crop__m crop__m--tr" aria-hidden="true"></span>
+        <span class="crop__m crop__m--bl" aria-hidden="true"></span><span class="crop__m crop__m--br" aria-hidden="true"></span>
+        <figcaption><b>D-03</b> Wall junction. 6 mm shadow gap, no architrave.</figcaption>
+      </figure>
+
+      <figure class="crop crop--sm">
+        <img src="https://images.unsplash.com/photo-1538484605253-9594095181f3?auto=format&fit=crop&w=900&q=80" alt="Vertical timber battens forming a screen against concrete" loading="lazy" />
+        <span class="crop__m crop__m--tl" aria-hidden="true"></span><span class="crop__m crop__m--tr" aria-hidden="true"></span>
+        <span class="crop__m crop__m--bl" aria-hidden="true"></span><span class="crop__m crop__m--br" aria-hidden="true"></span>
+        <figcaption><b>D-04</b> Screen, 40 × 40 battens at 70 centres.</figcaption>
+      </figure>
+
+      <figure class="crop crop--sm">
+        <img src="https://images.unsplash.com/photo-1616587607568-f7f651637644?auto=format&fit=crop&w=900&q=80" alt="Soft north light falling across a plain white reveal" loading="lazy" />
+        <span class="crop__m crop__m--tl" aria-hidden="true"></span><span class="crop__m crop__m--tr" aria-hidden="true"></span>
+        <span class="crop__m crop__m--bl" aria-hidden="true"></span><span class="crop__m crop__m--br" aria-hidden="true"></span>
+        <figcaption><b>D-05</b> Reveal, 300 deep. Splayed 4° to catch north light.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       METHOD — sheet register
+       ============================================================ -->
+  <section class="mth" id="method">
+    <div class="head">
+      <p class="ref" data-up><b>A-04</b> Method</p>
+      <h2 class="h2" data-up data-delay="60">The set, in the order it is issued</h2>
+    </div>
+
+    <ol class="steps">
+      <li data-up>
+        <span class="steps__s">A-01</span>
+        <div><h3>Measured survey</h3><p>Laser survey, photographs, a note of every service and every lie the floor plan tells.</p></div>
+        <span class="steps__w">2 weeks</span>
+      </li>
+      <li data-up data-delay="50">
+        <span class="steps__s">A-02</span>
+        <div><h3>Concept plan</h3><p>Two or three plan options at 1:50, drawn far enough to be costed and argued about.</p></div>
+        <span class="steps__w">4 weeks</span>
+      </li>
+      <li data-up data-delay="100">
+        <span class="steps__s">A-03</span>
+        <div><h3>Developed design</h3><p>One plan taken forward. Elevations, RCP, a first finishes schedule and a budget you can trust.</p></div>
+        <span class="steps__w">6 weeks</span>
+      </li>
+      <li data-up data-delay="150">
+        <span class="steps__s">A-04</span>
+        <div><h3>Construction set</h3><p>Everything at 1:20, joinery at 1:5, every circuit named and every junction resolved.</p></div>
+        <span class="steps__w">8 weeks</span>
+      </li>
+      <li data-up data-delay="200">
+        <span class="steps__s">A-05</span>
+        <div><h3>Tender</h3><p>Three contractors, one comparable price, one negotiation we sit in on.</p></div>
+        <span class="steps__w">4 weeks</span>
+      </li>
+      <li data-up data-delay="250">
+        <span class="steps__s">A-06</span>
+        <div><h3>Site &amp; handover</h3><p>Fortnightly visits, revision drawings as needed, snagging against the set rather than against a mood.</p></div>
+        <span class="steps__w">Duration</span>
+      </li>
+    </ol>
+
+    <blockquote class="note" data-up>
+      <p>“We have worked with a lot of designers. DATUM is the only one that sent a
+      set we could price without a single request for information.”</p>
+      <footer>Mikkel Hald — Hald &amp; Sønner, contractor</footer>
+    </blockquote>
+  </section>
+
+  <!-- ============================================================
+       CONTACT — laid out as a title block
+       ============================================================ -->
+  <section class="con" id="contact">
+    <div class="con__side">
+      <p class="ref ref--on" data-up><b>A-05</b> Enquiry</p>
+      <h2 class="con__h" data-up data-delay="60">Send us a plan and a date.</h2>
+      <p class="con__p" data-up data-delay="110">
+        Even a rough sketch on squared paper is enough to start. Tell us the address,
+        roughly what you want to spend and when you would like to be living in it.
+        We answer every enquiry within five working days, including the ones we turn down.
+      </p>
+      <dl class="con__meta" data-up data-delay="160">
+        <div><dt>Studio</dt><dd>Refshalevej 147<br />1432 København K</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:tegnestue@datum.dk">tegnestue@datum.dk</a></dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:+4533117420">+45 33 11 74 20</a></dd></div>
+      </dl>
+    </div>
+
+    <form class="blk" data-form novalidate>
+      <div class="blk__c">
+        <label for="f-name">Name <s aria-hidden="true">*</s></label>
+        <input id="f-name" name="name" type="text" placeholder="Astrid Lund" required />
+      </div>
+      <div class="blk__c">
+        <label for="f-mail">Email <s aria-hidden="true">*</s></label>
+        <input id="f-mail" name="email" type="email" placeholder="you@address.dk" required />
+      </div>
+      <div class="blk__c">
+        <label for="f-type">Type <s aria-hidden="true">*</s></label>
+        <select id="f-type" name="type" required>
+          <option value="" selected disabled>Select</option>
+          <option>Residential</option>
+          <option>Workplace</option>
+          <option>Cultural</option>
+          <option>Retail</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="blk__c">
+        <label for="f-area">Area</label>
+        <input id="f-area" name="area" type="text" placeholder="164 m²" />
+      </div>
+      <div class="blk__c">
+        <label for="f-start">Start</label>
+        <input id="f-start" name="start" type="text" placeholder="Spring 2027" />
+      </div>
+      <div class="blk__c">
+        <label for="f-budget">Budget <s aria-hidden="true">*</s></label>
+        <select id="f-budget" name="budget" required>
+          <option value="" selected disabled>Select</option>
+          <option>Under 1 mio. DKK</option>
+          <option>1 – 3 mio. DKK</option>
+          <option>3 – 8 mio. DKK</option>
+          <option>Over 8 mio. DKK</option>
+          <option>Not decided</option>
+        </select>
+      </div>
+      <div class="blk__c blk__c--wide">
+        <label for="f-note">Notes</label>
+        <textarea id="f-note" name="note" rows="3" placeholder="Fourth-floor flat on Sortedam Dossering, 140 m², we have the original 1903 drawings…"></textarea>
+      </div>
+      <div class="blk__c blk__c--go">
+        <button class="btn btn--blue btn--lg" type="submit">Issue enquiry</button>
+        <p data-form-note>Fields marked <s aria-hidden="true">*</s> are required.</p>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER — drawing title block
+     ============================================================ -->
+<footer class="tb">
+  <div class="tb__mark">
+    <span class="sig sig--lg"><span class="sig__x" aria-hidden="true"></span>DATUM</span>
+    <span>Interior architecture · København</span>
+  </div>
+
+  <div class="tb__grid">
+    <div><span>Practice</span><b>DATUM Tegnestue ApS</b></div>
+    <div><span>CVR</span><b>39 84 11 02</b></div>
+    <div><span>Studio</span><b>Refshalevej 147, 1432 K</b></div>
+    <div><span>Drawn by</span><b>AL / JN / MB</b></div>
+    <div><span>Checked</span><b>AL</b></div>
+    <div><span>Scale</span><b>1 : 20 @ A1</b></div>
+    <div><span>Date</span><b>2026 · 08</b></div>
+    <div><span>Sheet</span><b>A-00</b></div>
+    <div class="tb__rev"><span>Rev</span><b>C</b></div>
+  </div>
+
+  <div class="tb__links">
+    <div><span>Index</span><a href="#index">Projects</a><a href="#details">Details</a><a href="#method">Method</a></div>
+    <div><span>Contact</span><a href="mailto:tegnestue@datum.dk">tegnestue@datum.dk</a><a href="tel:+4533117420">+45 33 11 74 20</a></div>
+    <div><span>Elsewhere</span><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Divisare</a></div>
+  </div>
+
+  <div class="tb__base">
+    <span>© 2026 DATUM Tegnestue ApS</span>
+    <span>Do not scale from this drawing.</span>
+    <a href="#page">Return to A-00 ↑</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

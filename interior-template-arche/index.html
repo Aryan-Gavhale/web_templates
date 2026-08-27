@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ARCHÉ — Interior Architecture Studio</title>
+<meta name="description" content="ARCHÉ is an interior architecture studio shaping residential, hospitality and cultural interiors with restraint, material honesty and light." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<!-- ============ TEXTURE + CURSOR + PROGRESS ============ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="scrollbar" aria-hidden="true"><i data-progress></i></div>
+
+<div class="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"><span class="cursor__label">View</span></span>
+</div>
+
+<!-- ============ PRELOADER ============ -->
+<div class="loader" data-loader>
+  <div class="loader__grid">
+    <div class="loader__mark">
+      <span class="loader__letter">A</span><span class="loader__letter">R</span><span class="loader__letter">C</span><span class="loader__letter">H</span><span class="loader__letter">É</span>
+    </div>
+    <p class="loader__sub">Interior Architecture — Est. 2009</p>
+    <div class="loader__meter"><i data-loader-bar></i></div>
+    <div class="loader__count"><span data-loader-num>00</span></div>
+  </div>
+  <div class="loader__panels" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" data-nav>
+  <a class="nav__brand" href="#top" data-hover>
+    <span class="nav__mark">ARCHÉ</span>
+    <span class="nav__brandsub">Interior Architecture</span>
+  </a>
+
+  <nav class="nav__links">
+    <a href="#studio" data-hover><span>Studio</span></a>
+    <a href="#work" data-hover><span>Work</span></a>
+    <a href="#process" data-hover><span>Process</span></a>
+    <a href="#materials" data-hover><span>Materials</span></a>
+    <a href="#journal" data-hover><span>Journal</span></a>
+  </nav>
+
+  <div class="nav__right">
+    <a class="nav__cta" href="#contact" data-hover><span>Start a project</span></a>
+    <button class="burger" data-menu-open aria-label="Open menu">
+      <i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<!-- ============ FULLSCREEN MENU ============ -->
+<div class="menu" data-menu>
+  <div class="menu__bg"><i></i><i></i><i></i></div>
+  <div class="menu__inner">
+    <button class="menu__close" data-menu-close aria-label="Close menu"><span></span><span></span></button>
+
+    <div class="menu__col menu__col--nav">
+      <span class="eyebrow">Navigate</span>
+      <ul class="menu__list">
+        <li><a href="#studio" data-menu-link data-img="https://images.unsplash.com/photo-1617326021886-53d6be1d7154?auto=format&fit=crop&w=900&q=80"><em>01</em><span>Studio</span></a></li>
+        <li><a href="#work" data-menu-link data-img="https://images.unsplash.com/photo-1599696848652-f0ff23bc911f?auto=format&fit=crop&w=900&q=80"><em>02</em><span>Work</span></a></li>
+        <li><a href="#process" data-menu-link data-img="https://images.unsplash.com/photo-1758974782657-e5ada4b01c3c?auto=format&fit=crop&w=900&q=80"><em>03</em><span>Process</span></a></li>
+        <li><a href="#materials" data-menu-link data-img="https://images.unsplash.com/photo-1501619438411-47314d5a0580?auto=format&fit=crop&w=900&q=80"><em>04</em><span>Materials</span></a></li>
+        <li><a href="#journal" data-menu-link data-img="https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=900&q=80"><em>05</em><span>Journal</span></a></li>
+        <li><a href="#contact" data-menu-link data-img="https://images.unsplash.com/photo-1668867159919-6e4e7e503239?auto=format&fit=crop&w=900&q=80"><em>06</em><span>Contact</span></a></li>
+      </ul>
+    </div>
+
+    <div class="menu__col menu__col--aside">
+      <div class="menu__preview"><img data-menu-preview src="https://images.unsplash.com/photo-1617326021886-53d6be1d7154?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+      <div class="menu__meta">
+        <div>
+          <span class="eyebrow">Studio</span>
+          <p>Via Solferino 14<br />20121 Milano, IT</p>
+        </div>
+        <div>
+          <span class="eyebrow">Enquiries</span>
+          <p><a href="mailto:studio@arche.design" data-hover>studio@arche.design</a><br />+39 02 4711 0980</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__media" data-parallax="0.16">
+      <img src="https://images.unsplash.com/photo-1759238136818-7b00ec9e782a?auto=format&fit=crop&w=2000&q=80" alt="Minimal living room with plaster walls and afternoon light" data-hero-img />
+      <span class="hero__veil"></span>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow" data-reveal="fade">
+        <i></i><span>Milano · Copenhagen · Kyoto</span>
+      </div>
+
+      <h1 class="hero__title" data-split>
+        Interiors composed of<br /><em>light, stone</em> and the<br />quiet between them.
+      </h1>
+
+      <div class="hero__foot">
+        <p class="hero__lede" data-split data-delay="500">
+          ARCHÉ is an interior architecture studio designing residences, hotels and
+          cultural spaces where every joint, shadow and surface is deliberate.
+        </p>
+        <div class="hero__actions" data-reveal="fade" data-delay="700">
+          <a class="btn" href="#work" data-magnetic data-hover>
+            <span class="btn__label"><i>Selected work</i><i>Selected work</i></span>
+            <span class="btn__arrow">↗</span>
+          </a>
+          <a class="link" href="#studio" data-hover><span>The studio</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__rail">
+      <div class="hero__stat" data-reveal="fade" data-delay="800"><em>168</em><span>Projects realised</span></div>
+      <div class="hero__stat" data-reveal="fade" data-delay="880"><em>17</em><span>Years of practice</span></div>
+      <div class="hero__stat" data-reveal="fade" data-delay="960"><em>09</em><span>International awards</span></div>
+    </div>
+
+    <a class="hero__scroll" href="#studio" data-hover>
+      <span>Scroll</span>
+      <i></i>
+    </a>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Residential</span><i>✳</i><span>Hospitality</span><i>✳</i><span>Cultural</span><i>✳</i><span>Adaptive Reuse</span><i>✳</i><span>Furniture</span><i>✳</i><span>Art Direction</span><i>✳</i>
+      <span>Residential</span><i>✳</i><span>Hospitality</span><i>✳</i><span>Cultural</span><i>✳</i><span>Adaptive Reuse</span><i>✳</i><span>Furniture</span><i>✳</i><span>Art Direction</span><i>✳</i>
+    </div>
+  </div>
+
+  <!-- ============ STUDIO / MANIFESTO ============ -->
+  <section class="studio" id="studio">
+    <div class="studio__head">
+      <span class="eyebrow" data-reveal="fade">(01) — The Studio</span>
+    </div>
+
+    <div class="studio__body">
+      <div class="studio__text">
+        <p class="lit" data-lit>
+          We begin with the room as it is: its light, its proportion, its history.
+          Nothing is added until it earns its place. What remains is an interior
+          that feels inevitable — warm, exact, and made to age beautifully.
+        </p>
+
+        <div class="studio__notes">
+          <div class="note" data-reveal="up">
+            <span class="note__idx">a.</span>
+            <h3>Material honesty</h3>
+            <p>Lime plaster, unlacquered brass, quarried travertine and solid oak — surfaces that record time rather than resist it.</p>
+          </div>
+          <div class="note" data-reveal="up" data-delay="120">
+            <span class="note__idx">b.</span>
+            <h3>Drawn to the millimetre</h3>
+            <p>Every reveal, shadow gap and joinery detail is documented in-house and built with makers we have worked with for a decade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio__media">
+        <figure class="media media--tall" data-reveal="mask">
+          <img src="https://images.unsplash.com/photo-1617326021886-53d6be1d7154?auto=format&fit=crop&w=1200&q=80" alt="Curved daybed beneath a round window" data-parallax="0.07" data-parallax-scale="1.16" />
+        </figure>
+        <figure class="media media--small" data-reveal="mask" data-delay="140">
+          <img src="https://images.unsplash.com/photo-1622527561244-74e49a3878a1?auto=format&fit=crop&w=900&q=80" alt="Detail of timber joinery" data-parallax="0.12" data-parallax-scale="1.2" />
+          <figcaption>Casa Verre — detail of the oak spine wall</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SELECTED WORK (PINNED HORIZONTAL) ============ -->
+  <section class="works" id="work" data-works>
+    <div class="works__pin">
+      <div class="works__bar">
+        <span class="eyebrow">(02) — Selected Work</span>
+        <span class="works__hint">Scroll to explore</span>
+      </div>
+
+      <div class="works__viewport">
+        <div class="works__track" data-works-track>
+
+          <article class="works__intro">
+            <h2 class="works__title">Six<br /><em>rooms</em><br />we made.</h2>
+            <p>A decade of commissions across Europe and Japan. Each one begins with a single, stubborn idea.</p>
+          </article>
+
+          <a class="proj" href="#" data-hover="View" data-proj>
+            <div class="proj__media"><img src="https://images.unsplash.com/photo-1599696848652-f0ff23bc911f?auto=format&fit=crop&w=1200&q=80" alt="Casa Verre" /></div>
+            <div class="proj__meta">
+              <span class="proj__idx">01</span>
+              <h3>Casa Verre</h3>
+              <p>Private residence — Como, IT · 2024</p>
+            </div>
+          </a>
+
+          <a class="proj proj--wide" href="#" data-hover="View" data-proj>
+            <div class="proj__media"><img src="https://images.unsplash.com/photo-1667992404241-0c67b7cb495c?auto=format&fit=crop&w=1600&q=80" alt="Halcyon House" /></div>
+            <div class="proj__meta">
+              <span class="proj__idx">02</span>
+              <h3>Halcyon House</h3>
+              <p>Boutique hotel — Lisbon, PT · 2023</p>
+            </div>
+          </a>
+
+          <a class="proj" href="#" data-hover="View" data-proj>
+            <div class="proj__media"><img src="https://images.unsplash.com/photo-1668867159919-6e4e7e503239?auto=format&fit=crop&w=1200&q=80" alt="The Linden" /></div>
+            <div class="proj__meta">
+              <span class="proj__idx">03</span>
+              <h3>The Linden</h3>
+              <p>Penthouse — Copenhagen, DK · 2023</p>
+            </div>
+          </a>
+
+          <a class="proj proj--tall" href="#" data-hover="View" data-proj>
+            <div class="proj__media"><img src="https://images.unsplash.com/photo-1601993957728-1e56ab70c5a8?auto=format&fit=crop&w=1200&q=80" alt="Maison Ora" /></div>
+            <div class="proj__meta">
+              <span class="proj__idx">04</span>
+              <h3>Maison Ora</h3>
+              <p>Family home — Antwerp, BE · 2022</p>
+            </div>
+          </a>
+
+          <a class="proj proj--wide" href="#" data-hover="View" data-proj>
+            <div class="proj__media"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80" alt="Kestrel Loft" /></div>
+            <div class="proj__meta">
+              <span class="proj__idx">05</span>
+              <h3>Kestrel Loft</h3>
+              <p>Warehouse conversion — Milano, IT · 2022</p>
+            </div>
+          </a>
+
+          <a class="proj" href="#" data-hover="View" data-proj>
+            <div class="proj__media"><img src="https://images.unsplash.com/photo-1500004621732-74cd4ad4d53e?auto=format&fit=crop&w=1200&q=80" alt="Atelier Sud" /></div>
+            <div class="proj__meta">
+              <span class="proj__idx">06</span>
+              <h3>Atelier Sud</h3>
+              <p>Gallery &amp; studio — Kyoto, JP · 2021</p>
+            </div>
+          </a>
+
+          <div class="works__end">
+            <a class="btn btn--dark" href="#contact" data-magnetic data-hover>
+              <span class="btn__label"><i>All projects</i><i>All projects</i></span>
+              <span class="btn__arrow">↗</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="works__progress"><i data-works-bar></i></div>
+    </div>
+  </section>
+
+  <!-- ============ NUMBERS ============ -->
+  <section class="figures">
+    <div class="figures__row">
+      <div class="fig" data-reveal="up">
+        <em data-count="168">0</em>
+        <span>Interiors delivered</span>
+      </div>
+      <div class="fig" data-reveal="up" data-delay="100">
+        <em data-count="42">0</em>
+        <span>Cities worked in</span>
+      </div>
+      <div class="fig" data-reveal="up" data-delay="200">
+        <em data-count="94">0</em><i>%</i>
+        <span>Clients who return</span>
+      </div>
+      <div class="fig" data-reveal="up" data-delay="300">
+        <em data-count="17">0</em>
+        <span>Years of practice</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process" id="process">
+    <div class="process__aside">
+      <span class="eyebrow" data-reveal="fade">(03) — Process</span>
+      <h2 class="h-display" data-split>Four movements,<br /><em>one room.</em></h2>
+      <div class="process__ticker">
+        <span data-step-num>01</span>
+        <span class="process__of">/ 04</span>
+      </div>
+    </div>
+
+    <ol class="process__steps">
+      <li class="step" data-step>
+        <div class="step__no">01</div>
+        <div class="step__body">
+          <h3>Listening</h3>
+          <p>We spend a full day in the space with you — how you wake, where you read, which wall the afternoon sun claims. The brief is written afterwards, never before.</p>
+          <ul class="step__tags"><li>Site survey</li><li>Lifestyle study</li><li>Light mapping</li></ul>
+        </div>
+        <div class="step__media"><img src="https://images.unsplash.com/photo-1625585598750-3535fe40efb3?auto=format&fit=crop&w=900&q=80" alt="Listening" /></div>
+      </li>
+      <li class="step" data-step>
+        <div class="step__no">02</div>
+        <div class="step__body">
+          <h3>Composition</h3>
+          <p>Plans, sections and hand elevations. We model the room in physical card at 1:20 before a single render exists, because proportion is felt, not previewed.</p>
+          <ul class="step__tags"><li>Spatial planning</li><li>1:20 models</li><li>Material board</li></ul>
+        </div>
+        <div class="step__media"><img src="https://images.unsplash.com/photo-1532204182725-d0f67855ac87?auto=format&fit=crop&w=900&q=80" alt="Composition" /></div>
+      </li>
+      <li class="step" data-step>
+        <div class="step__no">03</div>
+        <div class="step__body">
+          <h3>Making</h3>
+          <p>Joinery drawings go directly to our workshops in Brianza and Jutland. We visit the bench, approve the grain, and sign off each finish in daylight.</p>
+          <ul class="step__tags"><li>Bespoke joinery</li><li>Site direction</li><li>Finish approval</li></ul>
+        </div>
+        <div class="step__media"><img src="https://images.unsplash.com/photo-1758974782657-e5ada4b01c3c?auto=format&fit=crop&w=900&q=80" alt="Making" /></div>
+      </li>
+      <li class="step" data-step>
+        <div class="step__no">04</div>
+        <div class="step__body">
+          <h3>Settling</h3>
+          <p>We style, photograph and then leave. Twelve months later we return to see how the space has worn — and adjust what the years have taught us.</p>
+          <ul class="step__tags"><li>Styling</li><li>Handover book</li><li>One-year review</li></ul>
+        </div>
+        <div class="step__media"><img src="https://images.unsplash.com/photo-1705321963943-de94bb3f0dd3?auto=format&fit=crop&w=900&q=80" alt="Settling" /></div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ MATERIALS ============ -->
+  <section class="materials" id="materials">
+    <div class="materials__head">
+      <span class="eyebrow" data-reveal="fade">(04) — Material Library</span>
+      <h2 class="h-display" data-split>A palette you can<br /><em>touch with your eyes.</em></h2>
+    </div>
+
+    <div class="materials__body">
+      <ul class="swatches" data-swatches>
+        <li class="swatch is-active" data-swatch
+            data-img="https://images.unsplash.com/photo-1501619438411-47314d5a0580?auto=format&fit=crop&w=1400&q=80"
+            data-name="Rift-sawn Oak" data-origin="Jutland, DK"
+            data-desc="Brushed and soap-finished. Left to silver naturally at the window line."
+            style="--sw:#B99368">
+          <span class="swatch__chip"></span>
+          <span class="swatch__name">Rift-sawn Oak</span>
+          <span class="swatch__no">01</span>
+        </li>
+        <li class="swatch" data-swatch
+            data-img="https://images.unsplash.com/photo-1521483756775-c37af386fce9?auto=format&fit=crop&w=1400&q=80"
+            data-name="Roman Travertine" data-origin="Tivoli, IT"
+            data-desc="Vein-cut, unfilled. The open pores hold shadow the way old buildings do."
+            style="--sw:#D8CBB6">
+          <span class="swatch__chip"></span>
+          <span class="swatch__name">Roman Travertine</span>
+          <span class="swatch__no">02</span>
+        </li>
+        <li class="swatch" data-swatch
+            data-img="https://images.unsplash.com/photo-1667312939978-64cf31718a6e?auto=format&fit=crop&w=1400&q=80"
+            data-name="Unlacquered Brass" data-origin="Brescia, IT"
+            data-desc="Hand-polished, then abandoned to patina. Every fingerprint becomes part of it."
+            style="--sw:#A67C3D">
+          <span class="swatch__chip"></span>
+          <span class="swatch__name">Unlacquered Brass</span>
+          <span class="swatch__no">03</span>
+        </li>
+        <li class="swatch" data-swatch
+            data-img="https://images.unsplash.com/photo-1583329550487-0fa300a4cd1a?auto=format&fit=crop&w=1400&q=80"
+            data-name="Lime Plaster" data-origin="Marrakech, MA"
+            data-desc="Seven coats, burnished with stone. It breathes, and it softens every edge of light."
+            style="--sw:#E4DACB">
+          <span class="swatch__chip"></span>
+          <span class="swatch__name">Lime Plaster</span>
+          <span class="swatch__no">04</span>
+        </li>
+        <li class="swatch" data-swatch
+            data-img="https://images.unsplash.com/photo-1612196808827-9ff25cb6137a?auto=format&fit=crop&w=1400&q=80"
+            data-name="Belgian Linen" data-origin="Kortrijk, BE"
+            data-desc="Undyed, heavy weight. Hung long enough to pool a little on the floor."
+            style="--sw:#BFB6A4">
+          <span class="swatch__chip"></span>
+          <span class="swatch__name">Belgian Linen</span>
+          <span class="swatch__no">05</span>
+        </li>
+      </ul>
+
+      <div class="materials__note" data-reveal="fade">
+        <p>Every finish is sampled at full size and viewed in the room's own light — morning, four o'clock and lamplight — before a single order is placed.</p>
+        <a class="link" href="#" data-hover><span>Material index ↗</span></a>
+      </div>
+
+      <div class="materials__stage">
+        <div class="materials__frame">
+          <img data-swatch-img src="https://images.unsplash.com/photo-1501619438411-47314d5a0580?auto=format&fit=crop&w=1400&q=80" alt="Material sample" />
+        </div>
+        <div class="materials__caption">
+          <h3 data-swatch-name>Rift-sawn Oak</h3>
+          <span class="materials__origin" data-swatch-origin>Jutland, DK</span>
+          <p data-swatch-desc>Brushed and soap-finished. Left to silver naturally at the window line.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL ============ -->
+  <section class="voices">
+    <span class="eyebrow" data-reveal="fade">(05) — In Their Words</span>
+    <div class="voices__stage" data-voices>
+      <blockquote class="voice is-active" data-voice>
+        <p>“They removed more than they added, and somehow the apartment doubled in size. Two years on, not one surface has stopped pleasing me.”</p>
+        <footer><em>Giulia Ferrante</em><span>Casa Verre — Como</span></footer>
+      </blockquote>
+      <blockquote class="voice" data-voice>
+        <p>“We briefed nine studios. ARCHÉ was the only one that asked about the light before asking about the budget. It shows in every room.”</p>
+        <footer><em>Marcus Lindqvist</em><span>Halcyon House — Lisbon</span></footer>
+      </blockquote>
+      <blockquote class="voice" data-voice>
+        <p>“Guests keep asking who designed the lobby. The brass has aged exactly as they promised it would, which I found faintly magical.”</p>
+        <footer><em>Aiko Nishimura</em><span>Atelier Sud — Kyoto</span></footer>
+      </blockquote>
+    </div>
+    <div class="voices__dots" data-voice-dots>
+      <button class="is-active" aria-label="Testimonial 1"><i></i></button>
+      <button aria-label="Testimonial 2"><i></i></button>
+      <button aria-label="Testimonial 3"><i></i></button>
+    </div>
+  </section>
+
+  <!-- ============ RECOGNITION ============ -->
+  <section class="press" data-press>
+    <div class="press__head">
+      <span class="eyebrow" data-reveal="fade">(06) — Recognition</span>
+    </div>
+    <ul class="press__list">
+      <li class="press__row" data-press-row data-img="https://images.unsplash.com/photo-1599696848652-f0ff23bc911f?auto=format&fit=crop&w=700&q=80" data-hover>
+        <span class="press__year">2025</span>
+        <span class="press__name">Dezeen Awards — Interior of the Year</span>
+        <span class="press__proj">Casa Verre</span>
+        <span class="press__arrow">↗</span>
+      </li>
+      <li class="press__row" data-press-row data-img="https://images.unsplash.com/photo-1759238136818-7b00ec9e782a?auto=format&fit=crop&w=700&q=80" data-hover>
+        <span class="press__year">2024</span>
+        <span class="press__name">AD100 Europe — Studio to Watch</span>
+        <span class="press__proj">Practice</span>
+        <span class="press__arrow">↗</span>
+      </li>
+      <li class="press__row" data-press-row data-img="https://images.unsplash.com/photo-1667992404241-0c67b7cb495c?auto=format&fit=crop&w=700&q=80" data-hover>
+        <span class="press__year">2024</span>
+        <span class="press__name">Wallpaper* Design Awards — Best Retreat</span>
+        <span class="press__proj">Halcyon House</span>
+        <span class="press__arrow">↗</span>
+      </li>
+      <li class="press__row" data-press-row data-img="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" data-hover>
+        <span class="press__year">2022</span>
+        <span class="press__name">Compasso d'Oro — Honourable Mention</span>
+        <span class="press__proj">Kestrel Loft</span>
+        <span class="press__arrow">↗</span>
+      </li>
+      <li class="press__row" data-press-row data-img="https://images.unsplash.com/photo-1500004621732-74cd4ad4d53e?auto=format&fit=crop&w=700&q=80" data-hover>
+        <span class="press__year">2021</span>
+        <span class="press__name">Frame Awards — Small Space of the Year</span>
+        <span class="press__proj">Atelier Sud</span>
+        <span class="press__arrow">↗</span>
+      </li>
+    </ul>
+    <div class="press__float" data-press-float>
+      <img data-press-img src="https://images.unsplash.com/photo-1599696848652-f0ff23bc911f?auto=format&fit=crop&w=700&q=80" alt="" />
+    </div>
+  </section>
+
+  <!-- ============ JOURNAL ============ -->
+  <section class="journal" id="journal">
+    <div class="journal__head">
+      <span class="eyebrow" data-reveal="fade">(07) — Journal</span>
+      <a class="link" href="#" data-hover><span>All entries</span></a>
+    </div>
+    <div class="journal__grid">
+      <a class="entry" href="#" data-reveal="up" data-hover="Read">
+        <figure class="entry__media"><img src="https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=900&q=80" alt="" /></figure>
+        <span class="entry__meta">Material · 6 min</span>
+        <h3>Why we stopped lacquering brass</h3>
+      </a>
+      <a class="entry" href="#" data-reveal="up" data-delay="120" data-hover="Read">
+        <figure class="entry__media"><img src="https://images.unsplash.com/photo-1609081144289-eacc3108cd03?auto=format&fit=crop&w=900&q=80" alt="" /></figure>
+        <span class="entry__meta">Light · 9 min</span>
+        <h3>Designing a room for four o'clock</h3>
+      </a>
+      <a class="entry" href="#" data-reveal="up" data-delay="240" data-hover="Read">
+        <figure class="entry__media"><img src="https://images.unsplash.com/photo-1724582586529-62622e50c0b3?auto=format&fit=crop&w=900&q=80" alt="" /></figure>
+        <span class="entry__meta">Practice · 4 min</span>
+        <h3>The case for the 1:20 card model</h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <span class="eyebrow" data-reveal="fade">(08) — Commissions</span>
+      <h2 class="contact__title" data-split>
+        Tell us about<br />the room you <em>keep</em><br />thinking about.
+      </h2>
+
+      <div class="contact__row">
+        <p data-reveal="fade">We take on twelve commissions a year. Enquiries for 2027 are open from September.</p>
+        <a class="bigbtn" href="mailto:studio@arche.design" data-magnetic data-hover>
+          <span class="bigbtn__ring"></span>
+          <span class="bigbtn__text">Start<br />a project</span>
+        </a>
+      </div>
+
+      <div class="contact__grid">
+        <div><span class="eyebrow">Email</span><a href="mailto:studio@arche.design" data-hover>studio@arche.design</a></div>
+        <div><span class="eyebrow">Telephone</span><a href="tel:+390247110980" data-hover>+39 02 4711 0980</a></div>
+        <div><span class="eyebrow">Studio</span><p>Via Solferino 14, Milano</p></div>
+        <div><span class="eyebrow">Social</span><span class="contact__social"><a href="#" data-hover>Instagram</a><a href="#" data-hover>Pinterest</a></span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot__mark" data-reveal="fade">
+    <span>A</span><span>R</span><span>C</span><span>H</span><span>É</span>
+  </div>
+  <div class="foot__bar">
+    <span>© 2026 ARCHÉ Interior Architecture</span>
+    <span class="foot__clock">Milano — <b data-clock>--:--:--</b></span>
+    <a href="#top" data-hover><span>Back to top ↑</span></a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#F5EEE2" />
+<title>PALOMA — Dermatología, Roma Norte, CDMX</title>
+<meta name="description" content="PALOMA is a dermatology practice in Roma Norte, Mexico City. Medical-first care built around your phototype, under Dra. Renata Villalba." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<!-- =========================================================
+     CURTAIN — three colour planes leave the stage in sequence
+     ========================================================= -->
+<div class="curtain" data-curtain aria-hidden="true">
+  <i style="--c:#E86A80"></i>
+  <i style="--c:#EBA83F"></i>
+  <i style="--c:#A192D6"></i>
+</div>
+
+<!-- =========================================================
+     WORDMARK + FLOATING NAV
+     ========================================================= -->
+<a class="mark" href="#top">
+  <span class="mark__o" aria-hidden="true"></span>
+  <span>Paloma</span>
+</a>
+
+<nav class="pill" data-pill aria-label="Sections">
+  <a href="#phototype" data-navlink>Phototype</a>
+  <a href="#care"      data-navlink>Care</a>
+  <a href="#method"    data-navlink>Method</a>
+  <a href="#practice"  data-navlink>Practice</a>
+  <a href="#book" class="pill__cta">Book</a>
+</nav>
+
+<button class="burger" data-menu-open aria-label="Open menu" aria-expanded="false">
+  <i></i><i></i>
+</button>
+
+<div class="drawer" data-menu aria-hidden="true">
+  <button class="burger burger--x" data-menu-close aria-label="Close menu"><i></i><i></i></button>
+  <nav class="drawer__nav">
+    <a href="#phototype" data-menu-link><em>Uno</em>Phototype</a>
+    <a href="#care"      data-menu-link><em>Dos</em>Care</a>
+    <a href="#method"    data-menu-link><em>Tres</em>Method</a>
+    <a href="#practice"  data-menu-link><em>Cuatro</em>Practice</a>
+    <a href="#voices"    data-menu-link><em>Cinco</em>Voices</a>
+    <a href="#asks"      data-menu-link><em>Seis</em>Questions</a>
+    <a href="#book"      data-menu-link><em>Siete</em>Book</a>
+  </nav>
+  <div class="drawer__foot">
+    <p>Calle Colima 214<br />Roma Norte, CDMX</p>
+    <p><a href="tel:+525541726080">+52 55 4172 6080</a><br /><a href="mailto:hola@paloma.mx">hola@paloma.mx</a></p>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- =========================================================
+       HERO — room: cal
+       ========================================================= -->
+  <section class="room hero" data-room="cal">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="kicker">Roma Norte · Ciudad de México</p>
+
+        <h1 class="hero__h1">
+          <span class="ln"><b>Dermatology</b></span>
+          <span class="ln"><b>with the</b></span>
+          <span class="ln"><b>colour left in.</b></span>
+        </h1>
+
+        <p class="lede">
+          A medical dermatology practice built around the fact that skin is not
+          one colour. Six phototypes, six protocols, one dermatologist — and no
+          beige waiting room.
+        </p>
+
+        <div class="acts">
+          <a class="btn" href="#book">Book a consult</a>
+          <a class="btn btn--ghost" href="#phototype">Find your phototype</a>
+        </div>
+
+        <ul class="hero__marks">
+          <li>Cédula 8471203</li>
+          <li>Biopsy in 48 h</li>
+          <li>Se habla español &amp; English</li>
+        </ul>
+      </div>
+
+      <div class="hero__art">
+        <span class="disc disc--ocre" aria-hidden="true"></span>
+        <div class="hero__photo">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&crop=faces&w=1000&h=1000&q=80"
+               alt="A patient at the Paloma consulting room" />
+        </div>
+        <span class="disc disc--sm" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       NUMBERS — room: rosa
+       ========================================================= -->
+  <section class="room band" data-room="rosa">
+    <div class="wrap band__grid">
+      <div class="fig u"><strong data-count="9">0</strong><span>years in Roma Norte</span></div>
+      <div class="fig u" style="--d:.07s"><strong data-count="6">0</strong><span>phototypes, a protocol for each</span></div>
+      <div class="fig u" style="--d:.14s"><strong data-count="48">0</strong><em>h</em><span>biopsy turnaround</span></div>
+      <div class="fig u" style="--d:.21s"><strong data-count="1">0</strong><span>dermatologist, every visit</span></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       UNO — PHOTOTYPE — room: cal
+       ========================================================= -->
+  <section class="room block" id="phototype" data-room="cal">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Uno · Tu fototipo</p>
+        <h2 class="h2">Skin doesn't come<br />in one setting.</h2>
+        <p class="head__note">
+          Almost everything in dermatology — laser choice, pigment risk, how a
+          scar heals, how often you should be screened — turns on your Fitzpatrick
+          phototype. Pick yours. The advice changes.
+        </p>
+      </header>
+
+      <div class="tone" data-tone>
+        <div class="tone__scale" role="tablist" aria-label="Fitzpatrick phototype">
+          <button class="chip" role="tab" aria-selected="true"  style="--sw:#F4DFD1" data-i="0"><em>I</em></button>
+          <button class="chip" role="tab" aria-selected="false" style="--sw:#EFD0BA" data-i="1"><em>II</em></button>
+          <button class="chip" role="tab" aria-selected="false" style="--sw:#E0B492" data-i="2"><em>III</em></button>
+          <button class="chip" role="tab" aria-selected="false" style="--sw:#C08E68" data-i="3"><em>IV</em></button>
+          <button class="chip" role="tab" aria-selected="false" style="--sw:#8D5B3C" data-i="4"><em>V</em></button>
+          <button class="chip" role="tab" aria-selected="false" style="--sw:#5A3728" data-i="5"><em>VI</em></button>
+        </div>
+
+        <div class="tone__body">
+          <div class="tone__plate" data-tone-plate>
+            <span class="tone__roman" data-tone-roman>I</span>
+          </div>
+
+          <div class="tone__read" role="tabpanel" aria-live="polite">
+            <p class="kicker" data-tone-label>Phototype I</p>
+            <h3 class="h3" data-tone-title>Always burns, never tans</h3>
+            <p class="tone__lead" data-tone-lead>
+              The highest skin-cancer risk of the six, and the lowest risk of
+              pigment trouble after a procedure.
+            </p>
+            <dl class="tone__facts">
+              <div><dt>Sun</dt><dd data-tone-sun>SPF 50 daily, reapplied. Burns in under 20 minutes at this altitude.</dd></div>
+              <div><dt>Lasers</dt><dd data-tone-laser>Nearly the full bench is available, including ablative resurfacing.</dd></div>
+              <div><dt>Pigment</dt><dd data-tone-pig>Post-inflammatory hyperpigmentation is uncommon. Redness lingers instead.</dd></div>
+              <div><dt>Screening</dt><dd data-tone-screen>Full-body mole check every 12 months from age 25.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <p class="fine">
+        Phototype is a starting point, not a diagnosis. It is confirmed in person —
+        two people who tick the same box can still need different settings.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       DOS — CARE — stacked colour slabs
+       ========================================================= -->
+  <section class="room block" id="care" data-room="cal">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Dos · Lo que hacemos</p>
+        <h2 class="h2">Five things,<br />done properly.</h2>
+        <p class="head__note">
+          A short list on purpose. Everything here is delivered by the
+          dermatologist, priced up front, and reviewed at a fixed date.
+        </p>
+      </header>
+    </div>
+
+    <div class="stack" data-stack>
+      <article class="slab" style="--i:0;--slab:#E86A80;--on:#241110">
+        <div class="wrap slab__grid">
+          <p class="slab__no">01</p>
+          <div class="slab__main">
+            <h3>Acne, while it is still active</h3>
+            <p>
+              Grading first, then a plan with a date on it. Isotretinoin when it
+              is warranted and monitored monthly — not as a last resort after two
+              years of creams.
+            </p>
+            <ul class="tags">
+              <li>Topicals</li><li>Isotretinoin</li><li>Intralesional</li><li>Scar prevention</li>
+            </ul>
+          </div>
+          <p class="slab__fee"><span>from</span>$1,400<em>MXN</em></p>
+        </div>
+      </article>
+
+      <article class="slab" style="--i:1;--slab:#EBA83F;--on:#241A08">
+        <div class="wrap slab__grid">
+          <p class="slab__no">02</p>
+          <div class="slab__main">
+            <h3>Melasma and pigmentation</h3>
+            <p>
+              The area where phototype matters most, and where the wrong laser
+              makes things permanently worse. Conservative, layered, slow — and
+              measured against a photograph taken in the same light.
+            </p>
+            <ul class="tags">
+              <li>Tranexamic</li><li>1064 nm Nd:YAG</li><li>Peels</li><li>Photoprotection</li>
+            </ul>
+          </div>
+          <p class="slab__fee"><span>from</span>$2,100<em>MXN</em></p>
+        </div>
+      </article>
+
+      <article class="slab" style="--i:2;--slab:#A192D6;--on:#1B1533">
+        <div class="wrap slab__grid">
+          <p class="slab__no">03</p>
+          <div class="slab__main">
+            <h3>Rosacea and reactive redness</h3>
+            <p>
+              Triggers mapped over four weeks before anything is prescribed,
+              because half of what people call rosacea is a barrier problem
+              wearing a costume.
+            </p>
+            <ul class="tags">
+              <li>Barrier repair</li><li>Vascular laser</li><li>Oral course</li>
+            </ul>
+          </div>
+          <p class="slab__fee"><span>from</span>$1,900<em>MXN</em></p>
+        </div>
+      </article>
+
+      <article class="slab" style="--i:3;--slab:#A8462F;--on:#F7F1E6">
+        <div class="wrap slab__grid">
+          <p class="slab__no">04</p>
+          <div class="slab__main">
+            <h3>Moles, spots and skin checks</h3>
+            <p>
+              Dermoscopy on every lesion above 3 mm, photographed and re-checked
+              against its own prior frame. Anything excised goes to histology —
+              always, no exceptions, results in 48 hours.
+            </p>
+            <ul class="tags">
+              <li>Dermoscopy</li><li>Excision</li><li>Histology</li><li>Annual mapping</li>
+            </ul>
+          </div>
+          <p class="slab__fee"><span>from</span>$1,200<em>MXN</em></p>
+        </div>
+      </article>
+
+      <article class="slab" style="--i:4;--slab:#1E1917;--on:#F7F1E6">
+        <div class="wrap slab__grid">
+          <p class="slab__no">05</p>
+          <div class="slab__main">
+            <h3>Hair and scalp</h3>
+            <p>
+              Trichoscopy, bloods and a scalp biopsy where the pattern is unclear.
+              Scarring alopecias are treated as urgent, because the window to stop
+              them closes.
+            </p>
+            <ul class="tags">
+              <li>Trichoscopy</li><li>Bloods</li><li>Biopsy</li><li>Injectables</li>
+            </ul>
+          </div>
+          <p class="slab__fee"><span>from</span>$1,600<em>MXN</em></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TRES — METHOD — room: ocre
+       ========================================================= -->
+  <section class="room block" id="method" data-room="ocre">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Tres · Cómo trabajamos</p>
+        <h2 class="h2">Four steps.<br />No upsell in any of them.</h2>
+        <p class="head__note">
+          The consult costs what it costs whether you buy anything afterwards or
+          not. Nothing is sold from the treatment chair.
+        </p>
+      </header>
+
+      <ol class="steps">
+        <li class="step u">
+          <span class="step__ring"><b>1</b></span>
+          <h3>Escucha</h3>
+          <p>
+            Forty minutes, most of it you talking. What you have tried, what it
+            cost, what went wrong, what you actually want to stop worrying about.
+          </p>
+        </li>
+        <li class="step u" style="--d:.08s">
+          <span class="step__ring"><b>2</b></span>
+          <h3>Mira</h3>
+          <p>
+            Full-skin examination under fixed light, dermoscopy, and photographs
+            in the same position every time so a change is a change and not a
+            different angle.
+          </p>
+        </li>
+        <li class="step u" style="--d:.16s">
+          <span class="step__ring"><b>3</b></span>
+          <h3>Plan</h3>
+          <p>
+            One page, in plain Spanish or English: what we are treating, with
+            what, for how long, at what total cost, and the date we decide
+            whether it worked.
+          </p>
+        </li>
+        <li class="step u" style="--d:.24s">
+          <span class="step__ring"><b>4</b></span>
+          <h3>Revisa</h3>
+          <p>
+            The review is booked before you leave and included in the price. A
+            plan that has not worked by then gets changed, not repeated.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CUATRO — PRACTICE — room: lila
+       ========================================================= -->
+  <section class="room block" id="practice" data-room="lila">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Cuatro · La doctora</p>
+        <h2 class="h2">One dermatologist,<br />and she is always in.</h2>
+      </header>
+
+      <div class="doc">
+        <figure class="doc__pic u">
+          <div class="doc__circle">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&crop=faces&w=900&h=900&q=80"
+                 alt="Dra. Renata Villalba" />
+          </div>
+          <figcaption>Consultorio 3 · Colima 214</figcaption>
+        </figure>
+
+        <div class="doc__copy">
+          <h3 class="h3">Dra. Renata Villalba<br /><span>Dermatóloga certificada · Cédula 8471203</span></h3>
+          <div class="prose">
+            <p>
+              Medicine at UNAM, dermatology at the Centro Dermatológico Pascua,
+              then three years of pigmentary disorders at Hospital General. She
+              opened Paloma in 2017 after one too many clinics treated brown skin
+              with settings written for white skin.
+            </p>
+            <p>
+              She sees a maximum of fourteen people a day and does every
+              procedure herself. If you are told a laser is not right for your
+              phototype, that is the whole answer — there is no upgrade path.
+            </p>
+          </div>
+
+          <ul class="cred">
+            <li>Consejo Mexicano de Dermatología</li>
+            <li>Fundación Mexicana para la Dermatología</li>
+            <li>Pigmentary disorders, Hospital General</li>
+            <li>Teaching faculty, UNAM · since 2020</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rooms">
+        <figure class="shot u">
+          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=900&h=1100&q=80" alt="Procedure room" />
+          <figcaption>Procedure room</figcaption>
+        </figure>
+        <figure class="shot shot--wide u" style="--d:.08s">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&h=800&q=80" alt="Dispensary shelf" />
+          <figcaption>Dispensary — nothing sold at the chair</figcaption>
+        </figure>
+        <figure class="shot u" style="--d:.16s">
+          <div class="said"><p>Fourteen<br />a day.<span>Not fifteen.</span></p></div>
+          <figcaption>The whole business model</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CINCO — VOICES — room: terra
+       ========================================================= -->
+  <section class="room block block--quote" id="voices" data-room="terra">
+    <div class="wrap">
+      <p class="kicker">Cinco · Pacientes</p>
+
+      <div class="quotes" data-quotes>
+        <blockquote class="quote is-on">
+          <p>She was the first person to tell me my phototype mattered. Four
+             dermatologists before her put me under a laser that made the
+             melasma worse, then charged me to fix it.</p>
+          <footer><span class="who">M.R.</span>Melasma · phototype IV · two years</footer>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>I got a one-page plan with a total price on it. After nine years of
+             acne that was the strangest and best thing anyone had handed me.</p>
+          <footer><span class="who">J.O.</span>Nodular acne · phototype III · eight months</footer>
+        </blockquote>
+
+        <blockquote class="quote">
+          <p>The mole was nothing. But it was biopsied on the Tuesday and I had
+             the report on the Thursday, and nobody made me feel dramatic for
+             asking.</p>
+          <footer><span class="who">A.L.</span>Lesion check · phototype II</footer>
+        </blockquote>
+      </div>
+
+      <div class="quotes__nav">
+        <button class="ring" data-quote-prev aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 5.5 8 12l6 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>
+        </button>
+        <span class="quotes__dots" data-quote-dots></span>
+        <button class="ring" data-quote-next aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M10 5.5 16 12l-6 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SEIS — QUESTIONS — room: cal
+       ========================================================= -->
+  <section class="room block" id="asks" data-room="cal">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Seis · Preguntas</p>
+        <h2 class="h2">Asked before<br />every first visit.</h2>
+      </header>
+
+      <div class="asks" data-asks>
+        <div class="ask">
+          <button class="ask__q" aria-expanded="false">
+            <span>Is my phototype really going to change the treatment?</span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="ask__a"><p>
+            Materially, yes. A 755 nm alexandrite that is routine on phototype II
+            can cause lasting pigment loss on phototype V. Higher phototypes carry
+            a much greater risk of post-inflammatory hyperpigmentation and keloid,
+            so settings go down and intervals go up. It also changes screening:
+            melanoma in darker skin turns up on palms, soles and nail beds, which
+            is where most examinations never look.
+          </p></div>
+        </div>
+
+        <div class="ask">
+          <button class="ask__q" aria-expanded="false">
+            <span>How much does the first appointment cost, and what do I get?</span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="ask__a"><p>
+            $1,200 MXN for forty minutes: history, full-skin examination,
+            dermoscopy, photographs and a written one-page plan with the total
+            cost of anything proposed. Nothing is charged on top of that on the
+            day, and nothing is sold in the room.
+          </p></div>
+        </div>
+
+        <div class="ask">
+          <button class="ask__q" aria-expanded="false">
+            <span>Do you take insurance?</span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="ask__a"><p>
+            The practice invoices directly and issues a factura you can claim
+            against GNP, AXA, Metlife and Bupa. Medical dermatology is usually
+            reimbursed; aesthetic work is not, and we tell you which side of the
+            line you are on before you agree to anything.
+          </p></div>
+        </div>
+
+        <div class="ask">
+          <button class="ask__q" aria-expanded="false">
+            <span>Something on my skin is changing. How fast can I be seen?</span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="ask__a"><p>
+            Two slots are held at 08:00 every weekday and never released to
+            routine booking. Telephone rather than using the form. A lesion that
+            is bleeding, growing or newly pigmented is examined that day and
+            excised at the same visit where it is indicated.
+          </p></div>
+        </div>
+
+        <div class="ask">
+          <button class="ask__q" aria-expanded="false">
+            <span>Will you tell me if I don't need anything?</span>
+            <i aria-hidden="true"></i>
+          </button>
+          <div class="ask__a"><p>
+            Frequently. About one first visit in five ends with a sunscreen
+            recommendation and no plan at all, and the consult fee still covers
+            it. A practice that could not afford to say no would be a bad place
+            to ask.
+          </p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SIETE — BOOK — room: tinta, four-step wizard
+       ========================================================= -->
+  <section class="room block block--book" id="book" data-room="tinta">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker">Siete · Cita</p>
+        <h2 class="h2">Four questions,<br />then we call you.</h2>
+      </header>
+
+      <div class="book">
+        <form class="wiz" data-wiz novalidate>
+          <div class="wiz__bar">
+            <span class="wiz__fill" data-wiz-fill></span>
+          </div>
+          <p class="wiz__count">Step <b data-wiz-n>1</b> of 4</p>
+
+          <!-- 1 -->
+          <fieldset class="pane is-on" data-pane>
+            <legend class="h3">What brings you in?</legend>
+            <div class="opts" data-opt-group="concern">
+              <label class="opt"><input type="radio" name="concern" value="Acne" required /><span>Acne</span></label>
+              <label class="opt"><input type="radio" name="concern" value="Melasma or pigmentation" /><span>Melasma or pigmentation</span></label>
+              <label class="opt"><input type="radio" name="concern" value="Rosacea or redness" /><span>Rosacea or redness</span></label>
+              <label class="opt"><input type="radio" name="concern" value="A mole or spot" /><span>A mole or spot</span></label>
+              <label class="opt"><input type="radio" name="concern" value="Hair or scalp" /><span>Hair or scalp</span></label>
+              <label class="opt"><input type="radio" name="concern" value="Not sure yet" /><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
+
+          <!-- 2 -->
+          <fieldset class="pane" data-pane>
+            <legend class="h3">Your phototype, roughly?</legend>
+            <div class="opts opts--tone" data-opt-group="type">
+              <label class="opt opt--sw" style="--sw:#F4DFD1"><input type="radio" name="type" value="I" /><span>I</span></label>
+              <label class="opt opt--sw" style="--sw:#EFD0BA"><input type="radio" name="type" value="II" /><span>II</span></label>
+              <label class="opt opt--sw" style="--sw:#E0B492"><input type="radio" name="type" value="III" /><span>III</span></label>
+              <label class="opt opt--sw" style="--sw:#C08E68"><input type="radio" name="type" value="IV" /><span>IV</span></label>
+              <label class="opt opt--sw" style="--sw:#8D5B3C"><input type="radio" name="type" value="V" /><span>V</span></label>
+              <label class="opt opt--sw" style="--sw:#5A3728"><input type="radio" name="type" value="VI" /><span>VI</span></label>
+              <label class="opt"><input type="radio" name="type" value="No idea" /><span>No idea</span></label>
+            </div>
+            <p class="pane__hint">A guess is fine. It gets confirmed in person.</p>
+          </fieldset>
+
+          <!-- 3 -->
+          <fieldset class="pane" data-pane>
+            <legend class="h3">When suits you?</legend>
+            <div class="opts" data-opt-group="when">
+              <label class="opt"><input type="radio" name="when" value="Mornings" /><span>Mornings</span></label>
+              <label class="opt"><input type="radio" name="when" value="Afternoons" /><span>Afternoons</span></label>
+              <label class="opt"><input type="radio" name="when" value="Saturdays" /><span>Saturdays</span></label>
+              <label class="opt"><input type="radio" name="when" value="First thing available" /><span>First thing available</span></label>
+              <label class="opt opt--urgent"><input type="radio" name="when" value="Urgent — changing lesion" /><span>Urgent — changing lesion</span></label>
+            </div>
+          </fieldset>
+
+          <!-- 4 -->
+          <fieldset class="pane" data-pane>
+            <legend class="h3">Where do we reach you?</legend>
+            <div class="fields">
+              <label class="fld">
+                <span>Name</span>
+                <input type="text" name="name" placeholder="Nombre y apellido" required />
+              </label>
+              <label class="fld">
+                <span>Telephone</span>
+                <input type="tel" name="tel" placeholder="+52" required />
+              </label>
+              <label class="fld fld--wide">
+                <span>Email</span>
+                <input type="email" name="email" placeholder="tu@correo.mx" required />
+              </label>
+              <label class="fld fld--wide">
+                <span>Anything we should know</span>
+                <textarea name="notes" rows="3" placeholder="Cuánto tiempo, qué has probado, medicamentos…"></textarea>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="wiz__foot">
+            <button class="btn btn--ghost" type="button" data-wiz-back hidden>Back</button>
+            <button class="btn" type="button" data-wiz-next>Continue</button>
+            <button class="btn" type="submit" data-wiz-send hidden>Send request</button>
+          </div>
+
+          <p class="fine">
+            Nothing is charged now. Reception confirms a time by telephone within
+            one working day.
+          </p>
+        </form>
+
+        <aside class="book__side">
+          <dl class="info">
+            <div><dt>Clinic</dt><dd>Calle Colima 214, int. 3<br />Roma Norte, 06700 CDMX</dd></div>
+            <div><dt>Telephone</dt><dd><a href="tel:+525541726080">+52 55 4172 6080</a></dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:hola@paloma.mx">hola@paloma.mx</a></dd></div>
+            <div><dt>Hours</dt><dd>Lun–Vie 08:00–19:00<br />Sáb 09:00–14:00</dd></div>
+            <div><dt>Metro</dt><dd>Insurgentes · 6 min<br />Metrobús Álvaro Obregón · 3 min</dd></div>
+          </dl>
+          <p class="fine">
+            If a lesion is bleeding or changing, telephone. Do not wait on a form.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="foot room" data-room="tinta">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__id">
+        <p>Dermatología médica<br />Roma Norte, Ciudad de México<br />Desde 2017</p>
+      </div>
+      <nav class="foot__col">
+        <h4>Practice</h4>
+        <a href="#phototype">Phototype</a>
+        <a href="#care">Care</a>
+        <a href="#method">Method</a>
+        <a href="#practice">La doctora</a>
+        <a href="#voices">Voices</a>
+      </nav>
+      <nav class="foot__col">
+        <h4>Patients</h4>
+        <a href="#book">Book</a>
+        <a href="#asks">Questions</a>
+        <a href="#asks">Fees</a>
+        <a href="#asks">Insurance</a>
+        <a href="#asks">Records</a>
+      </nav>
+      <div class="foot__col">
+        <h4>Visit</h4>
+        <p>Calle Colima 214, int. 3<br />Roma Norte, 06700</p>
+        <a href="tel:+525541726080">+52 55 4172 6080</a>
+        <a href="mailto:hola@paloma.mx">hola@paloma.mx</a>
+      </div>
+    </div>
+
+    <p class="foot__mark" aria-hidden="true">Paloma</p>
+
+    <div class="foot__bar">
+      <p>© <span data-year>2026</span> Paloma Dermatología S.C.</p>
+      <p class="foot__legal"><a href="#">Aviso de privacidad</a><a href="#">Términos</a><a href="#">Cédula 8471203</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wobble &mdash; children&rsquo;s dentistry in Bristol</title>
+    <meta
+      name="description"
+      content="Wobble is a dental practice built entirely for children. Free first visits, a two-minute brushing timer, and no scary words. Ages 0 to 15, Bristol."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23FFD64A'/%3E%3Cpath d='M6 12c0-4 3-7 10-7s10 3 10 7c0 5-2 7-3 12-.6 2.4-2.6 2.4-3 0l-1.6-6.4-1.6 6.4c-.4 2.4-2.4 2.4-3 0-1-5-3-7-3-12z' fill='%23241F3A'/%3E%3C/svg%3E"
+    />
+  </head>
+
+  <body>
+    <!-- ============ shared shapes ============ -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <defs>
+        <g id="tooth">
+          <path
+            vector-effect="non-scaling-stroke"
+            d="M-28-12c0-17 11-27 28-27s28 10 28 27c0 20-7 27-11 45-2 9-9 9-11 0l-6-24-6 24c-2 9-9 9-11 0-4-18-11-25-11-45z"
+          />
+        </g>
+        <g id="face">
+          <path
+            vector-effect="non-scaling-stroke"
+            d="M-28-12c0-17 11-27 28-27s28 10 28 27c0 20-7 27-11 45-2 9-9 9-11 0l-6-24-6 24c-2 9-9 9-11 0-4-18-11-25-11-45z"
+          />
+          <circle cx="-10" cy="-12" r="4" fill="#241F3A" stroke="none" />
+          <circle cx="10" cy="-12" r="4" fill="#241F3A" stroke="none" />
+          <path
+            d="M-9-1q9 9 18 0"
+            fill="none"
+            stroke="#241F3A"
+            stroke-width="4"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+        </g>
+        <g id="star">
+          <path
+            vector-effect="non-scaling-stroke"
+            d="M0-13 4-4.4l9.5.7-7.2 6.2 2.1 9.2L0 6.9l-8.4 4.8 2.1-9.2-7.2-6.2 9.5-.7z"
+          />
+        </g>
+      </defs>
+    </svg>
+
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- ============ header ============ -->
+    <header class="top" id="top">
+      <div class="top__in">
+        <a class="mark" href="#top" aria-label="Wobble, home">
+          <span class="mark__t">
+            <svg viewBox="-34 -46 68 92" aria-hidden="true"><use href="#face" /></svg>
+          </span>
+          <span class="mark__w">wobble</span>
+        </a>
+
+        <nav class="nav" aria-label="Sections">
+          <a href="#visit">First visit</a>
+          <a href="#brush">Brushing</a>
+          <a href="#why">Why us</a>
+          <a href="#cost">Cost</a>
+          <a href="#team">Team</a>
+        </nav>
+
+        <div class="top__end">
+          <a class="pill pill--ink" href="tel:+441179000000">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a1 1 0 0 1-1 1A17 17 0 0 1 4 5a1 1 0 0 1 1-1z"
+              />
+            </svg>
+            <span>0117 900 0000</span>
+          </a>
+          <a class="pill pill--coral" href="#book">Book a first visit</a>
+          <button class="burger" type="button" aria-expanded="false" aria-controls="tray">
+            <span></span><span></span><span></span>
+            <span class="vh">Menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="tray" id="tray" hidden>
+      <nav aria-label="Sections">
+        <a href="#visit">First visit</a>
+        <a href="#brush">Brushing</a>
+        <a href="#why">Why us</a>
+        <a href="#cost">Cost</a>
+        <a href="#team">Team</a>
+        <a href="#ask">Questions</a>
+      </nav>
+      <a class="pill pill--coral tray__cta" href="#book">Book a first visit</a>
+      <p class="tray__ft">Mon&ndash;Fri 8.30&ndash;18.00 &middot; Sat 9.00&ndash;14.00</p>
+    </div>
+
+    <main id="main">
+      <!-- ============ hero ============ -->
+      <section class="hero block block--cream">
+        <div class="wrap hero__in">
+          <div class="hero__txt">
+            <p class="kicker pop">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              Children&rsquo;s dentistry, ages 0&ndash;15
+            </p>
+            <h1 class="pop">
+              Where a wobbly tooth is
+              <span class="squig"
+                >big news<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M2 8c16-8 32 4 48-1s32-8 48-1 33 9 50 2" /></svg
+              ></span>
+            </h1>
+            <p class="lede pop">
+              We are a dentist for children only. No grown-up magazines, no waiting in silence, and
+              nobody says the word &ldquo;drill&rdquo; unless a child asks first.
+            </p>
+            <div class="hero__btns pop">
+              <a class="pill pill--coral pill--lg" href="#book">Book a free first visit</a>
+              <a class="pill pill--ghost pill--lg" href="#visit">See what happens</a>
+            </div>
+            <ul class="hero__ticks pop">
+              <li>First visit costs nothing</li>
+              <li>Saturday mornings open</li>
+              <li>NHS places for under-18s</li>
+            </ul>
+          </div>
+
+          <div class="hero__art pop">
+            <svg class="scene scene--hero" viewBox="0 0 360 320" role="img"
+              aria-label="Illustration of a smiling tooth holding a toothbrush under a sun">
+              <circle class="f-butter s-ink" cx="292" cy="58" r="30" />
+              <g class="s-ink rays">
+                <path d="M292 12v-14M292 118v14M346 58h14M238 58h-14M330 20l10-10M254 96l-10 10M330 96l10 10M254 20l-10-10" />
+              </g>
+              <g class="f-white s-ink" transform="translate(112 76) scale(.72)">
+                <path
+                  d="M-54 18C-74 18-74-10-50-12-52-38-14-46-4-24 6-40 40-36 40-14 64-14 64 18 44 18Z"
+                />
+              </g>
+              <ellipse class="f-mint" cx="180" cy="286" rx="128" ry="20" />
+              <g transform="translate(160 200) scale(2.4)">
+                <use class="f-white s-ink" href="#face" />
+              </g>
+              <g transform="translate(296 188) rotate(14) scale(1.12)">
+                <rect class="f-sky s-ink" x="-13" y="-10" width="26" height="92" rx="13" />
+                <rect class="f-coral s-ink" x="-16" y="-40" width="32" height="34" rx="12" />
+                <rect class="f-white s-ink" x="-14" y="-58" width="28" height="22" rx="8" />
+                <g class="s-ink brist">
+                  <path d="M-5-56v18M4-56v18" />
+                </g>
+              </g>
+              <use class="f-coral" href="#star" transform="translate(44 152) scale(.85)" />
+              <use class="f-butter s-ink" href="#star" transform="translate(46 214) scale(1.15)" />
+            </svg>
+            <p class="sticker" aria-hidden="true">First<br />visit<br />free</p>
+          </div>
+        </div>
+        <svg class="wave wave--butter" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ facts band ============ -->
+      <section class="band block block--butter" aria-label="At a glance">
+        <div class="wrap band__in">
+          <div class="fact pop">
+            <span class="fact__n">0&ndash;15</span>
+            <span class="fact__l">The only ages we see. That is the whole point.</span>
+          </div>
+          <div class="fact pop">
+            <span class="fact__n">Free</span>
+            <span class="fact__l">First visit, every time. Nothing to pay, nothing done.</span>
+          </div>
+          <div class="fact pop">
+            <span class="fact__n">14 yrs</span>
+            <span class="fact__l">Of nervous first-timers walking back out grinning.</span>
+          </div>
+          <div class="fact pop">
+            <span class="fact__n">Sat</span>
+            <span class="fact__l">Mornings open, so nobody misses school for a check-up.</span>
+          </div>
+        </div>
+        <svg class="wave wave--sky" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ storyboard ============ -->
+      <section class="story block block--sky" id="visit">
+        <div class="wrap">
+          <header class="head pop">
+            <p class="kicker">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              The first visit
+            </p>
+            <h2>Five things happen. That is all.</h2>
+            <p class="head__p">
+              Read it together on the sofa before you come. Children who know the order of things
+              tend to walk in already bored of being worried.
+            </p>
+          </header>
+
+          <div class="story__card pop">
+            <div class="story__art">
+              <ol class="scenes">
+                <li class="sc is-on">
+                  <svg class="scene" viewBox="0 0 320 240" role="img" aria-label="A tooth walking through the front door past a plant">
+                    <ellipse class="f-mint" cx="150" cy="212" rx="94" ry="14" />
+                    <path class="f-sky-2 s-ink" d="M196 200v-104a44 44 0 0 1 88 0v104z" />
+                    <circle class="f-ink" cx="212" cy="150" r="6" />
+                    <g transform="translate(50 152)">
+                      <path class="f-coral s-ink" d="M-22 8h44l-6 40h-32z" />
+                      <path class="s-ink st" d="M0 8v-34" />
+                      <ellipse class="f-mint s-ink" cx="-16" cy="-32" rx="17" ry="11" transform="rotate(-20 -16 -32)" />
+                      <ellipse class="f-mint s-ink" cx="14" cy="-22" rx="17" ry="11" transform="rotate(20 14 -22)" />
+                    </g>
+                    <g transform="translate(134 152) scale(1.5)">
+                      <use class="f-white s-ink" href="#face" />
+                    </g>
+                    <use class="f-butter s-ink" href="#star" transform="translate(111 47)" />
+                  </svg>
+                </li>
+                <li class="sc">
+                  <svg class="scene" viewBox="0 0 320 240" role="img" aria-label="A dental chair rising with a tooth sitting on it">
+                    <ellipse class="f-mint" cx="160" cy="214" rx="96" ry="14" />
+                    <rect class="f-ink" x="122" y="196" width="76" height="12" rx="6" />
+                    <rect class="f-ink" x="150" y="160" width="20" height="40" />
+                    <rect class="f-sky-2 s-ink" x="92" y="140" width="136" height="24" rx="12" />
+                    <rect class="f-sky-2 s-ink" x="196" y="70" width="26" height="76" rx="13" transform="rotate(12 209 108)" />
+                    <g transform="translate(140 96) scale(1.35)">
+                      <use class="f-white s-ink" href="#face" />
+                    </g>
+                    <g class="s-ink up" transform="translate(268 130)">
+                      <path d="M0 44V-6M-13 8 0-6l13 14" />
+                    </g>
+                    <use class="f-butter s-ink" href="#star" transform="translate(60 74) scale(1.05)" />
+                    <use class="f-coral" href="#star" transform="translate(89 43) scale(.7)" />
+                  </svg>
+                </li>
+                <li class="sc">
+                  <svg class="scene" viewBox="0 0 320 240" role="img" aria-label="A camera photographing a tooth on a screen">
+                    <ellipse class="f-mint" cx="160" cy="214" rx="96" ry="14" />
+                    <rect class="f-white s-ink" x="158" y="58" width="140" height="112" rx="16" />
+                    <rect class="f-ink" x="216" y="170" width="24" height="34" rx="6" />
+                    <rect class="f-ink" x="192" y="200" width="72" height="10" rx="5" />
+                    <g transform="translate(228 114) scale(.8)">
+                      <use class="f-sky-2 s-ink" href="#tooth" />
+                    </g>
+                    <circle class="f-butter s-ink" cx="72" cy="106" r="34" />
+                    <circle class="f-ink" cx="72" cy="106" r="13" />
+                    <rect class="f-ink" x="62" y="140" width="20" height="52" rx="6" />
+                    <rect class="f-ink" x="40" y="188" width="64" height="10" rx="5" />
+                    <g class="s-ink flash">
+                      <path d="M112 92h18M112 106h26M112 120h18" />
+                    </g>
+                    <use class="f-coral" href="#star" transform="translate(70 52) scale(.75)" />
+                  </svg>
+                </li>
+                <li class="sc">
+                  <svg class="scene" viewBox="0 0 320 240" role="img" aria-label="Three teeth being counted with a small mirror">
+                    <ellipse class="f-mint" cx="176" cy="196" rx="88" ry="14" />
+                    <g transform="translate(126 150) scale(.85)">
+                      <use class="f-white s-ink" href="#tooth" />
+                    </g>
+                    <g transform="translate(186 150) scale(.85)">
+                      <use class="f-white s-ink" href="#tooth" />
+                    </g>
+                    <g transform="translate(246 150) scale(.85)">
+                      <use class="f-white s-ink" href="#tooth" />
+                    </g>
+                    <text class="num" x="126" y="90">1</text>
+                    <text class="num" x="186" y="90">2</text>
+                    <text class="num" x="246" y="90">3</text>
+                    <g transform="translate(58 122)">
+                      <path class="s-ink st" d="M6 20 22 62" />
+                      <circle class="f-sky-2 s-ink" cx="0" cy="0" r="24" />
+                      <circle class="f-white" cx="-7" cy="-7" r="7" />
+                    </g>
+                  </svg>
+                </li>
+                <li class="sc">
+                  <svg class="scene" viewBox="0 0 320 240" role="img" aria-label="A jar of star stickers with a tooth choosing one">
+                    <ellipse class="f-mint" cx="160" cy="214" rx="96" ry="14" />
+                    <rect class="f-sky-2 s-ink" x="132" y="96" width="116" height="108" rx="24" />
+                    <rect class="f-coral s-ink" x="124" y="76" width="132" height="26" rx="13" />
+                    <use class="f-butter s-ink" href="#star" transform="translate(161 139) scale(1.1)" />
+                    <use class="f-butter s-ink" href="#star" transform="translate(206 168) scale(1.1)" />
+                    <use class="f-white s-ink" href="#star" transform="translate(214 124) scale(.95)" />
+                    <use class="f-butter s-ink" href="#star" transform="translate(274 60) scale(1.9)" />
+                    <g transform="translate(74 152) scale(1.3)">
+                      <use class="f-white s-ink" href="#face" />
+                    </g>
+                  </svg>
+                </li>
+              </ol>
+            </div>
+
+            <div class="story__txt">
+              <p class="story__step">
+                Step <b data-now>1</b> <span data-of>of 5</span>
+              </p>
+              <ol class="steps" data-steps>
+                <li class="is-on">
+                  <h3>You come in and say hello.</h3>
+                  <p>
+                    There is a box of books, a fish called Trevor, and nobody in a mask yet. You can
+                    keep your shoes on.
+                  </p>
+                  <p class="steps__gu">
+                    <b>For grown-ups:</b> arrive five minutes early, bring the red book or NHS
+                    number if you have it, and don&rsquo;t promise a treat &mdash; it tells a child
+                    there is something to survive.
+                  </p>
+                </li>
+                <li>
+                  <h3>The chair goes up and down.</h3>
+                  <p>
+                    You get a go at the buttons first. It is the best chair in Bristol and it tips
+                    back like a rocket seat.
+                  </p>
+                  <p class="steps__gu">
+                    <b>For grown-ups:</b> for a first visit under four, we often do the whole check
+                    on your lap instead. Nothing is lost by it.
+                  </p>
+                </li>
+                <li>
+                  <h3>We take a photo of your teeth.</h3>
+                  <p>
+                    A little camera on a stick. It tickles a bit. Then you can see your own teeth on
+                    the telly, which is very strange.
+                  </p>
+                  <p class="steps__gu">
+                    <b>For grown-ups:</b> intra-oral photos only at this stage. X-rays are never
+                    taken at a first visit and never without talking to you first.
+                  </p>
+                </li>
+                <li>
+                  <h3>We count them all out loud.</h3>
+                  <p>
+                    Every single one, with the numbers said properly. Most people your age have
+                    twenty. Some have a gap where one has escaped.
+                  </p>
+                  <p class="steps__gu">
+                    <b>For grown-ups:</b> you get the full chart before you leave &mdash; decay
+                    risk, spacing, bite, and whether an orthodontic referral is worth thinking about
+                    yet.
+                  </p>
+                </li>
+                <li>
+                  <h3>You pick a sticker.</h3>
+                  <p>
+                    The jar lives on the desk. There are dinosaurs, space ones, and a rainbow one
+                    that everybody wants. Then you go home.
+                  </p>
+                  <p class="steps__gu">
+                    <b>For grown-ups:</b> the visit takes about twenty minutes. We book the next one
+                    before you go, at six or twelve months depending on what we found.
+                  </p>
+                </li>
+              </ol>
+
+              <div class="story__nav">
+                <button class="nub" type="button" data-prev disabled>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+                  <span class="vh">Previous step</span>
+                </button>
+                <div class="dots" role="tablist" aria-label="Steps">
+                  <button class="dot is-on" type="button" role="tab" aria-selected="true" data-go="0">
+                    <span class="vh">Step 1</span>
+                  </button>
+                  <button class="dot" type="button" role="tab" aria-selected="false" data-go="1">
+                    <span class="vh">Step 2</span>
+                  </button>
+                  <button class="dot" type="button" role="tab" aria-selected="false" data-go="2">
+                    <span class="vh">Step 3</span>
+                  </button>
+                  <button class="dot" type="button" role="tab" aria-selected="false" data-go="3">
+                    <span class="vh">Step 4</span>
+                  </button>
+                  <button class="dot" type="button" role="tab" aria-selected="false" data-go="4">
+                    <span class="vh">Step 5</span>
+                  </button>
+                </div>
+                <button class="nub nub--fill" type="button" data-next>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+                  <span class="vh">Next step</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <svg class="wave wave--mint" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ brushing timer ============ -->
+      <section class="brush block block--mint" id="brush">
+        <div class="wrap brush__in">
+          <div class="brush__txt pop">
+            <p class="kicker">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              Two whole minutes
+            </p>
+            <h2>Nobody brushes for long enough. Let us count for you.</h2>
+            <p class="lede">
+              Press the button and brush along. It splits the two minutes into four corners of your
+              mouth, thirty seconds each, so you always know where to be.
+            </p>
+            <ul class="tips">
+              <li>
+                <b>Twice a day</b>, and the night one matters more than the morning one.
+              </li>
+              <li>
+                <b>Spit, don&rsquo;t rinse.</b> Water washes the fluoride straight back off.
+              </li>
+              <li>
+                <b>A smear under three</b>, a pea after that. Grown-up squeezes the tube.
+              </li>
+              <li>
+                <b>You brush for them until seven.</b> Let them go first, then you finish it.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timer pop">
+            <div class="timer__ring">
+              <svg viewBox="0 0 240 240" aria-hidden="true">
+                <circle class="ring__bg" cx="120" cy="120" r="102" />
+                <circle class="ring__fg" cx="120" cy="120" r="102" data-ring />
+                <g class="ring__ticks">
+                  <path d="M120 8v22M232 120h-22M120 232v-22M8 120h22" />
+                </g>
+              </svg>
+              <div class="timer__mid">
+                <p class="timer__clock" data-clock>2:00</p>
+                <p class="timer__zone" data-zone>Ready when you are</p>
+              </div>
+            </div>
+
+            <ol class="quads" data-quads>
+              <li class="is-next"><span>1</span>Top left</li>
+              <li><span>2</span>Top right</li>
+              <li><span>3</span>Bottom left</li>
+              <li><span>4</span>Bottom right</li>
+            </ol>
+
+            <div class="timer__btns">
+              <button class="pill pill--coral pill--lg" type="button" data-play>
+                <span data-play-l>Start brushing</span>
+              </button>
+              <button class="pill pill--ghost" type="button" data-reset>Reset</button>
+            </div>
+            <p class="timer__live vh" role="status" aria-live="polite" data-live></p>
+          </div>
+        </div>
+        <svg class="wave wave--cream" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ bento: why parents pick us ============ -->
+      <section class="why block block--cream" id="why">
+        <div class="wrap">
+          <header class="head pop">
+            <p class="kicker">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              Why parents pick us
+            </p>
+            <h2>Built for small people, and for whoever brought them.</h2>
+          </header>
+
+          <div class="bento">
+            <article class="tile tile--wide tile--sky pop">
+              <h3>A practice with no adults in it</h3>
+              <p>
+                Every room, every chair height, every poster on the ceiling is set for someone under
+                fifteen. Nobody is waiting behind you tutting, because everybody here is somebody
+                else&rsquo;s child.
+              </p>
+              <ul class="tile__ul">
+                <li>Two treatment rooms, both with a ceiling screen</li>
+                <li>A play corner that is actually watched</li>
+                <li>Buggy space and a lift from the street</li>
+              </ul>
+            </article>
+
+            <article class="tile tile--photo pop">
+              <img
+                src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80"
+                alt="A bright, tidy treatment room at the practice"
+                loading="lazy"
+                decoding="async"
+              />
+              <p class="tile__cap">Room 1, before anybody has touched it</p>
+            </article>
+
+            <article class="tile tile--butter tile--stat pop">
+              <p class="tile__big" data-count="94">0</p>
+              <p class="tile__unit">%</p>
+              <p>
+                of first-timers let us finish the whole check. The other six percent come back and
+                manage it next time.
+              </p>
+            </article>
+
+            <article class="tile tile--quote pop">
+              <blockquote>
+                <p>
+                  &ldquo;She had screamed at two other dentists. Here she asked if she could come
+                  again on Saturday.&rdquo;
+                </p>
+                <footer>Priya, mum of Alina (4)</footer>
+              </blockquote>
+            </article>
+
+            <article class="tile tile--coral pop">
+              <h3>Nervous is normal here</h3>
+              <p>
+                A first appointment can be nothing but sitting in the chair and going home again.
+                That still counts. We would rather take three visits than lose a child to the
+                dentist for a decade.
+              </p>
+            </article>
+
+            <article class="tile tile--hours pop">
+              <h3>When we&rsquo;re open</h3>
+              <dl class="hrs" data-hours>
+                <div data-day="1"><dt>Mon</dt><dd>8.30 &ndash; 18.00</dd></div>
+                <div data-day="2"><dt>Tue</dt><dd>8.30 &ndash; 18.00</dd></div>
+                <div data-day="3"><dt>Wed</dt><dd>8.30 &ndash; 19.00</dd></div>
+                <div data-day="4"><dt>Thu</dt><dd>8.30 &ndash; 18.00</dd></div>
+                <div data-day="5"><dt>Fri</dt><dd>8.30 &ndash; 17.00</dd></div>
+                <div data-day="6"><dt>Sat</dt><dd>9.00 &ndash; 14.00</dd></div>
+                <div data-day="0"><dt>Sun</dt><dd>Closed</dd></div>
+              </dl>
+              <p class="hrs__now" data-open>&nbsp;</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ cost ============ -->
+      <section class="cost block block--white" id="cost">
+        <div class="wrap cost__in">
+          <div class="cost__side pop">
+            <p class="kicker">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              What it costs
+            </p>
+            <h2>Plain numbers, no packages.</h2>
+            <p>
+              Every child under eighteen is entitled to free NHS dental care and we hold NHS places.
+              The list below is what you pay if you would rather come privately, or if you want
+              something the NHS does not cover.
+            </p>
+            <p class="cost__note">
+              We will always tell you the NHS route first, even when it earns us nothing.
+            </p>
+            <a class="pill pill--ink pill--lg" href="#book">Ask about an NHS place</a>
+          </div>
+
+          <ul class="rates pop">
+            <li>
+              <span class="rates__n">First visit</span>
+              <span class="rates__d">Check, photos, chart, a plan and a sticker</span>
+              <span class="rates__p rates__p--free">Free</span>
+            </li>
+            <li>
+              <span class="rates__n">Check-up</span>
+              <span class="rates__d">Every six or twelve months</span>
+              <span class="rates__p">&pound;38</span>
+            </li>
+            <li>
+              <span class="rates__n">Fluoride varnish</span>
+              <span class="rates__d">Painted on, tastes of nothing much</span>
+              <span class="rates__p">&pound;25</span>
+            </li>
+            <li>
+              <span class="rates__n">Fissure sealant</span>
+              <span class="rates__d">Per adult back tooth, no drilling</span>
+              <span class="rates__p">&pound;32</span>
+            </li>
+            <li>
+              <span class="rates__n">Filling</span>
+              <span class="rates__d">White, numbed, one visit</span>
+              <span class="rates__p">from &pound;65</span>
+            </li>
+            <li>
+              <span class="rates__n">Baby tooth out</span>
+              <span class="rates__d">Including the wobbly ones that won&rsquo;t go</span>
+              <span class="rates__p">from &pound;80</span>
+            </li>
+            <li>
+              <span class="rates__n">Same-day emergency</span>
+              <span class="rates__d">Seen within the day, pain sorted first</span>
+              <span class="rates__p">&pound;45</span>
+            </li>
+            <li>
+              <span class="rates__n">Sports mouthguard</span>
+              <span class="rates__d">Moulded, in your team colours</span>
+              <span class="rates__p">&pound;60</span>
+            </li>
+          </ul>
+        </div>
+        <svg class="wave wave--cream" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ team ============ -->
+      <section class="team block block--cream" id="team">
+        <div class="wrap">
+          <header class="head pop">
+            <p class="kicker">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              Who you&rsquo;ll meet
+            </p>
+            <h2>Four grown-ups who chose to spend all day with children.</h2>
+          </header>
+
+          <div class="crew">
+            <article class="who pop">
+              <div class="who__pic who__pic--sky">
+                <img
+                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80"
+                  alt="Dr Sam Okonjo, paediatric dentist and founder"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Dr Sam Okonjo</h3>
+              <p class="who__r">Paediatric dentist &middot; Founder</p>
+              <p class="who__b">
+                Fifteen years, most of it in a hospital dental unit. Set Wobble up because he was
+                tired of children being squeezed into adult appointment slots.
+              </p>
+              <p class="who__f"><b>Best at:</b> the first thirty seconds.</p>
+            </article>
+
+            <article class="who pop">
+              <div class="who__pic who__pic--butter">
+                <img
+                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=80"
+                  alt="Dr Marek Ilves, dentist and sedation lead"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Dr Marek Ilves</h3>
+              <p class="who__r">Dentist &middot; Sedation lead</p>
+              <p class="who__b">
+                Looks after the children who need inhalation sedation, and the ones who need extra
+                time, quiet rooms or a familiar routine every visit.
+              </p>
+              <p class="who__f"><b>Best at:</b> waiting.</p>
+            </article>
+
+            <article class="who pop">
+              <div class="who__pic who__pic--coral">
+                <img
+                  src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=80"
+                  alt="Ruth Vasey, dental therapist"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Ruth Vasey</h3>
+              <p class="who__r">Dental therapist</p>
+              <p class="who__b">
+                Sealants, varnish, cleaning and all the brushing coaching. Runs our school visits
+                across Bedminster and Southville.
+              </p>
+              <p class="who__f"><b>Best at:</b> making toothpaste sound like a choice.</p>
+            </article>
+
+            <article class="who pop">
+              <div class="who__pic who__pic--mint">
+                <img
+                  src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&crop=faces&w=700&h=875&q=80"
+                  alt="Dr Naomi Fielding, paediatric dentist"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h3>Dr Naomi Fielding</h3>
+              <p class="who__r">Paediatric dentist</p>
+              <p class="who__b">
+                Does most of our fillings and every extraction. Explains each instrument by handing
+                it over first, which takes longer and works better.
+              </p>
+              <p class="who__f"><b>Best at:</b> spaceship noises.</p>
+            </article>
+          </div>
+        </div>
+        <svg class="wave wave--butter" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ questions ============ -->
+      <section class="ask block block--butter" id="ask">
+        <div class="wrap">
+          <header class="head pop">
+            <p class="kicker">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              Questions parents actually ask
+            </p>
+            <h2>Usually in the car park, quietly.</h2>
+          </header>
+
+          <div class="qs">
+            <article class="q pop">
+              <h3>When should a first visit be?</h3>
+              <p>
+                As soon as the first tooth appears, or by their first birthday. It sounds absurdly
+                early. That is the point &mdash; nothing happens, so nothing is frightening later.
+              </p>
+            </article>
+            <article class="q pop">
+              <h3>She screams before we even park.</h3>
+              <p>
+                Then we do nothing on the first visit. Sit in the chair, press the buttons, go home.
+                We have never met a child who could not be got there in three goes.
+              </p>
+            </article>
+            <article class="q pop">
+              <h3>Do you do needles?</h3>
+              <p>
+                Only when a filling genuinely needs it, and never as a surprise. Numbing gel first,
+                and the child is told exactly what they will feel, in the words they use.
+              </p>
+            </article>
+            <article class="q pop">
+              <h3>He is autistic. Can you cope?</h3>
+              <p>
+                Yes, and gladly. Send us what works &mdash; the words to avoid, the lights, the
+                order of things &mdash; and we will book a longer, quieter slot and keep the same
+                clinician every time.
+              </p>
+            </article>
+            <article class="q pop">
+              <h3>Are baby teeth worth fixing?</h3>
+              <p>
+                Yes. They hold the space for the adult ones, and a child in tooth pain does not
+                sleep, eat or concentrate. Ignoring them costs more later.
+              </p>
+            </article>
+            <article class="q pop">
+              <h3>Can I stay in the room?</h3>
+              <p>
+                Always, for any age. We will sometimes ask you to sit slightly behind, because a
+                child watching your face for a reaction cannot relax.
+              </p>
+            </article>
+          </div>
+        </div>
+        <svg class="wave wave--coral" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 20c120 20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0v20H0z" />
+        </svg>
+      </section>
+
+      <!-- ============ booking ============ -->
+      <section class="book block block--coral" id="book">
+        <div class="wrap book__in">
+          <div class="book__side pop">
+            <p class="kicker kicker--l">
+              <svg viewBox="-14 -14 28 28" aria-hidden="true"><use href="#star" /></svg>
+              Book a first visit
+            </p>
+            <h2>It costs nothing and takes twenty minutes.</h2>
+            <p>
+              Tell us who is coming and we will ring you back the same working day with two or three
+              times to choose from.
+            </p>
+            <ul class="book__ul">
+              <li>Nothing is done to teeth at a first visit unless there is pain</li>
+              <li>Bring the red book or NHS number if it is handy &mdash; not essential</li>
+              <li>Saturday mornings go first, so ask early</li>
+            </ul>
+            <p class="book__ph">
+              Rather talk?
+              <a href="tel:+441179000000">0117 900 0000</a>
+            </p>
+          </div>
+
+          <div class="card pop">
+            <form class="form" data-form novalidate>
+              <p class="form__h">Who&rsquo;s coming to see us?</p>
+
+              <label class="fl">
+                <span>Child&rsquo;s first name</span>
+                <input type="text" name="child" data-child required autocomplete="off" />
+              </label>
+
+              <fieldset class="fs">
+                <legend>How old are they?</legend>
+                <div class="segs" data-age>
+                  <button type="button" data-v="0&ndash;2">0&ndash;2</button>
+                  <button type="button" class="is-on" data-v="3&ndash;5">3&ndash;5</button>
+                  <button type="button" data-v="6&ndash;9">6&ndash;9</button>
+                  <button type="button" data-v="10&ndash;15">10&ndash;15</button>
+                </div>
+              </fieldset>
+
+              <fieldset class="fs">
+                <legend>Anything we should know? <span class="fs__opt">optional</span></legend>
+                <div class="chips" data-chips>
+                  <button type="button">First ever visit</button>
+                  <button type="button">A bit nervous</button>
+                  <button type="button">Wobbly tooth</button>
+                  <button type="button">Toothache now</button>
+                  <button type="button">Needs extra time</button>
+                </div>
+              </fieldset>
+
+              <div class="two">
+                <label class="fl">
+                  <span>Your name</span>
+                  <input type="text" name="parent" data-parent required autocomplete="name" />
+                </label>
+                <label class="fl">
+                  <span>Mobile</span>
+                  <input type="tel" name="phone" data-phone required autocomplete="tel" />
+                </label>
+              </div>
+
+              <label class="fl">
+                <span>When suits you best?</span>
+                <select name="when" data-when>
+                  <option>After school, 15.30 onwards</option>
+                  <option>Mornings before school</option>
+                  <option>Saturday morning</option>
+                  <option>Any time in the day</option>
+                </select>
+              </label>
+
+              <p class="form__sum" data-sum>A free first visit for your child, aged 3&ndash;5.</p>
+              <p class="form__err" data-err hidden>
+                We need a first name, your name and a mobile number.
+              </p>
+
+              <button class="pill pill--ink pill--lg pill--full" type="submit">
+                Ask for a callback
+              </button>
+              <p class="form__fine">
+                We use this to ring you about an appointment and nothing else.
+              </p>
+            </form>
+
+            <!-- certificate shown after submit -->
+            <div class="cert" data-cert hidden>
+              <div class="cert__in">
+                <p class="cert__k">Wobble &middot; Bristol</p>
+                <p class="cert__t">Bravery<br />certificate</p>
+                <p class="cert__l">This is to certify that</p>
+                <p class="cert__name" data-cert-name>&nbsp;</p>
+                <p class="cert__l">was extremely brave at the dentist on</p>
+                <p class="cert__date" data-cert-date>&nbsp;</p>
+                <div class="cert__stars" aria-hidden="true">
+                  <svg viewBox="-14 -14 28 28"><use href="#star" /></svg>
+                  <svg viewBox="-14 -14 28 28"><use href="#star" /></svg>
+                  <svg viewBox="-14 -14 28 28"><use href="#star" /></svg>
+                  <svg viewBox="-14 -14 28 28"><use href="#star" /></svg>
+                  <svg viewBox="-14 -14 28 28"><use href="#star" /></svg>
+                </div>
+                <p class="cert__sig">Dr S. Okonjo</p>
+              </div>
+              <p class="cert__msg" data-cert-msg>
+                Booked. We will ring you today.
+              </p>
+              <div class="cert__btns">
+                <button class="pill pill--ink" type="button" data-print>Print the certificate</button>
+                <button class="pill pill--ghost" type="button" data-again>Book another child</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ footer ============ -->
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot__top">
+          <a class="mark mark--lg" href="#top" aria-label="Wobble, home">
+            <span class="mark__t">
+              <svg viewBox="-34 -46 68 92" aria-hidden="true"><use href="#face" /></svg>
+            </span>
+            <span class="mark__w">wobble</span>
+          </a>
+          <p class="foot__line">
+            A dentist for children only. Ages nought to fifteen, Bedminster, Bristol.
+          </p>
+        </div>
+
+        <div class="foot__grid">
+          <div>
+            <h3>Find us</h3>
+            <p>
+              41 Cannon Street<br />Bedminster<br />Bristol BS3 1BN
+            </p>
+            <p><a href="tel:+441179000000">0117 900 0000</a><br /><a href="mailto:hello@wobble.dental">hello@wobble.dental</a></p>
+          </div>
+          <div>
+            <h3>Open</h3>
+            <p>
+              Mon, Tue, Thu 8.30&ndash;18.00<br />Wed 8.30&ndash;19.00<br />Fri 8.30&ndash;17.00<br />Sat
+              9.00&ndash;14.00
+            </p>
+          </div>
+          <div>
+            <h3>Care</h3>
+            <p>
+              <a href="#visit">First visits</a><br /><a href="#cost">Check-ups</a><br /><a href="#cost">Fillings &amp; sealants</a><br /><a href="#cost">Emergencies</a><br /><a href="#team">Sedation</a>
+            </p>
+          </div>
+          <div>
+            <h3>Practice</h3>
+            <p>
+              <a href="#why">About Wobble</a><br /><a href="#team">Our team</a><br /><a href="#ask">Parent questions</a><br /><a href="#book">Book a visit</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="foot__end">
+          <p>&copy; <span data-year>2026</span> Wobble Children&rsquo;s Dentistry Ltd.</p>
+          <p>
+            <a href="#">Complaints</a> &middot; <a href="#">Privacy</a> &middot;
+            <a href="#">Safeguarding</a> &middot; GDC 284119
+          </p>
+          <p class="foot__demo">Demo template &mdash; every detail is invented.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- mobile sticky -->
+    <div class="dock" data-dock>
+      <a class="pill pill--coral" href="#book">Book a free first visit</a>
+      <a class="pill pill--ghost pill--sq" href="tel:+441179000000" aria-label="Call the practice">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a1 1 0 0 1-1 1A17 17 0 0 1 4 5a1 1 0 0 1 1-1z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>
