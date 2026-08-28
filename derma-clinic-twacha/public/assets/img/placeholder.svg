@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Image placeholder">
+  <rect width="800" height="600" fill="#F0EBE2"/>
+  <g fill="none" stroke="#C6DCD7" stroke-width="2">
+    <circle cx="400" cy="268" r="62"/>
+    <path d="M400 206c0 41-38 34-38 74a38 38 0 0 0 76 0c0-40-38-33-38-74z"/>
+  </g>
+  <text x="400" y="386" text-anchor="middle" fill="#94A29F"
+        font-family="Inter, system-ui, sans-serif" font-size="19" font-weight="500"
+        letter-spacing="1.6">IMAGE NOT AVAILABLE</text>
+  <text x="400" y="414" text-anchor="middle" fill="#B4BEBB"
+        font-family="Inter, system-ui, sans-serif" font-size="15">
+    Upload one in the admin panel under Media
+  </text>
+</svg>

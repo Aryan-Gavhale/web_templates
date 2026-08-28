@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TWACHA — Clinic admin</title>
+
+<link rel="icon" href="/assets/img/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/assets/css/admin.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════  sign in  ══ -->
+<div class="gate" id="gate" hidden>
+  <div class="gate__card">
+    <div class="gate__brand">
+      <img src="/assets/img/mark.svg" alt="" width="34" height="34">
+      <div>
+        <strong>TWACHA</strong>
+        <span>Clinic administration</span>
+      </div>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="f">
+        <label for="li_email">Email</label>
+        <input id="li_email" name="email" type="email" autocomplete="username" required>
+      </div>
+      <div class="f">
+        <label for="li_pw">Password</label>
+        <input id="li_pw" name="password" type="password" autocomplete="current-password" required>
+      </div>
+
+      <p class="gate__err" id="loginErr" hidden></p>
+
+      <button class="btn btn--pri btn--full" id="loginBtn" type="submit">Sign in</button>
+    </form>
+
+    <p class="gate__hint" id="gateHint"></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════  shell  ══ -->
+<div class="shell" id="shell" hidden>
+
+  <aside class="side" id="side">
+    <a class="side__brand" href="#/dashboard">
+      <img src="/assets/img/mark.svg" alt="" width="26" height="26">
+      <span>TWACHA</span>
+    </a>
+
+    <nav class="side__nav" id="nav"><!-- built by app.js --></nav>
+
+    <div class="side__foot">
+      <a class="side__site" href="/" target="_blank" rel="noopener">
+        View website
+        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9L9 3M9 3H4.5M9 3v4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="top__burger" id="sideToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="top__where">
+        <h1 id="pageTitle">Overview</h1>
+        <p id="pageSub"></p>
+      </div>
+
+      <div class="top__right">
+        <span class="chip chip--soft" id="googleChip" hidden></span>
+        <div class="who" id="who">
+          <button class="who__btn" id="whoBtn" aria-expanded="false">
+            <span class="who__av" id="whoAv"></span>
+            <span class="who__txt">
+              <b id="whoName"></b>
+              <em id="whoRole"></em>
+            </span>
+            <svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </button>
+          <div class="who__menu" id="whoMenu" hidden>
+            <a href="#/account">My account</a>
+            <a href="#/activity">Activity log</a>
+            <button type="button" id="logoutBtn">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="view" id="view" tabindex="-1">
+      <div class="loading"><span class="spin"></span> Loading…</div>
+    </main>
+  </div>
+</div>
+
+<!-- overlays -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer__scrim" data-close></div>
+  <section class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <header>
+      <h2 id="drawerTitle"></h2>
+      <button class="icon" data-close aria-label="Close">&times;</button>
+    </header>
+    <div class="drawer__body" id="drawerBody"></div>
+  </section>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal__scrim" data-close></div>
+  <section class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h2 id="modalTitle"></h2>
+    <div id="modalBody"></div>
+    <footer id="modalFoot"></footer>
+  </section>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<div class="boot" id="boot"><span class="spin spin--lg"></span></div>
+
+<script type="module" src="/admin/assets/js/app.js"></script>
+</body>
+</html>

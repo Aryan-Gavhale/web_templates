@@ -1,0 +1,21 @@
+{
+  "name": "twacha-clinic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dermatology clinic website with a content, CRM, enquiry and EMI admin panel. Express + node:sqlite, no build step.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "seed": "node --disable-warning=ExperimentalWarning server/seed.js",
+    "reseed": "node --disable-warning=ExperimentalWarning server/seed.js --force",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  }
+}
