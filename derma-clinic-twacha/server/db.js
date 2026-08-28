@@ -1,5 +1,5 @@
 /* =============================================================================
-   Database — node:sqlite (built into Node 22.5+, no native compilation)
+   Database — node:sqlite (built into Node 22.13+, no native compilation)
 
    Money is stored as INTEGER paise throughout. There is not a single float in
    this schema, because a rupee amount that has been through a float is no

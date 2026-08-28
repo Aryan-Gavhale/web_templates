@@ -16,9 +16,11 @@ biography or the order of a section.
 
 ## Running it
 
-Node **22.5 or newer** is required. The database driver is `node:sqlite`, which
+Node **22.13 or newer** is required. The database driver is `node:sqlite`, which
 ships with Node itself, so there is nothing to compile and no native module to
-go wrong on a new machine.
+go wrong on a new machine. 22.13 is the floor because that is where `node:sqlite`
+stopped needing the `--experimental-sqlite` flag; on 22.5 to 22.12 the module
+exists but will not load without it.
 
 ```bash
 npm install

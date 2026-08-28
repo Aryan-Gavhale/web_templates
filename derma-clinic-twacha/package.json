@@ -5,7 +5,7 @@
   "description": "Dermatology clinic website with a content, CRM, enquiry and EMI admin panel. Express + node:sqlite, no build step.",
   "type": "module",
   "engines": {
-    "node": ">=22.5.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
     "start": "node --disable-warning=ExperimentalWarning server/index.js",
