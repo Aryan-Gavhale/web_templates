@@ -1,0 +1,159 @@
+{% extends "admin/base.html" %}
+{% from "admin/_icons.html" import ico %}
+{% from "admin/_fields.html" import csrf, badge %}
+
+{% block crumb %}
+<div class="top__crumb">{{ total }} matching {{ 'enquiry' if total == 1 else 'enquiries' }}</div>
+{% endblock %}
+
+{% block actions %}
+<a class="b" href="{{ url_for('admin.enquiries_export', **request.args) }}">{{ ico('download') }} Export CSV</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+  <div class="panel__h">
+    <div class="tabs">
+      <a class="tab {{ 'is-on' if not f.status and not f.spam }}" href="{{ url_for('admin.enquiries_list') }}">
+        All <b>{{ counts.values() | sum }}</b>
+      </a>
+      {% for value, label in statuses %}
+      <a class="tab {{ 'is-on' if f.status == value }}" href="{{ url_for('admin.enquiries_list', status=value) }}">
+        {{ label }} <b>{{ counts.get(value, 0) }}</b>
+      </a>
+      {% endfor %}
+      {% if spam_count %}
+      <a class="tab {{ 'is-on' if f.spam }}" href="{{ url_for('admin.enquiries_list', spam='1') }}">
+        Spam <b>{{ spam_count }}</b>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="panel__b" style="border-bottom:1px solid var(--a-line-2)">
+    <form class="filters" method="get" data-autofilter>
+      {% if f.status %}<input type="hidden" name="status" value="{{ f.status }}">{% endif %}
+      {% if f.spam %}<input type="hidden" name="spam" value="1">{% endif %}
+      <div class="search">
+        {{ ico('search') }}
+        <input class="in" type="search" name="q" value="{{ f.q }}" placeholder="Name, phone, email or reference">
+      </div>
+      <select class="in" name="range" aria-label="Date range">
+        <option value="">Any date</option>
+        <option value="today" {{ 'selected' if f.range == 'today' }}>Today</option>
+        <option value="week" {{ 'selected' if f.range == 'week' }}>Last 7 days</option>
+        <option value="month" {{ 'selected' if f.range == 'month' }}>Last 30 days</option>
+      </select>
+      <select class="in" name="service" aria-label="Treatment">
+        <option value="">Any treatment</option>
+        {% for s in services %}
+        <option value="{{ s.id }}" {{ 'selected' if f.service == (s.id | string) }}>{{ s.name }}</option>
+        {% endfor %}
+      </select>
+      <select class="in" name="branch" aria-label="Clinic">
+        <option value="">Any clinic</option>
+        {% for b in branches %}
+        <option value="{{ b.id }}" {{ 'selected' if f.branch == (b.id | string) }}>{{ b.name }}</option>
+        {% endfor %}
+      </select>
+      <select class="in" name="assignee" aria-label="Assigned to">
+        <option value="">Anyone</option>
+        <option value="none" {{ 'selected' if f.assignee == 'none' }}>Unassigned</option>
+        {% for u in staff %}
+        <option value="{{ u.id }}" {{ 'selected' if f.assignee == (u.id | string) }}>{{ u.name }}</option>
+        {% endfor %}
+      </select>
+      <select class="in" name="priority" aria-label="Priority">
+        <option value="">Any priority</option>
+        {% for value, label in priorities %}
+        <option value="{{ value }}" {{ 'selected' if f.priority == value }}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <button class="b b--sm" type="submit">Apply</button>
+      <a class="b b--sm b--ghost" href="{{ url_for('admin.enquiries_list') }}">Reset</a>
+    </form>
+  </div>
+
+  <form method="post" action="{{ url_for('admin.enquiries_bulk') }}" data-bulk>
+    {{ csrf() }}
+    <div class="panel__b panel__b--flush">
+      {% if rows %}
+      <div class="tw">
+        <table class="t">
+          <thead>
+            <tr>
+              <th style="width:34px"><input type="checkbox" data-bulk-all aria-label="Select every row"></th>
+              <th>Patient</th><th>Treatment</th><th>Preferred</th><th>Status</th>
+              <th>Assigned</th><th>Received</th><th class="act"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in rows %}
+            <tr>
+              <td><input type="checkbox" name="ids" value="{{ e.id }}" data-bulk-item
+                         aria-label="Select {{ e.name }}"></td>
+              <td>
+                <a class="rowlink" href="{{ url_for('admin.enquiry_detail', row_id=e.id) }}">{{ e.name }}</a>
+                {% if e.priority == 'high' %} {{ badge('urgent', 'bad') }}{% endif %}
+                <span class="t__sub">{{ e.phone or e.email or e.ref }}</span>
+              </td>
+              <td>{{ e.service_name or '—' }}
+                {% if e.branch_name %}<span class="t__sub">{{ e.branch_name }}</span>{% endif %}</td>
+              <td>
+                {% if e.preferred_date %}{{ e.preferred_date | date_fmt }}
+                  <span class="t__sub">{{ e.preferred_time or 'any time' }}</span>
+                {% else %}<span class="hint">—</span>{% endif %}
+              </td>
+              <td>{{ badge(e.status, tone.get(e.status, '')) }}</td>
+              <td>{{ e.assignee_name or badge('unassigned', 'warn') }}</td>
+              <td class="t__sub">{{ e.created_at | ago }}</td>
+              <td class="act">
+                <a class="b b--sm" href="{{ url_for('admin.enquiry_detail', row_id=e.id) }}">Open</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty">
+        <h3>Nothing matches those filters</h3>
+        <p>Reset the filters, or wait for the next enquiry from the website form.</p>
+        <a class="b" href="{{ url_for('admin.enquiries_list') }}">Reset filters</a>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="panel__f" data-bulk-bar hidden>
+      <b data-bulk-count>0 selected</b>
+      <select class="in" name="action" aria-label="Bulk action" style="max-width:230px">
+        {% for value, label in statuses %}
+        <option value="status:{{ value }}">Set status to {{ label | lower }}</option>
+        {% endfor %}
+        <option value="assign">Assign to…</option>
+        {% if f.spam %}<option value="unspam">Not spam</option>{% else %}<option value="spam">Mark as spam</option>{% endif %}
+        <option value="delete">Delete</option>
+      </select>
+      <select class="in" name="assign_to" aria-label="Assign to" style="max-width:180px">
+        <option value="">Nobody</option>
+        {% for u in staff %}<option value="{{ u.id }}">{{ u.name }}</option>{% endfor %}
+      </select>
+      <button class="b b--go" type="submit">Apply to selected</button>
+      <span class="hint">Bulk changes are written to the activity log.</span>
+    </div>
+  </form>
+
+  {% if pages > 1 %}
+  <div class="pager">
+    {% for p in range(1, pages + 1) %}
+      {% if p == page %}
+      <span class="is-on">{{ p }}</span>
+      {% else %}
+      <a href="{{ url_for('admin.enquiries_list', page=p, **f) }}">{{ p }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

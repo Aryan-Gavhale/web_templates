@@ -1,10 +1,12 @@
 # web_templates
 
 Twenty-three hand-built, single-page website templates across three verticals —
-dental practices, dermatology clinics, and interior design studios.
+dental practices, dermatology clinics, and interior design studios — plus one of
+them taken all the way to a working application with a database and an admin
+panel behind it (`dental-clinic-cms`, described at the bottom).
 
-Every template is static **HTML, CSS and vanilla JavaScript**. No build step, no
-framework, no package manager, no runtime dependencies beyond a Google Fonts
+Every **template** is static **HTML, CSS and vanilla JavaScript**. No build step,
+no framework, no package manager, no runtime dependencies beyond a Google Fonts
 link. Each folder holds four files:
 
 ```
@@ -71,6 +73,41 @@ placeholder.
 
 ---
 
+## dental-clinic-cms — the one that is a real application
+
+Everything above is a front end. This one is the same design thinking wired to a
+database: a dentist site where no heading, paragraph, image, treatment,
+clinician, clinic, FAQ, colour or menu item is hard-coded — each is a row in
+SQLite that the practice owner edits from an admin panel.
+
+**Flask 3, stdlib `sqlite3`, Jinja, hand-written CSS, one deferred script per
+surface.** Still no build step and no JS framework; three pip packages.
+
+```bash
+cd dental-clinic-cms
+pip install -r requirements.txt
+python app.py reset      # create the database, load the demo practice
+python app.py            # http://127.0.0.1:8120
+```
+
+Pages are built from typed, reorderable sections (fifteen types, each with its
+own admin form and public partial). The panel also carries a media library with
+generated WebP variants, live Google reviews through the Places API with curated
+quotes as the fallback, enquiries as a small CRM with a timeline and CSV export,
+and EMI as a working ledger — plans, applications, generated instalment
+schedules, recorded payments and printable receipts. Roles, CSRF, login
+throttling and an audit trail of every change are in place.
+
+Its own `README.md` covers setup, the Google Places key steps and their billing
+caveat, the data model, backup and restore, and the two verification scripts
+(`check_routes.py` and `check_browser.py`).
+
+Unlike the templates, **its forms really do store what they are given.** The
+seeded practice is fictional and the seeded imagery is remote Unsplash URLs, so
+replace both before it goes anywhere real.
+
+---
+
 ## Shared conventions
 
 Templates within a vertical are deliberately built to share nothing — different
@@ -97,9 +134,11 @@ numbers, opening hours, fees and insurer arrangements are **invented**, and any
 clinical or technical figures are illustrative and need review and sign-off by
 the professional whose name goes on the site.
 
-Forms are intercepted and answered entirely in the browser — they post nowhere.
-Wire them to a real endpoint before they take a single detail from anybody, and
-where the data is health data, treat it accordingly.
+In the templates, forms are intercepted and answered entirely in the browser —
+they post nowhere. Wire them to a real endpoint before they take a single detail
+from anybody, and where the data is health data, treat it accordingly. In
+`dental-clinic-cms` they do post, to your own SQLite file, which is the same
+obligation with the storage already built.
 
 Photographs, where used, are stock images from Unsplash standing in for real
 premises and real people.

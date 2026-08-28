@@ -1,0 +1,73 @@
+{% extends "admin/base.html" %}
+{% from "admin/_icons.html" import ico %}
+{% from "admin/_fields.html" import fields as render_fields, csrf %}
+
+{% block crumb %}<div class="top__crumb">{{ spec.label }}</div>{% endblock %}
+
+{% block actions %}
+<a class="b" href="/" target="_blank" rel="noopener">{{ ico('external') }} View the website</a>
+{% endblock %}
+
+{% block content %}
+<div class="panel">
+  <div class="panel__h">
+    <div class="tabs">
+      {% for key, g in groups.items() %}
+      <a class="tab {{ 'is-on' if key == group }}" href="{{ url_for('admin.settings_home', group=key) }}">{{ g.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<form method="post" action="{{ url_for('admin.settings_save', group=group) }}" data-guard>
+  {{ csrf() }}
+  <div class="panel">
+    <div class="panel__h">
+      <div><h2>{{ spec.label }}</h2><p>{{ spec.blurb }}</p></div>
+    </div>
+    <div class="panel__b">
+      <div class="fg">
+        {{ render_fields(spec.fields, values) }}
+      </div>
+    </div>
+  </div>
+
+  {% if group == 'theme' %}
+  <div class="panel">
+    <div class="panel__h"><div><h2>Preview</h2><p>How the saved values look together. Save to apply them to the site.</p></div></div>
+    <div class="panel__b">
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        {% for key, label in [('theme.primary', 'Primary'), ('theme.primary_dark', 'Primary dark'),
+                              ('theme.accent', 'Accent'), ('theme.ink', 'Text'),
+                              ('theme.muted', 'Muted'), ('theme.surface', 'Surface'),
+                              ('theme.canvas', 'Alternate')] %}
+        <div style="text-align:center">
+          <div style="width:74px; height:52px; border-radius:9px; border:1px solid var(--a-line);
+                      background:{{ values.get(key, '#ffffff') }}"></div>
+          <span class="hint" style="display:block; margin-top:4px">{{ label }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if group == 'hours' %}
+  <div class="panel">
+    <div class="panel__h"><div><h2>How this reads on the site</h2></div></div>
+    <div class="panel__b">
+      <ul style="margin:0; padding-left:18px; font-size:13.5px">
+        {% for line in hours_rows %}
+        <li>{{ line.days }} &mdash; {{ line.text }}{% if line.is_today %} <b>(today)</b>{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="savebar">
+    <button class="b b--go" type="submit">{{ ico('save') }} Save {{ spec.label | lower }}</button>
+    <span class="savebar__note">Changes take effect on the next page load. Nothing is cached.</span>
+  </div>
+</form>
+{% endblock %}

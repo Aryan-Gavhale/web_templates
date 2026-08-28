@@ -1,0 +1,13 @@
+{
+  "secret_key": "replace-this-with-a-long-random-string",
+  "host": "127.0.0.1",
+  "port": 8120,
+  "debug": false,
+  "db_path": "db/clinic.db",
+  "upload_dir": "static/uploads",
+  "max_upload_mb": 12,
+  "owner_email": "owner@anvayadental.in",
+  "owner_password": "set-this-before-the-first-run",
+  "owner_name": "Practice Owner",
+  "google_verify_tls": true
+}

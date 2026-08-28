@@ -1,0 +1,117 @@
+{% extends "admin/base.html" %}
+{% from "admin/_icons.html" import ico %}
+{% from "admin/_fields.html" import csrf %}
+
+{% block crumb %}
+<div class="top__crumb"><a href="{{ url_for('admin.emi_applications') }}">EMI applications</a> &rsaquo; New</div>
+{% endblock %}
+
+{% block actions %}
+<a class="b" href="{{ url_for('admin.emi_applications') }}">All applications</a>
+{% endblock %}
+
+{% block content %}
+<form method="post" data-guard data-emi-quote>
+  {{ csrf() }}
+  <div class="panel">
+    <div class="panel__h">
+      <div><h2>Raise an application</h2>
+        <p>For a patient at the desk. Anything submitted through the website lands here already filled in.</p></div>
+    </div>
+    <div class="panel__b">
+      <div class="fg">
+        <div class="fi fi--5">
+          <label for="applicant_name">Patient name <em>*</em></label>
+          <input class="in" id="applicant_name" name="applicant_name" required>
+        </div>
+        <div class="fi fi--4">
+          <label for="phone">Phone</label>
+          <input class="in" id="phone" name="phone" type="tel">
+        </div>
+        <div class="fi fi--3">
+          <label for="email">Email</label>
+          <input class="in" id="email" name="email" type="email">
+        </div>
+
+        <div class="fi fi--12 fhead"><h3>The treatment</h3></div>
+        <div class="fi fi--6">
+          <label for="service_id">Treatment</label>
+          <select class="in" id="service_id" name="service_id">
+            <option value="">Not linked to a listed treatment</option>
+            {% for s in services %}
+            <option value="{{ s.id }}" data-price="{{ s.price_from or '' }}">{{ s.name }}</option>
+            {% endfor %}
+          </select>
+          <span class="hint">Picking one fills the amount from its starting fee.</span>
+        </div>
+        <div class="fi fi--6">
+          <label for="treatment_amount">Total cost <em>*</em></label>
+          <div class="wrapin">
+            <span class="fix">&#8377;</span>
+            <input class="in" id="treatment_amount" name="treatment_amount" type="number" min="500" step="500" required>
+          </div>
+        </div>
+
+        <div class="fi fi--12 fhead"><h3>The plan</h3></div>
+        <div class="fi fi--6">
+          <label for="plan_id">Plan <em>*</em></label>
+          <select class="in" id="plan_id" name="plan_id" required>
+            <option value="">Choose a plan</option>
+            {% for p in plans %}
+            <option value="{{ p.id }}" data-tenure="{{ p.tenure_months }}" data-rate="{{ p.interest_rate }}"
+                    data-fee="{{ p.processing_fee_pct }}" data-down="{{ p.downpayment_pct }}">
+              {{ p.name }} &middot; {{ p.tenure_months }} months
+              {{ 'at ' ~ p.interest_rate ~ '%' if p.interest_rate else 'no cost' }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="fi fi--3">
+          <label for="start_date">First instalment</label>
+          <input class="in" id="start_date" name="start_date" type="date" value="{{ today.isoformat() }}">
+          <span class="hint">Instalments fall on this day each month.</span>
+        </div>
+        <div class="fi fi--3">
+          <label for="status">Status</label>
+          <select class="in" id="status" name="status">
+            {% for key, label in statuses.items() %}
+            {% if key in ('submitted', 'under_review', 'approved') %}
+            <option value="{{ key }}" {{ 'selected' if key == 'under_review' }}>{{ label }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+          <span class="hint">Approving generates the schedule.</span>
+        </div>
+        <div class="fi fi--12">
+          <div class="note note--plain" data-emi-out>Choose an amount and a plan to see the monthly figure.</div>
+        </div>
+        <div class="fi fi--12">
+          <label for="notes">Notes</label>
+          <textarea class="in" id="notes" name="notes" rows="3"
+                    placeholder="Aadhaar and PAN seen. Guarantor is the patient's son."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="savebar">
+    <button class="b b--go" type="submit">{{ ico('wallet') }} Create the application</button>
+    <span class="savebar__note">You can adjust the plan later, up until the first payment is recorded.</span>
+  </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  /* Picking a listed treatment suggests its starting fee. */
+  const svc = document.getElementById('service_id');
+  const amount = document.getElementById('treatment_amount');
+  svc?.addEventListener('change', () => {
+    const price = svc.selectedOptions[0]?.dataset.price;
+    if (price && !amount.value) {
+      amount.value = Math.round(parseFloat(price));
+      amount.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+</script>
+{% endblock %}
