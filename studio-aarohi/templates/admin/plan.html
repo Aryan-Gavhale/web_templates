@@ -1,0 +1,448 @@
+{% extends "admin/base.html" %}
+
+{% block heading %}
+<a class="dim" href="{{ url_for('admin.payments') }}">Payments</a>
+<span class="dim">/</span> {{ plan.title }}
+{% endblock %}
+
+{% block topbar %}
+<button class="b" type="button" id="statement"><i data-ic="file"></i><span>Statement</span></button>
+<button class="b b--pri" type="button" id="edit"><i data-ic="edit"></i><span>Edit plan</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="grid g-side">
+
+  <div class="stack">
+
+    <article class="card">
+      <header class="card__h">
+        <h2>Schedule</h2>
+        <span class="chip chip--{{ plan.status }}">
+          {{ {'active': 'Live', 'completed': 'Settled', 'cancelled': 'Cancelled'}[plan.status] }}</span>
+        <span class="grow"></span>
+        <span class="dim mono tiny">{{ plan.ref }}</span>
+      </header>
+
+      <div class="tw">
+        <table class="t">
+          <thead><tr>
+            <th style="width:1%">#</th><th>Due</th><th class="num">Amount</th>
+            <th class="num">Paid</th><th>Status</th><th class="acts">Record</th>
+          </tr></thead>
+          <tbody id="inst">
+          {% for i in plan.installments %}
+          <tr data-row data-id="{{ i.id }}">
+            <td class="dim mono">{{ i.seq }}</td>
+            <td class="nowrap">
+              {{ i.due_date|nicedate }}
+              {% if i.method %}<div class="enq__meta">{{ i.method }}{% if i.reference %} · {{ i.reference }}{% endif %}</div>{% endif %}
+            </td>
+            <td class="num">{{ i.amount|money }}</td>
+            <td class="num">
+              {{ i.paid_amount|money if i.paid_amount else '—' }}
+              {% if i.paid_on %}<div class="enq__meta">{{ i.paid_on|nicedate }}</div>{% endif %}
+            </td>
+            <td><span class="chip chip--{{ i.state }}">{{ status_labels[i.state] }}</span></td>
+            <td class="acts">
+              {% if i.state != 'paid' %}
+              <button class="b b--sm b--pri" type="button" data-pay
+                      data-amount="{{ i.outstanding|round|int }}"
+                      data-full="{{ i.amount|round|int }}"
+                      data-seq="{{ i.seq }}">Record</button>
+              {% else %}
+              <button class="b b--sm" type="button" data-receipt data-seq="{{ i.seq }}">
+                <i data-ic="file"></i><span>Receipt</span></button>
+              {% endif %}
+              <button class="b b--sm b--icon" type="button" data-more data-seq="{{ i.seq }}"
+                      aria-label="More"><i data-ic="cog"></i></button>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <footer class="card__f row">
+        <span class="dim tiny">
+          {{ plan.roll.paid_count }} of {{ plan.roll.count }} instalments cleared.
+          {% if plan.roll.overdue_count %}
+          <b style="color:var(--bad)">{{ plan.roll.overdue_count }} overdue.</b>
+          {% endif %}
+        </span>
+        <span class="grow"></span>
+        <button class="b b--sm" type="button" id="reschedule">
+          <i data-ic="refresh"></i><span>Reschedule the unpaid part</span></button>
+      </footer>
+    </article>
+
+    {% if plan.note %}
+    <article class="card">
+      <header class="card__h"><h2>Note</h2></header>
+      <div class="card__b"><p style="font-size:13.5px;white-space:pre-wrap">{{ plan.note }}</p></div>
+    </article>
+    {% endif %}
+
+  </div>
+
+  <div class="stack">
+
+    <article class="card">
+      <header class="card__h"><h2>Where it stands</h2></header>
+      <div class="card__b">
+        <div class="row" style="align-items:baseline;gap:8px">
+          <span style="font-size:30px;font-weight:600;letter-spacing:-.02em">{{ plan.roll.progress }}%</span>
+          <span class="dim tiny">collected</span>
+        </div>
+        <div class="prog {{ 'prog--part' if plan.roll.progress < 100 }}" style="margin:10px 0 16px">
+          <i style="width:{{ plan.roll.progress }}%"></i>
+        </div>
+        <dl class="kv">
+          <dt>Project value</dt><dd>{{ plan.total_amount|money }}</dd>
+          {% if plan.discount %}<dt>Discount</dt><dd>−{{ plan.discount|money }}</dd>{% endif %}
+          <dt>Advance</dt><dd>{{ plan.downpayment|money }}</dd>
+          <dt>Interest</dt>
+          <dd>{{ interest_labels[plan.interest_type] }}{% if plan.interest_pct %} · {{ plan.interest_pct }}%{% endif %}</dd>
+          <dt>Payable</dt><dd><b>{{ plan.roll.payable|money }}</b></dd>
+          <dt>Received</dt><dd style="color:var(--ok)">{{ plan.roll.received|money }}</dd>
+          <dt>Outstanding</dt>
+          <dd {% if plan.roll.outstanding %}style="color:var(--bad)"{% endif %}>
+            <b>{{ plan.roll.outstanding|money }}</b></dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__h"><h2>Client</h2></header>
+      <div class="card__b">
+        <p style="font-weight:500">{{ plan.client_name }}</p>
+        <dl class="kv" style="margin-top:10px">
+          {% if plan.client_phone %}<dt>Phone</dt><dd>{{ plan.client_phone }}</dd>{% endif %}
+          {% if plan.client_email %}<dt>Email</dt>
+            <dd><a href="mailto:{{ plan.client_email }}">{{ plan.client_email }}</a></dd>{% endif %}
+          {% if plan.client_city %}<dt>City</dt><dd>{{ plan.client_city }}</dd>{% endif %}
+        </dl>
+        {% if plan.roll.next_due %}
+        <div class="note-b note-b--info" style="margin-top:14px">
+          <i data-ic="clock"></i>
+          <span>Next: {{ plan.roll.next_due.amount|money }} on
+            {{ plan.roll.next_due.due_date|nicedate }}</span>
+        </div>
+        {% endif %}
+        {% if plan.client_phone %}
+        <button class="b b--sm b--brand b--wide" type="button" id="remind" style="margin-top:14px">
+          <i data-ic="wa"></i><span>Send a reminder</span></button>
+        {% endif %}
+      </div>
+      <footer class="card__f">
+        <button class="b b--sm b--bad" type="button" id="delplan">
+          <i data-ic="trash"></i><span>Delete plan</span></button>
+      </footer>
+    </article>
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const PLAN = {{ {
+    'id': plan.id, 'ref': plan.ref, 'title': plan.title, 'status': plan.status,
+    'note': plan.note, 'client': plan.client_name, 'phone': plan.client_phone or '',
+    'email': plan.client_email or '', 'address': plan.client_address or '',
+    'city': plan.client_city or '',
+    'total_amount': plan.total_amount, 'discount': plan.discount,
+    'downpayment': plan.downpayment, 'interest_type': plan.interest_type,
+    'interest_pct': plan.interest_pct, 'tenure_months': plan.tenure_months,
+    'start_date': plan.start_date,
+    'installments': plan.installments,
+    'roll': {'payable': plan.roll.payable, 'received': plan.roll.received,
+             'outstanding': plan.roll.outstanding},
+  }|tojson }};
+  const TODAY = {{ today|tojson }};
+  const TPL = {{ reminder_template|tojson }};
+  const STUDIO = {{ studio|tojson }};
+  const METHODS = ['UPI', 'Bank transfer', 'Cheque', 'Cash', 'Card'];
+
+  function inst(seq) { return PLAN.installments.find(i => i.seq === Number(seq)); }
+
+  /* ── record a payment ───────────────────────────────────── */
+
+  function pay(row, btn) {
+    const i = inst(btn.dataset.seq);
+    const m = A.modal({
+      title: 'Record a payment',
+      note: 'Instalment ' + i.seq + ' · due ' + A.date(i.due_date),
+      size: 'slim',
+      body:
+        A.F.number('paid_amount', 'Amount received', {
+          prefix: window.CURRENCY, min: 0, step: 1,
+          hint: 'Full instalment is ' + A.money(i.amount) + '.' }) +
+        A.F.row(
+          A.F.date('paid_on', 'Received on'),
+          A.F.select('method', 'How', METHODS)) +
+        '<div style="height:14px"></div>' +
+        A.F.text('reference', 'Reference', { placeholder: 'UPI id, cheque number…' }),
+      actions: [
+        { label: 'Full amount', onClick: m => {
+            m.field('paid_amount').value = Math.round(i.outstanding || i.amount); } },
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Save payment', className: 'b--pri', icon: 'check', onClick: async (m, b2) => {
+            const v = m.values();
+            const out = await A.act(b2, () => A.patch('/installments/' + i.id, v),
+              'Payment recorded');
+            if (out) { m.close(); location.reload(); }
+          } },
+      ],
+    });
+    A.fill(m.body, {
+      paid_amount: Math.round(i.outstanding || i.amount),
+      paid_on: TODAY, method: i.method || 'UPI', reference: i.reference || '',
+    });
+  }
+
+  /* ── per-instalment extras ──────────────────────────────── */
+
+  function more(row, btn) {
+    const i = inst(btn.dataset.seq);
+    const m = A.modal({
+      title: 'Instalment ' + i.seq,
+      size: 'slim',
+      body:
+        A.F.date('due_date', 'Due date') +
+        A.F.area('note', 'Note', { rows: 3, placeholder: 'Why it moved, what was agreed.' }),
+      actions: [
+        i.paid_amount > 0
+          ? { label: 'Clear payment', className: 'b--bad', onClick: async (m, b2) => {
+              const yes = await A.confirmDialog({
+                title: 'Clear this payment?',
+                message: 'The instalment goes back to unpaid. Use this to fix a mistake.' });
+              if (!yes) return;
+              const out = await A.act(b2, () => A.patch('/installments/' + i.id, { clear: 1 }),
+                'Payment cleared');
+              if (out) location.reload();
+            } }
+          : { spacer: true },
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Save', className: 'b--pri', onClick: async (m, b2) => {
+            const out = await A.act(b2, () => A.patch('/installments/' + i.id, m.values()), 'Saved');
+            if (out) location.reload();
+          } },
+      ],
+    });
+    A.fill(m.body, { due_date: i.due_date, note: i.note || '' });
+  }
+
+  /* ── receipt ────────────────────────────────────────────── */
+
+  function receipt(seq) {
+    const i = inst(seq);
+    const html =
+      '<div id="rcpt" style="font-size:13.5px;line-height:1.7">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;' +
+             'border-bottom:1px solid #E4E6EB;padding-bottom:14px;margin-bottom:16px">' +
+          '<div><div style="font-size:16px;font-weight:600">' + A.esc(STUDIO) + '</div>' +
+          '<div style="color:#6B7280;font-size:12px">Payment receipt</div></div>' +
+          '<div style="text-align:right;font-family:ui-monospace,monospace;font-size:12px">' +
+            A.esc(PLAN.ref) + '/' + i.seq + '<br>' + A.esc(A.date(i.paid_on)) + '</div>' +
+        '</div>' +
+        '<dl class="kv">' +
+          '<dt>Received from</dt><dd>' + A.esc(PLAN.client) + '</dd>' +
+          (PLAN.address ? '<dt>Address</dt><dd>' + A.esc(PLAN.address) + '</dd>' : '') +
+          '<dt>Towards</dt><dd>' + A.esc(PLAN.title) + '</dd>' +
+          '<dt>Instalment</dt><dd>' + i.seq + ' of ' + PLAN.installments.length + '</dd>' +
+          '<dt>Method</dt><dd>' + A.esc(i.method || '—') +
+            (i.reference ? ' · ' + A.esc(i.reference) : '') + '</dd>' +
+        '</dl>' +
+        '<div style="margin-top:16px;padding:14px;background:#F6F7F9;border-radius:8px;' +
+             'display:flex;justify-content:space-between;align-items:baseline">' +
+          '<span>Amount received</span>' +
+          '<b style="font-size:20px">' + A.money(i.paid_amount) + '</b>' +
+        '</div>' +
+        '<p style="color:#6B7280;font-size:11.5px;margin-top:14px">' +
+          'Outstanding on this plan after this payment: ' + A.money(PLAN.roll.outstanding) + '.' +
+        '</p>' +
+      '</div>';
+
+    A.modal({
+      title: 'Receipt', size: 'slim', body: html,
+      actions: [
+        { spacer: true },
+        { label: 'Copy as text', icon: 'copy', onClick: () =>
+            A.copy(document.getElementById('rcpt').innerText) },
+        { label: 'Print', icon: 'file', className: 'b--pri', onClick: () => printBlock('rcpt') },
+      ],
+    });
+  }
+
+  function printBlock(id) {
+    const node = document.getElementById(id);
+    const w = window.open('', '_blank', 'width=720,height=900');
+    w.document.write('<!doctype html><title>' + STUDIO + '</title><style>' +
+      'body{font:14px/1.7 Inter,system-ui,sans-serif;color:#16181C;padding:40px;max-width:640px;margin:0 auto}' +
+      '.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 12px}' +
+      '.kv dt{color:#6B7280}.kv dd{margin:0}' +
+      'table{width:100%;border-collapse:collapse;font-size:13px}' +
+      'th,td{padding:7px 6px;border-bottom:1px solid #E4E6EB;text-align:left}' +
+      'td.num,th.num{text-align:right}' +
+      '</style>' + node.outerHTML);
+    w.document.close();
+    setTimeout(() => { w.focus(); w.print(); }, 260);
+  }
+
+  /* ── statement ──────────────────────────────────────────── */
+
+  document.getElementById('statement').addEventListener('click', () => {
+    const rows = PLAN.installments.map(i =>
+      '<tr><td>' + i.seq + '</td><td>' + A.esc(A.date(i.due_date)) + '</td>' +
+      '<td class="num">' + A.money(i.amount) + '</td>' +
+      '<td class="num">' + (i.paid_amount ? A.money(i.paid_amount) : '—') + '</td>' +
+      '<td>' + A.esc(i.paid_on ? A.date(i.paid_on)
+        : (i.state === 'overdue' ? 'overdue' : 'upcoming')) + '</td></tr>').join('');
+
+    const html =
+      '<div id="stmt" style="font-size:13.5px">' +
+        '<div style="display:flex;justify-content:space-between;border-bottom:1px solid #E4E6EB;' +
+             'padding-bottom:14px;margin-bottom:16px">' +
+          '<div><div style="font-size:16px;font-weight:600">' + A.esc(STUDIO) + '</div>' +
+          '<div style="color:#6B7280;font-size:12px">Statement of account</div></div>' +
+          '<div style="text-align:right;font-family:ui-monospace,monospace;font-size:12px">' +
+            A.esc(PLAN.ref) + '<br>' + A.date(TODAY) + '</div>' +
+        '</div>' +
+        '<dl class="kv"><dt>Client</dt><dd>' + A.esc(PLAN.client) + '</dd>' +
+        '<dt>Project</dt><dd>' + A.esc(PLAN.title) + '</dd>' +
+        '<dt>Payable</dt><dd>' + A.money(PLAN.roll.payable) + '</dd>' +
+        '<dt>Received</dt><dd>' + A.money(PLAN.roll.received) + '</dd>' +
+        '<dt>Outstanding</dt><dd><b>' + A.money(PLAN.roll.outstanding) + '</b></dd></dl>' +
+        '<table style="margin-top:18px"><thead><tr><th>#</th><th>Due</th>' +
+        '<th class="num">Amount</th><th class="num">Paid</th><th>On</th></tr></thead>' +
+        '<tbody>' + rows + '</tbody></table>' +
+      '</div>';
+
+    A.modal({
+      title: 'Statement of account', size: 'wide', body: html,
+      actions: [
+        { spacer: true },
+        { label: 'Copy as text', icon: 'copy', onClick: () =>
+            A.copy(document.getElementById('stmt').innerText) },
+        { label: 'Print', icon: 'file', className: 'b--pri', onClick: () => printBlock('stmt') },
+      ],
+    });
+  });
+
+  /* ── plan-level actions ─────────────────────────────────── */
+
+  document.getElementById('edit').addEventListener('click', () => {
+    const m = A.modal({
+      title: 'Edit plan',
+      size: 'slim',
+      body:
+        A.F.text('title', 'Title') +
+        A.F.select('status', 'Status', [['active', 'Live'], ['completed', 'Settled'],
+                                        ['cancelled', 'Cancelled']]) +
+        A.F.area('note', 'Internal note', { rows: 4 }),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Save', className: 'b--pri', onClick: async (m, btn) => {
+            const out = await A.act(btn, () => A.put('/plans/' + PLAN.id, m.values()), 'Plan saved');
+            if (out) location.reload();
+          } },
+      ],
+    });
+    A.fill(m.body, { title: PLAN.title, status: PLAN.status, note: PLAN.note || '' });
+  });
+
+  document.getElementById('reschedule').addEventListener('click', () => {
+    const m = A.modal({
+      title: 'Reschedule the unpaid part',
+      note: 'Payments already received stay exactly as they are. Only the remaining instalments are rebuilt.',
+      body:
+        A.F.row(
+          A.F.number('total_amount', 'Project value', { prefix: window.CURRENCY, min: 0, step: 1000 }),
+          A.F.number('discount', 'Discount', { prefix: window.CURRENCY, min: 0, step: 1000 })) +
+        '<div style="height:14px"></div>' +
+        A.F.row(
+          A.F.number('downpayment', 'Advance', { prefix: window.CURRENCY, min: 0, step: 1000 }),
+          A.F.number('tenure_months', 'Months remaining', { min: 1, max: 120 })) +
+        '<div style="height:14px"></div>' +
+        A.F.row(
+          A.F.select('interest_type', 'Interest', [['none', 'No interest'], ['flat', 'Flat rate'],
+                                                   ['reducing', 'Reducing balance']]),
+          A.F.number('interest_pct', 'Rate % a year', { min: 0, step: 0.1 })) +
+        '<div style="height:14px"></div>' +
+        A.F.date('start_date', 'Count months from'),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Rebuild schedule', className: 'b--pri', icon: 'refresh',
+          onClick: async (m, btn) => {
+            const yes = await A.confirmDialog({
+              title: 'Rebuild the remaining instalments?',
+              message: 'Unpaid instalments are replaced with a new schedule. Received payments are untouched.',
+              confirmLabel: 'Rebuild', danger: false,
+            });
+            if (!yes) return;
+            const out = await A.act(btn, () => A.post('/plans/' + PLAN.id + '/reschedule', m.values()),
+              'Schedule rebuilt');
+            if (out) location.reload();
+          } },
+      ],
+    });
+    A.fill(m.body, {
+      total_amount: PLAN.total_amount, discount: PLAN.discount,
+      downpayment: PLAN.downpayment, tenure_months: PLAN.tenure_months,
+      interest_type: PLAN.interest_type, interest_pct: PLAN.interest_pct,
+      start_date: PLAN.start_date,
+    });
+  });
+
+  const remind = document.getElementById('remind');
+  if (remind) remind.addEventListener('click', () => {
+    const next = PLAN.installments.find(i => i.state !== 'paid');
+    if (!next) { A.toast('Nothing is outstanding on this plan.'); return; }
+    const text = A.fillTemplate(TPL, {
+      name: PLAN.client, amount: A.money(next.outstanding), due: A.date(next.due_date),
+      ref: PLAN.ref, studio: STUDIO,
+    });
+    A.modal({
+      title: 'Payment reminder', note: PLAN.client + ' · ' + PLAN.phone, size: 'slim',
+      body: '<div class="quote">' + A.esc(text) + '</div>',
+      actions: [
+        { spacer: true },
+        { label: 'Copy', icon: 'copy', onClick: () => A.copy(text) },
+        { label: 'WhatsApp', icon: 'wa', className: 'b--brand', onClick: m => {
+            window.open('https://wa.me/' + PLAN.phone.replace(/[^0-9]/g, '') +
+              '?text=' + encodeURIComponent(text), '_blank');
+            m.close();
+          } },
+      ],
+    });
+  });
+
+  document.getElementById('delplan').addEventListener('click', async e => {
+    const yes = await A.confirmDialog({
+      title: 'Delete this plan?',
+      message: 'The schedule and every recorded payment go with it. ' +
+               'Mark it cancelled instead if you want to keep the record.',
+    });
+    if (!yes) return;
+    const out = await A.act(e.currentTarget, () => A.del('/plans/' + PLAN.id), 'Plan deleted');
+    if (out) location.href = '/admin/payments';
+  });
+
+  document.getElementById('inst').addEventListener('click', e => {
+    const row = e.target.closest('[data-row]');
+    if (!row) return;
+    if (e.target.closest('[data-pay]')) pay(row, e.target.closest('[data-pay]'));
+    if (e.target.closest('[data-more]')) more(row, e.target.closest('[data-more]'));
+    if (e.target.closest('[data-receipt]')) receipt(e.target.closest('[data-receipt]').dataset.seq);
+  });
+})();
+</script>
+{% endblock %}

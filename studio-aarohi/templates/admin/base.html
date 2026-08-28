@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>{{ page_title }} · {{ site_name }} admin</title>
+<link rel="icon" href="{{ url_for('static', filename='public/favicon.svg') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/admin.css') }}">
+<script>window.CURRENCY = {{ currency|tojson }};</script>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="rail" id="rail">
+    <div class="rail__top">
+      <a class="rail__mark" href="{{ url_for('admin.dashboard') }}">{{ site_name }}</a>
+      <span class="rail__sub">Owner console</span>
+    </div>
+
+    <nav class="rail__nav" aria-label="Admin">
+      {% for group, links in nav_groups %}
+      <div class="rail__grp">
+        <p class="rail__lbl">{{ group }}</p>
+        {% for endpoint, label, ic in links %}
+        {% set n = nav_counts.get(endpoint, 0) %}
+        <a href="{{ url_for(endpoint) }}" class="{{ 'on' if here == endpoint or (endpoint == 'admin.projects' and here == 'admin.project_edit') or (endpoint == 'admin.payments' and here == 'admin.plan_view') }}">
+          <i data-ic="{{ ic }}"></i>
+          <span>{{ label }}</span>
+          {% if n %}<span class="rail__pill {{ 'rail__pill--q' if endpoint == 'admin.payments' }}">{{ n }}</span>{% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </nav>
+
+    <div class="rail__foot">
+      <span class="rail__ava">{{ (me.name or '?')[0]|upper }}</span>
+      <span class="rail__who">
+        <b class="trunc">{{ me.name }}</b>
+        <span class="trunc">{{ me.email }}</span>
+      </span>
+      <a class="rail__out" href="{{ url_for('admin.logout') }}" title="Sign out" aria-label="Sign out">
+        <i data-ic="ext"></i>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <button class="burger" id="burger" type="button" aria-label="Menu"><i data-ic="layout"></i></button>
+      <h1>{% block heading %}{{ page_title }}{% endblock %}</h1>
+      <div class="top__end">
+        {% block topbar %}{% endblock %}
+        <a class="b" href="/" target="_blank" rel="noopener">
+          <i data-ic="eye"></i><span>View site</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="body">
+      {% block body %}{% endblock %}
+    </div>
+  </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='admin/js/admin.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

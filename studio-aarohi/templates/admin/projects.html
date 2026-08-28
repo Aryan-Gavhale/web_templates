@@ -1,0 +1,115 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+<button class="b b--pri" type="button" id="add"><i data-ic="plus"></i><span>New project</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="card">
+  <header class="card__h">
+    <h2>Projects</h2>
+    <span class="dim">{{ items|length }} in the portfolio — this order is the order on the site</span>
+  </header>
+
+  <div class="card__b card__b--flush" id="list">
+    {% for it in items %}
+    <div class="lrow" data-row data-id="{{ it.id }}">
+      <span class="lrow__ord">
+        <button type="button" data-move="up" aria-label="Move up"><i data-ic="up"></i></button>
+        <button type="button" data-move="down" aria-label="Move down"><i data-ic="down"></i></button>
+      </span>
+
+      {% if it.cover_id %}
+      <img class="thumb thumb--lg" src="{{ it.thumb }}" alt="">
+      {% else %}
+      <span class="thumb thumb--lg thumb--none" title="No cover image"><i data-ic="photo"></i></span>
+      {% endif %}
+
+      <div style="min-width:0">
+        <p class="lrow__t">
+          {{ it.title }}
+          {% if it.is_featured %}<span class="chip chip--quoted" style="margin-left:6px">Featured</span>{% endif %}
+          {% if not it.cover_id %}<span class="chip chip--overdue" style="margin-left:6px">No cover</span>{% endif %}
+        </p>
+        <p class="lrow__s trunc">{{ it.summary or 'No summary yet.' }}</p>
+        <p class="lrow__s" style="margin-top:3px">
+          {{ [it.category, it.location, it.year, it.area] | select | join(' · ') }}
+        </p>
+      </div>
+
+      <div class="lrow__a">
+        <label class="sw" title="Show on the site">
+          <input type="checkbox" {{ 'checked' if it.is_visible }}
+                 data-toggle-table="projects" data-toggle-id="{{ it.id }}"
+                 data-toggle-label="{{ it.title }}">
+          <span class="sw__t"></span>
+        </label>
+        <a class="b b--sm" href="{{ url_for('admin.project_edit', pid=it.id) }}">
+          <i data-ic="edit"></i><span>Edit</span></a>
+        <button class="b b--sm b--icon b--bad" type="button" data-del data-title="{{ it.title }}"
+                aria-label="Delete {{ it.title }}"><i data-ic="trash"></i></button>
+      </div>
+    </div>
+    {% else %}
+    <div class="empty">
+      <i data-ic="image"></i>
+      <h3>No projects yet</h3>
+      <p>The work grid on the homepage is built from this list. Add one and it appears straight away.</p>
+      <button class="b b--pri" type="button" onclick="document.getElementById('add').click()">
+        <i data-ic="plus"></i><span>Add the first project</span></button>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  A.sortable('#list', 'projects');
+
+  document.getElementById('add').addEventListener('click', () => {
+    A.modal({
+      title: 'New project',
+      note: 'Name it now, add the photographs and story on the next screen.',
+      size: 'slim',
+      body:
+        A.F.text('title', 'Project title', { required: true, placeholder: 'Indiranagar Residence' }) +
+        A.F.row(
+          A.F.text('category', 'Category', { placeholder: 'Residence' }),
+          A.F.text('year', 'Year', { placeholder: String(new Date().getFullYear()) })) +
+        '<div style="height:14px"></div>' +
+        A.F.text('location', 'Location', { placeholder: 'Bengaluru' }),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Create and edit', className: 'b--pri', icon: 'plus',
+          onClick: async (m, btn) => {
+            const v = m.values();
+            if (!v.title.trim()) { A.toast('Give the project a title.', 'bad'); return; }
+            v.is_visible = 0;
+            const out = await A.act(btn, () => A.post('/projects', v), 'Project created');
+            if (out) location.href = '/admin/projects/' + out.id;
+          } },
+      ],
+    });
+  });
+
+  document.getElementById('list').addEventListener('click', async e => {
+    const btn = e.target.closest('[data-del]');
+    if (!btn) return;
+    const row = btn.closest('[data-row]');
+    const yes = await A.confirmDialog({
+      title: 'Delete this project?',
+      message: '“' + btn.dataset.title + '” and its gallery links will be removed. ' +
+               'The photographs themselves stay in your media library.',
+    });
+    if (!yes) return;
+    const out = await A.act(btn, () => A.del('/projects/' + row.dataset.id), 'Project deleted');
+    if (out) row.remove();
+  });
+})();
+</script>
+{% endblock %}

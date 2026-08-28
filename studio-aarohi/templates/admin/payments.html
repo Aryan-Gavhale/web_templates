@@ -1,0 +1,283 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+<a class="b" href="/api/payments.csv"><i data-ic="down2"></i><span>Export CSV</span></a>
+<button class="b b--pri" type="button" id="add"><i data-ic="plus"></i><span>New plan</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="tiles">
+  <div class="tile {{ 'tile--bad' if money.overdue > 0 }}">
+    <span class="tile__k"><i data-ic="alert"></i>Overdue</span>
+    <span class="tile__v">{{ money.overdue|compact }}</span>
+    <span class="tile__n">{{ money.overdue_count }} instalment{{ '' if money.overdue_count == 1 else 's' }}</span>
+  </div>
+  <div class="tile">
+    <span class="tile__k"><i data-ic="clock"></i>Next 30 days</span>
+    <span class="tile__v">{{ money.due_soon|compact }}</span>
+    <span class="tile__n">{{ money.upcoming_rows|length }} instalments falling due</span>
+  </div>
+  <div class="tile">
+    <span class="tile__k"><i data-ic="file"></i>Outstanding</span>
+    <span class="tile__v">{{ money.outstanding|compact }}</span>
+    <span class="tile__n">across {{ plans|selectattr('status', 'equalto', 'active')|list|length }} live plans</span>
+  </div>
+  <div class="tile tile--ok">
+    <span class="tile__k"><i data-ic="rupee"></i>Collected</span>
+    <span class="tile__v">{{ money.collected|compact }}</span>
+    <span class="tile__n">all time</span>
+  </div>
+</section>
+
+{% if money.overdue_rows %}
+<article class="card">
+  <header class="card__h">
+    <h2>Late payments</h2>
+    <span class="dim">Oldest first — one tap sends the reminder</span>
+  </header>
+  <div class="tw">
+    <table class="t">
+      <thead><tr>
+        <th>Client</th><th>Instalment</th><th class="num">Outstanding</th>
+        <th>Late by</th><th class="acts"></th>
+      </tr></thead>
+      <tbody>
+      {% for r in money.overdue_rows %}
+      <tr>
+        <td>
+          <div class="enq__nm">{{ r.client_name }}</div>
+          <div class="enq__meta mono">{{ r.plan_ref }} · {{ r.plan_title }}</div>
+        </td>
+        <td>{{ r.label }}<div class="enq__meta">due {{ r.due_date|nicedate }}</div></td>
+        <td class="num">{{ r.outstanding|money }}</td>
+        <td><span class="chip chip--overdue">{{ r.days_late }} d</span></td>
+        <td class="acts">
+          <button class="b b--sm" type="button" data-remind
+            data-name="{{ r.client_name }}" data-phone="{{ r.client_phone or '' }}"
+            data-amount="{{ r.outstanding|round|int }}" data-due="{{ r.due_date|nicedate }}"
+            data-ref="{{ r.plan_ref }}"><i data-ic="wa"></i><span>Remind</span></button>
+          <a class="b b--sm" href="{{ url_for('admin.plan_view', plan_id=r.plan_id) }}">Open</a>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</article>
+{% endif %}
+
+<article class="card">
+  <header class="card__h">
+    <h2>Payment plans</h2>
+    <span class="dim">{{ plans|length }} in total</span>
+    <span class="grow"></span>
+    <div class="seg">
+      <button type="button" class="on" data-filter="all">All</button>
+      <button type="button" data-filter="active">Live</button>
+      <button type="button" data-filter="completed">Settled</button>
+      <button type="button" data-filter="cancelled">Cancelled</button>
+    </div>
+  </header>
+
+  {% if plans %}
+  <div class="tw">
+    <table class="t t--rows">
+      <thead><tr>
+        <th>Plan</th><th>Client</th><th class="num">Value</th>
+        <th style="width:150px">Collected</th><th class="num">Outstanding</th>
+        <th>Next due</th><th></th>
+      </tr></thead>
+      <tbody id="plans">
+      {% for p in plans %}
+      <tr data-row data-status="{{ p.status }}"
+          onclick="location.href='{{ url_for('admin.plan_view', plan_id=p.id) }}'">
+        <td>
+          <div class="enq__nm">{{ p.title }}</div>
+          <div class="enq__meta mono">{{ p.ref }}</div>
+        </td>
+        <td>
+          {{ p.client_name }}
+          <div class="enq__meta">
+            <span class="chip chip--{{ p.status }}">
+              {{ {'active': 'Live', 'completed': 'Settled', 'cancelled': 'Cancelled'}[p.status] }}</span>
+          </div>
+        </td>
+        <td class="num">{{ p.roll.payable|money }}</td>
+        <td>
+          <div class="prog {{ 'prog--part' if p.roll.progress < 100 }}">
+            <i style="width:{{ p.roll.progress }}%"></i></div>
+          <div class="enq__meta">{{ p.roll.received|compact }} · {{ p.roll.progress }}%</div>
+        </td>
+        <td class="num {{ 'nowrap' }}">
+          {{ p.roll.outstanding|money }}
+          {% if p.roll.overdue_count %}
+          <div><span class="chip chip--overdue">{{ p.roll.overdue_count }} late</span></div>
+          {% endif %}
+        </td>
+        <td class="nowrap">
+          {% if p.roll.next_due %}
+            {{ p.roll.next_due.due_date|nicedate }}
+            <div class="enq__meta">{{ p.roll.next_due.amount|money }}</div>
+          {% else %}<span class="dim">—</span>{% endif %}
+        </td>
+        <td class="acts"><i data-ic="ext" class="dim"></i></td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <i data-ic="rupee"></i>
+    <h3>No payment plans yet</h3>
+    <p>Set the project value, the advance and how many months. The instalments,
+       the reminders and the receipts all follow from that.</p>
+    <button class="b b--pri" type="button" onclick="document.getElementById('add').click()">
+      <i data-ic="plus"></i><span>Create the first plan</span></button>
+  </div>
+  {% endif %}
+</article>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const CLIENTS = {{ clients|map(attribute='id')|list|tojson }};
+  const CLIENT_NAMES = {{ clients|map(attribute='name')|list|tojson }};
+  const TODAY = {{ today|tojson }};
+  const TPL = {{ reminder_template|tojson }};
+  const STUDIO = {{ studio|tojson }};
+
+  A.$$('.seg [data-filter]').forEach(btn => btn.addEventListener('click', () => {
+    A.$$('.seg [data-filter]').forEach(b => b.classList.toggle('on', b === btn));
+    const want = btn.dataset.filter;
+    A.$$('#plans [data-row]').forEach(r =>
+      r.classList.toggle('hide', want !== 'all' && r.dataset.status !== want));
+  }));
+
+  A.$$('[data-remind]').forEach(btn => btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const d = btn.dataset;
+    const text = A.fillTemplate(TPL, {
+      name: d.name, amount: A.money(d.amount), due: d.due, ref: d.ref, studio: STUDIO,
+    });
+    A.modal({
+      title: 'Payment reminder', note: d.name + (d.phone ? ' · ' + d.phone : ''), size: 'slim',
+      body: '<div class="quote">' + A.esc(text) + '</div>',
+      actions: [
+        { spacer: true },
+        { label: 'Copy', icon: 'copy', onClick: () => A.copy(text) },
+        d.phone
+          ? { label: 'WhatsApp', icon: 'wa', className: 'b--brand', onClick: m => {
+              window.open('https://wa.me/' + d.phone.replace(/[^0-9]/g, '') +
+                '?text=' + encodeURIComponent(text), '_blank');
+              m.close();
+            } }
+          : { label: 'Close', onClick: m => m.close() },
+      ],
+    });
+  }));
+
+  /* ── new plan, with a live schedule preview ─────────────── */
+
+  document.getElementById('add').addEventListener('click', () => {
+    const clientOptions = CLIENTS.map((id, n) =>
+      [id, CLIENT_NAMES[n]]);
+
+    const m = A.modal({
+      title: 'New payment plan',
+      note: 'Change any number and the schedule below updates as you type.',
+      size: 'wide',
+      body:
+        '<div class="grid g-side" style="gap:20px">' +
+          '<div>' +
+            A.F.row(
+              A.F.select('client_id', 'Client', clientOptions.length ? clientOptions : [['', 'No clients yet']]),
+              A.F.text('title', 'Plan title', { required: true, placeholder: 'Whitefield villa — interiors' })) +
+            '<div style="height:14px"></div>' +
+            A.F.row(
+              A.F.number('total_amount', 'Project value', { prefix: window.CURRENCY, min: 0, step: 1000 }),
+              A.F.number('discount', 'Discount', { prefix: window.CURRENCY, min: 0, step: 1000 })) +
+            '<div style="height:14px"></div>' +
+            A.F.row(
+              A.F.number('downpayment', 'Advance paid now', { prefix: window.CURRENCY, min: 0, step: 1000 }),
+              A.F.number('tenure_months', 'Months', { min: 1, max: 120 })) +
+            '<div style="height:14px"></div>' +
+            A.F.row(
+              A.F.select('interest_type', 'Interest', [
+                ['none', 'No interest'], ['flat', 'Flat rate'], ['reducing', 'Reducing balance']]),
+              A.F.number('interest_pct', 'Rate % a year', { min: 0, step: 0.1 })) +
+            '<div style="height:14px"></div>' +
+            A.F.date('start_date', 'First instalment counts from') +
+            A.F.area('note', 'Internal note', { rows: 2, placeholder: 'Anything you agreed verbally.' }) +
+          '</div>' +
+          '<div><p class="f-lbl">Schedule</p><div id="prev" class="dim tiny">' +
+            'Enter a project value to see the instalments.</div></div>' +
+        '</div>',
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Create plan', className: 'b--pri', icon: 'check', onClick: async (m, btn) => {
+            const v = m.values();
+            if (!v.client_id) { A.toast('Pick a client first.', 'bad'); return; }
+            if (!v.title.trim()) { A.toast('Give the plan a title.', 'bad'); return; }
+            const out = await A.act(btn, () => A.post('/plans', v), 'Plan created');
+            if (out) location.href = '/admin/payments/' + out.id;
+          } },
+      ],
+    });
+
+    A.fill(m.body, {
+      tenure_months: 6, interest_type: 'none', interest_pct: 0,
+      discount: 0, downpayment: 0, start_date: TODAY,
+    });
+
+    const preview = A.debounce(async () => {
+      const v = m.values();
+      const box = A.$('#prev', m.body);
+      if (!Number(v.total_amount)) {
+        box.className = 'dim tiny';
+        box.textContent = 'Enter a project value to see the instalments.';
+        return;
+      }
+      try {
+        const out = await A.post('/plans/preview', v);
+        const s = out.summary;
+        box.className = '';
+        box.innerHTML =
+          '<dl class="kv" style="margin-bottom:14px">' +
+            kv('Net value', s.net) + kv('Advance', s.downpayment) +
+            kv('Financed', s.financed) +
+            (s.interest ? kv('Interest', s.interest) : '') +
+            '<dt>Each month</dt><dd><b>' + A.money(s.per_month) + '</b> × ' + s.tenure + '</dd>' +
+            '<dt>Total payable</dt><dd><b>' + A.money(s.payable) + '</b></dd>' +
+          '</dl>' +
+          '<div style="max-height:230px;overflow:auto;border:1px solid var(--line);border-radius:8px">' +
+          '<table class="t"><tbody>' +
+          out.rows.map(r => '<tr><td class="tiny">' + r.seq + '</td>' +
+            '<td class="tiny">' + r.due_date + '</td>' +
+            '<td class="num tiny">' + A.money(r.amount) + '</td></tr>').join('') +
+          '</tbody></table></div>';
+      } catch (err) {
+        box.className = 'note-b note-b--warn';
+        box.textContent = err.error || 'Check those numbers.';
+      }
+      function kv(k, v) { return '<dt>' + k + '</dt><dd>' + A.money(v) + '</dd>'; }
+    }, 260);
+
+    m.body.addEventListener('input', preview);
+    m.body.addEventListener('change', preview);
+  });
+
+  {% if request.args.get('client') %}
+  document.getElementById('add').click();
+  setTimeout(() => {
+    const sel = document.querySelector('.modal [name="client_id"]');
+    if (sel) sel.value = {{ request.args.get('client')|int }};
+  }, 60);
+  {% endif %}
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends "admin/base.html" %}
+
+{% block heading %}Good to see you, {{ me.name.split()[0] }}{% endblock %}
+
+{% block topbar %}
+<a class="b" href="{{ url_for('admin.enquiries') }}"><i data-ic="inbox"></i><span>Enquiries</span></a>
+{% endblock %}
+
+{% block body %}
+
+{% set peak = (months | map(attribute='billed') | list + months | map(attribute='collected') | list + [1]) | max %}
+
+<section class="tiles">
+  <div class="tile {{ 'tile--bad' if counts.new }}">
+    <span class="tile__k"><i data-ic="inbox"></i>New enquiries</span>
+    <span class="tile__v">{{ counts.new }}</span>
+    <a class="tile__n" href="{{ url_for('admin.enquiries', status='new') }}">
+      {{ counts.open }} open in total →</a>
+  </div>
+
+  <div class="tile {{ 'tile--bad' if money.overdue > 0 }}">
+    <span class="tile__k"><i data-ic="alert"></i>Overdue</span>
+    <span class="tile__v">{{ money.overdue|compact }}</span>
+    <a class="tile__n" href="{{ url_for('admin.payments') }}">
+      {{ money.overdue_count }} instalment{{ '' if money.overdue_count == 1 else 's' }} late →</a>
+  </div>
+
+  <div class="tile">
+    <span class="tile__k"><i data-ic="clock"></i>Due in 30 days</span>
+    <span class="tile__v">{{ money.due_soon|compact }}</span>
+    <span class="tile__n">{{ money.outstanding|compact }} outstanding overall</span>
+  </div>
+
+  <div class="tile tile--ok">
+    <span class="tile__k"><i data-ic="rupee"></i>Collected this month</span>
+    <span class="tile__v">{{ collected_month|compact }}</span>
+    <span class="tile__n">{{ money.collected|compact }} all time</span>
+  </div>
+</section>
+
+{% if stale or health %}
+<section class="stack">
+  {% if stale %}
+  <div class="note-b note-b--warn">
+    <i data-ic="alert"></i>
+    <span>
+      <b>{{ stale|length }} enquir{{ 'y has' if stale|length == 1 else 'ies have' }}
+      had no contact for three days or more.</b>
+      {{ stale[:3] | map(attribute='name') | join(', ') }}{% if stale|length > 3 %} and others{% endif %}.
+      <a href="{{ url_for('admin.enquiries', status='open') }}">Open the list</a>
+    </span>
+  </div>
+  {% endif %}
+  {% for kind, message, endpoint in health %}
+  <div class="note-b note-b--{{ 'warn' if kind == 'warn' else 'info' }}">
+    <i data-ic="{{ 'alert' if kind == 'warn' else 'bulb' }}"></i>
+    <span>{{ message }} <a href="{{ url_for(endpoint) }}">Fix it</a></span>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+<section class="grid g-side">
+
+  <div class="stack">
+
+    <article class="card">
+      <header class="card__h">
+        <h2>Latest enquiries</h2>
+        <span class="grow"></span>
+        <a class="b b--sm" href="{{ url_for('admin.enquiries') }}">See all</a>
+      </header>
+      {% if recent %}
+      <div class="tw">
+        <table class="t">
+          <thead><tr>
+            <th>Who</th><th>Looking for</th><th>Status</th><th class="right">Received</th>
+          </tr></thead>
+          <tbody>
+          {% for e in recent %}
+          <tr onclick="location.href='{{ url_for('admin.enquiries', q=e.ref) }}'" style="cursor:pointer">
+            <td>
+              <div class="enq__nm">{{ e.name }}</div>
+              <div class="enq__meta">{{ e.city or e.email }}</div>
+            </td>
+            <td>
+              {{ e.service_title or '—' }}
+              {% if e.budget_band %}<div class="enq__meta">{{ e.budget_band }}</div>{% endif %}
+            </td>
+            <td><span class="chip chip--{{ e.status }}">{{ statuses[e.status] }}</span></td>
+            <td class="right dim tiny nowrap">{{ e.created_at|since }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty">
+        <i data-ic="inbox"></i>
+        <h3>No enquiries yet</h3>
+        <p>Anything sent through the website form lands here.</p>
+      </div>
+      {% endif %}
+    </article>
+
+    <article class="card">
+      <header class="card__h">
+        <h2>Billed and collected</h2>
+        <span class="grow"></span>
+        <span class="legend">
+          <span><i style="background:var(--brand)"></i>Collected</span>
+          <span><i style="background:#DFE3E9"></i>Billed</span>
+        </span>
+      </header>
+      <div class="card__b">
+        <div class="bars">
+          {% for m in months %}
+          <div class="bar" title="{{ m.label }} {{ m.year }} — collected {{ m.collected|money }} of {{ m.billed|money }}">
+            <div class="bar__stack">
+              <span class="bar__p" style="height:{{ (m.collected / peak * 100)|round(1) }}%;animation-delay:{{ loop.index0 * 60 }}ms"></span>
+              <span class="bar__p bar__p--b" style="height:{{ (m.billed / peak * 100)|round(1) }}%;animation-delay:{{ loop.index0 * 60 + 30 }}ms"></span>
+            </div>
+            <span class="bar__l">{{ m.label }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </article>
+
+    {% if money.overdue_rows %}
+    <article class="card">
+      <header class="card__h">
+        <h2>Chase these</h2>
+        <span class="dim">Late instalments, oldest first</span>
+      </header>
+      <div class="tw">
+        <table class="t">
+          <thead><tr>
+            <th>Client</th><th>Instalment</th><th class="num">Outstanding</th>
+            <th>Late by</th><th class="acts">Remind</th>
+          </tr></thead>
+          <tbody>
+          {% for r in money.overdue_rows[:6] %}
+          <tr>
+            <td>
+              <div class="enq__nm">{{ r.client_name }}</div>
+              <div class="enq__meta mono">{{ r.plan_ref }}</div>
+            </td>
+            <td>{{ r.label }}<div class="enq__meta">due {{ r.due_date|nicedate }}</div></td>
+            <td class="num">{{ r.outstanding|money }}</td>
+            <td><span class="chip chip--overdue">{{ r.days_late }} d</span></td>
+            <td class="acts">
+              <button class="b b--sm" type="button"
+                data-remind
+                data-name="{{ r.client_name }}"
+                data-phone="{{ r.client_phone or '' }}"
+                data-amount="{{ r.outstanding|round|int }}"
+                data-due="{{ r.due_date|nicedate }}"
+                data-ref="{{ r.plan_ref }}">
+                <i data-ic="wa"></i><span>Message</span>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% if money.overdue_rows|length > 6 %}
+      <footer class="card__f">
+        <a class="b b--sm" href="{{ url_for('admin.payments') }}">See all
+          {{ money.overdue_rows|length }} late instalments</a>
+      </footer>
+      {% endif %}
+    </article>
+    {% endif %}
+
+  </div>
+
+  <div class="stack">
+
+    <article class="card">
+      <header class="card__h"><h2>Google reviews</h2></header>
+      <div class="card__b">
+        {% if google.configured %}
+        <div class="row" style="align-items:baseline;gap:8px">
+          <span style="font-size:30px;font-weight:600;letter-spacing:-.02em">{{ google.rating or '—' }}</span>
+          <span class="dim tiny">from {{ google.total or 0 }} ratings</span>
+        </div>
+        <p class="dim tiny" style="margin-top:6px">
+          {{ google.showing }} of {{ google.count }} pulled review{{ '' if google.count == 1 else 's' }} showing on the site.
+          {% if google.last_at %}Last checked {{ google.last_at|since }}.{% else %} Never synced.{% endif %}
+        </p>
+        {% if google.last_status == 'error' %}
+        <div class="note-b note-b--bad" style="margin-top:12px">
+          <i data-ic="alert"></i><span>{{ google.last_message }}</span>
+        </div>
+        {% endif %}
+        {% if google.stale %}
+        <div class="note-b note-b--warn" style="margin-top:12px">
+          <i data-ic="refresh"></i><span>These reviews are stale. A refresh takes a second.</span>
+        </div>
+        {% endif %}
+        <div class="row" style="margin-top:14px">
+          <button class="b b--sm b--brand" type="button" id="sync"><i data-ic="refresh"></i><span>Refresh now</span></button>
+          <a class="b b--sm" href="{{ url_for('admin.reviews') }}">Manage</a>
+        </div>
+        {% else %}
+        <p class="dim" style="font-size:13px">
+          Connect a Google Business Profile and real reviews appear on the website
+          automatically, with you deciding which ones show.
+        </p>
+        <a class="b b--sm b--brand" style="margin-top:12px" href="{{ url_for('admin.settings') }}">
+          <i data-ic="link"></i><span>Connect Google</span></a>
+        {% endif %}
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__h"><h2>Enquiries per month</h2></header>
+      <div class="card__b">
+        {% set epeak = (enq_months | map(attribute='count') | list + [1]) | max %}
+        <div class="bars" style="height:104px">
+          {% for m in enq_months %}
+          <div class="bar" title="{{ m.label }} — {{ m.count }} enquiries, {{ m.won }} won">
+            <div class="bar__stack">
+              <span class="bar__p bar__p--b" style="height:{{ (m.count / epeak * 100)|round(1) }}%"></span>
+              <span class="bar__p" style="height:{{ (m.won / epeak * 100)|round(1) }}%"></span>
+            </div>
+            <span class="bar__l">{{ m.label }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        <p class="legend" style="margin-top:12px">
+          <span><i style="background:#DFE3E9"></i>Received</span>
+          <span><i style="background:var(--brand)"></i>Won</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__h">
+        <h2>Recent activity</h2>
+        <span class="grow"></span>
+        <a class="b b--sm b--ghost" href="{{ url_for('admin.activity_log') }}">All</a>
+      </header>
+      <div class="card__b" style="padding:8px 0">
+        {% for a in acts %}
+        <div class="row" style="padding:8px 18px;align-items:flex-start;gap:9px">
+          <span class="dot" style="margin-top:6px"></span>
+          <span class="grow" style="min-width:0">
+            <span style="font-size:13px">{{ a.summary }}</span>
+            <span class="dim tiny" style="display:block">
+              {{ a.user_name or 'System' }} · {{ a.created_at|since }}</span>
+          </span>
+        </div>
+        {% else %}
+        <p class="dim tiny" style="padding:10px 18px">Nothing has happened yet.</p>
+        {% endfor %}
+      </div>
+    </article>
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const sync = document.getElementById('sync');
+  if (sync) sync.addEventListener('click', async () => {
+    const out = await A.act(sync, () => A.post('/google/sync'), null);
+    if (out) {
+      A.toast(out.message);
+      setTimeout(() => location.reload(), 700);
+    }
+  });
+
+  const TPL = {{ reminder_template|tojson }};
+  const STUDIO = {{ studio|tojson }};
+
+  document.querySelectorAll('[data-remind]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = btn.dataset;
+      const text = A.fillTemplate(TPL, {
+        name: d.name, amount: A.money(d.amount), due: d.due,
+        ref: d.ref, studio: STUDIO,
+      });
+      A.modal({
+        title: 'Payment reminder',
+        note: d.name + (d.phone ? ' · ' + d.phone : ''),
+        size: 'slim',
+        body: '<div class="quote">' + A.esc(text) + '</div>',
+        actions: [
+          { spacer: true },
+          { label: 'Copy text', icon: 'copy', onClick: () => A.copy(text) },
+          d.phone
+            ? { label: 'Open WhatsApp', icon: 'wa', className: 'b--brand', onClick: m => {
+                window.open('https://wa.me/' + d.phone.replace(/[^0-9]/g, '') +
+                  '?text=' + encodeURIComponent(text), '_blank');
+                m.close();
+              } }
+            : { label: 'Close', onClick: m => m.close() },
+        ],
+      });
+    });
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+<button class="b b--pri" type="button" id="add"><i data-ic="plus"></i><span>New client</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="card">
+  <header class="card__h">
+    <h2>Clients</h2>
+    <span class="dim">{{ items|length }} on the books</span>
+    <span class="grow"></span>
+    <div class="search">
+      <i data-ic="search"></i>
+      <input class="in" id="q" placeholder="Name, phone or city">
+    </div>
+  </header>
+
+  {% if items %}
+  <div class="tw">
+    <table class="t">
+      <thead><tr>
+        <th>Name</th><th>Contact</th><th>Where</th><th class="num">Plans</th><th class="acts"></th>
+      </tr></thead>
+      <tbody id="rows">
+      {% for c in items %}
+      <tr data-row data-id="{{ c.id }}" data-find="{{ (c.name ~ ' ' ~ c.phone ~ ' ' ~ c.city ~ ' ' ~ c.email)|lower }}"
+          data-json='{{ {"id": c.id, "name": c.name, "email": c.email, "phone": c.phone,
+                         "address": c.address, "city": c.city, "notes": c.notes}|tojson }}'>
+        <td>
+          <div class="enq__nm">{{ c.name }}</div>
+          {% if c.notes %}<div class="enq__meta trunc" style="max-width:36ch">{{ c.notes }}</div>{% endif %}
+        </td>
+        <td>
+          {% if c.phone %}<div>{{ c.phone }}</div>{% endif %}
+          {% if c.email %}<div class="enq__meta">{{ c.email }}</div>{% endif %}
+          {% if not c.phone and not c.email %}<span class="dim">—</span>{% endif %}
+        </td>
+        <td>{{ [c.city, c.address]|select|join(' · ') or '—' }}</td>
+        <td class="num">
+          {% if c.plans %}<span class="chip chip--plain">{{ c.plans }}</span>{% else %}<span class="dim">0</span>{% endif %}
+        </td>
+        <td class="acts">
+          <button class="b b--sm" type="button" data-plan><i data-ic="rupee"></i><span>Plan</span></button>
+          <button class="b b--sm b--icon" type="button" data-edit aria-label="Edit"><i data-ic="edit"></i></button>
+          <button class="b b--sm b--icon b--bad" type="button" data-del aria-label="Delete"><i data-ic="trash"></i></button>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <i data-ic="users"></i>
+    <h3>No clients yet</h3>
+    <p>Won an enquiry? Turn it into a client from the enquiry pane and the details carry over.</p>
+    <a class="b" href="{{ url_for('admin.enquiries') }}">Go to enquiries</a>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  function open(existing) {
+    const m = A.modal({
+      title: existing ? 'Edit client' : 'New client',
+      size: 'slim',
+      body:
+        A.F.text('name', 'Name', { required: true }) +
+        A.F.row(A.F.text('phone', 'Phone'), A.F.text('city', 'City')) +
+        '<div style="height:14px"></div>' +
+        A.F.text('email', 'Email', { type: 'email' }) +
+        A.F.area('address', 'Address', { rows: 2, hint: 'Used on receipts and statements.' }) +
+        A.F.area('notes', 'Notes', { rows: 3 }),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Save', className: 'b--pri', icon: 'check', onClick: async (m, btn) => {
+            const v = m.values();
+            if (!v.name.trim()) { A.toast('The client needs a name.', 'bad'); return; }
+            const out = await A.act(btn, () => existing
+              ? A.put('/clients/' + existing.id, v)
+              : A.post('/clients', v), 'Saved');
+            if (out) location.reload();
+          } },
+      ],
+    });
+    if (existing) A.fill(m.body, existing);
+  }
+
+  document.getElementById('add').addEventListener('click', () => open(null));
+
+  const q = document.getElementById('q');
+  if (q) q.addEventListener('input', A.debounce(e => {
+    const term = e.target.value.toLowerCase();
+    A.$$('#rows [data-row]').forEach(r =>
+      r.classList.toggle('hide', !!term && !r.dataset.find.includes(term)));
+  }, 140));
+
+  const rows = document.getElementById('rows');
+  if (rows) rows.addEventListener('click', async e => {
+    const row = e.target.closest('[data-row]');
+    if (!row) return;
+    const item = JSON.parse(row.dataset.json);
+
+    if (e.target.closest('[data-edit]')) open(item);
+    if (e.target.closest('[data-plan]')) location.href = '/admin/payments?client=' + item.id;
+
+    if (e.target.closest('[data-del]')) {
+      const yes = await A.confirmDialog({
+        title: 'Delete this client?',
+        message: 'Any payment plans and their recorded payments go with them.',
+      });
+      if (!yes) return;
+      const out = await A.act(null, () => A.del('/clients/' + item.id), 'Client deleted');
+      if (out) row.remove();
+    }
+  });
+})();
+</script>
+{% endblock %}

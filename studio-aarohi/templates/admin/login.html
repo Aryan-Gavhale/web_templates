@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sign in · {{ site_name }}</title>
+<link rel="icon" href="{{ url_for('static', filename='public/favicon.svg') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/admin.css') }}">
+</head>
+<body>
+
+<div class="login">
+  <div class="login__art">
+    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1400&q=70" alt="">
+    <p class="login__mark">{{ site_name|upper }}</p>
+    <p class="login__q">Everything the studio shows the world, <b>in one place.</b></p>
+    <p class="login__c">Sections, projects, reviews, enquiries and payments.</p>
+  </div>
+
+  <form class="login__form" method="post" autocomplete="on">
+    <h1>Sign in</h1>
+    <p>Manage your website and the work behind it.</p>
+
+    {% if error %}
+    <div class="note-b note-b--bad" style="margin-bottom:18px" role="alert">
+      <i data-ic="alert"></i><span>{{ error }}</span>
+    </div>
+    {% endif %}
+
+    <input type="hidden" name="next" value="{{ next }}">
+
+    <div class="f">
+      <label for="email">Email</label>
+      <input class="in" id="email" name="email" type="email" value="{{ email }}"
+             autocomplete="username" required autofocus>
+    </div>
+
+    <div class="f">
+      <label for="password">Password</label>
+      <input class="in" id="password" name="password" type="password"
+             autocomplete="current-password" required>
+    </div>
+
+    <button class="b b--pri b--wide" type="submit" style="padding:11px">Sign in</button>
+
+    {% if demo_email %}
+    <div class="login__demo">
+      <b>Demo account</b> — <code>{{ demo_email }}</code> / <code>{{ demo_password }}</code><br>
+      Change this under Settings → Account before you put the site online.
+    </div>
+    {% endif %}
+  </form>
+</div>
+
+<script src="{{ url_for('static', filename='admin/js/admin.js') }}"></script>
+</body>
+</html>

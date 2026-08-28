@@ -1,0 +1,153 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+
+<div class="note-b note-b--info">
+  <i data-ic="bulb"></i>
+  <span>These are the blocks of your homepage, in the order they appear.
+    Edit the words and the photograph; the layout and the animation take care of themselves.
+    Turn a section off and it disappears from the site without losing anything you wrote.</span>
+</div>
+
+<section class="card">
+  <header class="card__h">
+    <h2>Homepage sections</h2>
+    <span class="dim">{{ items|length }} blocks</span>
+    <span class="grow"></span>
+    <a class="b b--sm" href="/" target="_blank" rel="noopener"><i data-ic="ext"></i><span>Open the site</span></a>
+  </header>
+
+  <div id="secs">
+    {% for it in items %}
+    <article class="sec" data-sec data-id="{{ it.id }}" data-key="{{ it.key }}">
+      <button class="sec__h" type="button" data-open>
+        <span class="sec__cv {{ '' if it.is_visible else 'off' }}" data-cv></span>
+        <span>
+          <span class="sec__t">{{ it.name }}</span>
+          <span class="sec__d">{{ it.hint }}</span>
+        </span>
+        <i class="sec__ar" data-ic="down"></i>
+      </button>
+
+      <div class="sec__b">
+        <div class="grid g-side" style="gap:20px">
+          <div>
+            <div class="f">
+              <label for="eyebrow-{{ it.id }}">Small line above the heading</label>
+              <input class="in" id="eyebrow-{{ it.id }}" name="eyebrow" value="{{ it.eyebrow }}"
+                     placeholder="Interior design · Bengaluru">
+            </div>
+            <div class="f">
+              <label for="heading-{{ it.id }}">Heading</label>
+              <textarea class="in" id="heading-{{ it.id }}" name="heading" rows="2">{{ it.heading }}</textarea>
+              <p class="f-hint">Animates in line by line. Short sentences read best.</p>
+            </div>
+            <div class="f">
+              <label for="body-{{ it.id }}">Paragraph</label>
+              <textarea class="in" id="body-{{ it.id }}" name="body" rows="4">{{ it.body }}</textarea>
+              <p class="f-hint">Leave a blank line between paragraphs to split them.</p>
+            </div>
+            <div class="f-2">
+              <div class="f">
+                <label for="cta-{{ it.id }}">Button text</label>
+                <input class="in" id="cta-{{ it.id }}" name="cta_label" value="{{ it.cta_label }}"
+                       placeholder="Start a project">
+              </div>
+              <div class="f">
+                <label for="href-{{ it.id }}">Button link</label>
+                <input class="in" id="href-{{ it.id }}" name="cta_href" value="{{ it.cta_href }}"
+                       placeholder="#enquire">
+              </div>
+            </div>
+            <div class="f" style="margin-top:14px">
+              <label for="extra-{{ it.id }}">Second link <span class="dim">(optional)</span></label>
+              <input class="in" id="extra-{{ it.id }}" name="extra" value="{{ it.extra }}"
+                     placeholder="See our work|#work">
+              <p class="f-hint">Written as <span class="mono">Label|link</span>.</p>
+            </div>
+          </div>
+
+          <div>
+            <p class="f-lbl">Photograph</p>
+            <figure class="thumb thumb--lg {{ '' if it.image else 'thumb--none' }}"
+                    data-img style="width:100%;height:auto;aspect-ratio:4/3">
+              {% if it.image %}
+              <img src="{{ it.image }}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:6px">
+              {% else %}<i data-ic="photo"></i>{% endif %}
+            </figure>
+            <input type="hidden" name="image_id" value="{{ it.image_id or '' }}">
+            <button class="b b--sm b--wide" type="button" data-pick style="margin-top:9px">
+              <i data-ic="photo"></i><span>{{ 'Change image' if it.image else 'Choose image' }}</span>
+            </button>
+
+            <label class="sw" style="margin-top:18px">
+              <input type="checkbox" name="is_visible" {{ 'checked' if it.is_visible }}>
+              <span class="sw__t"></span>
+              <span class="sw__l">Show this section</span>
+            </label>
+
+            {% if it.updated_at %}
+            <p class="dim tiny" style="margin-top:14px">Last edited {{ it.updated_at|since }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:6px">
+          <button class="b b--pri" type="button" data-save><i data-ic="check"></i><span>Save section</span></button>
+          <button class="b b--ghost" type="button" data-cancel>Cancel</button>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  document.querySelectorAll('[data-sec]').forEach(sec => {
+    const id = sec.dataset.id;
+    const original = A.formValues(sec);
+
+    A.$('[data-open]', sec).addEventListener('click', () => sec.classList.toggle('is-open'));
+
+    A.$('[data-pick]', sec).addEventListener('click', async () => {
+      const hidden = A.$('[name="image_id"]', sec);
+      const chosen = await A.pickMedia({
+        selected: hidden.value ? [Number(hidden.value)] : [],
+        allowClear: true,
+      });
+      if (chosen === undefined) return;
+      hidden.value = chosen === null ? '' : chosen;
+      const box = A.$('[data-img]', sec);
+      if (chosen === null) {
+        box.classList.add('thumb--none');
+        box.innerHTML = A.icon('photo');
+      } else {
+        const item = (await A.media()).find(m => m.id === chosen);
+        box.classList.remove('thumb--none');
+        box.innerHTML = '<img src="' + A.esc(item.thumb || item.src) +
+          '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:6px">';
+      }
+    });
+
+    A.$('[data-cancel]', sec).addEventListener('click', () => {
+      A.fill(sec, original);
+      sec.classList.remove('is-open');
+    });
+
+    A.$('[data-save]', sec).addEventListener('click', async e => {
+      const values = A.formValues(sec);
+      const out = await A.act(e.currentTarget,
+        () => A.put('/sections/' + id, values), 'Section saved');
+      if (out) {
+        Object.assign(original, values);
+        A.$('[data-cv]', sec).classList.toggle('off', !values.is_visible);
+      }
+    });
+  });
+})();
+</script>
+{% endblock %}

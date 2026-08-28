@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+
+<section class="card">
+  <header class="card__h">
+    <h2>Activity</h2>
+    <span class="dim">Everything that changed, newest first</span>
+    <span class="grow"></span>
+    <div class="search">
+      <i data-ic="search"></i>
+      <input class="in" id="q" placeholder="Filter by word">
+    </div>
+  </header>
+
+  {% if items %}
+  <div class="tw">
+    <table class="t">
+      <thead><tr><th>What happened</th><th>Where</th><th>Who</th><th class="right">When</th></tr></thead>
+      <tbody id="rows">
+      {% for a in items %}
+      <tr data-row data-find="{{ (a.summary ~ ' ' ~ a.entity ~ ' ' ~ a.user_name ~ ' ' ~ a.action)|lower }}">
+        <td>{{ a.summary or a.action }}</td>
+        <td><span class="chip chip--plain">{{ a.action }}</span>
+          <span class="dim tiny">{{ a.entity }}</span></td>
+        <td class="dim">{{ a.user_name }}</td>
+        <td class="right dim tiny nowrap" title="{{ a.created_at }}">{{ a.created_at|since }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <i data-ic="clock"></i>
+    <h3>Nothing logged yet</h3>
+    <p>Edits, payments and Google syncs all leave a line here.</p>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('q').addEventListener('input', A.debounce(e => {
+  const term = e.target.value.toLowerCase();
+  A.$$('#rows [data-row]').forEach(r =>
+    r.classList.toggle('hide', !!term && !r.dataset.find.includes(term)));
+}, 140));
+</script>
+{% endblock %}

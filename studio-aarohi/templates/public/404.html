@@ -1,0 +1,18 @@
+{% extends "public/base.html" %}
+{% block page %}notfound{% endblock %}
+{% block title %}Page not found — {{ s.site_name }}{% endblock %}
+
+{% block main %}
+<section class="nf">
+  <p class="eyebrow" data-rise><span class="tick"></span>Error 404</p>
+  <h1 class="nf__h display" data-lines>That page has been rearranged.</h1>
+  <p class="nf__b" data-rise data-delay="120">
+    The link may be old, or the page may have moved. Everything the studio has
+    published is one click away.
+  </p>
+  <div class="nf__acts" data-rise data-delay="200">
+    <a class="btn" href="{{ url_for('public.home') }}"><span>Back to the studio</span></a>
+    <a class="btn btn--ghost" href="{{ url_for('public.home') }}#work"><span>See our work</span></a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+
+<section class="grid g-side">
+
+  <article class="card">
+    <header class="card__h">
+      <h2>How we work</h2>
+      <span class="dim">The numbered steps on the homepage</span>
+      <span class="grow"></span>
+      <button class="b b--sm b--pri" type="button" id="addstep">
+        <i data-ic="plus"></i><span>Add step</span></button>
+    </header>
+    <div class="card__b card__b--flush" id="steps">
+      {% for s in steps %}
+      <div class="lrow" data-row data-id="{{ s.id }}" style="grid-template-columns:auto minmax(0,1fr) auto"
+           data-json='{{ {"id": s.id, "title": s.title, "body": s.body,
+                          "duration": s.duration, "is_visible": s.is_visible}|tojson }}'>
+        <span class="lrow__ord">
+          <button type="button" data-move="up" aria-label="Move up"><i data-ic="up"></i></button>
+          <button type="button" data-move="down" aria-label="Move down"><i data-ic="down"></i></button>
+        </span>
+        <div style="min-width:0">
+          <p class="lrow__t">
+            <span class="dim mono">{{ '%02d'|format(loop.index) }}</span>
+            {{ s.title }}
+            {% if s.duration %}<span class="chip chip--plain" style="margin-left:6px">{{ s.duration }}</span>{% endif %}
+          </p>
+          <p class="lrow__s">{{ s.body|truncate(120) }}</p>
+        </div>
+        <div class="lrow__a">
+          <label class="sw" title="Show on the site">
+            <input type="checkbox" {{ 'checked' if s.is_visible }}
+                   data-toggle-table="process_steps" data-toggle-id="{{ s.id }}">
+            <span class="sw__t"></span>
+          </label>
+          <button class="b b--sm b--icon" type="button" data-edit aria-label="Edit"><i data-ic="edit"></i></button>
+          <button class="b b--sm b--icon b--bad" type="button" data-del aria-label="Delete"><i data-ic="trash"></i></button>
+        </div>
+      </div>
+      {% else %}
+      <div class="empty">
+        <i data-ic="steps"></i>
+        <h3>No steps yet</h3>
+        <p>Clients ask “what happens next?” more than anything else. Answer it here once.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h">
+      <h2>Figures</h2>
+      <span class="grow"></span>
+      <button class="b b--sm b--pri" type="button" id="addstat">
+        <i data-ic="plus"></i><span>Add</span></button>
+    </header>
+    <div class="card__b card__b--flush" id="stats">
+      {% for s in stats %}
+      <div class="lrow" data-row data-id="{{ s.id }}" style="grid-template-columns:auto minmax(0,1fr) auto"
+           data-json='{{ {"id": s.id, "label": s.label, "value": s.value,
+                          "suffix": s.suffix, "is_visible": s.is_visible}|tojson }}'>
+        <span class="lrow__ord">
+          <button type="button" data-move="up" aria-label="Move up"><i data-ic="up"></i></button>
+          <button type="button" data-move="down" aria-label="Move down"><i data-ic="down"></i></button>
+        </span>
+        <div style="min-width:0">
+          <p class="lrow__t">{{ s.value }}{{ s.suffix }}</p>
+          <p class="lrow__s">{{ s.label }}</p>
+        </div>
+        <div class="lrow__a">
+          <label class="sw" title="Show on the site">
+            <input type="checkbox" {{ 'checked' if s.is_visible }}
+                   data-toggle-table="stats" data-toggle-id="{{ s.id }}">
+            <span class="sw__t"></span>
+          </label>
+          <button class="b b--sm b--icon" type="button" data-edit aria-label="Edit"><i data-ic="edit"></i></button>
+          <button class="b b--sm b--icon b--bad" type="button" data-del aria-label="Delete"><i data-ic="trash"></i></button>
+        </div>
+      </div>
+      {% else %}
+      <div class="empty">
+        <i data-ic="grid"></i>
+        <h3>No figures</h3>
+        <p>Years running, homes delivered, that sort of thing. They count up as the visitor scrolls.</p>
+      </div>
+      {% endfor %}
+    </div>
+    <footer class="card__f">
+      <p class="dim tiny">Numbers animate from zero. Keep the value numeric and put “+” or “yrs” in the suffix.</p>
+    </footer>
+  </article>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  A.sortable('#steps', 'process_steps');
+  A.sortable('#stats', 'stats');
+
+  function crud(opts) {
+    const list = document.getElementById(opts.listId);
+    document.getElementById(opts.addId).addEventListener('click', () => open(null));
+
+    list.addEventListener('click', async e => {
+      const row = e.target.closest('[data-row]');
+      if (!row) return;
+      const item = JSON.parse(row.dataset.json);
+      if (e.target.closest('[data-edit]')) open(item);
+      if (e.target.closest('[data-del]')) {
+        const yes = await A.confirmDialog({
+          title: 'Delete this ' + opts.noun + '?',
+          message: 'It disappears from the homepage right away.',
+        });
+        if (!yes) return;
+        const out = await A.act(null, () => A.del(opts.path + '/' + item.id), 'Deleted');
+        if (out) row.remove();
+      }
+    });
+
+    function open(existing) {
+      const m = A.modal({
+        title: (existing ? 'Edit ' : 'New ') + opts.noun,
+        size: 'slim',
+        body: opts.form(existing || {}),
+        actions: [
+          { spacer: true },
+          { label: 'Cancel', onClick: m => m.close() },
+          { label: 'Save', className: 'b--pri', icon: 'check', onClick: async (m, btn) => {
+              const v = m.values();
+              const bad = opts.validate && opts.validate(v);
+              if (bad) { A.toast(bad, 'bad'); return; }
+              const out = await A.act(btn, () => existing
+                ? A.put(opts.path + '/' + existing.id, v)
+                : A.post(opts.path, v), 'Saved');
+              if (out) { m.close(); location.reload(); }
+            } },
+        ],
+      });
+      if (existing) A.fill(m.body, existing);
+    }
+  }
+
+  crud({
+    listId: 'steps', addId: 'addstep', path: '/process', noun: 'step',
+    validate: v => v.title.trim() ? null : 'Give the step a title.',
+    form: v => A.F.text('title', 'Step title', { required: true, placeholder: 'Measure and listen' }) +
+      A.F.text('duration', 'How long it takes', { placeholder: 'Week 1' }) +
+      A.F.area('body', 'What happens', { rows: 4 }) +
+      A.F.toggle('is_visible', 'Show on the site', v.is_visible === undefined ? true : v.is_visible),
+  });
+
+  crud({
+    listId: 'stats', addId: 'addstat', path: '/stats', noun: 'figure',
+    validate: v => (v.value.trim() && v.label.trim()) ? null : 'A figure needs both a number and a label.',
+    form: v => A.F.row(
+        A.F.text('value', 'Number', { required: true, placeholder: '11' }),
+        A.F.text('suffix', 'Suffix', { placeholder: '+' })) +
+      '<div style="height:14px"></div>' +
+      A.F.text('label', 'Label', { required: true, placeholder: 'Years in practice' }) +
+      A.F.toggle('is_visible', 'Show on the site', v.is_visible === undefined ? true : v.is_visible),
+  });
+})();
+</script>
+{% endblock %}

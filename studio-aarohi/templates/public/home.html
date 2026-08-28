@@ -1,0 +1,359 @@
+{% extends "public/base.html" %}
+{% block page %}home{% endblock %}
+{% block og_image %}{% if sec.hero.image %}<meta property="og:image" content="{{ sec.hero.image }}">{% endif %}{% endblock %}
+
+{% block main %}
+
+{# ── hero ─────────────────────────────────────────────────────────── #}
+{% if sec.hero.visible %}
+<section class="hero" id="top">
+  <div class="hero__in">
+    <div class="hero__copy">
+      {% if sec.hero.eyebrow %}
+      <p class="eyebrow" data-rise><span class="tick"></span>{{ sec.hero.eyebrow }}</p>
+      {% endif %}
+      <h1 class="hero__h display" data-lines>{{ sec.hero.heading }}</h1>
+      {% if sec.hero.body %}
+      <p class="hero__lede" data-rise data-delay="120">{{ sec.hero.body }}</p>
+      {% endif %}
+      <div class="hero__acts" data-rise data-delay="200">
+        {% if sec.hero.cta_label %}
+        <a class="btn" href="{{ sec.hero.cta_href or '#enquire' }}"><span>{{ sec.hero.cta_label }}</span></a>
+        {% endif %}
+        {% if sec.hero.extra %}
+          {% set alt = sec.hero.extra.split('|') %}
+          <a class="btn btn--ghost" href="{{ alt[1] if alt|length > 1 else '#work' }}">
+            <span>{{ alt[0] }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <figure class="hero__fig" data-wipe>
+      <div class="hero__frame">
+        <img src="{{ sec.hero.image or 'https://images.unsplash.com/photo-1693382464372-fad822e7b38c?auto=format&fit=crop&w=1600&q=80' }}"
+             alt="{{ sec.hero.heading|truncate(110, true, '') }}" data-parallax="0.09" fetchpriority="high">
+      </div>
+      <figcaption class="hero__cap">
+        <span class="tick"></span>{{ projects[0].title if projects else s.site_name }}{% if projects %} · {{ projects[0].location }}{% endif %}
+      </figcaption>
+    </figure>
+  </div>
+
+  <a class="cue" href="#stats" aria-label="Scroll down">
+    <span class="cue__line"><i></i></span>
+    <span class="cue__txt">Scroll</span>
+  </a>
+</section>
+{% endif %}
+
+{# ── stats ────────────────────────────────────────────────────────── #}
+{% if stats %}
+<section class="stats" id="stats">
+  <ul class="stats__g">
+    {% for st in stats %}
+    <li class="stat" data-rise data-delay="{{ loop.index0 * 80 }}">
+      <span class="stat__v display" data-count="{{ st.value }}">{{ st.value }}</span><span class="stat__s">{{ st.suffix }}</span>
+      <span class="stat__l">{{ st.label }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{# ── intro ────────────────────────────────────────────────────────── #}
+{% if sec.intro.visible %}
+<section class="intro" id="about">
+  <figure class="intro__fig" data-wipe>
+    <img src="{{ sec.intro.image }}" alt="{{ sec.intro.heading|truncate(100, true, '') }}"
+         data-parallax="0.06" loading="lazy">
+  </figure>
+  <div class="intro__copy">
+    {% if sec.intro.eyebrow %}<p class="eyebrow" data-rise><span class="tick"></span>{{ sec.intro.eyebrow }}</p>{% endif %}
+    <h2 class="h2 display" data-lines>{{ sec.intro.heading }}</h2>
+    {% for para in sec.intro.body|paras %}
+    <p class="intro__p" data-rise data-delay="{{ 80 + loop.index0 * 70 }}">{{ para }}</p>
+    {% endfor %}
+    {% if sec.intro.cta_label %}
+    <a class="alink" href="{{ sec.intro.cta_href or '#process' }}" data-rise data-delay="260">
+      <span>{{ sec.intro.cta_label }}</span>
+      <svg viewBox="0 0 24 12" width="30" height="15" aria-hidden="true"><path d="M0 6h22M17 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+    </a>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{# ── services ─────────────────────────────────────────────────────── #}
+{% if services and sec.services.visible %}
+<section class="svc" id="services">
+  <header class="head">
+    <div>
+      {% if sec.services.eyebrow %}<p class="eyebrow" data-rise><span class="tick"></span>{{ sec.services.eyebrow }}</p>{% endif %}
+      <h2 class="h2 display" data-lines>{{ sec.services.heading }}</h2>
+    </div>
+    {% if sec.services.body %}<p class="head__note" data-rise data-delay="120">{{ sec.services.body }}</p>{% endif %}
+  </header>
+
+  <ul class="svc__g">
+    {% for sv in services %}
+    <li class="card" data-rise data-delay="{{ loop.index0 % 3 * 90 }}">
+      <a href="{{ url_for('public.service', slug=sv.slug) }}">
+        <span class="card__n">{{ '%02d'|format(loop.index) }}</span>
+        <span class="card__media">
+          <img src="{{ sv.thumb or sv.image }}" alt="{{ sv.title }}" loading="lazy">
+        </span>
+        <h3 class="card__t display">{{ sv.title }}</h3>
+        <p class="card__b">{{ sv.summary }}</p>
+        {% if sv.price_from %}
+        <p class="card__p"><em>{{ sv.price_from|money }}</em> {{ sv.price_note }}</p>
+        {% endif %}
+        <span class="card__go" aria-hidden="true">
+          <svg viewBox="0 0 24 12" width="28" height="14"><path d="M0 6h22M17 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{# ── work ─────────────────────────────────────────────────────────── #}
+{% if projects and sec.work.visible %}
+<section class="work" id="work">
+  <header class="head">
+    <div>
+      {% if sec.work.eyebrow %}<p class="eyebrow" data-rise><span class="tick"></span>{{ sec.work.eyebrow }}</p>{% endif %}
+      <h2 class="h2 display" data-lines>{{ sec.work.heading }}</h2>
+    </div>
+    {% if sec.work.body %}<p class="head__note" data-rise data-delay="120">{{ sec.work.body }}</p>{% endif %}
+  </header>
+
+  <ul class="work__g">
+    {% set spans = projects|length|tile_spans %}
+    {% for p in projects %}
+    <li class="tile tile--s{{ spans[loop.index0] }}" data-rise data-delay="{{ loop.index0 % 2 * 100 }}">
+      <a href="{{ url_for('public.project', slug=p.slug) }}">
+        <span class="tile__media" data-wipe>
+          <img src="{{ p.cover }}" alt="{{ p.title }} — {{ p.category }} in {{ p.location }}" loading="lazy">
+        </span>
+        <span class="tile__meta">
+          <span class="tile__cat">{{ p.category }}{% if p.year %} · {{ p.year }}{% endif %}</span>
+          <h3 class="tile__t display">{{ p.title }}</h3>
+          <span class="tile__sub">{{ p.location }}{% if p.area %} · {{ p.area }}{% endif %}</span>
+        </span>
+        <span class="tile__view" aria-hidden="true">View project</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{# ── process ──────────────────────────────────────────────────────── #}
+{% if steps and sec.process.visible %}
+<section class="proc" id="process">
+  <div class="proc__in">
+    <aside class="proc__aside">
+      {% if sec.process.eyebrow %}<p class="eyebrow" data-rise><span class="tick"></span>{{ sec.process.eyebrow }}</p>{% endif %}
+      <h2 class="h2 display" data-lines>{{ sec.process.heading }}</h2>
+      {% if sec.process.body %}<p class="proc__note" data-rise data-delay="120">{{ sec.process.body }}</p>{% endif %}
+      <a class="btn btn--ghost" href="#enquire" data-rise data-delay="200"><span>Book a consultation</span></a>
+    </aside>
+
+    <ol class="proc__list">
+      <span class="proc__spine" aria-hidden="true"><i data-spine></i></span>
+      {% for st in steps %}
+      <li class="step" data-rise data-delay="{{ loop.index0 * 70 }}">
+        <span class="step__n">{{ '%02d'|format(loop.index) }}</span>
+        <div class="step__body">
+          <h3 class="step__t">{{ st.title }}{% if st.duration %}<em>{{ st.duration }}</em>{% endif %}</h3>
+          <p>{{ st.body }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+{% endif %}
+
+{# ── reviews ──────────────────────────────────────────────────────── #}
+{% if reviews and sec.reviews.visible %}
+<section class="revs" id="reviews">
+  <header class="head head--center">
+    <div>
+      {% if sec.reviews.eyebrow %}<p class="eyebrow" data-rise><span class="tick"></span>{{ sec.reviews.eyebrow }}</p>{% endif %}
+      <h2 class="h2 display" data-lines>{{ sec.reviews.heading }}</h2>
+      {% if google.rating %}
+      <p class="revs__badge" data-rise data-delay="100">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.2c0-.7-.1-1.4-.2-2H12v4h6c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.2-2 3.4-5 3.4-8.2z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.4-.4-2.3s.1-1.6.4-2.3V6.3H1.8C1 7.9.5 9.9.5 11.5s.5 3.6 1.3 5.2l3.8-2.9z"/><path fill="#EA4335" d="M12 4.6c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.5 1.8 6.3l3.8 2.9C6.5 6.5 9 4.6 12 4.6z"/></svg>
+        <strong>{{ google.rating }}</strong> average{% if google.total %} from {{ google.total }} Google reviews{% endif %}
+        {% if google.place_url %}<a class="ulink" href="{{ google.place_url }}" target="_blank" rel="noopener">Read on Google</a>{% endif %}
+      </p>
+      {% elif sec.reviews.body %}
+      <p class="head__note head__note--c" data-rise data-delay="100">{{ sec.reviews.body }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="revs__stage" data-rise data-delay="140">
+    <button class="revs__arw revs__arw--p" type="button" data-rev="-1" aria-label="Previous review">
+      <svg viewBox="0 0 24 12" width="26" height="13"><path d="M24 6H2M7 1 2 6l5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+    </button>
+
+    <div class="revs__win">
+      <ul class="revs__track" id="revTrack">
+        {% for r in reviews %}
+        <li class="rev {{ 'is-on' if loop.first else '' }}" data-rev-item>
+          <span class="rev__stars" aria-label="{{ r.rating }} out of 5">
+            {% for i in range(5) %}<i class="{{ 'on' if i < (r.rating or 5) else '' }}">★</i>{% endfor %}
+          </span>
+          <blockquote class="rev__q display">{{ r.body }}</blockquote>
+          <figcaption class="rev__by">
+            {% if r.author_photo %}
+            <img class="rev__ph" src="{{ r.author_photo }}" alt="" loading="lazy" referrerpolicy="no-referrer">
+            {% else %}
+            <span class="rev__ph rev__ph--i">{{ r.author[:1]|upper }}</span>
+            {% endif %}
+            <span>
+              <strong>{{ r.author }}</strong>
+              <em>{{ r.role or 'Client' }}{% if r.relative_time %} · {{ r.relative_time }}{% endif %}</em>
+            </span>
+            {% if r.source == 'google' %}<span class="rev__src">via Google</span>{% endif %}
+          </figcaption>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <button class="revs__arw revs__arw--n" type="button" data-rev="1" aria-label="Next review">
+      <svg viewBox="0 0 24 12" width="26" height="13"><path d="M0 6h22M17 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+    </button>
+  </div>
+
+  <div class="revs__dots" id="revDots" role="tablist" aria-label="Choose a review"></div>
+</section>
+{% endif %}
+
+{# ── closing band ─────────────────────────────────────────────────── #}
+{% if sec.cta.visible %}
+<section class="band">
+  <div class="band__bg" data-wipe>
+    <img src="{{ sec.cta.image }}" alt="" data-parallax="0.12" loading="lazy" aria-hidden="true">
+  </div>
+  <div class="band__in">
+    {% if sec.cta.eyebrow %}<p class="eyebrow eyebrow--inv" data-rise><span class="tick"></span>{{ sec.cta.eyebrow }}</p>{% endif %}
+    <h2 class="band__h display" data-lines>{{ sec.cta.heading }}</h2>
+    {% if sec.cta.body %}<p class="band__b" data-rise data-delay="120">{{ sec.cta.body }}</p>{% endif %}
+    {% if sec.cta.cta_label %}
+    <a class="btn btn--inv" href="{{ sec.cta.cta_href or '#enquire' }}" data-rise data-delay="200">
+      <span>{{ sec.cta.cta_label }}</span>
+    </a>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{# ── enquiry ──────────────────────────────────────────────────────── #}
+<section class="ask" id="enquire">
+  <div class="ask__in">
+    <div class="ask__copy">
+      {% if sec.enquire.eyebrow %}<p class="eyebrow" data-rise><span class="tick"></span>{{ sec.enquire.eyebrow }}</p>{% endif %}
+      <h2 class="h2 display" data-lines>{{ sec.enquire.heading or 'Start a project' }}</h2>
+      {% if sec.enquire.body %}<p class="ask__note" data-rise data-delay="100">{{ sec.enquire.body }}</p>{% endif %}
+
+      <dl class="ask__facts" data-rise data-delay="180">
+        <div><dt>Studio</dt><dd>{{ s.address_line1 }}<br>{{ s.address_line2 }}</dd></div>
+        <div><dt>Email</dt><dd><a class="ulink" href="mailto:{{ s.email }}">{{ s.email }}</a></dd></div>
+        <div><dt>Telephone</dt><dd><a class="ulink" href="tel:{{ s.phone|replace(' ','') }}">{{ s.phone }}</a></dd></div>
+        <div><dt>Hours</dt><dd>{{ s.hours }}</dd></div>
+      </dl>
+    </div>
+
+    <form class="form" id="enqForm" method="post" action="{{ url_for('public.enquiry') }}"
+          novalidate data-rise data-delay="120">
+      <div class="form__row">
+        <p class="fld">
+          <label for="f-name">Your name <i>*</i></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+          <span class="err" data-err="name"></span>
+        </p>
+        <p class="fld">
+          <label for="f-city">City</label>
+          <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Bengaluru">
+        </p>
+      </div>
+
+      <div class="form__row">
+        <p class="fld">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email">
+          <span class="err" data-err="email"></span>
+        </p>
+        <p class="fld">
+          <label for="f-phone">Phone</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91">
+          <span class="err" data-err="phone"></span>
+        </p>
+      </div>
+
+      <div class="form__row">
+        <p class="fld">
+          <label for="f-service">What do you need?</label>
+          <span class="sel">
+            <select id="f-service" name="service">
+              <option value="">Not sure yet</option>
+              {% for sv in services %}<option value="{{ sv.id }}">{{ sv.title }}</option>{% endfor %}
+            </select>
+          </span>
+        </p>
+        <p class="fld">
+          <label for="f-budget">Budget</label>
+          <span class="sel">
+            <select id="f-budget" name="budget">
+              <option value="">Prefer not to say</option>
+              {% for b in budgets %}<option value="{{ b }}">{{ b }}</option>{% endfor %}
+            </select>
+          </span>
+        </p>
+      </div>
+
+      <p class="fld">
+        <label for="f-timeline">When would you like to start?</label>
+        <span class="sel">
+          <select id="f-timeline" name="timeline">
+            <option value="">Flexible</option>
+            {% for t in timelines %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+          </select>
+        </span>
+      </p>
+
+      <p class="fld">
+        <label for="f-message">About the space <i>*</i></label>
+        <textarea id="f-message" name="message" rows="4"
+                  placeholder="Size, location, what's working and what isn't."></textarea>
+        <span class="err" data-err="message"></span>
+      </p>
+
+      <p class="hp" aria-hidden="true">
+        <label for="f-company">Company</label>
+        <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+      </p>
+
+      <div class="form__end">
+        <button class="btn btn--wide" type="submit" id="enqBtn"><span>Send enquiry</span></button>
+        <p class="form__fine">We reply within one working day. No mailing list, ever.</p>
+      </div>
+
+      <div class="form__done" id="enqDone" hidden role="status">
+        <span class="form__tick" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 12.5 9.5 18 20 6" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+        </span>
+        <p class="form__msg"></p>
+        <p class="form__ref"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

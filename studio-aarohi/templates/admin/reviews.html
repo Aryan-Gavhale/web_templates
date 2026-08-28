@@ -1,0 +1,246 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+{% if google.configured %}
+<button class="b" type="button" id="sync"><i data-ic="refresh"></i><span>Pull from Google</span></button>
+{% endif %}
+<button class="b b--pri" type="button" id="add"><i data-ic="plus"></i><span>Add review</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="grid g-side">
+
+  <div class="stack">
+    <article class="card">
+      <header class="card__h">
+        <h2>Reviews on the site</h2>
+        <span class="dim">{{ items|selectattr('is_visible')|list|length }} showing of {{ items|length }}</span>
+        <span class="grow"></span>
+        <div class="seg" role="group" aria-label="Filter">
+          <button type="button" class="on" data-filter="all">All</button>
+          <button type="button" data-filter="google">Google</button>
+          <button type="button" data-filter="manual">Written by us</button>
+        </div>
+      </header>
+
+      <div class="card__b card__b--flush" id="list">
+        {% for t in items %}
+        <div class="lrow" data-row data-id="{{ t.id }}" data-source="{{ t.source }}"
+             style="grid-template-columns:auto minmax(0,1fr) auto"
+             data-json='{{ {"id": t.id, "author": t.author, "role": t.role, "rating": t.rating,
+                            "body": t.body, "relative_time": t.relative_time,
+                            "source": t.source, "is_visible": t.is_visible,
+                            "is_featured": t.is_featured}|tojson }}'>
+          <span class="lrow__ord">
+            <button type="button" data-move="up" aria-label="Move up"><i data-ic="up"></i></button>
+            <button type="button" data-move="down" aria-label="Move down"><i data-ic="down"></i></button>
+          </span>
+
+          <div style="min-width:0">
+            <p class="lrow__t">
+              {{ t.author }}
+              <span style="color:var(--brand);letter-spacing:1px">{{ '★' * (t.rating or 5) }}</span>
+              <span class="chip chip--{{ t.source }}" style="margin-left:4px">
+                {{ 'Google' if t.source == 'google' else 'Ours' }}</span>
+              {% if t.is_featured %}<span class="chip chip--quoted">Featured</span>{% endif %}
+            </p>
+            <p class="lrow__s">{{ t.body|truncate(150) }}</p>
+            <p class="lrow__s dim tiny" style="margin-top:3px">
+              {{ [t.role, t.relative_time] | select | join(' · ') }}</p>
+          </div>
+
+          <div class="lrow__a">
+            <label class="sw" title="Show on the site">
+              <input type="checkbox" {{ 'checked' if t.is_visible }}
+                     data-toggle-table="testimonials" data-toggle-id="{{ t.id }}">
+              <span class="sw__t"></span>
+            </label>
+            <button class="b b--sm b--icon" type="button" data-star title="Feature this review"
+                    aria-label="Feature"><i data-ic="star"></i></button>
+            <button class="b b--sm b--icon" type="button" data-edit aria-label="Edit"><i data-ic="edit"></i></button>
+            <button class="b b--sm b--icon b--bad" type="button" data-del aria-label="Delete"><i data-ic="trash"></i></button>
+          </div>
+        </div>
+        {% else %}
+        <div class="empty">
+          <i data-ic="star"></i>
+          <h3>No reviews yet</h3>
+          <p>Connect Google to pull the real ones in, or write up a client's words by hand.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+
+  <div class="stack">
+    <article class="card">
+      <header class="card__h"><h2>Google Business Profile</h2></header>
+      <div class="card__b">
+        {% if google.configured %}
+          <div class="row" style="align-items:baseline;gap:8px">
+            <span style="font-size:32px;font-weight:600;letter-spacing:-.02em">{{ google.rating or '—' }}</span>
+            <span style="color:var(--brand);letter-spacing:1px">{{ '★' * (google.rating|float|round|int if google.rating else 0) }}</span>
+          </div>
+          <p class="dim tiny" style="margin-top:2px">{{ google.total or 0 }} ratings on Google</p>
+
+          <dl class="kv" style="margin-top:16px">
+            <dt>Pulled in</dt><dd>{{ google.count }} review{{ '' if google.count == 1 else 's' }}</dd>
+            <dt>Showing</dt><dd>{{ google.showing }} on the site</dd>
+            <dt>Last check</dt>
+            <dd>
+              {% if google.last_at %}{{ google.last_at|since }}{% else %}never{% endif %}
+              {% if google.last_status == 'error' %}<span class="chip chip--overdue">failed</span>{% endif %}
+            </dd>
+          </dl>
+
+          {% if google.last_status == 'error' %}
+          <div class="note-b note-b--bad" style="margin-top:14px">
+            <i data-ic="alert"></i><span>{{ google.last_message }}</span>
+          </div>
+          {% elif google.stale %}
+          <div class="note-b note-b--warn" style="margin-top:14px">
+            <i data-ic="clock"></i><span>Reviews are older than your refresh window.</span>
+          </div>
+          {% endif %}
+
+          {% if not google.enabled %}
+          <div class="note-b note-b--info" style="margin-top:14px">
+            <i data-ic="alert"></i><span>Google reviews are switched off in Settings.</span>
+          </div>
+          {% endif %}
+
+          <div class="row" style="margin-top:16px">
+            <button class="b b--sm b--brand" type="button" id="sync2">
+              <i data-ic="refresh"></i><span>Pull now</span></button>
+            <a class="b b--sm" href="{{ url_for('admin.settings') }}#google">Settings</a>
+          </div>
+        {% else %}
+          <p class="dim" style="font-size:13px;line-height:1.6">
+            Once you add a Google API key and your Place ID, real reviews appear here.
+            You choose which ones show on the site — Google's words, your editing.
+          </p>
+          <a class="b b--sm b--brand" style="margin-top:14px" href="{{ url_for('admin.settings') }}#google">
+            <i data-ic="link"></i><span>Set it up</span></a>
+        {% endif %}
+      </div>
+    </article>
+
+    {% if history %}
+    <article class="card">
+      <header class="card__h"><h2>Sync history</h2></header>
+      <div class="card__b" style="padding:8px 0">
+        {% for h in history %}
+        <div class="row" style="padding:8px 18px;align-items:flex-start;gap:9px">
+          <span class="dot {{ 'dot--ok' if h.status == 'ok' else 'dot--bad' }}" style="margin-top:6px"></span>
+          <span style="min-width:0">
+            <span style="font-size:13px">{{ h.message or h.status }}</span>
+            <span class="dim tiny" style="display:block">{{ h.fetched_at|since }}</span>
+          </span>
+        </div>
+        {% endfor %}
+      </div>
+    </article>
+    {% endif %}
+  </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  A.sortable('#list', 'testimonials');
+
+  async function sync(btn) {
+    const out = await A.act(btn, () => A.post('/google/sync'));
+    if (out) {
+      A.toast(out.message);
+      setTimeout(() => location.reload(), 800);
+    }
+  }
+  ['sync', 'sync2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => sync(el));
+  });
+
+  A.$$('.seg [data-filter]').forEach(btn => btn.addEventListener('click', () => {
+    A.$$('.seg [data-filter]').forEach(b => b.classList.toggle('on', b === btn));
+    const want = btn.dataset.filter;
+    A.$$('#list [data-row]').forEach(r =>
+      r.classList.toggle('hide', want !== 'all' && r.dataset.source !== want));
+  }));
+
+  function open(existing) {
+    const isGoogle = existing && existing.source === 'google';
+    const m = A.modal({
+      title: existing ? 'Edit review' : 'Add a review',
+      note: isGoogle
+        ? 'This came from Google. Edits stay local and are overwritten on the next sync.'
+        : 'Use this for words a client sent you directly.',
+      body:
+        A.F.row(
+          A.F.text('author', 'Name', { required: true, placeholder: 'Meera Krishnan' }),
+          A.F.select('rating', 'Rating', [[5, '5 stars'], [4, '4 stars'], [3, '3 stars'],
+                                          [2, '2 stars'], [1, '1 star']])) +
+        '<div style="height:14px"></div>' +
+        A.F.row(
+          A.F.text('role', 'Where or what', { placeholder: 'Indiranagar apartment' }),
+          A.F.text('relative_time', 'When', { placeholder: '2 months ago' })) +
+        '<div style="height:14px"></div>' +
+        A.F.area('body', 'What they said', { rows: 6, required: true }) +
+        A.F.toggle('is_featured', 'Feature this one first',
+          existing ? existing.is_featured : false) +
+        A.F.toggle('is_visible', 'Show on the site',
+          existing ? existing.is_visible : true),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Save', className: 'b--pri', icon: 'check', onClick: async (m, btn) => {
+            const v = m.values();
+            if (!v.author.trim() || !v.body.trim()) {
+              A.toast('A review needs a name and some words.', 'bad'); return;
+            }
+            const out = await A.act(btn, () => existing
+              ? A.put('/testimonials/' + existing.id, v)
+              : A.post('/testimonials', v), 'Saved');
+            if (out) { m.close(); location.reload(); }
+          } },
+      ],
+    });
+    if (existing) A.fill(m.body, existing);
+  }
+
+  document.getElementById('add').addEventListener('click', () => open(null));
+
+  document.getElementById('list').addEventListener('click', async e => {
+    const row = e.target.closest('[data-row]');
+    if (!row) return;
+    const item = JSON.parse(row.dataset.json);
+
+    if (e.target.closest('[data-edit]')) open(item);
+
+    if (e.target.closest('[data-star]')) {
+      const next = item.is_featured ? 0 : 1;
+      const out = await A.act(null, () => A.post('/toggle',
+        { table: 'testimonials', field: 'is_featured', id: item.id, value: next }),
+        next ? 'Featured — it now leads the carousel' : 'No longer featured');
+      if (out) setTimeout(() => location.reload(), 900);
+    }
+
+    if (e.target.closest('[data-del]')) {
+      const yes = await A.confirmDialog({
+        title: 'Delete this review?',
+        message: item.source === 'google'
+          ? 'It will come back on the next Google sync unless you switch syncing off.'
+          : 'This cannot be undone.',
+      });
+      if (!yes) return;
+      const out = await A.act(null, () => A.del('/testimonials/' + item.id), 'Review deleted');
+      if (out) row.remove();
+    }
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}{{ s.site_name }} — {{ s.site_tagline }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ s.site_description }}{% endblock %}">
+<meta name="theme-color" content="{{ s.paper }}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+{% block og_image %}{% endblock %}
+
+<link rel="icon" href="{{ url_for('static', filename='public/favicon.svg') }}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='public/css/site.css') }}">
+<style>
+  :root{
+    --paper:{{ s.paper }};
+    --ink:{{ s.ink }};
+    --accent:{{ s.accent }};
+  }
+</style>
+</head>
+<body class="{% block body_class %}{% endblock %}" data-page="{% block page %}page{% endblock %}">
+
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="curtain__in">
+    <span class="curtain__mark">{{ s.logo_text }}</span>
+    <span class="curtain__rule"><i></i></span>
+  </div>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="brand" href="{{ url_for('public.home') }}" aria-label="{{ s.site_name }} home">
+      <span class="brand__mark">{{ s.logo_text }}</span>
+      <span class="brand__sub">{{ s.site_tagline }}</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="{{ url_for('public.home') }}#work">Work</a>
+      <a href="{{ url_for('public.home') }}#services">Services</a>
+      <a href="{{ url_for('public.home') }}#process">Process</a>
+      <a href="{{ url_for('public.home') }}#reviews">Reviews</a>
+      <a href="{{ url_for('public.home') }}#studio">Studio</a>
+    </nav>
+
+    <div class="nav__end">
+      <a class="btn btn--sm" href="{{ url_for('public.home') }}#enquire">
+        <span>Start a project</span>
+      </a>
+      <button class="burger" id="burger" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+  <span class="nav__rail" id="rail" aria-hidden="true"></span>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <nav class="drawer__nav" aria-label="Mobile">
+    <a href="{{ url_for('public.home') }}#work"><em>01</em> Work</a>
+    <a href="{{ url_for('public.home') }}#services"><em>02</em> Services</a>
+    <a href="{{ url_for('public.home') }}#process"><em>03</em> Process</a>
+    <a href="{{ url_for('public.home') }}#reviews"><em>04</em> Reviews</a>
+    <a href="{{ url_for('public.home') }}#studio"><em>05</em> Studio</a>
+    <a href="{{ url_for('public.home') }}#enquire"><em>06</em> Enquire</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="mailto:{{ s.email }}">{{ s.email }}</a>
+    <a href="tel:{{ s.phone|replace(' ','') }}">{{ s.phone }}</a>
+  </div>
+</div>
+
+<main id="main">
+  {% block main %}{% endblock %}
+</main>
+
+<footer class="foot" id="studio">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <p class="foot__mark">{{ s.logo_text }}</p>
+      <p class="foot__line">{{ s.site_tagline }} · est. {{ s.founded_year }}</p>
+    </div>
+
+    <div class="foot__cols">
+      <div class="foot__col">
+        <h4>Studio</h4>
+        <p>{{ s.address_line1 }}<br>{{ s.address_line2 }}</p>
+        {% if s.map_url %}<a class="ulink" href="{{ s.map_url }}" target="_blank" rel="noopener">View on map</a>{% endif %}
+      </div>
+      <div class="foot__col">
+        <h4>Reach us</h4>
+        <p><a class="ulink" href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+        <p><a class="ulink" href="tel:{{ s.phone|replace(' ','') }}">{{ s.phone }}</a></p>
+        <p class="dim">{{ s.hours }}</p>
+      </div>
+      <div class="foot__col">
+        <h4>Elsewhere</h4>
+        {% if s.instagram %}<p><a class="ulink" href="{{ s.instagram }}" target="_blank" rel="noopener">Instagram</a></p>{% endif %}
+        {% if s.pinterest %}<p><a class="ulink" href="{{ s.pinterest }}" target="_blank" rel="noopener">Pinterest</a></p>{% endif %}
+        {% if s.linkedin %}<p><a class="ulink" href="{{ s.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></p>{% endif %}
+      </div>
+      <div class="foot__col">
+        <h4>Services</h4>
+        {% for sv in services[:5] %}
+        <p><a class="ulink" href="{{ url_for('public.service', slug=sv.slug) }}">{{ sv.title }}</a></p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="foot__bar">
+    <p>© {{ year }} {{ s.site_name }}. All rights reserved.</p>
+    <p class="foot__credit">
+      {% if google.rating %}
+      <span class="gbadge">
+        <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.2c0-.7-.1-1.4-.2-2H12v4h6c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.2-2 3.4-5 3.4-8.2z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.4-.4-2.3s.1-1.6.4-2.3V6.3H1.8C1 7.9.5 9.9.5 11.5s.5 3.6 1.3 5.2l3.8-2.9z"/><path fill="#EA4335" d="M12 4.6c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.5 1.8 6.3l3.8 2.9C6.5 6.5 9 4.6 12 4.6z"/></svg>
+        {{ google.rating }} on Google{% if google.total %} · {{ google.total }} reviews{% endif %}
+      </span>
+      {% endif %}
+      <a class="ulink" href="{{ url_for('admin.dashboard') }}">Owner login</a>
+    </p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='public/js/site.js') }}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

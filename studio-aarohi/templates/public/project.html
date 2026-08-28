@@ -1,0 +1,87 @@
+{% extends "public/base.html" %}
+{% block page %}project{% endblock %}
+{% block title %}{{ p.title }} — {{ s.site_name }}{% endblock %}
+{% block description %}{{ p.summary or s.site_description }}{% endblock %}
+{% block og_image %}<meta property="og:image" content="{{ p.cover }}">{% endblock %}
+
+{% block main %}
+<article class="pj">
+
+  <header class="pj__head">
+    <p class="eyebrow" data-rise>
+      <span class="tick"></span>
+      <a class="ulink" href="{{ url_for('public.home') }}#work">Work</a>
+      <span aria-hidden="true">/</span> {{ p.category }}
+    </p>
+    <h1 class="pj__h display" data-lines>{{ p.title }}</h1>
+    {% if p.summary %}<p class="pj__lede" data-rise data-delay="120">{{ p.summary }}</p>{% endif %}
+
+    <dl class="pj__facts" data-rise data-delay="200">
+      {% if p.location %}<div><dt>Location</dt><dd>{{ p.location }}</dd></div>{% endif %}
+      {% if p.category %}<div><dt>Type</dt><dd>{{ p.category }}</dd></div>{% endif %}
+      {% if p.area %}<div><dt>Area</dt><dd>{{ p.area }}</dd></div>{% endif %}
+      {% if p.year %}<div><dt>Completed</dt><dd>{{ p.year }}</dd></div>{% endif %}
+    </dl>
+  </header>
+
+  <figure class="pj__hero" data-wipe>
+    <img src="{{ p.cover }}" alt="{{ p.title }}" data-parallax="0.07" fetchpriority="high">
+  </figure>
+
+  {% if p.body %}
+  <div class="pj__body">
+    <div class="pj__col">
+      {% for para in p.body|paras %}
+      <p data-rise data-delay="{{ loop.index0 * 60 }}">{{ para }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if p.gallery %}
+  <div class="pj__gal">
+    {% for g in p.gallery %}
+    <figure class="pj__shot {{ 'pj__shot--full' if loop.index0 % 3 == 2 else '' }}" data-rise>
+      <span class="pj__frame" data-wipe><img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy"></span>
+      {% if g.caption %}<figcaption><span class="tick"></span>{{ g.caption }}</figcaption>{% endif %}
+    </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if others %}
+  <section class="pj__next">
+    <header class="head">
+      <div>
+        <p class="eyebrow" data-rise><span class="tick"></span>Keep looking</p>
+        <h2 class="h2 display" data-lines>Other projects</h2>
+      </div>
+    </header>
+    <ul class="work__g">
+      {% for o in others %}
+      <li class="tile" data-rise data-delay="{{ loop.index0 * 90 }}">
+        <a href="{{ url_for('public.project', slug=o.slug) }}">
+          <span class="tile__media" data-wipe>
+            <img src="{{ o.cover }}" alt="{{ o.title }}" loading="lazy">
+          </span>
+          <span class="tile__meta">
+            <span class="tile__cat">{{ o.category }}{% if o.year %} · {{ o.year }}{% endif %}</span>
+            <h3 class="tile__t display">{{ o.title }}</h3>
+            <span class="tile__sub">{{ o.location }}</span>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section class="pj__cta">
+    <h2 class="h2 display" data-lines>Something similar in mind?</h2>
+    <a class="btn" href="{{ url_for('public.home') }}#enquire" data-rise data-delay="120">
+      <span>Start a project</span>
+    </a>
+  </section>
+
+</article>
+{% endblock %}

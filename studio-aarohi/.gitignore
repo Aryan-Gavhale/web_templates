@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+
+# The database, uploaded photographs and the session key are all per-install.
+data/

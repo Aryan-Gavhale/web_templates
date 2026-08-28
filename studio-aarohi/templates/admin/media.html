@@ -1,0 +1,193 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+<button class="b" type="button" id="remote"><i data-ic="link"></i><span>Add from a link</span></button>
+<button class="b b--pri" type="button" id="browse"><i data-ic="plus"></i><span>Upload</span></button>
+{% endblock %}
+
+{% block body %}
+
+<input type="file" id="file" accept="image/*" multiple hidden>
+
+<div class="drop" id="drop">
+  <h3>Drop photographs anywhere on this page</h3>
+  <p>JPG, PNG or WebP up to 12 MB each. Every upload is resized for the web and given a thumbnail,
+     so big camera files are fine.</p>
+  <button class="b b--pri" type="button" onclick="document.getElementById('browse').click()">
+    <i data-ic="plus"></i><span>Choose files</span></button>
+</div>
+
+<section class="card">
+  <header class="card__h">
+    <h2>Media library</h2>
+    <span class="grow"></span>
+    <div class="search">
+      <i data-ic="search"></i>
+      <input class="in" id="q" placeholder="Search by file name or alt text">
+    </div>
+    <span class="dim tiny" id="count">{{ items|length }} images</span>
+  </header>
+
+  <div class="card__b">
+    {% if items %}
+    <div class="mgrid" id="grid">
+      {% for m in items %}
+      <figure class="mcell" data-cell data-id="{{ m.id }}"
+              data-name="{{ m.name|lower }} {{ m.alt|lower }}">
+        <button class="mcell__x" type="button" data-del aria-label="Delete image"><i data-ic="trash"></i></button>
+        <img src="{{ m.thumb or m.src }}" alt="" loading="lazy">
+        <figcaption data-cap>{{ m.alt or m.name or 'No alt text' }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty">
+      <i data-ic="photo"></i>
+      <h3>Nothing here yet</h3>
+      <p>Upload the studio's photographs once and reuse them across projects, services and sections.</p>
+    </div>
+    {% endif %}
+  </div>
+  <footer class="card__f">
+    <p class="dim tiny">
+      Alt text describes the photograph for search engines and screen readers.
+      Click any image to write it.
+    </p>
+  </footer>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const grid = document.getElementById('grid');
+  const drop = document.getElementById('drop');
+  const file = document.getElementById('file');
+
+  document.getElementById('browse').addEventListener('click', () => file.click());
+  file.addEventListener('change', () => upload(file.files));
+
+  async function upload(files) {
+    if (!files || !files.length) return;
+    const fd = new FormData();
+    Array.from(files).forEach(f => fd.append('file', f));
+    drop.classList.add('is-over');
+    try {
+      const out = await A.api('POST', '/media', fd);
+      A.toast(out.items.length + ' image(s) uploaded');
+      (out.warnings || []).forEach(w => A.toast(w, 'bad'));
+      location.reload();
+    } catch (e) {
+      A.toast((e && e.error) || 'That upload failed.', 'bad');
+    } finally {
+      drop.classList.remove('is-over');
+    }
+  }
+
+  ['dragenter', 'dragover'].forEach(ev =>
+    document.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('is-over'); }));
+  document.addEventListener('dragleave', e => {
+    if (e.relatedTarget === null) drop.classList.remove('is-over');
+  });
+  document.addEventListener('drop', e => {
+    e.preventDefault();
+    drop.classList.remove('is-over');
+    upload(e.dataTransfer.files);
+  });
+
+  document.getElementById('q').addEventListener('input', A.debounce(e => {
+    const term = e.target.value.toLowerCase();
+    let shown = 0;
+    A.$$('[data-cell]').forEach(c => {
+      const hit = !term || c.dataset.name.includes(term);
+      c.classList.toggle('hide', !hit);
+      if (hit) shown++;
+    });
+    document.getElementById('count').textContent = shown + ' images';
+  }, 160));
+
+  if (grid) grid.addEventListener('click', async e => {
+    const cell = e.target.closest('[data-cell]');
+    if (!cell) return;
+    const id = cell.dataset.id;
+
+    if (e.target.closest('[data-del]')) {
+      const yes = await A.confirmDialog({
+        title: 'Delete this image?',
+        message: 'If it is used anywhere we will tell you before it goes.',
+      });
+      if (!yes) return;
+      try {
+        await A.del('/media/' + id);
+        cell.remove();
+        A.toast('Image deleted');
+      } catch (err) {
+        if (err.status === 409) {
+          const force = await A.confirmDialog({
+            title: 'Still delete it?', message: err.error, confirmLabel: 'Delete anyway' });
+          if (!force) return;
+          const out = await A.act(null, () => A.del('/media/' + id, { force: 1 }), 'Image deleted');
+          if (out) cell.remove();
+        } else A.toast(err.error || 'That did not delete.', 'bad');
+      }
+      return;
+    }
+
+    const item = (await A.media()).find(m => Number(m.id) === Number(id));
+    A.modal({
+      title: 'Image details',
+      size: 'slim',
+      body:
+        '<img src="' + A.esc(item.src) + '" alt="" style="width:100%;border-radius:8px;margin-bottom:16px">' +
+        A.F.text('alt', 'Alt text', {
+          placeholder: 'Living room in oak and lime plaster',
+          hint: 'Describe what is in the photograph, plainly.' }) +
+        '<p class="dim tiny">' + [
+          (item.width && item.height) ? item.width + ' × ' + item.height + ' px' : null,
+          // Linked images live on someone else's server, so we know no size.
+          item.bytes ? Math.round(item.bytes / 1024) + ' KB' : 'linked from the web',
+          item.name || null,
+        ].filter(Boolean).map(A.esc).join(' · ') + '</p>',
+      actions: [
+        { label: 'Copy link', icon: 'copy', onClick: () => A.copy(location.origin + item.src) },
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Save', className: 'b--pri', onClick: async (m, btn) => {
+            const v = m.values();
+            const out = await A.act(btn, () => A.patch('/media/' + id, v), 'Saved');
+            if (out) {
+              A.$('[data-cap]', cell).textContent = v.alt || item.name || 'No alt text';
+              cell.dataset.name = ((item.name || '') + ' ' + v.alt).toLowerCase();
+              m.close();
+            }
+          } },
+      ],
+    }).field('alt').value = item.alt || '';
+  });
+
+  document.getElementById('remote').addEventListener('click', () => {
+    A.modal({
+      title: 'Add an image from a link',
+      note: 'Useful for stock photography you already have a URL for.',
+      size: 'slim',
+      body:
+        A.F.text('url', 'Image address', { required: true, placeholder: 'https://…' }) +
+        A.F.text('alt', 'Alt text', { placeholder: 'What the photograph shows' }),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: 'Add image', className: 'b--pri', onClick: async (m, btn) => {
+            const v = m.values();
+            if (!/^https?:\/\//i.test(v.url.trim())) {
+              A.toast('That does not look like a web address.', 'bad'); return;
+            }
+            const out = await A.act(btn, () => A.post('/media/remote', v), 'Image added');
+            if (out) location.reload();
+          } },
+      ],
+    });
+  });
+})();
+</script>
+{% endblock %}

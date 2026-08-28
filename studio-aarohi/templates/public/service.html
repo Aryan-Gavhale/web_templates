@@ -1,0 +1,96 @@
+{% extends "public/base.html" %}
+{% block page %}service{% endblock %}
+{% block title %}{{ item.title }} — {{ s.site_name }}{% endblock %}
+{% block description %}{{ item.summary or s.site_description }}{% endblock %}
+{% block og_image %}{% if item.image %}<meta property="og:image" content="{{ item.image }}">{% endif %}{% endblock %}
+
+{% block main %}
+<article class="sv">
+
+  <header class="sv__head">
+    <div class="sv__copy">
+      <p class="eyebrow" data-rise>
+        <span class="tick"></span>
+        <a class="ulink" href="{{ url_for('public.home') }}#services">Services</a>
+      </p>
+      <h1 class="sv__h display" data-lines>{{ item.title }}</h1>
+      {% if item.summary %}<p class="sv__lede" data-rise data-delay="120">{{ item.summary }}</p>{% endif %}
+      {% if item.price_from %}
+      <p class="sv__price" data-rise data-delay="180">
+        <em>{{ item.price_from|money }}</em>
+        <span>{{ item.price_note or 'starting price' }}</span>
+      </p>
+      {% endif %}
+      <a class="btn" href="{{ url_for('public.home') }}#enquire" data-rise data-delay="240">
+        <span>Enquire about this</span>
+      </a>
+    </div>
+
+    <figure class="sv__fig" data-wipe>
+      <img src="{{ item.image }}" alt="{{ item.title }}" data-parallax="0.06" fetchpriority="high">
+    </figure>
+  </header>
+
+  {% if item.body %}
+  <div class="sv__body">
+    {% for para in item.body|paras %}
+    <p data-rise data-delay="{{ loop.index0 * 60 }}">{{ para }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if projects %}
+  <section class="sv__work">
+    <header class="head">
+      <div>
+        <p class="eyebrow" data-rise><span class="tick"></span>Seen in</p>
+        <h2 class="h2 display" data-lines>Projects with this scope</h2>
+      </div>
+    </header>
+    <ul class="work__g">
+      {% for o in projects %}
+      <li class="tile" data-rise data-delay="{{ loop.index0 * 90 }}">
+        <a href="{{ url_for('public.project', slug=o.slug) }}">
+          <span class="tile__media" data-wipe>
+            <img src="{{ o.cover }}" alt="{{ o.title }}" loading="lazy">
+          </span>
+          <span class="tile__meta">
+            <span class="tile__cat">{{ o.category }}{% if o.year %} · {{ o.year }}{% endif %}</span>
+            <h3 class="tile__t display">{{ o.title }}</h3>
+            <span class="tile__sub">{{ o.location }}</span>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if others %}
+  <section class="sv__more">
+    <header class="head">
+      <div>
+        <p class="eyebrow" data-rise><span class="tick"></span>Also from the studio</p>
+        <h2 class="h2 display" data-lines>Other services</h2>
+      </div>
+    </header>
+    <ul class="svc__g">
+      {% for sv in others %}
+      <li class="card" data-rise data-delay="{{ loop.index0 * 90 }}">
+        <a href="{{ url_for('public.service', slug=sv.slug) }}">
+          <span class="card__n">{{ '%02d'|format(loop.index) }}</span>
+          <span class="card__media"><img src="{{ sv.thumb or sv.image }}" alt="{{ sv.title }}" loading="lazy"></span>
+          <h3 class="card__t display">{{ sv.title }}</h3>
+          <p class="card__b">{{ sv.summary }}</p>
+          <span class="card__go" aria-hidden="true">
+            <svg viewBox="0 0 24 12" width="28" height="14"><path d="M0 6h22M17 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+</article>
+{% endblock %}

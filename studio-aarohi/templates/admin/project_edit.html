@@ -1,0 +1,228 @@
+{% extends "admin/base.html" %}
+
+{% block heading %}
+<a class="dim" href="{{ url_for('admin.projects') }}">Projects</a>
+<span class="dim">/</span> {{ item.title }}
+{% endblock %}
+
+{% block topbar %}
+{% if item.is_visible %}
+<a class="b" href="{{ url_for('public.project', slug=item.slug) }}" target="_blank" rel="noopener">
+  <i data-ic="ext"></i><span>Preview</span></a>
+{% endif %}
+<button class="b b--pri" type="button" id="save"><i data-ic="check"></i><span>Save</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="grid g-side" id="form">
+
+  <div class="stack">
+    <article class="card">
+      <header class="card__h"><h2>The story</h2></header>
+      <div class="card__b">
+        <div class="f">
+          <label for="title">Title</label>
+          <input class="in" id="title" name="title" value="{{ item.title }}">
+        </div>
+        <div class="f-3">
+          <div class="f">
+            <label for="category">Category</label>
+            <input class="in" id="category" name="category" value="{{ item.category }}"
+                   placeholder="Residence" list="cats">
+            <datalist id="cats">
+              <option value="Residence"><option value="Apartment"><option value="Villa">
+              <option value="Workplace"><option value="Retail"><option value="Hospitality">
+            </datalist>
+          </div>
+          <div class="f">
+            <label for="location">Location</label>
+            <input class="in" id="location" name="location" value="{{ item.location }}">
+          </div>
+          <div class="f">
+            <label for="year">Year</label>
+            <input class="in" id="year" name="year" value="{{ item.year }}">
+          </div>
+        </div>
+        <div class="f-2" style="margin-top:14px">
+          <div class="f">
+            <label for="area">Area</label>
+            <input class="in" id="area" name="area" value="{{ item.area }}" placeholder="2,400 sq ft">
+          </div>
+          <div class="f">
+            <label for="slug">Web address</label>
+            <input class="in mono" id="slug" name="slug" value="{{ item.slug }}">
+          </div>
+        </div>
+        <div class="f" style="margin-top:14px">
+          <label for="summary">One-line summary</label>
+          <textarea class="in" id="summary" name="summary" rows="2">{{ item.summary }}</textarea>
+          <p class="f-hint">Shown under the title on the work grid.</p>
+        </div>
+        <div class="f">
+          <label for="body">Full write-up</label>
+          <textarea class="in" id="body" name="body" rows="10">{{ item.body }}</textarea>
+          <p class="f-hint">Leave a blank line between paragraphs.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__h">
+        <h2>Gallery</h2>
+        <span class="dim">{{ images|length }} image{{ '' if images|length == 1 else 's' }}</span>
+        <span class="grow"></span>
+        <button class="b b--sm b--pri" type="button" id="addimg">
+          <i data-ic="plus"></i><span>Add images</span></button>
+      </header>
+      <div class="card__b card__b--flush" id="gal">
+        {% for g in images %}
+        <div class="lrow" data-row data-id="{{ g.id }}">
+          <span class="lrow__ord">
+            <button type="button" data-move="up" aria-label="Move up"><i data-ic="up"></i></button>
+            <button type="button" data-move="down" aria-label="Move down"><i data-ic="down"></i></button>
+          </span>
+          <img class="thumb thumb--lg" src="{{ g.src }}" alt="">
+          <div style="min-width:0">
+            <input class="in" data-caption value="{{ g.caption or '' }}"
+                   placeholder="Caption — optional, shows under the photograph">
+            <p class="lrow__s" style="margin-top:4px">{{ g.alt or 'No alt text on this image yet.' }}</p>
+          </div>
+          <div class="lrow__a">
+            <button class="b b--sm b--icon b--bad" type="button" data-drop
+                    aria-label="Remove from gallery"><i data-ic="x"></i></button>
+          </div>
+        </div>
+        {% else %}
+        <div class="empty">
+          <i data-ic="photo"></i>
+          <h3>No gallery images</h3>
+          <p>The project page shows these full width, one after another.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+
+  <div class="stack">
+    <article class="card">
+      <header class="card__h"><h2>Cover image</h2></header>
+      <div class="card__b">
+        <figure id="cover" class="thumb thumb--lg {{ '' if item.cover else 'thumb--none' }}"
+                style="width:100%;height:auto;aspect-ratio:4/3">
+          {% if item.cover %}
+          <img src="{{ item.cover }}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:6px">
+          {% else %}<i data-ic="photo"></i>{% endif %}
+        </figure>
+        <input type="hidden" name="cover_id" value="{{ item.cover_id or '' }}">
+        <button class="b b--sm b--wide" type="button" id="pickcover" style="margin-top:9px">
+          <i data-ic="photo"></i><span>{{ 'Change cover' if item.cover else 'Choose cover' }}</span>
+        </button>
+        <p class="f-hint" style="margin-top:8px">This is the photograph the work grid uses.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <header class="card__h"><h2>Visibility</h2></header>
+      <div class="card__b stack">
+        <label class="sw">
+          <input type="checkbox" name="is_visible" {{ 'checked' if item.is_visible }}>
+          <span class="sw__t"></span><span class="sw__l">Show on the site</span>
+        </label>
+        <label class="sw">
+          <input type="checkbox" name="is_featured" {{ 'checked' if item.is_featured }}>
+          <span class="sw__t"></span><span class="sw__l">Feature this project</span>
+        </label>
+        <p class="dim tiny">
+          Featured projects lead the work grid.
+          {% if item.updated_at %}Last saved {{ item.updated_at|since }}.{% endif %}
+        </p>
+      </div>
+      <footer class="card__f">
+        <button class="b b--sm b--bad" type="button" id="del">
+          <i data-ic="trash"></i><span>Delete project</span></button>
+      </footer>
+    </article>
+  </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const PID = {{ item.id }};
+  const form = document.getElementById('form');
+
+  A.sortable('#gal', 'project_images');
+
+  async function paintCover() {
+    const id = Number(A.$('[name="cover_id"]', form).value || 0);
+    const box = document.getElementById('cover');
+    const item = id ? (await A.media()).find(m => m.id === id) : null;
+    box.className = 'thumb thumb--lg' + (item ? '' : ' thumb--none');
+    box.innerHTML = item
+      ? '<img src="' + A.esc(item.src) + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:6px">'
+      : A.icon('photo');
+  }
+
+  document.getElementById('pickcover').addEventListener('click', async () => {
+    const hidden = A.$('[name="cover_id"]', form);
+    const chosen = await A.pickMedia({
+      title: 'Cover image',
+      selected: hidden.value ? [Number(hidden.value)] : [],
+      allowClear: true,
+    });
+    if (chosen === undefined) return;
+    hidden.value = chosen === null ? '' : chosen;
+    paintCover();
+  });
+
+  document.getElementById('save').addEventListener('click', async e => {
+    const v = A.formValues(form);
+    if (!v.title.trim()) { A.toast('The project needs a title.', 'bad'); return; }
+    await A.act(e.currentTarget, () => A.put('/projects/' + PID, v), 'Project saved');
+  });
+
+  document.getElementById('addimg').addEventListener('click', async () => {
+    const chosen = await A.pickMedia({ multi: true, title: 'Add to the gallery' });
+    if (!chosen || !chosen.length) return;
+    const out = await A.act(null, () => A.post('/projects/' + PID + '/images',
+      { media_ids: chosen }), chosen.length + ' image(s) added');
+    if (out) location.reload();
+  });
+
+  const gal = document.getElementById('gal');
+
+  gal.addEventListener('click', async e => {
+    const btn = e.target.closest('[data-drop]');
+    if (!btn) return;
+    const row = btn.closest('[data-row]');
+    const out = await A.act(btn, () => A.del('/project-images/' + row.dataset.id),
+      'Removed from the gallery');
+    if (out) row.remove();
+  });
+
+  gal.addEventListener('change', A.debounce(async e => {
+    const input = e.target.closest('[data-caption]');
+    if (!input) return;
+    const row = input.closest('[data-row]');
+    await A.act(null, () => A.patch('/project-images/' + row.dataset.id,
+      { caption: input.value }), 'Caption saved');
+  }, 100));
+
+  document.getElementById('del').addEventListener('click', async e => {
+    const yes = await A.confirmDialog({
+      title: 'Delete this project?',
+      message: 'The write-up and gallery order go with it. Your photographs stay in the media library.',
+    });
+    if (!yes) return;
+    const out = await A.act(e.currentTarget, () => A.del('/projects/' + PID));
+    if (out) location.href = '/admin/projects';
+  });
+
+  paintCover();
+})();
+</script>
+{% endblock %}

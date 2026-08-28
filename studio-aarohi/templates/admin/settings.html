@@ -1,0 +1,408 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+<button class="b b--pri" type="button" id="save"><i data-ic="check"></i><span>Save settings</span></button>
+{% endblock %}
+
+{% block body %}
+
+<div class="row row--wrap">
+  <div class="seg" id="tabs">
+    <button type="button" class="on" data-tab="studio">Studio</button>
+    <button type="button" data-tab="contact">Contact</button>
+    <button type="button" data-tab="google">Google reviews</button>
+    <button type="button" data-tab="forms">Forms & messages</button>
+    <button type="button" data-tab="look">Look</button>
+    <button type="button" data-tab="account">Your account</button>
+  </div>
+</div>
+
+<form id="form" onsubmit="return false">
+
+<section data-panel="studio" class="grid g-side">
+  <article class="card">
+    <header class="card__h"><h2>Studio identity</h2></header>
+    <div class="card__b">
+      <div class="f-2">
+        <div class="f"><label for="site_name">Studio name</label>
+          <input class="in" id="site_name" name="site_name" value="{{ values.site_name }}"></div>
+        <div class="f"><label for="logo_text">Wordmark</label>
+          <input class="in" id="logo_text" name="logo_text" value="{{ values.logo_text }}">
+          <p class="f-hint">The letters in the header and footer.</p></div>
+      </div>
+      <div class="f" style="margin-top:14px"><label for="site_tagline">Tagline</label>
+        <input class="in" id="site_tagline" name="site_tagline" value="{{ values.site_tagline }}"></div>
+      <div class="f"><label for="site_description">Description for search engines</label>
+        <textarea class="in" id="site_description" name="site_description" rows="3">{{ values.site_description }}</textarea>
+        <p class="f-hint">Around 155 characters is what Google shows.</p></div>
+      <div class="f"><label for="founded_year">Practising since</label>
+        <input class="in" id="founded_year" name="founded_year" value="{{ values.founded_year }}"></div>
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h"><h2>Social</h2></header>
+    <div class="card__b">
+      <div class="f"><label for="instagram">Instagram</label>
+        <input class="in" id="instagram" name="instagram" value="{{ values.instagram }}"></div>
+      <div class="f"><label for="linkedin">LinkedIn</label>
+        <input class="in" id="linkedin" name="linkedin" value="{{ values.linkedin }}"></div>
+      <div class="f"><label for="pinterest">Pinterest</label>
+        <input class="in" id="pinterest" name="pinterest" value="{{ values.pinterest }}"></div>
+      <p class="f-hint">Leave one blank and the link disappears from the footer.</p>
+    </div>
+  </article>
+</section>
+
+<section data-panel="contact" class="grid g-side hide">
+  <article class="card">
+    <header class="card__h"><h2>How people reach you</h2></header>
+    <div class="card__b">
+      <div class="f-2">
+        <div class="f"><label for="email">Email</label>
+          <input class="in" id="email" name="email" type="email" value="{{ values.email }}"></div>
+        <div class="f"><label for="phone">Phone</label>
+          <input class="in" id="phone" name="phone" value="{{ values.phone }}"></div>
+      </div>
+      <div class="f" style="margin-top:14px"><label for="whatsapp">WhatsApp number</label>
+        <input class="in" id="whatsapp" name="whatsapp" value="{{ values.whatsapp }}">
+        <p class="f-hint">With the country code and no spaces, like +919845012345.</p></div>
+      <div class="f"><label for="address_line1">Address, line one</label>
+        <input class="in" id="address_line1" name="address_line1" value="{{ values.address_line1 }}"></div>
+      <div class="f"><label for="address_line2">Address, line two</label>
+        <input class="in" id="address_line2" name="address_line2" value="{{ values.address_line2 }}"></div>
+      <div class="f-2">
+        <div class="f"><label for="hours">Opening hours</label>
+          <input class="in" id="hours" name="hours" value="{{ values.hours }}"></div>
+        <div class="f"><label for="map_url">Map link</label>
+          <input class="in" id="map_url" name="map_url" value="{{ values.map_url }}"></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h"><h2>Money</h2></header>
+    <div class="card__b">
+      <div class="f"><label for="currency_symbol">Currency symbol</label>
+        <input class="in" id="currency_symbol" name="currency_symbol" value="{{ values.currency_symbol }}">
+        <p class="f-hint">Used everywhere in the admin and on service prices.</p></div>
+    </div>
+  </article>
+</section>
+
+<section data-panel="google" class="grid g-side hide" id="google">
+  <article class="card">
+    <header class="card__h"><h2>Google Business Profile</h2></header>
+    <div class="card__b">
+      <div class="note-b note-b--info" style="margin-bottom:18px">
+        <i data-ic="bulb"></i>
+        <span>You need two things: an API key from Google Cloud with the
+          <b>Places API (New)</b> enabled, and the Place ID of your business listing.
+          Search for your studio below and we will find the ID for you.</span>
+      </div>
+
+      <div class="f"><label for="google_api_key">API key</label>
+        <input class="in mono" id="google_api_key" name="google_api_key"
+               placeholder="{{ masked_key or 'AIza…' }}" autocomplete="off">
+        <p class="f-hint">
+          {% if masked_key %}A key is saved. Leave this blank to keep it, or paste a new one to replace it.
+          {% else %}Nothing saved yet.{% endif %}</p></div>
+
+      <div class="f"><label for="google_place_id">Place ID</label>
+        <div class="row">
+          <input class="in mono" id="google_place_id" name="google_place_id" value="{{ values.google_place_id }}">
+          <button class="b" type="button" id="find"><i data-ic="search"></i><span>Find</span></button>
+        </div>
+      </div>
+
+      <div class="f-3">
+        <div class="f"><label for="google_min_rating">Only show reviews of</label>
+          <select class="in" id="google_min_rating" name="google_min_rating">
+            {% for n in [1, 2, 3, 4, 5] %}
+            <option value="{{ n }}" {{ 'selected' if values.google_min_rating|int == n }}>
+              {{ n }} star{{ '' if n == 1 else 's' }} and up</option>
+            {% endfor %}
+          </select></div>
+        <div class="f"><label for="google_cache_hours">Refresh every</label>
+          <select class="in" id="google_cache_hours" name="google_cache_hours">
+            {% for n in [1, 6, 12, 24, 72, 168] %}
+            <option value="{{ n }}" {{ 'selected' if values.google_cache_hours|int == n }}>
+              {{ n }} hour{{ '' if n == 1 else 's' }}</option>
+            {% endfor %}
+          </select></div>
+        <div class="f"><label for="google_place_url">Link to your listing</label>
+          <input class="in" id="google_place_url" name="google_place_url" value="{{ values.google_place_url }}"></div>
+      </div>
+
+      <div class="stack" style="margin-top:16px">
+        <label class="sw">
+          <input type="checkbox" name="google_reviews_enabled"
+                 {{ 'checked' if values.google_reviews_enabled == '1' }}>
+          <span class="sw__t"></span><span class="sw__l">Pull reviews from Google</span>
+        </label>
+        <label class="sw">
+          <input type="checkbox" name="google_auto_import"
+                 {{ 'checked' if values.google_auto_import == '1' }}>
+          <span class="sw__t"></span>
+          <span class="sw__l">Show new reviews straight away, without approving each one</span>
+        </label>
+      </div>
+
+      <div class="row" style="margin-top:18px">
+        <button class="b" type="button" id="test"><i data-ic="link"></i><span>Test the connection</span></button>
+        <button class="b b--brand" type="button" id="sync"><i data-ic="refresh"></i><span>Pull reviews now</span></button>
+      </div>
+      <p class="f-hint" style="margin-top:10px">Save your settings before testing a new key.</p>
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h"><h2>Status</h2></header>
+    <div class="card__b">
+      <dl class="kv">
+        <dt>Key</dt><dd>{{ 'saved' if google.configured else 'not set' }}</dd>
+        <dt>Rating</dt><dd>{{ google.rating or '—' }} from {{ google.total or 0 }} ratings</dd>
+        <dt>Reviews</dt><dd>{{ google.showing }} showing of {{ google.count }}</dd>
+        <dt>Last check</dt>
+        <dd>{% if google.last_at %}{{ google.last_at|since }}{% else %}never{% endif %}</dd>
+      </dl>
+      {% if google.last_message %}
+      <div class="note-b note-b--{{ 'bad' if google.last_status == 'error' else 'ok' }}" style="margin-top:14px">
+        <i data-ic="{{ 'alert' if google.last_status == 'error' else 'check' }}"></i>
+        <span>{{ google.last_message }}</span>
+      </div>
+      {% endif %}
+      <p class="dim tiny" style="margin-top:14px">
+        Google's API returns the five reviews it considers most relevant. That is a limit
+        of the API, not of this site — everything it sends is kept, and you decide what shows.
+      </p>
+    </div>
+  </article>
+</section>
+
+<section data-panel="forms" class="grid g-side hide">
+  <article class="card">
+    <header class="card__h"><h2>The enquiry form</h2></header>
+    <div class="card__b">
+      <div class="f"><label for="enquiry_success_message">Thank-you message</label>
+        <textarea class="in" id="enquiry_success_message" name="enquiry_success_message"
+                  rows="2">{{ values.enquiry_success_message }}</textarea></div>
+      <div class="f-2">
+        <div class="f"><label for="budget_bands">Budget options</label>
+          <textarea class="in" id="budget_bands" name="budget_bands" rows="7">{{ values.budget_bands }}</textarea>
+          <p class="f-hint">One per line.</p></div>
+        <div class="f"><label for="timelines">Timeline options</label>
+          <textarea class="in" id="timelines" name="timelines" rows="7">{{ values.timelines }}</textarea>
+          <p class="f-hint">One per line.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h"><h2>Messages you send often</h2></header>
+    <div class="card__b">
+      <div class="f"><label for="reply_template">Reply to an enquiry</label>
+        <textarea class="in" id="reply_template" name="reply_template" rows="8">{{ values.reply_template }}</textarea>
+        <p class="f-hint">
+          <span class="mono">{name}</span> <span class="mono">{service}</span>
+          <span class="mono">{ref}</span> <span class="mono">{studio}</span> are filled in for you.</p></div>
+      <div class="f"><label for="reminder_template">Payment reminder</label>
+        <textarea class="in" id="reminder_template" name="reminder_template" rows="5">{{ values.reminder_template }}</textarea>
+        <p class="f-hint">
+          <span class="mono">{name}</span> <span class="mono">{amount}</span>
+          <span class="mono">{due}</span> <span class="mono">{ref}</span>
+          <span class="mono">{studio}</span> are filled in for you.</p></div>
+    </div>
+  </article>
+</section>
+
+<section data-panel="look" class="grid g-side hide">
+  <article class="card">
+    <header class="card__h"><h2>Colours</h2></header>
+    <div class="card__b">
+      <div class="f-3">
+        <div class="f"><label for="accent">Accent</label>
+          <input class="in" id="accent" name="accent" type="color" value="{{ values.accent }}"
+                 style="height:42px;padding:4px"></div>
+        <div class="f"><label for="ink">Text</label>
+          <input class="in" id="ink" name="ink" type="color" value="{{ values.ink }}"
+                 style="height:42px;padding:4px"></div>
+        <div class="f"><label for="paper">Background</label>
+          <input class="in" id="paper" name="paper" type="color" value="{{ values.paper }}"
+                 style="height:42px;padding:4px"></div>
+      </div>
+      <p class="f-hint" style="margin-top:12px">
+        These three drive the whole public theme. Save, then open the site to see it.
+      </p>
+      <div id="swatch" style="margin-top:16px;border-radius:10px;overflow:hidden;border:1px solid var(--line)">
+        <div style="padding:26px 22px">
+          <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase" data-accent>Preview</p>
+          <p style="font-size:24px;margin-top:8px" data-ink>Rooms that hold their calm.</p>
+          <span style="display:inline-block;margin-top:14px;padding:8px 16px;border-radius:99px;
+                       font-size:12px;color:#fff" data-bg>Start a project</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h"><h2>Danger zone</h2></header>
+    <div class="card__b">
+      <p class="dim" style="font-size:13px">
+        The demo content that came with the site — projects, services, reviews, enquiries
+        and payment plans — can be cleared once your own work is in.
+      </p>
+      <p class="dim tiny" style="margin-top:10px">
+        There is no undo. Take a copy of <span class="mono">data/studio.db</span> first.
+      </p>
+    </div>
+  </article>
+</section>
+
+</form>
+
+<section data-panel="account" class="grid g-side hide">
+  <article class="card">
+    <header class="card__h"><h2>Your details</h2></header>
+    <div class="card__b" id="profile">
+      <div class="f-2">
+        <div class="f"><label for="pname">Name</label>
+          <input class="in" id="pname" name="name" value="{{ user.name }}"></div>
+        <div class="f"><label for="pemail">Email</label>
+          <input class="in" id="pemail" name="email" type="email" value="{{ user.email }}">
+          <p class="f-hint">This is what you sign in with.</p></div>
+      </div>
+      <button class="b b--pri" type="button" id="saveprofile" style="margin-top:6px">
+        <i data-ic="check"></i><span>Save details</span></button>
+    </div>
+  </article>
+
+  <article class="card">
+    <header class="card__h"><h2>Password</h2></header>
+    <div class="card__b" id="pw">
+      <div class="f"><label for="current">Current password</label>
+        <input class="in" id="current" name="current" type="password" autocomplete="current-password"></div>
+      <div class="f"><label for="next">New password</label>
+        <input class="in" id="next" name="next" type="password" autocomplete="new-password">
+        <p class="f-hint">At least ten characters. A short sentence works well.</p></div>
+      <div class="f"><label for="confirm">Repeat the new password</label>
+        <input class="in" id="confirm" name="confirm" type="password" autocomplete="new-password"></div>
+      <button class="b b--pri" type="button" id="savepw"><i data-ic="check"></i><span>Change password</span></button>
+    </div>
+  </article>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const form = document.getElementById('form');
+
+  A.$$('#tabs [data-tab]').forEach(btn => btn.addEventListener('click', () => {
+    A.$$('#tabs [data-tab]').forEach(b => b.classList.toggle('on', b === btn));
+    A.$$('[data-panel]').forEach(p => p.classList.toggle('hide', p.dataset.panel !== btn.dataset.tab));
+    document.getElementById('save').classList.toggle('hide', btn.dataset.tab === 'account');
+    history.replaceState(null, '', '#' + btn.dataset.tab);
+  }));
+
+  const hash = location.hash.slice(1);
+  if (hash) {
+    const tab = A.$('#tabs [data-tab="' + hash + '"]');
+    if (tab) tab.click();
+  }
+
+  document.getElementById('save').addEventListener('click', async e => {
+    const v = A.formValues(form);
+    // An empty key field means "keep the one you already have".
+    if (!v.google_api_key) delete v.google_api_key;
+    const out = await A.act(e.currentTarget, () => A.post('/settings', v), 'Settings saved');
+    if (out) setTimeout(() => location.reload(), 500);
+  });
+
+  /* live colour preview */
+  const sw = document.getElementById('swatch');
+  function paint() {
+    const v = A.formValues(form);
+    sw.style.background = v.paper;
+    A.$('[data-accent]', sw).style.color = v.accent;
+    A.$('[data-ink]', sw).style.color = v.ink;
+    A.$('[data-bg]', sw).style.background = v.accent;
+  }
+  ['accent', 'ink', 'paper'].forEach(n =>
+    A.$('[name="' + n + '"]', form).addEventListener('input', paint));
+  paint();
+
+  /* google */
+  document.getElementById('find').addEventListener('click', () => {
+    const m = A.modal({
+      title: 'Find your Place ID',
+      note: 'Type the studio name and city exactly as it appears on Google Maps.',
+      size: 'slim',
+      body: A.F.text('query', 'Business name', { placeholder: 'Studio Aarohi, Bengaluru' }) +
+            '<div id="res"></div>',
+      actions: [
+        { spacer: true },
+        { label: 'Close', onClick: m => m.close() },
+        { label: 'Search', className: 'b--pri', icon: 'search', onClick: async (m, btn) => {
+            const res = A.$('#res', m.body);
+            res.innerHTML = '<p class="dim tiny">Searching…</p>';
+            try {
+              const out = await A.post('/google/search', m.values());
+              if (!out.items.length) {
+                res.innerHTML = '<p class="dim tiny">Nothing found. Try including the city.</p>';
+                return;
+              }
+              res.innerHTML = out.items.map(p =>
+                '<button class="b b--wide" type="button" data-id="' + A.esc(p.id) + '" ' +
+                'style="justify-content:flex-start;margin-bottom:8px;text-align:left">' +
+                '<span><b>' + A.esc(p.name) + '</b><br>' +
+                '<span class="dim tiny">' + A.esc(p.address || '') + '</span></span></button>').join('');
+              A.$$('[data-id]', res).forEach(b => b.addEventListener('click', () => {
+                A.$('#google_place_id').value = b.dataset.id;
+                m.close();
+                A.toast('Place ID filled in. Save your settings.');
+              }));
+            } catch (err) {
+              res.innerHTML = '<div class="note-b note-b--bad">' +
+                A.icon('alert') + '<span>' + A.esc(err.error || 'Search failed.') + '</span></div>';
+              A.paintIcons(res);
+            }
+          } },
+      ],
+    });
+    m.field('query').value = {{ values.site_name|tojson }};
+  });
+
+  document.getElementById('test').addEventListener('click', async e => {
+    const out = await A.act(e.currentTarget, () => A.post('/google/test', {
+      place_id: A.$('#google_place_id').value,
+      api_key: A.$('#google_api_key').value,
+    }));
+    if (out) A.toast(out.message);
+  });
+
+  document.getElementById('sync').addEventListener('click', async e => {
+    const out = await A.act(e.currentTarget, () => A.post('/google/sync'));
+    if (out) { A.toast(out.message); setTimeout(() => location.reload(), 900); }
+  });
+
+  /* account */
+  document.getElementById('saveprofile').addEventListener('click', async e => {
+    const out = await A.act(e.currentTarget,
+      () => A.post('/account/profile', A.formValues(document.getElementById('profile'))),
+      'Details saved');
+    if (out) setTimeout(() => location.reload(), 500);
+  });
+
+  document.getElementById('savepw').addEventListener('click', async e => {
+    const box = document.getElementById('pw');
+    const v = A.formValues(box);
+    if (v.next !== v.confirm) { A.toast('The two new passwords do not match.', 'bad'); return; }
+    const out = await A.act(e.currentTarget, () => A.post('/account/password', v),
+      'Password changed');
+    if (out) A.$$('input', box).forEach(i => (i.value = ''));
+  });
+})();
+</script>
+{% endblock %}

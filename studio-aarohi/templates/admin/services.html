@@ -1,0 +1,156 @@
+{% extends "admin/base.html" %}
+
+{% block topbar %}
+<button class="b b--pri" type="button" id="add"><i data-ic="plus"></i><span>New service</span></button>
+{% endblock %}
+
+{% block body %}
+
+<section class="card">
+  <header class="card__h">
+    <h2>Services</h2>
+    <span class="dim">Drag order with the arrows — the site follows this list</span>
+  </header>
+
+  <div class="card__b card__b--flush" id="list">
+    {% for it in items %}
+    <div class="lrow" data-row data-id="{{ it.id }}" data-json='{{ {
+        "id": it.id, "title": it.title, "slug": it.slug, "summary": it.summary,
+        "body": it.body, "price_from": it.price_from, "price_note": it.price_note,
+        "image_id": it.image_id, "is_visible": it.is_visible }|tojson }}'>
+      <span class="lrow__ord">
+        <button type="button" data-move="up" aria-label="Move up"><i data-ic="up"></i></button>
+        <button type="button" data-move="down" aria-label="Move down"><i data-ic="down"></i></button>
+      </span>
+
+      {% if it.thumb %}
+      <img class="thumb thumb--lg" src="{{ it.thumb }}" alt="">
+      {% else %}
+      <span class="thumb thumb--lg thumb--none"><i data-ic="photo"></i></span>
+      {% endif %}
+
+      <div style="min-width:0">
+        <p class="lrow__t">{{ it.title }}</p>
+        <p class="lrow__s trunc">{{ it.summary or 'No summary yet.' }}</p>
+        <p class="lrow__s" style="margin-top:3px">
+          {% if it.price_from %}<b>{{ it.price_from|money }}</b> {{ it.price_note }}{% endif %}
+          <span class="mono dim">/services/{{ it.slug }}</span>
+        </p>
+      </div>
+
+      <div class="lrow__a">
+        <label class="sw" title="Show on the site">
+          <input type="checkbox" {{ 'checked' if it.is_visible }}
+                 data-toggle-table="services" data-toggle-id="{{ it.id }}"
+                 data-toggle-label="{{ it.title }}">
+          <span class="sw__t"></span>
+        </label>
+        <button class="b b--sm" type="button" data-edit><i data-ic="edit"></i><span>Edit</span></button>
+        <button class="b b--sm b--icon b--bad" type="button" data-del
+                aria-label="Delete {{ it.title }}"><i data-ic="trash"></i></button>
+      </div>
+    </div>
+    {% else %}
+    <div class="empty">
+      <i data-ic="layers"></i>
+      <h3>No services yet</h3>
+      <p>List what the studio actually sells. Each one gets its own page and shows in the enquiry form.</p>
+      <button class="b b--pri" type="button" onclick="document.getElementById('add').click()">
+        <i data-ic="plus"></i><span>Add the first service</span></button>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  A.sortable('#list', 'services');
+
+  function form(v) {
+    v = v || {};
+    return A.F.text('title', 'Title', { required: true, placeholder: 'Full home interiors' }) +
+      '<div class="f"><span class="f-lbl">Image</span>' +
+        '<div class="row"><figure class="thumb thumb--lg" id="mv"></figure>' +
+        '<button class="b b--sm" type="button" id="mp">Choose image</button>' +
+        '<input type="hidden" name="image_id" value="' + (v.image_id || '') + '"></div></div>' +
+      A.F.area('summary', 'One-line summary', {
+        rows: 2, placeholder: 'Everything from layout to the last cushion, handled by one team.',
+        hint: 'This is what shows on the homepage card.' }) +
+      A.F.area('body', 'Full description', {
+        rows: 7, hint: 'Shown on the service page. Leave a blank line between paragraphs.' }) +
+      A.F.row(
+        A.F.number('price_from', 'Starting price', { prefix: window.CURRENCY, min: 0, step: 1000 }),
+        A.F.text('price_note', 'Price note', { placeholder: 'per sq ft, turnkey' })) +
+      '<div style="height:14px"></div>' +
+      A.F.text('slug', 'Web address', {
+        placeholder: 'auto from the title', hint: 'Leave blank and we will make one.' }) +
+      A.F.toggle('is_visible', 'Show on the site', v.is_visible === undefined ? true : v.is_visible);
+  }
+
+  async function paintThumb(root) {
+    const id = Number(A.$('[name="image_id"]', root).value || 0);
+    const box = A.$('#mv', root);
+    const item = id ? (await A.media()).find(m => m.id === id) : null;
+    box.className = 'thumb thumb--lg' + (item ? '' : ' thumb--none');
+    box.innerHTML = item
+      ? '<img src="' + A.esc(item.thumb || item.src) + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:6px">'
+      : A.icon('photo');
+  }
+
+  function open(existing) {
+    const m = A.modal({
+      title: existing ? 'Edit service' : 'New service',
+      note: existing ? existing.title : 'It appears on the homepage and gets its own page.',
+      body: form(existing),
+      actions: [
+        { spacer: true },
+        { label: 'Cancel', onClick: m => m.close() },
+        { label: existing ? 'Save changes' : 'Create service', className: 'b--pri', icon: 'check',
+          onClick: async (m, btn) => {
+            const v = m.values();
+            if (!v.title.trim()) { A.toast('Give the service a title.', 'bad'); return; }
+            const out = await A.act(btn, () => existing
+              ? A.put('/services/' + existing.id, v)
+              : A.post('/services', v), 'Saved');
+            if (out) { m.close(); location.reload(); }
+          } },
+      ],
+    });
+    if (existing) A.fill(m.body, existing);
+    paintThumb(m.body);
+    A.$('#mp', m.body).addEventListener('click', async () => {
+      const hidden = A.$('[name="image_id"]', m.body);
+      const chosen = await A.pickMedia({
+        selected: hidden.value ? [Number(hidden.value)] : [], allowClear: true });
+      if (chosen === undefined) return;
+      hidden.value = chosen === null ? '' : chosen;
+      paintThumb(m.body);
+    });
+  }
+
+  document.getElementById('add').addEventListener('click', () => open(null));
+
+  document.getElementById('list').addEventListener('click', async e => {
+    const row = e.target.closest('[data-row]');
+    if (!row) return;
+    const item = JSON.parse(row.dataset.json);
+
+    if (e.target.closest('[data-edit]')) open(item);
+
+    if (e.target.closest('[data-del]')) {
+      const yes = await A.confirmDialog({
+        title: 'Delete this service?',
+        message: '“' + item.title + '” will be removed from the site. ' +
+                 'Enquiries that mention it keep their record.',
+      });
+      if (!yes) return;
+      const out = await A.act(null, () => A.del('/services/' + item.id), 'Service deleted');
+      if (out) row.remove();
+    }
+  });
+})();
+</script>
+{% endblock %}
