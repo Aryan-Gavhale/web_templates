@@ -94,11 +94,35 @@ export function date(body, field, { required = false, label } = {}) {
   return v;
 }
 
-export function url(body, field, { required = false, label } = {}) {
-  const v = str(body, field, { required, max: 2000, label });
+/* `/(?!/)` rather than plain `/`: a value of "//evil.example" is a
+   protocol-relative URL, not a local path, and would silently point offsite. */
+export function url(body, field, { required = false, label, max = 2000 } = {}) {
+  const v = str(body, field, { required, max, label });
   if (v == null) return null;
-  if (!/^(https?:\/\/|\/)/i.test(v)) {
+  if (!/^(https?:\/\/|\/(?!\/))/i.test(v)) {
     throw bad(`${label || field} must start with http://, https:// or /.`, { field });
+  }
+  return v;
+}
+
+/**
+ * Somewhere a link on the page may point. Wider than url() because these fields
+ * legitimately hold in-page anchors and click-to-call, and narrower than free
+ * text because they are assigned to an href.
+ *
+ * The scheme is the whole point: a `javascript:` value in any of these columns
+ * executes when a visitor clicks it, and HTML-escaping does nothing about it
+ * because there is no character to escape.
+ */
+export function href(body, field, { required = false, label, max = 400 } = {}) {
+  const v = str(body, field, { required, max, label });
+  if (v == null) return null;
+  if (!/^(https?:\/\/|\/(?!\/)|#|tel:|mailto:|wa\.me\/)/i.test(v)) {
+    throw bad(
+      `${label || field} must be a link — http://, https://, a path starting with /, `
+      + 'an anchor like #booking, or tel: / mailto:.',
+      { field }
+    );
   }
   return v;
 }

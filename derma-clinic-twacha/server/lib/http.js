@@ -39,10 +39,17 @@ export function cookieMiddleware(req, _res, next) {
   next();
 }
 
+/**
+ * The address rate limiting and the audit log attribute a request to.
+ *
+ * Deliberately `req.ip` rather than the X-Forwarded-For header: Express
+ * derives req.ip from the `trust proxy` setting, so the header is believed only
+ * when TRUST_PROXY says a proxy we control puts it there. Reading the header
+ * directly let any caller choose its own identity — which meant a fresh
+ * rate-limit bucket on every request and an audit trail it could write itself.
+ */
 export function clientIp(req) {
-  const fwd = req.headers['x-forwarded-for'];
-  if (typeof fwd === 'string' && fwd) return fwd.split(',')[0].trim();
-  return req.socket?.remoteAddress || 'unknown';
+  return req.ip || req.socket?.remoteAddress || 'unknown';
 }
 
 /* --------------------------------------------------------------------------

@@ -35,10 +35,10 @@ router.post('/login', loginLimiter, wrap(async (req, res) => {
   const rejected = new HttpError(401, 'Those details do not match an active account.');
 
   if (!user || !user.is_active) {
-    burnTime();
+    await burnTime();
     throw rejected;
   }
-  if (!verifyPassword(password, user.password_hash)) throw rejected;
+  if (!await verifyPassword(password, user.password_hash)) throw rejected;
 
   const { csrf, expires_at } = createSession(req, res, user);
 

@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { all, get, run, tx, UPLOAD_DIR, settingsMap, putSetting } from '../db.js';
-import { wrap, bad, notFound, forbidden } from '../lib/http.js';
+import { wrap, bad, notFound, forbidden, rateLimit } from '../lib/http.js';
 import * as v from '../lib/validate.js';
 import * as google from '../lib/google.js';
 import { log } from '../lib/activity.js';
@@ -48,7 +48,7 @@ const RESOURCES = {
       subtitle: { parse: (b) => v.str(b, 'subtitle', { max: 400 }) },
       body: { parse: (b) => v.str(b, 'body', { max: 20000 }) },
       cta_label: { parse: (b) => v.str(b, 'cta_label', { max: 80 }) },
-      cta_href: { parse: (b) => v.str(b, 'cta_href', { max: 400 }) },
+      cta_href: { parse: (b) => v.href(b, 'cta_href', { label: 'Button link' }) },
       media_id: { parse: fkOpt('media_id', 'media', 'Image') },
       sort_order: { parse: (b) => v.int(b, 'sort_order', { min: 0, max: 9999 }) ?? 0 },
       is_published: { parse: (b) => v.bool(b, 'is_published') },
@@ -164,7 +164,7 @@ const RESOURCES = {
       phone: { parse: (b) => v.phone(b, 'phone', { label: 'Phone' }) },
       whatsapp: { parse: (b) => v.phone(b, 'whatsapp', { label: 'WhatsApp' }) },
       google_place_id: { parse: (b) => v.str(b, 'google_place_id', { max: 200 }) },
-      google_maps_url: { parse: (b) => v.str(b, 'google_maps_url', { max: 600 }) },
+      google_maps_url: { parse: (b) => v.url(b, 'google_maps_url', { max: 600, label: 'Google Maps link' }) },
       hours: { parse: (b) => v.str(b, 'hours', { max: 1000 }) },
       is_primary: { parse: (b) => v.bool(b, 'is_primary') },
       sort_order: { parse: (b) => v.int(b, 'sort_order', { min: 0, max: 9999 }) ?? 0 },
@@ -287,15 +287,21 @@ function assertRead(req, s) {
   }
 }
 
-/** Build the column map. In partial mode only keys present in the body count. */
-function parseColumns(s, body, { partial }) {
+/**
+ * Build the column map. In partial mode only keys present in the body count.
+ *
+ * Async because password hashing is: it is the one parser that has to leave the
+ * event loop. Awaiting a plain value is harmless, so the other parsers are
+ * unaffected.
+ */
+async function parseColumns(s, body, { partial }) {
   const data = {};
   for (const [col, def] of Object.entries(s.columns)) {
     // The public field name may differ from the column (price_from -> price_from_paise).
     const alias = col.replace(/_paise$/, '');
     const present = Object.hasOwn(body, col) || Object.hasOwn(body, alias);
     if (partial && !present) continue;
-    data[col] = def.parse(body);
+    data[col] = await def.parse(body);
   }
   if (s.validate) s.validate(data, body);
   return data;
@@ -345,7 +351,7 @@ router.post('/:resource', wrap(async (req, res) => {
   assertWrite(req, s);
 
   s.preCreate?.(req.body || {}, req);
-  const data = parseColumns(s, req.body || {}, { partial: false });
+  const data = await parseColumns(s, req.body || {}, { partial: false });
   const cols = Object.keys(data);
 
   let id;
@@ -375,7 +381,7 @@ router.patch('/:resource/:id', wrap(async (req, res) => {
   const existing = get(`SELECT * FROM ${s.table} WHERE id = ?`, id);
   if (!existing) throw notFound('That record no longer exists.');
 
-  const data = parseColumns(s, req.body || {}, { partial: true });
+  const data = await parseColumns(s, req.body || {}, { partial: true });
   s.guardUpdate?.(existing, data, req);
   if (!Object.keys(data).length) throw bad('Nothing to update.');
 
@@ -491,16 +497,53 @@ export { RESOURCES };
 
 const ALLOWED_IMAGE = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif']);
 
+/* The extension a given image type is allowed to be stored under. Nothing
+   outside this map ever reaches disk, which is what stops /uploads serving
+   something the browser would treat as a document. */
+const EXT_FOR_MIME = {
+  'image/jpeg': '.jpg',
+  'image/png': '.png',
+  'image/webp': '.webp',
+  'image/avif': '.avif',
+  'image/gif': '.gif',
+};
+
+/**
+ * Identify an image by its leading bytes.
+ *
+ * file.mimetype is only the Content-Type the client typed into the multipart
+ * part, and the extension used to come from the client's filename, so a file
+ * called payload.html declaring image/png was stored as .html and served back
+ * as text/html — script execution on this origin, from an upload form. The
+ * bytes are the only part of an upload the client cannot lie about.
+ */
+function sniffImage(buf) {
+  if (buf.length < 12) return null;
+  if (buf[0] === 0xFF && buf[1] === 0xD8 && buf[2] === 0xFF) return 'image/jpeg';
+  if (buf.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]))) return 'image/png';
+  if (buf.subarray(0, 6).toString('latin1').startsWith('GIF8')) return 'image/gif';
+  if (buf.subarray(0, 4).toString('latin1') === 'RIFF'
+      && buf.subarray(8, 12).toString('latin1') === 'WEBP') return 'image/webp';
+  /* AVIF and other ISO-BMFF: 'ftyp' at byte 4, brand follows. */
+  if (buf.subarray(4, 8).toString('latin1') === 'ftyp') {
+    const brand = buf.subarray(8, 12).toString('latin1');
+    if (['avif', 'avis', 'mif1', 'msf1'].includes(brand)) return 'image/avif';
+  }
+  return null;
+}
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: (_req, _file, cb) => cb(null, UPLOAD_DIR),
-    filename: (_req, file, cb) => {
-      const ext = (path.extname(file.originalname) || '.jpg').toLowerCase().slice(0, 8);
-      cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${ext}`);
-    },
+    /* Provisional name only — no extension at all, so nothing is servable as a
+       document even in the window before the bytes have been checked. The final
+       name is applied once sniffImage has spoken. */
+    filename: (_req, _file, cb) =>
+      cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.part`),
   }),
   limits: { fileSize: 8 * 1024 * 1024, files: 12 },
   fileFilter: (_req, file, cb) => {
+    // A cheap first pass; the authoritative check is on the bytes, after write.
     if (!ALLOWED_IMAGE.has(file.mimetype)) {
       return cb(new Error('Only JPEG, PNG, WebP, AVIF or GIF images can be uploaded.'));
     }
@@ -509,6 +552,21 @@ const upload = multer({
 });
 
 export const mediaRouter = express.Router();
+
+/**
+ * The media library is website content, so it follows the same rule as every
+ * other content resource: owners and managers write, everyone signed in reads.
+ *
+ * This router is mounted on its own path and so never passed through the
+ * generic engine's assertWrite — which meant it had no role check at all, and a
+ * staff account could delete an image that was live on the public site.
+ */
+function requireContentWrite(req, _res, next) {
+  if (!['owner', 'manager'].includes(req.user.role)) {
+    return next(forbidden(`Your role (${req.user.role}) cannot change the media library.`));
+  }
+  next();
+}
 
 mediaRouter.get('/', wrap(async (req, res) => {
   const limit = Math.min(v.int(req.query, 'limit', { min: 1, max: 500 }) ?? 200, 500);
@@ -521,29 +579,56 @@ mediaRouter.get('/', wrap(async (req, res) => {
   res.json({ items: rows.map((m) => ({ ...m, usage: mediaUsage(m.id) })), total: rows.length });
 }));
 
-mediaRouter.post('/upload', upload.array('files', 12), wrap(async (req, res) => {
+mediaRouter.post('/upload', requireContentWrite, upload.array('files', 12), wrap(async (req, res) => {
   if (!req.files?.length) throw bad('No files were received.');
 
   const alt = v.str(req.body, 'alt_text', { max: 300 }) || '';
   const created = [];
+  const rejected = [];
 
   for (const f of req.files) {
+    const head = Buffer.alloc(16);
+    let sniffed = null;
+    try {
+      const fd = fs.openSync(f.path, 'r');
+      try { fs.readSync(fd, head, 0, 16, 0); } finally { fs.closeSync(fd); }
+      sniffed = sniffImage(head);
+    } catch { /* unreadable, treated as a rejection below */ }
+
+    if (!sniffed) {
+      // Never leave an unidentified file sitting in a directory that is served.
+      try { fs.unlinkSync(f.path); } catch { /* already gone */ }
+      rejected.push(f.originalname);
+      continue;
+    }
+
+    const finalName = path.basename(f.filename, '.part') + EXT_FOR_MIME[sniffed];
+    fs.renameSync(f.path, path.join(UPLOAD_DIR, finalName));
+
     const r = run(
       `INSERT INTO media (source, url, filename, original_name, mime, size_bytes, alt_text)
        VALUES ('upload', ?, ?, ?, ?, ?, ?)`,
-      `/uploads/${f.filename}`, f.filename, f.originalname, f.mimetype, f.size, alt
+      `/uploads/${finalName}`, finalName, f.originalname, sniffed, f.size, alt
     );
-    created.push({ id: Number(r.lastInsertRowid), url: `/uploads/${f.filename}` });
+    created.push({ id: Number(r.lastInsertRowid), url: `/uploads/${finalName}` });
   }
 
-  log(req, 'upload', 'media', null, { count: created.length });
+  if (!created.length) {
+    throw bad(`That is not an image file. ${rejected.join(', ')} was rejected after reading its contents.`);
+  }
+
+  log(req, 'upload', 'media', null, { count: created.length, rejected: rejected.length || undefined });
   invalidateSiteCache();
-  res.status(201).json({ ok: true, items: created });
+  res.status(201).json({
+    ok: true,
+    items: created,
+    ...(rejected.length ? { rejected, note: `${rejected.length} file(s) were not images and were discarded.` } : {}),
+  });
 }));
 
 /* Link an image by URL — the practical route for a Google Maps or Street View
    photograph the owner already has a link to. */
-mediaRouter.post('/link', wrap(async (req, res) => {
+mediaRouter.post('/link', requireContentWrite, wrap(async (req, res) => {
   const url = v.url(req.body, 'url', { required: true, label: 'Image URL' });
   const alt = v.str(req.body, 'alt_text', { max: 300 }) || '';
   const credit = v.str(req.body, 'credit', { max: 200 });
@@ -557,7 +642,7 @@ mediaRouter.post('/link', wrap(async (req, res) => {
   res.status(201).json({ ok: true, id: Number(r.lastInsertRowid), url });
 }));
 
-mediaRouter.patch('/:id', wrap(async (req, res) => {
+mediaRouter.patch('/:id', requireContentWrite, wrap(async (req, res) => {
   const id = Number(req.params.id);
   if (!get('SELECT id FROM media WHERE id = ?', id)) throw notFound('That image is gone.');
 
@@ -587,7 +672,7 @@ function mediaUsage(id) {
   return out;
 }
 
-mediaRouter.delete('/:id', wrap(async (req, res) => {
+mediaRouter.delete('/:id', requireContentWrite, wrap(async (req, res) => {
   const id = Number(req.params.id);
   const row = get('SELECT * FROM media WHERE id = ?', id);
   if (!row) throw notFound('That image is gone.');
@@ -633,24 +718,65 @@ settingsRouter.get('/', wrap(async (_req, res) => {
   });
 }));
 
+/**
+ * Coerce and check one setting against the `kind` it declares.
+ *
+ * The write path used to ignore kind entirely and store whatever string
+ * arrived, so a field the panel renders as a URL happily accepted
+ * `javascript:…` — and that value became the href of a link on the public site.
+ * A blank still clears the setting, which is what "leave blank to hide" relies
+ * on.
+ */
+function coerceSetting({ key, kind, label }, value) {
+  const name = label || key;
+  const body = { [key]: value };
+
+  switch (kind) {
+    case 'url': return v.url(body, key, { label: name });
+    case 'email': return v.email(body, key, { label: name });
+    case 'tel': return v.phone(body, key, { label: name });
+    case 'bool': return v.bool(body, key) ? '1' : '0';
+    case 'number': {
+      const n = v.int(body, key, { label: name });
+      return n == null ? null : String(n);
+    }
+    case 'json': {
+      const s = v.str(body, key, { max: 20000, label: name });
+      if (s == null) return null;
+      try { JSON.parse(s); } catch { throw bad(`${name} must be valid JSON.`, { field: key }); }
+      return s;
+    }
+    case 'longtext': return v.str(body, key, { max: 20000, label: name });
+    case 'secret': return v.str(body, key, { max: 500, label: name });
+    default: return v.str(body, key, { max: 2000, label: name });
+  }
+}
+
 settingsRouter.patch('/', wrap(async (req, res) => {
   if (!['owner', 'manager'].includes(req.user.role)) {
     throw forbidden('Only an owner or manager can change settings.');
   }
   const patch = req.body || {};
-  const known = new Set(all('SELECT key FROM settings').map((r) => r.key));
-  const written = [];
+  const known = new Map(
+    all('SELECT key, kind, label FROM settings').map((r) => [r.key, r])
+  );
 
+  /* Everything is validated before anything is written, so one bad field
+     rejects the whole form rather than leaving half of it applied. */
+  const pending = [];
+  for (const [key, value] of Object.entries(patch)) {
+    const meta = known.get(key);
+    if (!meta) continue;                     // unknown keys are ignored, not created
+    if (value === '••••••••') continue;      // masked secret came back untouched
+    pending.push([key, coerceSetting(meta, value)]);
+  }
+
+  if (!pending.length) throw bad('No recognised settings were sent.');
+
+  const written = pending.map(([key]) => key);
   tx(() => {
-    for (const [key, value] of Object.entries(patch)) {
-      if (!known.has(key)) continue;           // unknown keys are ignored, not created
-      if (value === '••••••••') continue;      // masked secret came back untouched
-      putSetting(key, value);
-      written.push(key);
-    }
+    for (const [key, value] of pending) putSetting(key, value);
   });
-
-  if (!written.length) throw bad('No recognised settings were sent.');
 
   log(req, 'update', 'settings', null, { keys: written });
   invalidateSiteCache();
@@ -667,7 +793,16 @@ googleRouter.get('/status', wrap(async (_req, res) => {
   res.json(google.status());
 }));
 
-googleRouter.post('/find', wrap(async (req, res) => {
+/* Each search is a billed Places call, so it is limited to the roles that have
+   a reason to look one up, and capped per address. */
+const findLimiter = rateLimit({
+  name: 'google-find',
+  limit: 20,
+  windowMs: 10 * 60_000,
+  message: 'That is a lot of place searches. Wait a few minutes.',
+});
+
+googleRouter.post('/find', requireContentWrite, findLimiter, wrap(async (req, res) => {
   const q = v.str(req.body, 'query', { required: true, max: 200, label: 'Search text' });
   try {
     const places = await google.findPlace(q);
@@ -724,16 +859,26 @@ googleRouter.post('/sync', wrap(async (req, res) => {
 
 export const accountRouter = express.Router();
 
-accountRouter.post('/password', wrap(async (req, res) => {
+/* Changing a password requires the current one, which makes this endpoint an
+   online guessing oracle against whoever is signed in — worth a limit even
+   though it already needs a session. */
+const passwordLimiter = rateLimit({
+  name: 'password',
+  limit: 6,
+  windowMs: 15 * 60_000,
+  message: 'Too many attempts with the current password. Wait fifteen minutes.',
+});
+
+accountRouter.post('/password', passwordLimiter, wrap(async (req, res) => {
   const current = v.str(req.body, 'current_password', { required: true, max: 200, label: 'Current password' });
   const next = requirePassword({ password: req.body?.new_password });
 
   const row = get('SELECT password_hash FROM users WHERE id = ?', req.user.id);
-  if (!verifyPassword(current, row.password_hash)) {
+  if (!await verifyPassword(current, row.password_hash)) {
     throw bad('Current password is not correct.', { field: 'current_password' });
   }
 
-  run('UPDATE users SET password_hash = ? WHERE id = ?', hashPassword(next), req.user.id);
+  run('UPDATE users SET password_hash = ? WHERE id = ?', await hashPassword(next), req.user.id);
   // Every other session for this user is dropped; a password change should
   // log out the device you were worried about.
   run('DELETE FROM sessions WHERE user_id = ? AND token != ?', req.user.id, req.session.token);
@@ -751,7 +896,7 @@ accountRouter.post('/users/:id/password', wrap(async (req, res) => {
   if (!target) throw notFound('No such user.');
 
   const next = requirePassword({ password: req.body?.new_password });
-  run('UPDATE users SET password_hash = ? WHERE id = ?', hashPassword(next), id);
+  run('UPDATE users SET password_hash = ? WHERE id = ?', await hashPassword(next), id);
   run('DELETE FROM sessions WHERE user_id = ?', id);
 
   log(req, 'password-reset', 'users', id, { email: target.email });

@@ -41,6 +41,14 @@ const TABLES = [
   'settings', 'sessions', 'users',
 ];
 
+/* Hashed up front: hashing is asynchronous now, and nothing can be awaited
+   inside the synchronous transaction below. */
+const PASSWORD_HASHES = {
+  owner: await hashPassword(OWNER_PASSWORD),
+  reception: await hashPassword('FrontDesk2026'),
+  manager: await hashPassword('ClinicManager2026'),
+};
+
 tx(() => {
   if (force) {
     db.exec('PRAGMA foreign_keys = OFF');
@@ -53,17 +61,17 @@ tx(() => {
 
   const ownerId = Number(run(
     `INSERT INTO users (email, name, password_hash, role) VALUES (?, ?, ?, 'owner')`,
-    OWNER_EMAIL, 'Dr Aditi Deshmukh', hashPassword(OWNER_PASSWORD)
+    OWNER_EMAIL, 'Dr Aditi Deshmukh', PASSWORD_HASHES.owner
   ).lastInsertRowid);
 
   const frontDeskId = Number(run(
     `INSERT INTO users (email, name, password_hash, role) VALUES (?, ?, ?, 'staff')`,
-    'reception@twacha.in', 'Sneha Kulkarni', hashPassword('FrontDesk2026')
+    'reception@twacha.in', 'Sneha Kulkarni', PASSWORD_HASHES.reception
   ).lastInsertRowid);
 
   run(
     `INSERT INTO users (email, name, password_hash, role) VALUES (?, ?, ?, 'manager')`,
-    'manager@twacha.in', 'Rohan Bhosale', hashPassword('ClinicManager2026')
+    'manager@twacha.in', 'Rohan Bhosale', PASSWORD_HASHES.manager
   );
 
   /* ---- settings ---------------------------------------------------------- */

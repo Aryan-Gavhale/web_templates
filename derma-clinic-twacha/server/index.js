@@ -30,16 +30,50 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 app.disable('x-powered-by');
-app.set('trust proxy', process.env.TRUST_PROXY === '1');
+
+/* A hop count, not a boolean. `true` would make Express read the left-most
+   X-Forwarded-For entry, which a client can still prepend to even when a real
+   proxy sits in front; `1` means "the address my own proxy saw". Everything
+   that rate-limits or audits by address depends on this being right. */
+const proxyHops = Number.parseInt(process.env.TRUST_PROXY || '0', 10);
+app.set('trust proxy', Number.isInteger(proxyHops) && proxyHops > 0 ? proxyHops : false);
 
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: false, limit: '1mb' }));
 app.use(cookieMiddleware);
 app.use(attachUser);
 
-/* A modest set of headers. No CDN or inline-script tricks are used anywhere in
-   this project, so the policy can stay tight. */
+/**
+ * Content-Security-Policy, written against what the two pages actually load.
+ *
+ * `script-src 'self'` is the load-bearing directive. It stops inline script in
+ * anything served from this origin, which is the containment for a file that
+ * reaches /uploads with the wrong sort of content, and it also neutralises a
+ * `javascript:` URL that found its way into an href.
+ *
+ * Styles need 'unsafe-inline' because the front end sets ~130 inline style
+ * attributes while rendering. That is a real weakening, but a style attribute
+ * cannot execute, and the alternative is a per-request nonce on markup that is
+ * assembled in the browser.
+ *
+ * img-src stays broad on purpose: the media library exists so an owner can link
+ * a photograph from anywhere, and an image cannot execute.
+ */
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: https: http:",
+  "connect-src 'self'",
+  "form-action 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+].join('; ');
+
 app.use((_req, res, next) => {
+  res.set('Content-Security-Policy', CSP);
   res.set('X-Content-Type-Options', 'nosniff');
   res.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.set('X-Frame-Options', 'SAMEORIGIN');

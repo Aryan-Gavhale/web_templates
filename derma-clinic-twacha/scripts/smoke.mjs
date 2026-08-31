@@ -138,10 +138,60 @@ for (const [expected, label, path, opts] of [
     { ...manager, method: 'POST', body: { name: 'Smoke', email: `smoke${Date.now()}@x.in`, role: 'staff', password: 'Smoke123456' } }],
   [200, 'manager can read website content', '/api/admin/sections', { ...manager }],
   [200, 'staff can read patients', '/api/admin/patients', { ...staff }],
+
+  /* The media library sits on its own path and so bypasses the generic
+     engine's role check. It had none of its own, and a staff account could
+     delete an image that was live on the site. */
+  [403, 'staff cannot add to the media library', '/api/admin/media/link',
+    { ...staff, method: 'POST', body: { url: 'https://example.invalid/x.png' } }],
+  [403, 'staff cannot delete media', '/api/admin/media/1', { ...staff, method: 'DELETE' }],
+  [200, 'staff can still read the media library', '/api/admin/media', { ...staff }],
+  [403, 'staff cannot drive billed Places searches', '/api/admin/google/find',
+    { ...staff, method: 'POST', body: { query: 'clinic' } }],
 ]) {
   const r = await call(path, opts);
   record(r.status === expected, `${label} (${r.status}, expected ${expected})`);
 }
+
+/* ------------------------------------------------------------ hardening --- */
+
+/* These are the regressions that would not show up as a broken screen: the
+   panel would keep working and the site would quietly gain a script. */
+console.log('\nHardening');
+
+const JS_URL = 'javascript:alert(document.domain)';
+const heroId = JSON.parse((await call('/api/admin/sections?limit=50', owner)).text)
+  .items.find((s) => s.kind === 'hero')?.id;
+
+for (const [expected, label, path, opts] of [
+  [400, 'a javascript: URL is refused on a section button link', `/api/admin/sections/${heroId}`,
+    { ...owner, method: 'PATCH', body: { cta_href: JS_URL } }],
+  [400, 'a protocol-relative link is refused there too', `/api/admin/sections/${heroId}`,
+    { ...owner, method: 'PATCH', body: { cta_href: '//evil.example' } }],
+  [200, 'an ordinary in-page anchor is still accepted', `/api/admin/sections/${heroId}`,
+    { ...owner, method: 'PATCH', body: { cta_href: '#booking' } }],
+  [400, 'a javascript: URL is refused on a url-kind setting', '/api/admin/settings',
+    { ...owner, method: 'PATCH', body: { instagram_url: JS_URL } }],
+]) {
+  const r = await call(path, opts);
+  record(r.status === expected, `${label} (${r.status}, expected ${expected})`);
+}
+
+/* An upload is identified by its leading bytes, not by the name or the
+   Content-Type the client chose, because both used to decide what landed on
+   disk and what /uploads then served it back as. */
+const fd = new FormData();
+fd.append('files', new File(['<script>alert(1)</script>'], 'probe.html', { type: 'image/png' }));
+const up = await fetch(`${BASE}/api/admin/media/upload`, {
+  method: 'POST',
+  headers: { cookie: owner.cookie, 'x-csrf-token': owner.csrf },
+  body: fd,
+});
+record(up.status === 400, `HTML declared as an image is refused on upload (${up.status}, expected 400)`);
+
+const csp = (await fetch(`${BASE}/`)).headers.get('content-security-policy') || '';
+record(csp.includes("script-src 'self'") && !csp.includes("'unsafe-inline' 'self'"),
+  `a Content-Security-Policy is sent, with script-src 'self'`);
 
 for (const s of [owner, manager, staff]) {
   await call('/api/auth/logout', { ...s, method: 'POST' });

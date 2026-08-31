@@ -165,7 +165,13 @@ collection, that is a separate integration and a regulated one.
 Copy `.env.example` to `.env`. Every value has a working default; the file
 documents what each one changes. The variables that matter most in production
 are `GOOGLE_MAPS_API_KEY`, `COOKIE_SECURE=1` when served over HTTPS, and
-`TRUST_PROXY=1` only when behind a reverse proxy you control.
+`TRUST_PROXY` set to the number of reverse proxies you control in front of the
+app — `0` if none.
+
+`TRUST_PROXY` deserves the attention: rate limiting and the audit log both
+record the address it yields, so setting it higher than the real hop count lets
+a caller choose its own address, which means unlimited login attempts and an
+audit trail it can write for you.
 
 ## Layout
 
@@ -194,10 +200,26 @@ data/                 app.db, uploads, Google cache. Not in version control
 
 ## Security
 
-Passwords are hashed with scrypt. Sessions live in the database with random
-tokens, httpOnly `SameSite=Strict` cookies, and a CSRF token required on every
-write. Login is rate limited per IP, and every write is attributed in the
-activity log.
+Passwords are hashed with scrypt, off the event loop, and compared in constant
+time. Sessions live in the database with random tokens, httpOnly
+`SameSite=Strict` cookies, and a CSRF token required on every write. Login and
+password changes are rate limited per address, and every write is attributed in
+the activity log.
+
+Both of those depend on knowing the caller's address, which is why
+`TRUST_PROXY` has to match your actual topology — see Configuration above.
+
+Uploads are identified by their leading bytes, not by the filename or the
+`Content-Type` the client sends, and are stored under an extension derived from
+what they turned out to be. A file that is not a recognised image is deleted
+rather than kept. Every field that ends up as a link on the page is checked for
+its scheme, so a `javascript:` value is refused at the API rather than becoming
+an `href`. A Content-Security-Policy with `script-src 'self'` backs both of
+those up.
+
+Roles are enforced on the server for reads as well as writes, including the
+media library, which is content and follows the content rules. `npm run smoke`
+asserts the whole permission matrix.
 
 Two things are deliberately left to the deployment: TLS, and putting the admin
 panel behind something before exposing it to the internet. `COOKIE_SECURE=1`

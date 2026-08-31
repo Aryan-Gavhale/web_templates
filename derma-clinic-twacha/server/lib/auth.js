@@ -10,6 +10,7 @@
    ========================================================================== */
 
 import crypto from 'node:crypto';
+import { promisify } from 'node:util';
 import { get, run } from '../db.js';
 import { HttpError, clientIp, unauthorized, forbidden } from './http.js';
 
@@ -19,22 +20,28 @@ const SCRYPT = { N: 16384, r: 8, p: 1, keylen: 64 };
 
 /* ---- passwords ----------------------------------------------------------- */
 
-export function hashPassword(password) {
+/* The async form, not scryptSync. These parameters cost ~100ms of pure CPU, and
+   scryptSync spends it on the event loop, so every sign-in froze the whole
+   server for that long — including the responses of everyone already signed in.
+   crypto.scrypt hands the work to the thread pool instead. */
+const scrypt = promisify(crypto.scrypt);
+
+export async function hashPassword(password) {
   const salt = crypto.randomBytes(16);
-  const key = crypto.scryptSync(password, salt, SCRYPT.keylen, {
+  const key = await scrypt(password, salt, SCRYPT.keylen, {
     N: SCRYPT.N, r: SCRYPT.r, p: SCRYPT.p,
   });
   return ['scrypt', SCRYPT.N, SCRYPT.r, SCRYPT.p,
     salt.toString('base64'), key.toString('base64')].join('$');
 }
 
-export function verifyPassword(password, stored) {
+export async function verifyPassword(password, stored) {
   try {
     const [scheme, N, r, p, saltB64, keyB64] = String(stored).split('$');
     if (scheme !== 'scrypt') return false;
     const salt = Buffer.from(saltB64, 'base64');
     const expected = Buffer.from(keyB64, 'base64');
-    const actual = crypto.scryptSync(password, salt, expected.length, {
+    const actual = await scrypt(password, salt, expected.length, {
       N: Number(N), r: Number(r), p: Number(p),
     });
     return crypto.timingSafeEqual(expected, actual);
@@ -43,10 +50,21 @@ export function verifyPassword(password, stored) {
   }
 }
 
-/* Constant-ish work even when the email does not exist, so response timing
-   does not become an account-enumeration oracle. */
-const DECOY = hashPassword(crypto.randomBytes(24).toString('hex'));
-export const burnTime = () => verifyPassword('no-such-password', DECOY);
+/* Pay the same hashing cost when the address does not exist, so response timing
+   does not become an account-enumeration oracle. One scrypt, matching the one
+   verifyPassword would have run. */
+export async function burnTime() {
+  await scrypt('no-such-password', crypto.randomBytes(16), SCRYPT.keylen, {
+    N: SCRYPT.N, r: SCRYPT.r, p: SCRYPT.p,
+  });
+}
+
+/** Length-aware constant-time compare for tokens that arrive from a request. */
+function safeEqual(a, b) {
+  const x = Buffer.from(String(a ?? ''));
+  const y = Buffer.from(String(b ?? ''));
+  return x.length === y.length && crypto.timingSafeEqual(x, y);
+}
 
 /* ---- sessions ------------------------------------------------------------ */
 
@@ -117,7 +135,7 @@ export const requireRole = (...roles) => (req, _res, next) => {
 export function requireCsrf(req, _res, next) {
   if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) return next();
   const sent = req.headers['x-csrf-token'];
-  if (!req.session || !sent || sent !== req.session.csrf) {
+  if (!req.session || !sent || !safeEqual(sent, req.session.csrf)) {
     return next(new HttpError(403, 'Stale session token. Reload the page and try again.'));
   }
   next();
