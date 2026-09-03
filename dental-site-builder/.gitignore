@@ -1,0 +1,11 @@
+# Generated sites — rebuild them from clients.csv instead of committing them.
+dist/
+
+# Only present if you installed jsdom for check.mjs.
+node_modules/
+package.json
+package-lock.json
+
+# Client data often carries phone numbers and addresses. Uncomment if this
+# repo is shared or public.
+# clients.csv

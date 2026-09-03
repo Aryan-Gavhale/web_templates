@@ -124,6 +124,35 @@
     paint();
   }
 
+  /* ---------- sticky mobile bar ---------- */
+  /* Shows once the hero is behind you, and gets out of the way
+     while the booking form itself is on screen. */
+  function dock() {
+    const bar = $('[data-dock]');
+    const hero = $('.hero');
+    const booking = $('#booking');
+    if (!bar) return;
+
+    let queued = false;
+    const paint = () => {
+      queued = false;
+      const y = window.scrollY;
+      const past = hero ? y > hero.offsetHeight * 0.7 : y > 400;
+      const atForm = booking &&
+        booking.getBoundingClientRect().top < window.innerHeight * 0.7 &&
+        booking.getBoundingClientRect().bottom > 0;
+      bar.classList.toggle('is-up', past && !atForm);
+    };
+
+    window.addEventListener('scroll', () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(paint);
+    }, { passive: true });
+    window.addEventListener('resize', paint);
+    paint();
+  }
+
   /* ---------- active nav link ---------- */
   function activeNav() {
     const links = $$('[data-navlink]');
@@ -481,24 +510,41 @@
   }
 
   /* ---------- opening hours badge ---------- */
+  /* Driven by site-config.js openBadge, which uses a fixed
+     "HH:MM-HH:MM" format precisely so this can be parsed without
+     guessing at free-text day names. An empty value means closed. */
   function hours() {
     const box = $('[data-hours]');
     if (!box) return;
     const text = $('.hours__text', box);
+    const cfg = (window.SITE_CONFIG || {}).openBadge || {};
+
+    const span = (v, fallback) => {
+      const raw = typeof v === 'string' ? v.trim() : '';
+      if (v === '') return null;
+      const m = (raw || fallback || '').match(/^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/);
+      if (!m) return null;
+      return [+m[1] * 60 + +m[2], +m[3] * 60 + +m[4]];
+    };
+
     const now = new Date();
     const day = now.getDay();
     const mins = now.getHours() * 60 + now.getMinutes();
 
-    let open = null;
-    if (day >= 1 && day <= 5) open = [8 * 60, 20 * 60];
-    else if (day === 6) open = [9 * 60, 17 * 60];
+    let open;
+    if (day === 0)      open = span(cfg.sunday, '');
+    else if (day === 6) open = span(cfg.saturday, '09:00-17:00');
+    else                open = span(cfg.weekdays, '08:00-20:00');
 
     if (open && mins >= open[0] && mins < open[1]) {
       const h = Math.floor(open[1] / 60);
-      text.textContent = 'Open now · until ' + (h > 12 ? h - 12 : h) + ':00 ' + (h >= 12 ? 'PM' : 'AM');
+      const m = open[1] % 60;
+      const label = (h % 12 === 0 ? 12 : h % 12) + ':' + String(m).padStart(2, '0') +
+                    ' ' + (h >= 12 ? 'PM' : 'AM');
+      text.textContent = 'Open now · until ' + label;
       box.classList.remove('is-closed');
     } else {
-      text.textContent = 'Closed · emergency line open';
+      text.textContent = cfg.closedNote || 'Closed · emergency line open';
       box.classList.add('is-closed');
     }
   }
@@ -525,6 +571,7 @@
     reveals();
     counters();
     header();
+    dock();
     activeNav();
     drawer();
     marquee();

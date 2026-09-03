@@ -47,11 +47,15 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* grey flash on tap looks like a bug on a styled button */
+  -webkit-tap-highlight-color: transparent;
 }
 
 img { display: block; max-width: 100%; height: auto; }
 button, input, select { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
+/* drops the 300ms tap delay without disabling pinch zoom */
+a, button, summary, label, .opt, .day, .time { touch-action: manipulation; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 fieldset { border: 0; min-inline-size: 0; }
@@ -352,7 +356,8 @@ summary::-webkit-details-marker { display: none; }
   line-height: 1;
   letter-spacing: -0.04em;
 }
-.band div:nth-child(2) b, .band div:nth-child(4) b { color: var(--orange); }
+/* nth-of-type, not nth-child — the <template> feeding this row counts as a child */
+.band__in > div:nth-of-type(2n) b { color: var(--orange); }
 .band span {
   display: block;
   margin-top: 8px;
@@ -960,13 +965,287 @@ summary::-webkit-details-marker { display: none; }
   gap: 14px;
   background: var(--bone);
   border-top: var(--bd);
-  padding: 11px var(--gut);
+  padding: 10px var(--gut);
+  /* clears the iOS home indicator */
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
   transform: translateY(101%);
   transition: transform 0.35s var(--ease);
 }
 .dock.is-up { transform: none; }
-.dock p { font-family: var(--mono); font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-.dock b { font-size: 15px; }
+.dock p { font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.dock p span { display: block; color: var(--ink-2); }
+.dock b { font-size: 17px; letter-spacing: -0.02em; }
+.dock__do { display: flex; align-items: center; gap: 9px; }
+.dock__tel {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  flex: none;
+  border: var(--bd);
+  border-radius: 100px;
+  background: var(--white);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.dock__tel svg { width: 21px; height: 21px; fill: var(--ink); }
+.dock__tel:active { transform: translate(3px, 3px); box-shadow: none; }
+
+/* ---------- 19b. Consultation + map ---------- */
+.head__p--rev { color: #B9B7AF; }
+.head__p--rev a { color: var(--bone); }
+
+/* trust strip above the form */
+.assure {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: clamp(20px, 2.6vw, 32px);
+}
+.assure li {
+  border: var(--bd);
+  border-radius: var(--r);
+  background: var(--white);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 14px 16px;
+}
+.assure b {
+  display: block;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--orange);
+}
+.assure span {
+  display: block;
+  margin-top: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 1.35;
+}
+
+.book__grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: clamp(18px, 2.6vw, 32px);
+  align-items: start;
+}
+
+/* map */
+.visit { display: grid; gap: clamp(14px, 2vw, 20px); }
+.mapbox {
+  border: var(--bd);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bone-2);
+  box-shadow: var(--sh);
+}
+.mapbox__frame {
+  position: relative;
+  aspect-ratio: 4 / 3.2;
+  display: grid;
+  place-items: center;
+  border-bottom: var(--bd);
+}
+.mapbox__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* pulls Google's palette back towards the page without hurting legibility */
+  filter: grayscale(0.4) contrast(1.04);
+  transition: filter 0.4s var(--ease);
+}
+.mapbox__frame:hover iframe { filter: none; }
+.mapbox__wait {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mapbox__frame.is-loaded .mapbox__wait { display: none; }
+.mapbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--white);
+}
+.mapbox__bar b {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.mapbox__bar span {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.mapbox__bar .btn { flex: none; }
+
+/* hours + contact card */
+.vcard {
+  border: var(--bd);
+  border-radius: var(--r);
+  background: var(--white);
+  box-shadow: var(--sh);
+  padding: clamp(18px, 2.2vw, 26px);
+  display: grid;
+  gap: 20px;
+}
+.vcard__row { display: grid; gap: 12px; }
+.vcard__p { font-size: 14.5px; color: var(--ink-2); }
+.vcard__do { display: grid; gap: 10px; }
+
+.hrs { display: grid; gap: 7px; }
+.hrs div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14.5px;
+}
+.hrs dt { color: var(--ink-2); flex: none; }
+.hrs dd {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-align: right;
+}
+/* dotted leader between day and time */
+.hrs div::before {
+  content: "";
+  order: 1;
+  flex: 1;
+  height: 0;
+  border-bottom: 2px dotted var(--bone-2);
+  transform: translateY(-4px);
+}
+.hrs dd { order: 2; }
+.hrs--foot div { font-size: 14px; }
+.hrs--foot dt { color: #86867E; }
+.hrs--foot dd { color: var(--bone); font-weight: 600; }
+.hrs--foot div::before { border-bottom-color: #3A3A35; }
+
+/* ---------- 19c. Gallery ---------- */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.6vw, 18px);
+}
+/* First picture takes a double square so the grid is not a flat
+   strip. Keyed off the element type, because the <template> that
+   feeds this grid is the real first child. */
+.shots > figure:first-of-type { grid-column: span 2; grid-row: span 2; }
+.pic {
+  border: var(--bd);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--ink-2);
+  box-shadow: 4px 4px 0 var(--orange);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.pic img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  filter: var(--pic);
+  transition: transform 0.6s var(--ease);
+}
+.shots > figure:first-of-type img { aspect-ratio: 1 / 1; }
+.pic:hover { transform: translate(-2px, -3px); box-shadow: 7px 7px 0 var(--orange); }
+.pic:hover img { transform: scale(1.04); }
+
+/* ---------- 19d. Swipe rail indicator ---------- */
+.pips {
+  display: none;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 16px;
+}
+.pips i {
+  width: 7px; height: 7px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  transition: width 0.3s var(--ease), background 0.3s var(--ease);
+}
+.pips i.is-on { width: 22px; border-radius: 100px; background: var(--orange); border-color: var(--orange); }
+.pips--on i { border-color: var(--bone); }
+.pips--on i.is-on { background: var(--orange); border-color: var(--orange); }
+
+/* ---------- 19e. Lightbox ---------- */
+.lbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(14px, 3vw, 40px);
+  background: rgba(17, 17, 16, 0.94);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+.lbox.is-on { opacity: 1; }
+.lbox__stage {
+  grid-column: 2;
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  max-height: 100%;
+  min-width: 0;
+}
+.lbox__stage img {
+  max-width: 100%;
+  max-height: 76vh;
+  border: var(--bd);
+  border-color: var(--bone);
+  border-radius: var(--r);
+  object-fit: contain;
+  background: var(--ink);
+}
+.lbox__stage figcaption {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone);
+  text-align: center;
+}
+.lbox__nav, .lbox__x {
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px;
+  border: 2px solid var(--bone);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--bone);
+  font-size: 26px;
+  line-height: 1;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.lbox__nav:hover, .lbox__x:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
+.lbox__x {
+  position: absolute;
+  top: clamp(14px, 3vw, 32px);
+  right: clamp(14px, 3vw, 32px);
+  z-index: 2;
+  font-size: 30px;
+}
+.lbox__nav--prev { grid-column: 1; }
+.lbox__nav--next { grid-column: 3; }
 
 /* ---------- 20. Reveal ---------- */
 [data-pop] {
@@ -978,6 +1257,8 @@ summary::-webkit-details-marker { display: none; }
 [data-pop].in { opacity: 1; transform: none; }
 
 /* ---------- 21. Responsive ---------- */
+
+/* --- tablet / small laptop --- */
 @media (max-width: 1080px) {
   .bar__nav, .bar__tel { display: none; }
   .burger { display: block; }
@@ -986,28 +1267,115 @@ summary::-webkit-details-marker { display: none; }
   .hero__r { max-width: 520px; margin-top: 22px; }
   .quiz { grid-template-columns: 1fr; }
   .crew { grid-template-columns: repeat(2, 1fr); }
-  .plans { grid-template-columns: 1fr; max-width: 520px; }
+  .shots { grid-template-columns: repeat(3, 1fr); }
+  .book__grid { grid-template-columns: 1fr; }
   .plan--on { order: -1; }
-  .says { grid-template-columns: 1fr; max-width: 620px; }
-  .steps { grid-template-columns: 1fr; gap: 30px; }
   .dock { display: flex; }
-  body { padding-bottom: 68px; }
+  body { padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)); }
 }
 
+/* ---------------------------------------------------------
+   Phone.
+
+   The rule: a desktop row never becomes a tall stack. It
+   becomes a swipe rail. Four team cards that would otherwise
+   cost four screens of scrolling cost one screen and a thumb
+   flick, and the peeking next card is what tells you to swipe.
+   --------------------------------------------------------- */
+@media (max-width: 860px) {
+  /* Flex, not grid: a grid track written as minmax(0, 76%) is
+     allowed to shrink to fit, so the row silently stops
+     overflowing and the rail stops scrolling. A flex basis with
+     shrink disabled always overflows, which is the point. */
+  .swipe {
+    display: flex;
+    gap: 12px;
+    max-width: none;
+    /* full-bleed to the screen edge, inset restored by padding */
+    margin-inline: calc(var(--gut) * -1);
+    padding: 5px var(--gut) 12px;
+    scroll-padding-inline: var(--gut);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .swipe::-webkit-scrollbar { display: none; }
+  .swipe > * {
+    flex: 0 0 var(--sw, 76%);
+    scroll-snap-align: center;
+    margin: 0;
+  }
+  .pips { display: flex; }
+
+  /* how much of the next card should show */
+  .crew  { --sw: 66%; }
+  .shots { --sw: 74%; }
+  .plans { --sw: 84%; }
+  .says  { --sw: 86%; }
+  .steps { --sw: 80%; }
+
+  /* loose text blocks have to read as cards once they are in a rail */
+  .steps > article {
+    border: var(--bd);
+    border-radius: var(--r);
+    background: var(--white);
+    box-shadow: var(--sh);
+    padding: 20px;
+  }
+  .steps .steps__n { font-size: 56px; }
+  .steps h3 { margin-top: 14px; padding-top: 14px; }
+  .shots > figure:first-of-type { grid-column: auto; grid-row: auto; }
+
+  /* 46px minimum, so a thumb hits the slot it aimed at */
+  .time, .opt { min-height: 46px; display: inline-flex; align-items: center; }
+  .day { min-height: 52px; align-content: center; }
+  .sheet nav a { padding: 17px 18px; }
+}
+
+/* --- small phone --- */
 @media (max-width: 700px) {
   html { scroll-padding-top: 84px; }
-  .sec { padding-block: 50px; }
+  .sec { padding-block: 52px; }
   .band__in { grid-template-columns: repeat(2, 1fr); gap: 22px 18px; }
+  .hero { padding-block: 30px 40px; }
   .hero__do { display: grid; }
   .hero__do .btn { width: 100%; }
   .shot--b { width: 52%; right: -8px; bottom: -34px; }
   .sticker { width: 68px; height: 68px; font-size: 11px; top: -16px; left: -10px; }
-  .crew { grid-template-columns: 1fr; max-width: 420px; }
   .pair, .res__facts, .done__l { grid-template-columns: 1fr; }
   .rail__foot { gap: 14px; }
   .acc summary { padding: 16px 18px; }
   .acc details p { padding: 0 18px 18px; }
   .foot__grid { grid-template-columns: 1fr 1fr; }
+
+  .assure { gap: 8px; }
+  .assure li { padding: 12px 13px; box-shadow: 2px 2px 0 var(--ink); }
+  .assure span { font-size: 10px; letter-spacing: 0.04em; }
+
+  .mapbox__bar { flex-direction: column; align-items: stretch; gap: 12px; }
+  .mapbox__bar .btn { width: 100%; }
+  .mapbox__frame { aspect-ratio: 4 / 3.6; }
+
+  /* the side arrows have nowhere to sit on a narrow screen */
+  .lbox { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .lbox__stage { grid-column: 1; grid-row: 1; }
+  .lbox__nav { grid-column: 1; grid-row: 2; }
+  .lbox__nav--prev { justify-self: start; }
+  .lbox__nav--next { justify-self: end; }
+  .lbox__stage img { max-height: 66vh; }
+}
+
+/* --- touch devices --- */
+/* Hover transforms latch on after a tap and look broken, so they
+   are never applied where there is no real pointer. */
+@media (hover: none) {
+  .card:hover, .pic:hover, .plan:hover, .nub:hover, .btn:hover { transform: none; }
+  .pic:hover img { transform: none; }
+  .who:hover .who__pic { transform: none; box-shadow: var(--sh); }
+  .mapbox__frame:hover iframe { filter: grayscale(0.4) contrast(1.04); }
+  .btn:active { transform: translate(3px, 3px); box-shadow: none; }
 }
 
 /* ---------- 22. Reduced motion ---------- */
