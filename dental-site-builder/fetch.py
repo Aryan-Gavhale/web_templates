@@ -537,11 +537,14 @@ def to_row(place: dict, template: str, max_photos: int, keep_team: bool) -> dict
         "reviewsMeta.count":  clean(place.get("reviews")),
     }
 
-    # Google carries no clinician data, so the template's demo doctors would
-    # otherwise survive into a real prospect's site under their own logo.
-    # Hide the section until someone supplies the real names.
+    # Google carries no clinician data, and we do not lift review text, so
+    # the template's demo doctors and sample quotes would otherwise survive
+    # into a real prospect's site under their own logo. Hide both until
+    # someone supplies the real thing. The star rating and review count are
+    # scraped and genuine, so those stay.
     if not keep_team:
         row["team.enabled"] = "false"
+        row["reviews.enabled"] = "false"
 
     for i, (label, time_text) in enumerate(condense_hours(hours), start=1):
         row[f"hours.{i}.days"] = label
@@ -619,8 +622,8 @@ def main(argv=None) -> int:
                         help="Maps URLs, short links, or names to search for")
     parser.add_argument("--file", metavar="PATH",
                         help="text file with one link or name per line")
-    parser.add_argument("--template", default="enamel",
-                        help="enamel or aurelia (default: enamel)")
+    parser.add_argument("--template", default="arogya",
+                        help="arogya, enamel or aurelia (default: arogya)")
     parser.add_argument("--csv", metavar="PATH",
                         help="target sheet (default: clients.csv)")
     parser.add_argument("--photos", action="store_true",
@@ -630,8 +633,9 @@ def main(argv=None) -> int:
     parser.add_argument("--overwrite", action="store_true",
                         help="replace cells you already filled in by hand")
     parser.add_argument("--keep-team", action="store_true",
-                        help="leave the template's demo clinicians on the page "
-                             "(off by default so fake names cannot ship)")
+                        help="leave the template's demo clinicians and sample "
+                             "quotes on the page (off by default so invented "
+                             "names and testimonials cannot ship)")
     parser.add_argument("--show", action="store_true",
                         help="print what was scraped without writing the sheet")
     parser.add_argument("--headed", action="store_true",
@@ -726,9 +730,11 @@ def main(argv=None) -> int:
         return 1
 
     if not args.keep_team:
-        print("\nClinicians section switched off — Google has no doctor names or"
-              "\nheadshots. Fill team.members.* in the sheet, or pass --keep-team"
-              "\nto show the template's demo clinicians.")
+        print("\nClinicians and review quotes switched off — Google gives us no"
+              "\ndoctor names or headshots, and the sample quotes are invented."
+              "\nThe star rating and review count are real and stay on the page."
+              "\nFill team.members.* and reviews.items.* in the sheet to turn"
+              "\nthem back on, or pass --keep-team to show the demo content.")
 
     if args.show:
         print("\n--- not written, --show was set ---")

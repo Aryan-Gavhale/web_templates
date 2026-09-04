@@ -258,6 +258,9 @@
          is worse than no section at all */
       if (!off && key === 'gallery') off = !(block.images || []).length;
       if (!off && key === 'team')    off = !(block.members || []).length;
+      /* same rule for any other list-backed block: services,
+         reviews, trust, faq all keep their data under `items` */
+      if (!off && Array.isArray(block.items)) off = !block.items.length;
 
       if (off) {
         node.remove();

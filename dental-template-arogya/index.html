@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0E7C66" />
+<meta name="description" content="A dental studio in Pune. Transparent pricing, painless root canals and no-cost EMI." />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Arogya Dental Studio — Dental Clinic in Pune</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+
+<!-- ============================================================
+     Icon sprite. Referenced as <use href="#i-name" />, and the
+     trust cards pick theirs from site-config.js.
+     ============================================================ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2Z"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.5.3.1.5.1.6 0l.9-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7ZM5 9h14v10H5V9Z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8L12 2Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6.5c0 5 3.4 9.3 8 10.5 4.6-1.2 8-5.5 8-10.5V5l-8-3Zm-1 14-4-4 1.4-1.4L11 13.2l4.6-4.6L17 10l-6 6Z"/></symbol>
+    <symbol id="i-rupee" viewBox="0 0 24 24"><path d="M6 3h12v2h-4.3c.7.5 1.2 1.2 1.5 2H18v2h-2.6c-.4 2.4-2.4 4-5 4H9.6l6.6 6.6-1.4 1.4L6 12.4V11h4.4c1.6 0 2.8-.8 3.2-2H6V7h7.6c-.5-1.2-1.7-2-3.2-2H6V3Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 10.6 4 2.3-1 1.7-5-2.9V6h2v6.6Z"/></symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM8.5 9a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 18a6 6 0 0 1-5.2-3h10.4A6 6 0 0 1 12 18Z"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1H3V6Zm0 4h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8Zm3 5v2h5v-2H6Z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2Zm3 5v2h10V8H7Zm0 4v2h7v-2H7Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M13.2 5.6 11.8 7l4 4H4v2h11.8l-4 4 1.4 1.4L19.6 12l-6.4-6.4Z"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M12 15.4 6.6 10l1.4-1.4 4 4 4-4 1.4 1.4-5.4 5.4Z"/></symbol>
+  </defs>
+</svg>
+
+
+<!-- ============================================================
+     APP BAR — collapses to a compact pill once you scroll
+     ============================================================ -->
+<header class="bar" data-bar>
+  <a class="bar__mark" href="#top">
+    <span class="bar__dot" aria-hidden="true"></span>
+    <span>
+      <b data-bind="business.name">Arogya Dental</b>
+      <i data-bind="business.tagline">dental studio</i>
+    </span>
+  </a>
+
+  <nav class="bar__nav" aria-label="Sections">
+    <a href="#treatments">Prices</a>
+    <a href="#why">Why us</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#book">Visit</a>
+  </nav>
+
+  <a class="bar__call" href="tel:+919822014700" data-bind-href="_.telHref" aria-label="Call the clinic">
+    <svg aria-hidden="true"><use href="#i-phone" /></svg>
+    <span data-bind="contact.phoneDisplay">098220 14700</span>
+  </a>
+</header>
+
+
+<main id="top">
+
+  <!-- ==========================================================
+       1 · HERO
+       ========================================================== -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+
+    <div class="wrap hero__in">
+     <div class="hero__copy">
+      <div class="hero__chips" data-reveal>
+        <span class="chip chip--live" data-open-pill>
+          <i aria-hidden="true"></i><b>Open now</b>
+        </span>
+        <span class="chip">
+          <svg aria-hidden="true"><use href="#i-star" /></svg>
+          <b data-bind="reviewsMeta.rating">4.9</b>
+          <span>on Google · <span data-bind="reviewsMeta.count">612</span> reviews</span>
+        </span>
+      </div>
+
+      <h1 class="hero__h" data-reveal data-delay="60">
+        Dentistry in
+        <em data-bind="business.city">Pune</em>
+        without the guesswork.
+      </h1>
+
+      <p class="hero__p" data-reveal data-delay="120">
+        Fixed prices published before you book, single-sitting root canals,
+        and the same dentist every visit. <span data-bind="business.openNote">Open all 7 days</span>.
+      </p>
+
+      <div class="hero__cta" data-reveal data-delay="180">
+        <a class="btn btn--go" href="#book">
+          Book an appointment
+          <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
+        <a class="btn btn--ghost" href="tel:+919822014700" data-bind-href="_.telHref">
+          <svg aria-hidden="true"><use href="#i-phone" /></svg>
+          Call now
+        </a>
+      </div>
+
+      <!-- app-style action tiles -->
+      <ul class="tiles" data-reveal data-delay="240">
+        <li><a href="tel:+919822014700" data-bind-href="_.telHref">
+          <svg aria-hidden="true"><use href="#i-phone" /></svg><span>Call</span></a></li>
+        <li data-wa><a href="#" data-bind-href="_.waHref" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-whatsapp" /></svg><span>WhatsApp</span></a></li>
+        <li><a href="#" data-bind-href="_.directionsHref" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-pin" /></svg><span>Directions</span></a></li>
+        <li><a href="#book">
+          <svg aria-hidden="true"><use href="#i-calendar" /></svg><span>Book</span></a></li>
+      </ul>
+     </div>
+
+      <!-- Desktop only. A phone gets the tiles and the price list
+           instead; a photograph there would just push the buttons
+           below the fold. main.js drops this if no image is set. -->
+      <figure class="hero__art" data-hero-art>
+        <img data-bind-src="business.heroImage" alt="" decoding="async" />
+        <figcaption class="hero__badge">
+          <b data-bind="reviewsMeta.rating">4.9</b>
+          <span>
+            <span class="hero__badge-stars" aria-hidden="true">
+              <svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg>
+            </span>
+            <i><span data-bind="reviewsMeta.count">612</span> Google reviews</i>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       2 · NUMBERS
+       ========================================================== -->
+  <section class="sec sec--tight">
+    <div class="wrap">
+      <dl class="nums" data-repeat="stats" data-reveal>
+        <template>
+          <div class="num">
+            <dd><span data-field-count="value">0</span></dd>
+            <dt data-field="label"></dt>
+          </div>
+        </template>
+      </dl>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       3 · TREATMENTS AND PRICES
+       ========================================================== -->
+  <section class="sec" id="treatments" data-section="services">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="kicker">Treatments</span>
+        <h2 data-bind-html="services.heading">What it costs,<br />before you walk in.</h2>
+        <p data-bind="services.note">
+          Starting prices for the treatments we are asked about most.
+        </p>
+      </div>
+
+      <!-- filter chips are built from the categories present -->
+      <div class="filter" data-filter="#svc-rail" data-reveal hidden></div>
+
+      <div class="rail rail--svc" id="svc-rail" data-repeat="services.items">
+        <template>
+          <article class="svc" data-cat-from="category">
+            <div class="svc__top">
+              <h3 data-field="name"></h3>
+              <p class="svc__price" data-field="price"></p>
+            </div>
+            <p class="svc__note" data-field="note"></p>
+            <p class="svc__meta">
+              <span class="tag" data-field="category"></span>
+              <span data-field="duration"></span>
+            </p>
+            <a class="svc__go" href="#book">
+              Book this <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </article>
+        </template>
+      </div>
+      <div class="pips" data-rail-dots="#svc-rail" aria-hidden="true"></div>
+
+      <p class="foot" data-bind="services.footnote" data-reveal>
+        No-cost EMI available on treatments above ₹10,000.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       4 · WHY US
+       ========================================================== -->
+  <section class="sec sec--alt" id="why">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="kicker">Why us</span>
+        <h2 data-bind-html="trust.heading">The bits that actually worry people.</h2>
+      </div>
+
+      <ul class="why" data-repeat="trust.items">
+        <template>
+          <li class="why__card" data-reveal>
+            <span class="why__ico" aria-hidden="true">
+              <svg><use data-field-href="icon" href="#i-shield" /></svg>
+            </span>
+            <h3 data-field="title"></h3>
+            <p data-field="body"></p>
+          </li>
+        </template>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       5 · DOCTORS
+       ========================================================== -->
+  <section class="sec" id="doctors" data-section="team">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="kicker">The team</span>
+        <h2 data-bind-html="team.heading">You see the same dentist<br />every single visit.</h2>
+        <p data-bind="team.note">Not a rota. Whoever starts your treatment finishes it.</p>
+      </div>
+
+      <div class="rail rail--doc" id="doc-rail" data-repeat="team.members">
+        <template>
+          <article class="doc">
+            <div class="doc__pic">
+              <img data-field-src="image" data-field-alt="name" alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="doc__txt">
+              <h3 data-field="name"></h3>
+              <p class="doc__role" data-field="role"></p>
+              <p class="doc__bio" data-field="bio"></p>
+            </div>
+          </article>
+        </template>
+      </div>
+      <div class="pips" data-rail-dots="#doc-rail" aria-hidden="true"></div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       6 · PHOTOS
+       ========================================================== -->
+  <section class="sec sec--alt" id="photos" data-section="gallery">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="kicker">Inside</span>
+        <h2 data-bind-html="gallery.heading">The actual clinic.</h2>
+        <p data-bind="gallery.note">Every photo below was taken in the building.</p>
+      </div>
+
+      <div class="shots" data-repeat="gallery.images" data-lightbox>
+        <template>
+          <figure class="shot">
+            <img data-field-src="src" data-field-alt="alt" alt="" loading="lazy" decoding="async" />
+          </figure>
+        </template>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       7 · REVIEWS
+       ========================================================== -->
+  <section class="sec" id="reviews">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="kicker">Reviews</span>
+        <h2 data-bind="reviewsMeta.heading">What patients wrote on Google.</h2>
+      </div>
+
+      <a class="score" href="#" data-bind-href="_.reviewsHref" target="_blank" rel="noopener" data-reveal>
+        <b data-bind="reviewsMeta.rating">4.9</b>
+        <span class="score__stars" aria-hidden="true">
+          <svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg>
+        </span>
+        <span>from <span data-bind="reviewsMeta.count">612</span> Google reviews · read them all</span>
+      </a>
+
+      <!-- Quotes only appear when real ones are supplied. Invented
+           testimonials are not something to ship under a clinic's name. -->
+      <div data-section="reviews">
+        <div class="rail rail--say" id="say-rail" data-repeat="reviews.items">
+          <template>
+            <figure class="say">
+              <span class="say__stars" aria-hidden="true">
+                <svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg><svg><use href="#i-star" /></svg>
+              </span>
+              <blockquote data-field="quote"></blockquote>
+              <figcaption>
+                <b data-field="name"></b>
+                <span data-field="meta"></span>
+              </figcaption>
+            </figure>
+          </template>
+        </div>
+        <div class="pips" data-rail-dots="#say-rail" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       8 · BOOK + MAP
+       ========================================================== -->
+  <section class="sec sec--alt" id="book">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <span class="kicker" data-bind="consult.eyebrow">Book an appointment</span>
+        <h2 data-bind="consult.heading">Tell us when suits you.</h2>
+        <p data-bind="consult.blurb">
+          Send the form and the front desk calls you back to confirm the slot.
+        </p>
+      </div>
+
+      <ul class="assure" data-reveal>
+        <li>
+          <b data-bind="consult.firstVisitPrice">₹300</b>
+          <span data-bind="consult.firstVisitNote">Consultation, 20 minutes</span>
+        </li>
+        <li>
+          <b>Free</b>
+          <span data-bind="consult.responseNote">Callback on WhatsApp within the hour</span>
+        </li>
+        <li>
+          <b>EMI</b>
+          <span>No-cost, 3 to 12 months</span>
+        </li>
+      </ul>
+
+      <div class="book">
+        <!-- ---- form ---- -->
+        <div class="book__form" data-reveal>
+          <form class="form" data-form novalidate>
+            <div class="f">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Priya Sharma" />
+              <em>Please tell us your name</em>
+            </div>
+
+            <div class="f">
+              <label for="f-tel">Mobile number</label>
+              <input id="f-tel" name="phone" type="tel" inputmode="numeric" autocomplete="tel"
+                     required pattern="[0-9+ ]{10,15}" placeholder="98765 43210" />
+              <em>A 10-digit mobile number, please</em>
+            </div>
+
+            <div class="f">
+              <label for="f-need">What do you need?</label>
+              <select id="f-need" name="treatment">
+                <option value="">Not sure — please advise</option>
+                <option>Check-up &amp; cleaning</option>
+                <option>Pain or a broken tooth</option>
+                <option>Root canal</option>
+                <option>Crown or bridge</option>
+                <option>Braces or aligners</option>
+                <option>Implant</option>
+                <option>Whitening</option>
+                <option>Child's check-up</option>
+              </select>
+            </div>
+
+            <div class="f f--half">
+              <label for="f-day">Preferred day</label>
+              <input id="f-day" name="day" type="date" />
+            </div>
+
+            <div class="f f--half">
+              <label for="f-time">Time of day</label>
+              <select id="f-time" name="time">
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+              </select>
+            </div>
+
+            <button class="btn btn--go btn--wide" type="submit" data-bind="consult.ctaLabel">
+              Request appointment
+            </button>
+
+            <p class="form__fine">
+              We only use this to call you back about the appointment.
+            </p>
+
+            <!-- shown after a successful submit -->
+            <div class="done" hidden>
+              <span class="done__tick" aria-hidden="true">
+                <svg><use href="#i-check" /></svg>
+              </span>
+              <h3>Request received.</h3>
+              <p>The front desk will call you shortly to confirm the slot. If it is urgent,
+                 ring <a href="tel:+919822014700" data-bind-href="_.telHref"><span data-bind="contact.phoneDisplay">098220 14700</span></a>.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- ---- map + address ---- -->
+        <aside class="book__side" data-reveal data-delay="80">
+          <div class="mapbox" data-map-wrap>
+            <div class="mapbox__frame" data-map>
+              <p class="mapbox__wait">Loading the map…</p>
+            </div>
+            <div class="mapbox__bar">
+              <p>
+                <b data-bind="business.name">Arogya Dental</b>
+                <span data-bind="_.addressOneLine">Shop 3, Ganga Trueno, Baner Road, Pune 411045</span>
+              </p>
+              <a class="btn btn--ghost btn--sm" href="#" target="_blank" rel="noopener" data-bind-href="_.directionsHref">
+                Directions
+              </a>
+            </div>
+          </div>
+
+          <div class="vcard">
+            <h3>Visiting</h3>
+
+            <p class="vcard__row">
+              <svg aria-hidden="true"><use href="#i-pin" /></svg>
+              <span data-bind-html="_.addressStacked">Shop 3, Ganga Trueno<br />Baner Road, Pune 411045</span>
+            </p>
+
+            <p class="vcard__row">
+              <svg aria-hidden="true"><use href="#i-phone" /></svg>
+              <a href="tel:+919822014700" data-bind-href="_.telHref">
+                <span data-bind="contact.phoneDisplay">098220 14700</span>
+              </a>
+            </p>
+
+            <p class="vcard__row" data-wa>
+              <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>
+              <a href="#" data-bind-href="_.waHref" target="_blank" rel="noopener">Message on WhatsApp</a>
+            </p>
+
+            <dl class="hrs" data-repeat="hours">
+              <template>
+                <div>
+                  <dt data-field="days"></dt>
+                  <dd data-field="time"></dd>
+                </div>
+              </template>
+            </dl>
+
+            <p class="vcard__park" data-bind="location.parkingNote">
+              Parking in the basement.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       9 · FAQ
+       ========================================================== -->
+  <section class="sec" id="faq">
+    <div class="wrap wrap--narrow">
+      <div class="head" data-reveal>
+        <span class="kicker">Questions</span>
+        <h2 data-bind="faq.heading">Questions we get asked every week.</h2>
+      </div>
+
+      <div class="qa" data-repeat="faq.items" data-accordion>
+        <template>
+          <div class="qa__item">
+            <button class="qa__q" type="button" aria-expanded="false">
+              <span data-field="q"></span>
+              <svg aria-hidden="true"><use href="#i-chevron" /></svg>
+            </button>
+            <div class="qa__a" hidden>
+              <p data-field="a"></p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="foot2">
+  <div class="wrap">
+    <div class="foot2__top">
+      <a class="foot2__mark" href="#top">
+        <span class="bar__dot" aria-hidden="true"></span>
+        <b data-bind="business.name">Arogya Dental</b>
+      </a>
+      <p data-bind-html="_.addressStacked">Shop 3, Ganga Trueno<br />Baner Road, Pune 411045</p>
+    </div>
+
+    <nav class="foot2__nav" aria-label="Footer">
+      <a href="#treatments">Prices</a>
+      <a href="#why">Why us</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#photos">Photos</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">Questions</a>
+      <a href="#book">Book</a>
+    </nav>
+
+    <p class="foot2__legal">
+      © <span data-year>2026</span>
+      <span data-bind="business.legalName">Arogya Dental Studio</span>.
+      Built for patients, not for search engines.
+    </p>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     STICKY BOTTOM BAR — the app tab bar, phones only
+     ============================================================ -->
+<nav class="dock" data-dock aria-label="Quick actions">
+  <a class="dock__act" href="tel:+919822014700" data-bind-href="_.telHref">
+    <svg aria-hidden="true"><use href="#i-phone" /></svg>
+    <span>Call</span>
+  </a>
+  <a class="dock__act" href="#" data-bind-href="_.waHref" target="_blank" rel="noopener" data-wa>
+    <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>
+    <span>WhatsApp</span>
+  </a>
+  <a class="dock__book" href="#book">
+    <span class="dock__lab">
+      <b data-bind="dock.cta">Book now</b>
+      <i><span data-bind="dock.label">Consultation</span> · <span data-bind="dock.price">₹300</span></i>
+    </span>
+    <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+  </a>
+</nav>
+
+
+<!-- Lenis gives the page its weighted, inertial scroll. If the CDN is
+     unreachable the site simply uses native scrolling — main.js checks. -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/client.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -41,8 +41,9 @@ ROOT = HERE.parent
 TEMPLATES = {
     "enamel":  ROOT / "dental-template-enamel",
     "aurelia": ROOT / "dental-template",
+    "arogya":  ROOT / "dental-template-arogya",
 }
-DEFAULT_TEMPLATE = "enamel"
+DEFAULT_TEMPLATE = "arogya"
 
 CSV_PATH = HERE / "clients.csv"
 DIST = HERE / "dist"
@@ -60,7 +61,8 @@ SKIP_NAMES = {"README.md", ".git", ".gitignore", "__pycache__"}
 # ---------------------------------------------------------------------------
 FIELDS: list[tuple[str, str]] = [
     ("slug",     "Folder + URL name. Blank = generated from the business name."),
-    ("template", "enamel (bold) or aurelia (editorial). Blank = enamel."),
+    ("template", "arogya (India, app-like), enamel (bold) or aurelia "
+                 "(editorial). Blank = arogya."),
 
     ("business.name",      "Shown in the header, footer wordmark and map card."),
     ("business.tagline",   "Small line under the logo, e.g. 'dental studio'."),
@@ -123,6 +125,29 @@ FIELDS: list[tuple[str, str]] = [
     ("team.note",    "Paragraph beside the clinicians heading."),
 ]
 
+# ---------------------------------------------------------------------------
+# Treatments and prices (arogya template)
+#
+# Indian patients compare on price before they ring, so the list goes on
+# the page. `category` drives the filter chips, and reusing the same few
+# words across rows is what groups them.
+# ---------------------------------------------------------------------------
+SERVICE_FIELDS = [
+    ("services.enabled",  "false removes the whole price list."),
+    ("services.heading",  "Price list heading. Basic HTML allowed."),
+    ("services.note",     "Paragraph beside the price list heading."),
+    ("services.footnote", "Small print under the list, e.g. the EMI terms."),
+]
+for _i in range(1, 13):
+    SERVICE_FIELDS += [
+        (f"services.items.{_i}.name",     f"Treatment {_i}, e.g. 'Root canal'."),
+        (f"services.items.{_i}.price",    f"Treatment {_i} price, e.g. 'Rs 4,500'."),
+        (f"services.items.{_i}.note",     f"Treatment {_i} one-line detail."),
+        (f"services.items.{_i}.category", f"Treatment {_i} group, e.g. 'General'. Drives the filter chips."),
+        (f"services.items.{_i}.duration", f"Treatment {_i} length, e.g. '60 min'."),
+    ]
+FIELDS += SERVICE_FIELDS
+
 # Six clinician slots and eight photo slots. Generated rather than typed
 # out so the columns cannot drift out of step with each other.
 for _i in range(1, 7):
@@ -150,6 +175,21 @@ FIELDS += [
     ("reviewsMeta.count",   "How many Google reviews, e.g. '327'."),
     ("reviewsMeta.heading", "Optional custom heading for the reviews section."),
 
+    ("reviews.enabled", "false hides the quote cards, keeping the star score."),
+]
+
+# Real review quotes, copied across from their Google listing. Left blank
+# the quote cards simply do not appear — inventing testimonials is not
+# something to ship under a clinic's name.
+for _i in range(1, 5):
+    FIELDS += [
+        (f"reviews.items.{_i}.quote", f"Review {_i}, in the patient's words. Keep it short."),
+        (f"reviews.items.{_i}.name",  f"Review {_i} author, e.g. 'Prathamesh J.'."),
+        (f"reviews.items.{_i}.meta",  f"Review {_i} context, e.g. 'Root canal - 2 months ago'."),
+    ]
+
+FIELDS += [
+
     ("dock.label", "Label on the sticky phone bar, e.g. 'Consultation'."),
     ("dock.price", "Figure on the sticky phone bar, e.g. 'Rs 500'."),
     ("dock.cta",   "Button text on the sticky phone bar."),
@@ -161,7 +201,11 @@ FIELDS += [
 COLUMNS = [name for name, _ in FIELDS]
 
 # Cells that are not plain strings.
-BOOL_COLUMNS = {"team.enabled", "gallery.enabled"}
+#
+# Derived rather than listed, because site.js tests `enabled === false`
+# and the string "false" is not false. Hand-maintaining this set meant a
+# new section could silently ignore its own off switch.
+BOOL_COLUMNS = {c for c in COLUMNS if c.endswith(".enabled")}
 INT_COLUMNS = {"location.mapZoom"}
 
 TRUE = {"true", "yes", "y", "1", "on"}

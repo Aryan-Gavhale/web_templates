@@ -116,11 +116,15 @@ the things Google does not carry.
 Clinician names, bios and headshots are not on Google Maps, and neither
 are prices or treatment lists. Those live on the practice's own site.
 
-Because of that, **`fetch.py` switches the clinicians section off** — if
-it did not, the template's demo doctors would ship on a real prospect's
-site under their own logo. Fill in `team.members.*` and set
-`team.enabled` back to `true`, or pass `--keep-team` if you want the demo
-names left in.
+Because of that, **`fetch.py` switches the clinicians section and the
+review quotes off** — if it did not, the template's demo doctors and
+invented testimonials would ship on a real prospect's site under their
+own logo. The star rating and review count *are* scraped and genuine, so
+those stay on the page.
+
+Fill in `team.members.*` and `reviews.items.*` and set the matching
+`enabled` cells back to `true`, or pass `--keep-team` if you want the
+demo content left in while you show someone the shape of the page.
 
 ### Two things to watch
 
@@ -149,24 +153,41 @@ keyword-stuffed ("Apollo Dental | Best Clinic in Bengaluru | Implants").
 | Column | Why |
 | --- | --- |
 | `business.name` | Everything else can be inferred or defaulted. |
-| `template` | `enamel` or `aurelia`. Blank means `enamel`. |
+| `template` | `arogya`, `enamel` or `aurelia`. Blank means `arogya`. |
 
 `slug` is generated from the business name if you leave it blank, so
 "Bright Smile" becomes `bright-smile`. Set it yourself when you want the
 folder and URL to read differently.
 
-### The two designs
+### The three designs
 
+- **`arogya`** — built for Indian clinics and for a phone. On a handset
+  it reads like an app: a bottom action bar with Call, WhatsApp and Book,
+  swipeable rails, and a live "Open now" pill. Publishes a ₹ price list
+  with filter chips. This is the default.
 - **`enamel`** — bold, high-contrast, thick borders and hard shadows.
   Suits a single-location independent practice with personality.
 - **`aurelia`** — quiet, editorial, numbered sections and lots of
   whitespace. Suits a larger multi-speciality clinic or hospital.
 
-Both read the exact same columns, so you can switch a client from one to
-the other by changing one cell and rebuilding. Two differences worth
-knowing: Enamel shows four headline stats, Aurelia shows three; and
+All three read the same columns, so you can switch a client from one to
+the other by changing one cell and rebuilding. Differences worth
+knowing: Enamel shows four headline stats and Aurelia shows three;
 Aurelia numbers its sections, so its `consult.eyebrow` default is
-`03 — Consultation` rather than a phrase.
+`03 — Consultation` rather than a phrase; and the `services.*` and
+`reviews.items.*` columns only appear on Arogya, so filling them in for
+one of the other two designs changes nothing.
+
+### Prices, on Arogya
+
+`services.items.N.*` builds the price list. `category` drives the filter
+chips above it, and they build themselves from whichever categories you
+actually use — so four rows tagged `General` and two tagged `Braces`
+gives you three chips: All, General, Braces. One category means no
+chips, because a single filter is a label.
+
+Rupee symbols are fine in the spreadsheet. `Rs 4,500` reads perfectly
+well too if your CSV editor makes `₹` awkward.
 
 ### Colour
 
@@ -374,6 +395,7 @@ dental-site-builder/
   check.mjs      optional headless render check
   dist/          generated sites, safe to delete
 
+dental-template-arogya/     India / mobile-app design (default)
 dental-template-enamel/     bold design
 dental-template/            editorial design (aurelia)
   index.html

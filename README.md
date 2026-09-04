@@ -1,6 +1,6 @@
 # web_templates
 
-Twenty-three hand-built, single-page website templates across three verticals —
+Twenty-four hand-built, single-page website templates across three verticals —
 dental practices, dermatology clinics, and interior design studios — plus three
 of them taken all the way to working applications, each with a database and an
 admin panel behind it (described at the bottom).
@@ -33,11 +33,40 @@ placeholder.
 
 ---
 
-## Dental — 10 templates
+## Building a hundred of them — `dental-site-builder/`
+
+Three of the dental templates (`dental-template-arogya`, `-enamel`, and
+`dental-template`) are wired for bulk personalisation. Each keeps its content in
+`assets/js/site-config.js` and reads a per-client overlay from
+`assets/js/client.js`, which means one spreadsheet row becomes one finished site.
+
+```bash
+cd dental-site-builder
+python fetch.py "<google maps url>"   # fills a row from their Google listing
+python build.py build                 # one folder per row, into dist/
+```
+
+`fetch.py` drives a headless browser over a Google Maps place page and pulls out
+the name, address, phone, opening hours, star rating and photos. `build.py`
+copies the chosen template and writes the small overlay — no AI, no API calls, so
+a hundred sites cost the same as one.
+
+Blank cells keep the template's own content, so a half-filled row still renders a
+complete page. Two things are switched off rather than defaulted, because Google
+cannot tell us them and guessing would put words in a real clinic's mouth: the
+clinician list and the review quotes. The star rating and review count are
+scraped and genuine, so those stay.
+
+Full documentation is in [`dental-site-builder/README.md`](dental-site-builder/README.md).
+
+---
+
+## Dental — 11 templates
 
 | Folder | Name | Direction |
 | --- | --- | --- |
 | `dental-template` | Aurelia Dental Institute | Warm editorial. Paper and spruce, Fraunces serif, arch shapes, hard offset blocks |
+| `dental-template-arogya` | Arogya Dental | Indian clinic, phone first. Reads like an app on a handset — bottom action bar, swipe rails, live open/closed pill, ₹ price list with filter chips. Lenis smooth scroll |
 | `dental-template-ashbourne` | Ashbourne & Wade | Heritage practice. Oat and oxblood, arched frames, an interactive tooth chart |
 | `dental-template-datum` | Datum Dental | A technical drawing sheet. Graph paper, drafting blue, dimension lines, title block |
 | `dental-template-enamel` | ENAMEL | Loud studio. Bone and safety orange, 2px borders, a four-question smile check |

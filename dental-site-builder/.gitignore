@@ -1,5 +1,10 @@
 # Generated sites — rebuild them from clients.csv instead of committing them.
 dist/
+.sites.json
+
+# Python bytecode, created whenever build.py is imported.
+__pycache__/
+*.py[cod]
 
 # Only present if you installed jsdom for check.mjs.
 node_modules/
