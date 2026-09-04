@@ -3,6 +3,13 @@
 One row of a spreadsheet in, one finished website out.
 
 ```
+python fetch.py "<google maps link>"   # fills a row in from Google
+python build.py build                  # that row becomes a website
+```
+
+Or skip the scraping and type the sheet yourself:
+
+```
 python build.py init      # create clients.csv
                           # ...fill it in...
 python build.py build     # every row becomes a site in dist/
@@ -66,6 +73,72 @@ To see every column with a one-line explanation:
 ```
 python build.py fields
 ```
+
+---
+
+## Filling a row from a Google Maps link
+
+`fetch.py` opens the practice's Maps listing in a headless browser, reads
+the panel, and writes the row for you.
+
+```
+python fetch.py "https://maps.app.goo.gl/AbC123"
+python fetch.py --file links.txt --template aurelia
+python fetch.py "<link>" --show          # print it, do not write the sheet
+python fetch.py "<link>" --photos        # download the photos as well
+```
+
+It takes a full Maps URL, a short `maps.app.goo.gl` link, or a plain name
+to search for. Rows are matched on `slug`, so re-running updates a
+practice instead of duplicating it — and by default it will not overwrite
+a cell you filled in by hand. Pass `--overwrite` when you do want that.
+
+**No AI and no API key.** Google Maps builds the place panel in the
+browser rather than sending it as HTML, so this drives a real Chromium
+and reads the rendered panel — the same thing you would do by hand, minus
+the typing. Setup is one-time:
+
+```
+pip install playwright
+playwright install chromium
+```
+
+### What it fills in
+
+Name, address split into two lines, city, phone (both the readable form
+and the dial link), rating, review count, exact latitude and longitude,
+opening hours in both the display and badge formats, and up to eight
+photos. It also prints their own website, which is where you will find
+the things Google does not carry.
+
+### What it cannot fill in
+
+Clinician names, bios and headshots are not on Google Maps, and neither
+are prices or treatment lists. Those live on the practice's own site.
+
+Because of that, **`fetch.py` switches the clinicians section off** — if
+it did not, the template's demo doctors would ship on a real prospect's
+site under their own logo. Fill in `team.members.*` and set
+`team.enabled` back to `true`, or pass `--keep-team` if you want the demo
+names left in.
+
+### Two things to watch
+
+**Paste the link, do not search by name.** A search returns Google's
+nearest guess, which for an unlisted practice is a *different* clinic
+entirely. The tool compares what you asked for against what came back and
+warns you, but the warning is only a heuristic — the link is exact.
+
+**Split shifts are approximated.** A clinic that closes for lunch
+("10:30 am to 2:30 pm, 5 to 9:30 pm") keeps the full text in the printed
+hours table, but the header badge spans first opening to last closing, so
+it reads "open" during the break. Correct `openBadge.*` by hand if that
+matters.
+
+Everything it writes is a best guess worth eyeballing — particularly the
+city, which is picked out of the address, and the business name, which is
+trimmed at the first dash or pipe because listings are often
+keyword-stuffed ("Apollo Dental | Best Clinic in Bengaluru | Implants").
 
 ---
 
@@ -235,11 +308,11 @@ the `action`.
 
 A practical order of work for a cold call:
 
-1. **Before the call**, fill in only what you can find yourself:
-   name, city, address, phone, `location.mapQuery`, the Google rating
-   and review count, and two or three photos from their Business
-   Profile. That is maybe four minutes per practice and about fifteen
-   cells.
+1. **Before the call**, collect their Maps links into a text file, one
+   per line, and run `python fetch.py --file links.txt`. That fills in
+   the name, address, phone, coordinates, rating, hours and photos for
+   every one of them, so the four minutes of typing per practice becomes
+   a few seconds.
 2. **Build it** and send them the link. Everything you left blank still
    reads as sensible professional copy, because the template defaults
    are written to be generic rather than placeholder text. There is no
@@ -295,6 +368,7 @@ Before invoicing, per site:
 
 ```
 dental-site-builder/
+  fetch.py       Google Maps link -> a filled-in row
   build.py       init / build / fields
   clients.csv    your client data (created by init)
   check.mjs      optional headless render check
